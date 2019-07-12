@@ -1,0 +1,205 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_INPUT_ITEM_HIDDEN:ItemNameConst.BTN_INPUT_ITEM_DISPLAY}}</button>    
+        
+    </div>
+  </section>
+
+
+  <section class="pageContainer">
+    <!-- 管理コード -->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section
+          [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'"
+          [formGroup]="myFormGroup">
+          <div class="contents__container--flex">
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--15">{{ItemNameConst.LBL_MANAGEMENT_CODE}}</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="managementCodeCtrl"
+                    name="managementCodeCtrl"
+                    class="input-size--200"
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--15">データ</dt>
+                <dd class="definitionForm__data w--85">
+                  <ng-container *ngIf="inputType==InputType.NORMAL">
+                    <input
+                      formControlName="managementValueCtrl"
+                      name="managementValueCtrl"
+                      maxlength="{{maxlength}}"
+                      class="input-size--200">
+                  </ng-container>
+                  <ng-container *ngIf="inputType==InputType.CODE">
+                    <input
+                      formControlName="managementValueCodeCtrl"
+                      name="managementValueCodeCtrl"
+                      maxlength="{{maxlength}}"
+                      class="input-size--200">
+                  </ng-container>
+                  <ng-container *ngIf="inputType==InputType.NUMBER">
+                    <input
+                      formControlName="managementValueNumberCtrl"
+                      name="managementValueNumberCtrl"
+                      maxlength="{{maxlength}}"
+                      class="input-size--200">
+                  </ng-container>
+                  <ng-container *ngIf="inputType==InputType.DEPARTMENT">
+                    <input
+                      formControlName="departmentCodeCtrl"
+                      name="departmentCodeCtrl"
+                      (keyup.enter)="setMasterCode($event.type)"
+                      (blur)="setMasterCode($event.type)"
+                      #departmentCodeInput
+                      [formControl]="departmentCodeCtrl" 
+                      [matAutocomplete]="autoDepartmentCode"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      maxlength="{{maxlength}}"
+                      class="input-size--100 definitionForm__input">
+                    <mat-autocomplete 
+                      #autoDepartmentCode="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth300">
+                      <mat-option 
+                        *ngFor="let department of departmentFilterds[0] | async" 
+                        [value]="department.code">{{department.code}}:{{department.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal()"></a>
+                    <input
+                      formControlName="managementValueNameCtrl"
+                      name="managementValueNameCtrl"
+                      class="input-size--200"
+                      readonly>
+                  </ng-container>
+                  <ng-container *ngIf="inputType==InputType.ACCOUNT_TITLE">
+                    <input
+                      formControlName="accountTitleCodeCtrl"
+                      name="accountTitleCodeCtrl"
+                      (keyup.enter)="setMasterCode($event.type)"
+                      (blur)="setMasterCode($event.type)"
+                      #accountTitleCodeInput
+                      [formControl]="accountTitleCodeCtrl" 
+                      [matAutocomplete]="autoAccountTitleCode"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      maxlength="{{maxlength}}"
+                      class="input-size--100 definitionForm__input">
+                    <mat-autocomplete 
+                      #autoAccountTitleCode="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth300">
+                      <mat-option 
+                        *ngFor="let accountTitle of accountTitleFilterds[0] | async" 
+                        [value]="accountTitle.code">{{accountTitle.code}}:{{accountTitle.name}}
+                      </mat-option>
+                    </mat-autocomplete>                
+                    <a class="buttonMasterSearch" (click)="openMasterModal()"></a>
+                    <input
+                      formControlName="managementValueNameCtrl"
+                      name="managementValueNameCtrl"
+                      class="input-size--200"
+                      readonly>
+                  </ng-container>            
+                  <ng-container *ngIf="inputType==InputType.CALENDAR">
+                    <input
+                      formControlName="managementValueCtrl"
+                      name="managementValueCtrl"
+                      placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                      ngbDatepicker
+                      #dp="ngbDatepicker"
+                      maxlength="10"
+                      type="tel"
+                      class="input-size--100">
+                    <button
+                      class="btn btn-outline-secondary definitionForm__input"
+                      (click)="dp.toggle()"
+                      type="button">
+                    </button>
+                  </ng-container>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--15">説明</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="managementDescriptionCtrl"
+                    name="managementDescriptionCtrl"
+                    class="input-size--400"
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--15">有効桁数</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="managementLengthCtrl"
+                    name="managementLengthCtrl"
+                    class="input-size--100"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__buttonGroup">
+              <button
+                (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+                [ngClass]="{'button-disable': myFormGroup.invalid || ComponentStatus==COMPONENT_STATUS_TYPE.CREATE}"
+                class="buttonSecondary">{{ItemNameConst.BTN_UPDATE}}</button>
+              <button
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+            </div> 
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <!-- 登録済みの管理情報 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_REGISTER_GENERAL_SETTING}}</h2>
+      <div class="contents__container">
+      <div class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_50_CODE}}">編集</th>
+              <th class="{{TableColumn.COL_300_CODE}}">管理コード</th>
+              <th class="{{TableColumn.COL_200_CODE}}">データ</th>
+              <th class="{{TableColumn.COL_100_CODE}}">有効桁数</th>
+              <th class="{{TableColumn.COL_600_CODE}}">説明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let generalSetting of generalSettingsResult?.generalSettings index as i"
+              class="line-selector">
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                  <a class="buttonEdit" (click)="selectLine(i)"></a>
+              </td>
+              <td class="{{TableColumn.COL_300_NAME}}">{{generalSetting.code}}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{generalSetting.value}}</td>
+              <td class="{{TableColumn.COL_100_RIGHT_NAME}}">{{generalSetting.length}}</td>
+              <td class="{{TableColumn.COL_600_NAME}}">{{generalSetting.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </section>
+
+
+
+  </section>
+
+
+</div>

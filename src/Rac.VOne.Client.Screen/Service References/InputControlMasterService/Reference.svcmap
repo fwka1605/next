@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2d1a9f89-1ac2-4013-aa72-84c6e046d47f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/InputControlMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="InputControlMaster.wsdl" MetadataType="Wsdl" ID="924660dd-0384-492f-9fb8-0d85966f3924" SourceId="1" SourceUrl="http://localhost:3061/Master/InputControlMaster.svc?wsdl" />
+    <MetadataFile FileName="InputControlMaster.xsd" MetadataType="Schema" ID="ac290656-e230-44c0-b73b-d66c320d9db9" SourceId="1" SourceUrl="http://localhost:3061/Master/InputControlMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="InputControlMaster1.xsd" MetadataType="Schema" ID="2e7b1928-da2f-495c-b733-3f2838e9407c" SourceId="1" SourceUrl="http://localhost:3061/Master/InputControlMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="InputControlMaster.disco" MetadataType="Disco" ID="60986324-7f75-413b-ab44-6ec8b2446a51" SourceId="1" SourceUrl="http://localhost:3061/Master/InputControlMaster.svc?disco" />
+    <MetadataFile FileName="InputControlMaster2.xsd" MetadataType="Schema" ID="8a57f5a5-aae6-456b-be7f-745d84139e91" SourceId="1" SourceUrl="http://localhost:3061/Master/InputControlMaster.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,46 @@
+export class Collation {
+    public checked: Boolean;
+    public compnayId: number;
+    public currencyId: number;
+    public parentCustomerId: number;
+    public paymentAgencyId: number;
+    public customerId: number;
+    public paymentAgencyCode: string | null;
+    public customerName: string | null;
+    public paymentAgencyName: string | null;
+    public billingCount: number;
+    public billingAmount: number;
+    public payerName: string | null;
+    public receiptCount: number;
+    public receiptAmount: number;
+    public advanceReceivedCount: number;
+    public bankTransferFee: number;
+    public taxDifference: number;
+    public shareTransferFee: number;
+    public useFeeTolerance: number;
+    public useFeeLearning: number;
+    public useKanaLearning: number;
+    public prioritizeMatchingIndividually: number;
+    public forceMatchingIndividually: number;
+    public dispCustomerCode: string | null;
+    public dispCustomerName: string | null;
+    public dispCustomerKana: string | null;
+    public isParent: number;
+    public displayOrder: number;
+    public updateFlag: Boolean;
+    public dispBillingAmount: number | null;
+    public dispReceiptAmount: number | null;
+    public dispBillingCount: number | null;
+    public dispReceiptCount: number | null;
+    public currencyCode: string | null;
+    public currencyTolerance: number;
+    public customerCode: string | null;
+    public billingOrder: number;
+    public receiptOrder: number;
+    public dupeCheck: number;
+    public billingPriority: number;
+    public receiptPriority: number;
+    public billingDisplayOrder: number;
+    public receiptDisplayOrder: number;
+}
+

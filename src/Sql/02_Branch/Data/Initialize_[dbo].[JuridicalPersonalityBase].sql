@@ -1,0 +1,70 @@
+﻿
+DELETE [dbo].[JuridicalPersonalityBase]
+GO
+
+INSERT INTO [dbo].[JuridicalPersonalityBase]
+     ( Kana )
+SELECT u.[Kana]
+  FROM (
+           SELECT 'ｼﾖｸﾊﾝｷﾖｳ' [Kana]
+ UNION ALL SELECT 'ｺｳｷﾖｳﾚﾝ'  [Kana]
+ UNION ALL SELECT 'ﾉｳｷﾖｳﾚﾝ'  [Kana]
+ UNION ALL SELECT 'ｹｲｻﾞｲﾚﾝ'  [Kana]
+ UNION ALL SELECT 'ｷﾖｳｻｲﾚﾝ'  [Kana]
+ UNION ALL SELECT 'ｶｲｼﾞﾖｳ'   [Kana]
+ UNION ALL SELECT 'ｼﾞﾕｳｸﾐ'   [Kana]
+ UNION ALL SELECT 'ｷﾞﾖｷﾖｳ'   [Kana]
+ UNION ALL SELECT 'ｾｲｷﾖｳ'    [Kana]
+ UNION ALL SELECT 'ｷﾞﾖﾚﾝ'    [Kana]
+ UNION ALL SELECT 'ｼﾖｸｱﾝ'    [Kana]
+ UNION ALL SELECT 'ｷﾖｳｻｲ'    [Kana]
+ UNION ALL SELECT 'ｷﾖｳｸﾐ'    [Kana]
+ UNION ALL SELECT 'ｺｸﾎﾚﾝ'    [Kana]
+ UNION ALL SELECT 'ﾛｳｸﾐ'     [Kana]
+ UNION ALL SELECT 'ｺｳﾈﾝ'     [Kana]
+ UNION ALL SELECT 'ｾｲﾒｲ'     [Kana]
+ UNION ALL SELECT 'ｹﾝﾎﾟ'     [Kana]
+ UNION ALL SELECT 'ｺｸﾎ'      [Kana]
+ UNION ALL SELECT 'ｼﾔﾎ'      [Kana]
+ UNION ALL SELECT 'ｶｻｲ'      [Kana]
+ UNION ALL SELECT 'ｶﾌﾞ'      [Kana]
+ UNION ALL SELECT 'ｻﾞｲ'      [Kana]
+ UNION ALL SELECT 'ｼﾕﾂ'      [Kana]
+ UNION ALL SELECT 'ｼﾕｳ'      [Kana]
+ UNION ALL SELECT 'ｶﾞｸ'      [Kana]
+ UNION ALL SELECT 'ﾎｺﾞ'      [Kana]
+ UNION ALL SELECT 'ﾕｳ'       [Kana]
+ UNION ALL SELECT 'ｼﾔ'       [Kana]
+ UNION ALL SELECT 'ﾌｸ'       [Kana]
+ UNION ALL SELECT 'ｴｲ'       [Kana]
+ UNION ALL SELECT 'ﾚﾝ'       [Kana]
+ UNION ALL SELECT 'ﾕ'        [Kana]
+ UNION ALL SELECT 'ﾒ'        [Kana]
+ UNION ALL SELECT 'ｿ'        [Kana]
+ UNION ALL SELECT 'ｼ'        [Kana]
+ UNION ALL SELECT 'ｶ'        [Kana]
+ UNION ALL SELECT 'ｲ'        [Kana]
+ UNION ALL SELECT 'ﾄﾞ'       [Kana]
+ UNION ALL SELECT 'ﾄｸﾋ'      [Kana]
+ UNION ALL SELECT 'ﾄﾞｸ'      [Kana]
+ UNION ALL SELECT 'ﾍﾞﾝ'      [Kana]
+ UNION ALL SELECT 'ﾁﾕｳ'      [Kana]
+ UNION ALL SELECT 'ｷﾞﾖ'      [Kana]
+ UNION ALL SELECT 'ｼﾎｳ'      [Kana]
+ UNION ALL SELECT 'ｾﾞｲ'      [Kana]
+ UNION ALL SELECT 'ﾀﾞｲ'      [Kana]
+ UNION ALL SELECT 'ﾉｳ'       [Kana]
+ UNION ALL SELECT 'ｶﾝﾘ'      [Kana]
+ UNION ALL SELECT 'ﾛｳﾑ'      [Kana]
+ UNION ALL SELECT 'ｺｸｷﾖｳﾚﾝ'  [Kana]
+ UNION ALL SELECT 'ｼﾔｷﾖｳ'    [Kana]
+ UNION ALL SELECT 'ﾄｸﾖｳ'     [Kana]
+ UNION ALL SELECT 'ﾕｳｸﾐ'     [Kana]
+       ) u
+ WHERE NOT EXISTS (
+       SELECT 1
+         FROM [dbo].[JuridicalPersonalityBase] b
+        WHERE b.Kana = u.Kana )
+ ORDER BY
+       u.Kana;
+GO

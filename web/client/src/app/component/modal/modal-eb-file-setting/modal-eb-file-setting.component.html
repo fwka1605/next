@@ -1,0 +1,139 @@
+<section class="vModal height--400"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup"
+  data-modal-contents="torikomi">
+  <h2 class="vModal__heading">
+    {{ItemNameConst.LBL_EB_FILE_SETTING}}
+    <span class="vModal__close"
+    (click)="close()"
+    data-modal-close></span>
+  </h2>
+
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+        [ngClass]="{'button-disable':  myFormGroup.invalid }" 
+        class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+
+      <ng-container *ngIf="!isDelete">
+        <button
+          (click)="buttonAction(BUTTON_ACTION.DELETE)"
+          class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+      </ng-container>
+
+      <button 
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+
+      <button 
+        (click)="cancel();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>          
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--22">EBフォーマット<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--78">
+            <select 
+              formControlName="ebFileFormatIdCtrl" 
+              name="ebFileFormatIdCtrl"
+              (change)="setEBFileFormatId()"
+              class="select-size--200">
+              <option *ngFor="let ebFileFormat of ebFormatsResult?.eBFileFormats  index as i" value="{{i}}">
+                {{ebFileFormat.name}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title w--22">区切文字<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--78">
+            <select 
+              formControlName="fileFieldTypeCtrl" 
+              name="fileFieldTypeCtrl" 
+              (change)="setfileFieldType()"
+              class="select-size--200">
+              <option value=""></option>
+              <option *ngFor="let fileFiledTypeName of fileFiledTypeNames  index as i" value="{{fileFiledTypeName.id}}">
+                {{fileFiledTypeName.val}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title w--22">EBファイル設定名<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--78">
+            <input 
+              formControlName="fileSettingNameCtrl" 
+              name="fileSettingNameCtrl" 
+              maxlength="100"
+              class="input-size--500">
+          </dd>
+          <dt class="definitionForm__title w--22">銀行コード<span [hidden]="!bankCodeCtrl.enabled" class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--78">
+            <input 
+              formControlName="bankCodeCtrl" 
+              name="bankCodeCtrl"
+              (blur)="setBankCode()"
+              type="tel"
+              maxlength="4"
+              class="input-size--60">
+          </dd>
+          <dt class="definitionForm__title w--22">取込区分</dt>
+          <dd class="definitionForm__data w--78">
+            <input 
+              formControlName="importableValueCtrl" 
+              name="importableValueCtrl" 
+              maxlength="100"
+              class="input-size--580">
+          </dd>
+          <dt class="definitionForm__title w--22">表示順<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--78">
+            <input 
+              formControlName="displayOrderCtrl" 
+              name="displayOrderCtrl" 
+              type="tel"
+              maxlength="2"
+              class="input-size--100">
+          </dd>
+          <ng-container *ngIf="isDateSelectable">
+            <dt class="definitionForm__title w--22">入金日指定</dt>
+            <dd class="definitionForm__data w--78">
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="receiveDateCtrl_01"
+                    class="inputStyled__input"
+                    formControlName="receiveDateCtrl"
+                    name="receiveDateCtrl"
+                    type="radio"
+                    value="0">
+                  <label
+                    class="inputStyled__radio"
+                    for="receiveDateCtrl_01">勘定日</label>
+                </div>
+              </label>
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="receiveDateCtrl_02"
+                    class="inputStyled__input"
+                    formControlName="receiveDateCtrl"
+                    name="receiveDateCtrl"
+                    type="radio"
+                    value="1">
+                  <label
+                    class="inputStyled__radio"
+                    for="receiveDateCtrl_02">起算日</label>
+                </div>
+              </label>
+            </dd>
+          </ng-container>
+        </dl>
+      </div>
+    </section>
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

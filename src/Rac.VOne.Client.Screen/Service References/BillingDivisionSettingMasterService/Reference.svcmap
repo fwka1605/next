@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5e827bd9-dc7b-401b-b0c1-95d12186eb68" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/BillingDivisionSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BillingDivisionSettingMaster.xsd" MetadataType="Schema" ID="4d9d605d-345c-42b4-bff6-9cb390856f3b" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionSettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="BillingDivisionSettingMaster1.xsd" MetadataType="Schema" ID="de620085-4e38-4c72-9b52-ecce7bb7083f" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="BillingDivisionSettingMaster2.xsd" MetadataType="Schema" ID="4126fc8c-2936-4031-b6de-57985b10160b" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="BillingDivisionSettingMaster.disco" MetadataType="Disco" ID="6872cd09-a27b-41a0-9043-82afde68e4ea" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionSettingMaster.svc?disco" />
+    <MetadataFile FileName="BillingDivisionSettingMaster.wsdl" MetadataType="Wsdl" ID="d1fdabac-6259-48fa-826e-a867e7bb406c" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionSettingMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

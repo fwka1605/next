@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3061/Master/SectionWithLoginUserMaster.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="SectionWithLoginUsersResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="SectionWithLoginUsers" nillable="true" type="tns:ArrayOfSectionWithLoginUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SectionWithLoginUsersResult" nillable="true" type="tns:SectionWithLoginUsersResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ArrayOfSectionWithLoginUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SectionWithLoginUser" nillable="true" type="tns:SectionWithLoginUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSectionWithLoginUser" nillable="true" type="tns:ArrayOfSectionWithLoginUser" />
+  <xs:complexType name="SectionWithLoginUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginUserCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SectionCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SectionId" type="xs:int" />
+      <xs:element minOccurs="0" name="SectionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SectionWithLoginUser" nillable="true" type="tns:SectionWithLoginUser" />
+  <xs:complexType name="SectionWithLoginUserSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="SectionCode" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="SectionId" type="xs:int" />
+      <xs:element minOccurs="0" name="SectionName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SectionWithLoginUserSearch" nillable="true" type="tns:SectionWithLoginUserSearch" />
+  <xs:complexType name="SectionWithLoginUserResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="SectionWithLoginUser" nillable="true" type="tns:SectionWithLoginUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SectionWithLoginUserResult" nillable="true" type="tns:SectionWithLoginUserResult" />
+  <xs:complexType name="ImportResultSectionWithLoginUser">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ImportResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="SectionWithLoginUser" nillable="true" type="tns:ArrayOfSectionWithLoginUser" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ImportResultSectionWithLoginUser" nillable="true" type="tns:ImportResultSectionWithLoginUser" />
+  <xs:complexType name="ImportResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeleteCount" type="xs:int" />
+      <xs:element minOccurs="0" name="InsertCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="UpdateCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportResult" nillable="true" type="tns:ImportResult" />
+  <xs:complexType name="ExistResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExistResult" nillable="true" type="tns:ExistResult" />
+</xs:schema>

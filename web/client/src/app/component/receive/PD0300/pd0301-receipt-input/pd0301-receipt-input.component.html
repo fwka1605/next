@@ -1,0 +1,726 @@
+<div [formGroup]="myFormGroup" class="receive">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="back()" 
+        *ngIf="!disableBack()"
+        class="buttonBack">
+        {{ItemNameConst.BTN_BACK}}
+      </button>
+
+      <ng-container *ngIf="securityHideShow">
+        <button
+          (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+          [ngClass]="{'button-disable':  myFormGroup.invalid }"
+          class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      </ng-container>
+
+      <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.ModifyReceipt)">
+        <button
+          (click)="buttonAction(BUTTON_ACTION.DELETE)"
+          [ngClass]="{'button-disable':  ComponentStatus!=COMPONENT_STATUS_TYPE.UPDATE }"
+          class="buttonSecondary">{{ItemNameConst.BTN_DELETE}}</button>
+      </ng-container>
+
+      <ng-container *ngIf="securityHideShow">
+        <button
+          (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+          [ngClass]="{'button-disable':  ComponentStatus == COMPONENT_STATUS_TYPE.UPDATE || matchingNewInputFlg }"
+          class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+      </ng-container>
+
+
+      <div class="contentsButton__subSection">
+        <ul class="separator">
+          <li class="separator__item">
+            <ng-container *ngIf="securityHideShow">
+              <button 
+                (click)="billingSearch()" 
+                [ngClass]="{'button-disable':  ComponentStatus == COMPONENT_STATUS_TYPE.UPDATE || matchingNewInputFlg }" 
+                class="buttonPrimary infotip">
+                {{ItemNameConst.BTN_SEARCH_BILLING}}
+                <span [innerHtml]="ButtonTipsConst.BILLING_SEARCH | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+            </ng-container>
+          </li>
+          <li class="separator__item">
+            <ng-container *ngIf="securityHideShow">
+              <button 
+                (click)="receiptSearch()" 
+                [ngClass]="{'button-disable':  ComponentStatus == COMPONENT_STATUS_TYPE.UPDATE || matchingNewInputFlg }" 
+                class="buttonPrimary infotip">
+                {{ItemNameConst.BTN_SEARCH_RECEIPT}}
+                <span [innerHtml]="ButtonTipsConst.RECEIPT_SEARCH | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+            </ng-container>
+          </li>
+        </ul>
+      </div>   
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入金データ入力 ヘッダー部 -->
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_RECEIPT_ENTRY}}
+        <ng-container *ngIf="securityHideShow">
+          <span class="tag--new">{{SubTitle}}</span>
+        </ng-container>
+      </h2>
+      <div class="contents__container--flex">
+        <div class="contents__item--w-30">
+          <dl class="definitionForm--lh-narrow">
+            <dt class="definitionForm__title w--27">入金ID</dt>
+            <dd class="definitionForm__data w--73">
+              <input
+                formControlName="receiptIdCtrl"
+                name="receiptIdCtrl"
+                type="text"
+                class="input-size--100"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--27">入金日<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--73">
+              <input
+                formControlName="recordedAtCtrl"
+                name="recordedAtCtrl"
+                (keyup.enter)="setRecordedAt($event.type)"
+                (dateSelect)="setRecordedAt($event.type)"
+                ngbDatepicker #recordedAtDp="ngbDatepicker"
+                placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+              <button class="btn btn-outline-secondary" (click)="recordedAtDp.toggle()" type="button"></button>
+              <input
+                formControlName="matchingRecordedAtFromToCtrl"
+                name="matchingRecordedAtFromToCtrl"
+                class="input-size--150" *ngIf="matchingNewInputFlg"
+                [ngClass]="{'input--error': recordedAtCtrl.errors?.ngbDate && !StringUtil.IsNullOrEmpty(recordedAtCtrl.value)}"
+                readonly>
+                <br>
+                <div
+                  class="message-result font__warning"
+                  *ngIf="recordedAtCtrl.errors?.ngbDate && !StringUtil.IsNullOrEmpty(recordedAtCtrl.value)">
+                  {{ MSG_VAL.DATE_DAY }}
+                </div>
+            </dd>
+          </dl>
+        </div>
+        <div class="contents__item--w-70">
+          <dl class="definitionForm--lh-narrow">
+            <dt class="definitionForm__title w--20">得意先コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--80">
+              <input
+                formControlName="customerCodeCtrl"
+                name="customerCodeCtrl"
+                (blur)="setCustomerCode($event.type)"
+                (keyup.enter)="setCustomerCode($event.type)"
+                #customerCodeInput
+                [formControl]="customerCodeCtrl" 
+                [matAutocomplete]="autoCustomerCode"
+                type="tel"
+                maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                class="input-size--110">
+              <mat-autocomplete 
+                #autoCustomerCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option 
+                  *ngFor="let customer of customerFilterds[0] | async" 
+                  [value]="customer.code">
+                  {{customer.code}}:{{customer.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER)"></a>
+              <input
+                formControlName="customerNameCtrl"
+                name="customerNameCtrl"
+                class="input-size--250"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--20">振込依頼人名</dt>
+            <dd class="definitionForm__data w--80">
+              <input
+                formControlName="payerNameCtrl"
+                name="payerNameCtrl"
+                class="input-size--500"
+                readonly>
+            </dd>            
+            <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+              <dt class="definitionForm__title w--20">入金部門コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--80">
+                <input
+                  name="sectionCodeCtrl"
+                  formControlName="sectionCodeCtrl"
+                  (blur)="setSectionCode($event.type)"
+                  (keyup.enter)="setSectionCode($event.type)"
+                  #sectionCodeInput
+                  [formControl]="sectionCodeCtrl" 
+                  [matAutocomplete]="autoSectionCode"
+                  type="tel"
+                  maxlength="{{userInfoService.ApplicationControl?.sectionCodeLength}}"
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                  class="input-size--110">
+                <mat-autocomplete 
+                  #autoSectionCode="matAutocomplete"
+                  [panelWidth]="PanelConst.autocompleteWidth300">
+                  <mat-option 
+                    *ngFor="let section of sectionFilterds[0] | async" 
+                    [value]="section.code">
+                    {{section.code}}:{{section.name}}
+                  </mat-option>
+                </mat-autocomplete>
+                <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION)"></a>
+                <input
+                  formControlName="sectionNameCtrl"
+                  name="sectionNameCtrl"
+                  class="input-size--250"
+                  readonly>
+              </dd>
+            </ng-container>
+            <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1">
+              <dt class="definitionForm__title w--20">通貨コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--80">
+                <input
+                  formControlName="currencyCodeCtrl"
+                  name="currencyCodeCtrl"
+                  (blur)="setCurrencyCode($event.type)"
+                  (keyup.enter)="setCurrencyCode($event.type)"
+                  type="tel"
+                  maxlength="3"
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                  class="input-size--60">
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY)"></a>
+                </dd>
+            </ng-container>
+            <dt class="definitionForm__title"></dt>
+            <dd class="definitionForm__data">
+              <div class="inputStyled">
+                <input class="inputStyled__input"
+                  id="cbxSaveKanaHistoryCtrl" 
+                  formControlName="cbxSaveKanaHistoryCtrl" 
+                  name="cbxSaveKanaHistoryCtrl" 
+                  type="checkbox">
+                <label 
+                  *ngIf="this.visibleSaveKanaHistory"
+                  class="inputStyled__checkbox" for="cbxSaveKanaHistoryCtrl">学習履歴に登録する。</label>
+              </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!---
+      入金データ入力 明細部
+    -->
+    <section class="contents">
+      <div class="common-inner-table--multipleHeader">
+          <table>
+            <thead>
+              <tr class="top_line">
+                <th class="{{TableColumn.COL_50_CODE}}" rowspan="3">No</th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailReceiptCategoryCodeCtrl) }"
+                  class="{{TableColumn.COL_170_CODE}}">
+                  入金区分
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailNote1Ctrl) }"
+                  class="{{TableColumn.COL_450_CODE}}" colspan="3">
+                  {{getColumnAlias('Note1')}}
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailDueAtCtrl) }"
+                  class="{{TableColumn.COL_150_CODE}}">
+                  期日
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailReceiptAmountCtrl) }"
+                  class="{{TableColumn.COL_200_CODE}}">金額
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailNoteFlagCtrl) }"
+                  class="{{TableColumn.COL_100_CODE}}">
+                </th>
+                <th class="{{TableColumn.COL_100_CODE}}">{{ItemNameConst.BTN_MEMO}}</th>
+                <th class="{{TableColumn.COL_100_CODE}}">{{ItemNameConst.BTN_CLEAR}}</th>
+                <th class="{{TableColumn.COL_100_CODE}}" rowspan="3"></th>
+              </tr>
+              <tr class="middle_line">
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailBillNumberCtrl) }">
+                  手形番号
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailBankCodeCtrl) }"
+                  class="{{TableColumn.COL_120_CODE}}">
+                  銀行コード
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailBranchCodeCtrl) }"
+                  class="{{TableColumn.COL_120_CODE}}">
+                  支店コード
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailBillBankCtrl) }"
+                  class="{{TableColumn.COL_250_CODE}}">
+                  手形券面銀行
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailBillDrawAtCtrl) }"
+                  class="{{TableColumn.COL_150_CODE}}">
+                  振出日
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailBillDrawerCtrl) }"
+                  class="{{TableColumn.COL_500_CODE}}" colspan="4">
+                  振出人
+                </th>
+              </tr>
+              <tr class="bottom_line">
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailNote2Ctrl) }"
+                  colspan="3">
+                  {{getColumnAlias('Note2')}}
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailNote3Ctrl) }"
+                  class="{{TableColumn.COL_400_CODE}}" colspan="2">
+                  {{getColumnAlias('Note3')}}
+                </th>
+                <th 
+                  [ngClass]="{'common-inner-table__th--active':  getTdColor(PD0301_INPUT.detailNote4Ctrl) }"
+                  class="{{TableColumn.COL_500_CODE}}" colspan="4">
+                  {{getColumnAlias('Note4')}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let receipt of receipts  index as i">
+                <tr class="top_line no-hover no-even">
+                  <td 
+                    [ngClass]="{'common-inner-table__th--active': (detailEditLineNo+1)!=0}"
+                    class="{{TableColumn.COL_50_CENTER_NAME}}" 
+                    rowspan="3">{{detailEditLineNo+1}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_170_CENTER_NAME}}">
+                    <input
+                      name="detailReceiptCategoryCodeCtrl{{i}}"
+                      formControlName="detailReceiptCategoryCodeCtrl{{i}}"
+                      (focus)="setFocus(i,PD0301_INPUT.detailReceiptCategoryCodeCtrl);initDetailReceiptCategoryCode(i)"
+                      (keyup.enter)="setDetailReceiptCategoryCode($event.type,i)"
+                      #detailReceiptCategoryCodeInput
+                      [formControl]="detailReceiptCategoryCodeCtrls[0]" 
+                      [matAutocomplete]="autodetailReceiptCategoryCode"                    
+                      (blur)="setBlur(i,PD0301_INPUT.detailReceiptCategoryCodeCtrl);setDetailReceiptCategoryCode($event.type,i)"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      class="input-size--130">
+                    <mat-autocomplete 
+                      #autodetailReceiptCategoryCode="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth150">
+                      <mat-option 
+                        *ngFor="let category of categoryFilterds[0] | async" 
+                        [value]="category.code">{{category.code}}:{{category.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY, i)"></a>
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_450_CENTER_NAME}}" colspan="3">
+                    <input
+                      name="detailNote1Ctrl{{i}}"
+                      formControlName="detailNote1Ctrl{{i}}"
+                      (keyup.enter)="setDetailNote1($event.type,i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailNote1Ctrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailNote1Ctrl);setDetailNote1($event.type,i)"
+                      maxlength="100"
+                      class="input-size--430">
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_150_CENTER_NAME}}">
+                      <input
+                        formControlName="detailDueAtCtrl{{i}}"
+                        name="detailDueAtCtrl{{i}}"
+                        (keyup.enter)="setDetailDueAt($event.type,i)"
+                        (focus)="setFocus(i,PD0301_INPUT.detailDueAtCtrl)"
+                        (blur)="setBlur(i,PD0301_INPUT.detailDueAtCtrl);setDetailDueAt($event.type,i)"
+                        ngbDatepicker #detailDueAtDp="ngbDatepicker"
+                        placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                        maxlength="10"
+                        type="tel"
+                        class="input-size--100">
+                        <button
+                          class="btn btn-outline-secondary"
+                          (click)="detailDueAtDp.toggle()"
+                          type="button">
+                        </button>
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_200_CENTER_NAME}}">
+                    <input
+                      formControlName="detailReceiptAmountCtrl{{i}}"
+                      name="detailReceiptAmountCtrl{{i}}"
+                      (keyup.enter)="setDetailReceiptAmount($event.type,i)"
+                      (input)="inputDetailReceiptAmount()"
+                      (blur)="setBlur(i,PD0301_INPUT.detailReceiptAmountCtrl);setCurrencyForDetailReceiptAmount(i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailReceiptAmountCtrl);initCurrencyForDetailReceiptAmount(i)"
+                      type="tel"
+                      maxlength="16"
+                      class="input-size--180 col-align-right">
+                  </td>
+                  <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                    <input
+                      formControlName="detailNoteFlagCtrl{{i}}"
+                      name="detailNoteFlagCtrl{{i}}"
+                      class="input-size--30" readonly>
+                  </td>
+                  <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                    <button 
+                      (click)="openReceiptMemoModal(i)"
+                      class="buttonMinimum"
+                      data-modal>{{ItemNameConst.BTN_MEMO}}
+                    </button>
+                  </td>
+                  <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                    <button
+                      (click)="detailClear(i)"
+                      class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}
+                    </button>
+                  </td>
+                  <td class="{{TableColumn.COL_100_CODE}}" rowspan="3">
+                    <button
+                      (click)="detailUpdate(i)"
+                      [ngClass]="{'button-disable': ComponentStatus==COMPONENT_STATUS_TYPE.REFERE || componentDetailStatus!=COMPONENT_DETAIL_STATUS_TYPE.UPDATE}"
+                      class="buttonMinimum mr--0"
+                      data-modal>{{ItemNameConst.BTN_UPDATE}}
+                    </button>
+                    <br>
+                    <button
+                      (click)="detailAdd(i)"
+                      [ngClass]="{'button-disable': ComponentStatus==COMPONENT_STATUS_TYPE.REFERE }"
+                      class="buttonMinimum">
+                      {{ItemNameConst.BTN_ADD}}
+                    </button>
+                  </td>                
+                </tr>
+                <tr class="middle_line no-hover no-even">
+                  <td 
+                    class="{{TableColumn.COL_150_CENTER_NAME}}">
+                    <input
+                      name="detailBillNumberCtrl{{i}}"
+                      formControlName="detailBillNumberCtrl{{i}}"
+                      (keyup.enter)="setDetailBillNumber($event.type,i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailBillNumberCtrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailBillNumberCtrl);setDetailBillNumber($event.type,i)"
+                      type="tel"
+                      maxlength="20"
+                      class="input-size--130">
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_120_CENTER_NAME}}">
+                    <div class="vAlign--center">
+                    <input
+                      name="detailBankCodeCtrl{{i}}"
+                      formControlName="detailBankCodeCtrl{{i}}"
+                      (keyup.enter)="setDetailBankCode($event.type,i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailBankCodeCtrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailBankCodeCtrl);setDetailBankCode($event.type,i)"
+                      type="tel"
+                      maxlength="4"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      class="input-size--80">
+                      <a
+                        class="buttonMasterSearch"
+                        (click)="openBankMasterModal(i)"
+                        [ngClass]="{'button-disable':  detailBankCodeCtrls[i].disabled }"></a>
+                      </div>
+                    </td>
+                  <td 
+                    class="{{TableColumn.COL_120_CENTER_NAME}}">
+                    <div class="vAlign--center">
+                    <input
+                      name="detailBranchCodeCtrl{{i}}"
+                      formControlName="detailBranchCodeCtrl{{i}}"
+                      (keyup.enter)="setDetailBranchCode($event.type,i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailBranchCodeCtrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailBranchCodeCtrl);setDetailBranchCode($event.type,i)"
+                      type="tel"
+                      maxlength="3"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      class="input-size--80">
+                      <a
+                        class="buttonMasterSearch"
+                        (click)="openBankMasterModal(i)"
+                        [ngClass]="{'button-disable':  detailBranchCodeCtrls[i].disabled }"></a>
+                    </div>
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_250_CENTER_NAME}}">
+                    <input
+                      name="detailBillBankCtrl{{i}}"
+                      formControlName="detailBillBankCtrl{{i}}"
+                      (focus)="setFocus(i,PD0301_INPUT.detailBillBankCtrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailBillBankCtrl)"
+                      class="input-size--230" readonly>
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_150_CENTER_NAME}}">
+                      <input
+                        formControlName="detailBillDrawAtCtrl{{i}}"
+                        name="detailBillDrawAtCtrl{{i}}"
+                        (keyup.enter)="setDetailBillDrawAt($event.type,i)"
+                        (focus)="setFocus(i,PD0301_INPUT.detailBillDrawAtCtrl)"
+                        (blur)="setBlur(i,PD0301_INPUT.detailBillDrawAtCtrl);setDetailBillDrawAt($event.type,i)"
+                        ngbDatepicker #billingDueAtToDp="ngbDatepicker"
+                        placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                        maxlength="10"
+                        type="tel"
+                        class="input-size--100">
+                        <button
+                          class="btn btn-outline-secondary"
+                          (click)="billingDueAtToDp.toggle()"
+                          type="button">
+                        </button>
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_500_CENTER_NAME}}" colspan="4">
+                    <input
+                      name="detailBillDrawerCtrl{{i}}"
+                      formControlName="detailBillDrawerCtrl{{i}}"
+                      (keyup.enter)="setDetailBillDrawer($event.type,i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailBillDrawerCtrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailBillDrawerCtrl);setDetailBillDrawer($event.type,i)"
+                      maxlength="48"
+                      class="input-size--480">
+                  </td>
+                </tr>
+                <tr class="bottom_line no-hover no-even">
+                  <td 
+                    class="{{TableColumn.COL_350_CENTER_NAME}}" colspan="3">
+                    <input
+                      name="detailNote2Ctrl{{i}}"
+                      formControlName="detailNote2Ctrl{{i}}"
+                      (keyup.enter)="setDetailNote2($event.type,i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailNote2Ctrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailNote2Ctrl);setDetailNote2($event.type,i)"
+                      maxlength="100"
+                      class="input-size--330">
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_400_CENTER_NAME}}" colspan="2">
+                    <input
+                      name="detailNote3Ctrl{{i}}"
+                      formControlName="detailNote3Ctrl{{i}}"
+                      (keyup.enter)="setDetailNote3($event.type,i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailNote3Ctrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailNote3Ctrl);setDetailNote3($event.type,i)"
+                      maxlength="100"
+                      class="input-size--380">
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_500_CENTER_NAME}}" colspan="4">
+                    <input
+                      name="detailNote4Ctrl{{i}}"
+                      formControlName="detailNote4Ctrl{{i}}"
+                      (keyup.enter)="setDetailNote4($event.type,i)"
+                      (focus)="setFocus(i,PD0301_INPUT.detailNote4Ctrl)"
+                      (blur)="setBlur(i,PD0301_INPUT.detailNote4Ctrl);setDetailNote4($event.type,i)"
+                      maxlength="100"
+                      class="input-size--480">
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+      </div>
+    </section>
+
+    <!---
+      表示部
+    -->
+      <h2 class="searchResult__title">
+        <div class="searchResult__total">
+          <span class="mr--25"
+            *ngIf="matchingNewInputFlg">請求残
+            <input class="searchResult__totalField"
+              formControlName="remainAmountCtrl"
+              value="{{remainAmountCtrl.value |currency_pipe}}"
+              readonly>差額
+            <input class="searchResult__totalField"
+              formControlName="amountDifferenceCtrl"
+              value="{{amountDifferenceCtrl.value |currency_pipe}}"
+              readonly>
+          </span>合計金額
+          <input class="searchResult__totalField"
+            formControlName="sumReceiptAmountCtrl"
+            value="{{sumReceiptAmountCtrl.value |currency_pipe}}"
+            readonly>
+        </div>
+      </h2>
+    <section class="contents">
+      <div class="common-inner-table--multipleHeader">
+          <table>
+            <thead>
+              <tr class="top_line">
+                <th class="{{TableColumn.COL_50_CODE}}" rowspan="3">No</th>
+                <th 
+                  class="{{TableColumn.COL_170_CODE}}">
+                  入金区分
+                </th>
+                <th 
+                  class="{{TableColumn.COL_450_CODE}}" colspan="3">
+                  {{getColumnAlias('Note1')}}
+                </th>
+                <th 
+                  class="{{TableColumn.COL_150_CODE}}">
+                  期日
+                </th>
+                <th 
+                  class="{{TableColumn.COL_200_CODE}}">金額
+                </th>
+                <th 
+                  class="{{TableColumn.COL_300_CODE}}" colspan="3">メモ
+                </th>
+                <th class="{{TableColumn.COL_100_CODE}}" rowspan="3"></th>
+              </tr>
+              <tr class="middle_line">
+                <th>
+                  手形番号
+                </th>
+                <th 
+                  class="{{TableColumn.COL_120_CODE}}">
+                  銀行コード
+                </th>
+                <th 
+                  class="{{TableColumn.COL_120_CODE}}">
+                  支店コード
+                </th>
+                <th 
+                  class="{{TableColumn.COL_250_CODE}}">
+                  手形券面銀行
+                </th>
+                <th 
+                  class="{{TableColumn.COL_150_CODE}}">
+                  振出日
+                </th>
+                <th 
+                  class="{{TableColumn.COL_500_CODE}}" colspan="4">
+                  振出人
+                </th>
+              </tr>
+              <tr class="bottom_line">
+                <th 
+                  class="{{TableColumn.COL_350_CODE}}" colspan="3">
+                  {{getColumnAlias('Note2')}}
+                </th>
+                <th 
+                  class="{{TableColumn.COL_400_CODE}}" colspan="2">
+                  {{getColumnAlias('Note3')}}
+                </th>
+                <th 
+                  class="{{TableColumn.COL_500_CODE}}" colspan="4">
+                  {{getColumnAlias('Note4')}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let receiptDisplay of detailDispReceipts  index as i">
+                <tr class="top_line">
+                  <td 
+                    class="{{TableColumn.COL_50_CENTER_NAME}}" 
+                    rowspan="3">{{i+1}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_170_CENTER_NAME}}">
+                    {{receiptDisplay.receiptCategoryCode}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_450_NAME}}" colspan="3">
+                    {{receiptDisplay.note1}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_150_CENTER_NAME}}">
+                    {{receiptDisplay.dueAt}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_KINGAKU}}">
+                    {{receiptDisplay.receiptAmount}}
+                  </td>
+                  <td class="{{TableColumn.COL_100_NAME}}" colspan="3">
+                    {{receiptDisplay.memo}}
+                  </td>
+                  <td class="{{TableColumn.COL_100_CODE}}" rowspan="3">
+                    <button
+                      (click)="detailEdit(i)"
+                      [ngClass]="{'button-disable': ComponentStatus==COMPONENT_STATUS_TYPE.REFERE }"
+                      class="buttonMinimum mr--0"
+                      data-modal>
+                      {{ItemNameConst.BTN_EDIT}}
+                    </button>                  
+                    <br>
+                    <button
+                      (click)="detailDelete(i)"
+                      [ngClass]="{'button-disable': ComponentStatus==COMPONENT_STATUS_TYPE.REFERE }"
+                      class="buttonMinimum">
+                      {{ItemNameConst.BTN_DELETE}}
+                    </button>
+                  </td>
+                </tr>
+                <tr class="middle_line">
+                  <td 
+                    class="{{TableColumn.COL_150_NAME}}">
+                    {{receiptDisplay.billNumber}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_120_CENTER_NAME}}">
+                    {{receiptDisplay.billBankCode}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_120_CENTER_NAME}}">
+                    {{receiptDisplay.billBranchCode}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_250_NAME}}">
+                    {{receiptDisplay.billBank}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_150_CENTER_NAME}}">
+                    {{receiptDisplay.billDrawAt}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_500NAME}}" colspan="4">
+                    {{receiptDisplay.billDrawer}}
+                  </td>
+                </tr>
+                <tr class="bottom_line">
+                  <td 
+                    class="{{TableColumn.COL_350_NAME}}" colspan="3">
+                    {{receiptDisplay.note2}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_400_NAME}}" colspan="2">
+                    {{receiptDisplay.note3}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_500_NAME}}" colspan="4">
+                    {{receiptDisplay.note4}}
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+      </div>
+    </section>    
+  </section>
+
+
+
+</div>

@@ -1,0 +1,104 @@
+<div [formGroup]="myFormGroup" class="department-master">
+    <!---
+    <section class="contents">
+      <div class="contents__container--button">
+        <div class="common-btn">
+          <button (click)="registry()" [ngClass]="{'button-disable': myFormGroup.invalid}" class="common-btn__item">登録</button>
+          <button (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" class="common-btn__item">クリア</button>
+          <button (click)="delete()" [ngClass]="{'button-disable': DeleteButtonDisableFlag}" class="common-btn__item">削除</button>
+        </div>
+        <div class="common-btn__option">
+          <button class="common-btn__item--open-options" (click)="openOptions()">
+            その他
+          </button>
+          <ul class="common-btn__option__lists" [ngClass]="{ 'is-open': openOption }">
+            <li><a (click)="print()">印刷</a></li>
+            <li>
+              <a (click)="openImportMethodSelector()">インポート</a>
+            </li>
+            <li>
+              <a (click)="export()">ダウンロード</a>
+            </li>
+          </ul>
+        </div>
+        <div class="common-btn__option">
+          <span *ngIf="myFormGroup.controls.mailCtrl.errors?.email">
+            メールアドレスを正しく入力してください。
+          </span>
+          <span *ngIf="myFormGroup.controls.initialPasswordConfirmationCtrl.errors?.equalTo">
+            初回パスワードと(確認)は同じ内容を入力してください。
+          </span>
+          {{ errorMessage }}
+        </div>
+      </div>
+    </section>
+    <section class="contents">
+      <h2 class="contents__title">ログインユーザー情報</h2>
+      <div class="department-master__table">
+        <table>
+          <tr>
+            <th></th>
+            <th>ユーザコード</th>
+            <th>ユーザー名</th>
+            <th>請求部門名</th>
+            <th>権限</th>
+            <th>セキュリティ</th>
+            <th>メールアドレス</th>
+          </tr>
+          <tr 
+            *ngFor="let user of usersResult?.users; let i = index" 
+            (click)="selectLine(i)"
+            class="line-selector">
+            <td>{{ i + 1 }}</td>
+            <td>{{user.code}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.departmentName}}</td>
+            <td>{{user.menuLevel}}</td>
+            <td>{{user.menuLevel}}</td>
+            <td>{{user.mail}}</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    -->  
+  
+    <section class="contents">
+      <div class="liner-dl-wrap">
+        <dl class="liner-dl-wrap__container">
+          <dt class="liner-dl-wrap__container__title">ユーザーコード</dt>
+          <dd class="liner-dl-wrap__container__detail">
+            {{user.code}}
+            <span>&nbsp;&nbsp;</span>
+            <span>&nbsp;&nbsp;</span>
+            {{user.name}}
+          </dd>          
+          <dt class="liner-dl-wrap__container__title">請求部門<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="liner-dl-wrap__container__detail">
+            {{user.departmentCode}}
+            <span>&nbsp;&nbsp;</span>
+            <span>&nbsp;&nbsp;</span>
+            {{user.departmentName}}
+          </dd>
+          <dt class="liner-dl-wrap__container__title">メールアドレス</dt>
+          <dd class="liner-dl-wrap__container__detail">
+              {{user.mail}}
+          </dd> 
+          <dt class="liner-dl-wrap__container__title">営業担当者</dt>
+          <dd class="liner-dl-wrap__container__detail">
+            {{user.staffCode}}
+            <span>&nbsp;&nbsp;</span>
+            {{user.staffName}}
+          </dd>          
+        <dt class="liner-dl-wrap__container__title">権限レベル<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+        <dd class="liner-dl-wrap__container__detail">
+          {{user.menuLevel}}
+        </dd>
+        <dt class="liner-dl-wrap__container__title">セキュリティ<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+        <dd class="liner-dl-wrap__container__detail">
+          {{user.functionLevel}}
+        </dd>
+      </dl>
+    </div>
+  </section>
+</div>
+  

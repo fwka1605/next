@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InvoiceSettingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/InvoiceSettingService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/InvoiceSettingService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/InvoiceSettingService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceCommonSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceCommonSetting" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceCommonSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceCommonSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_SaveInvoiceCommonSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceCommonSetting" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_SaveInvoiceCommonSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceCommonSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_UpdateCollectCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCollectCategory" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_UpdateCollectCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateCollectCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceNumberHistories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceNumberHistories" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceNumberHistories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceNumberHistoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_SaveInvoiceNumberHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceNumberHistory" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_SaveInvoiceNumberHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceNumberHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_DeleteInvoiceNumberHistories_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteInvoiceNumberHistories" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_DeleteInvoiceNumberHistories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteInvoiceNumberHistoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceNumberSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceNumberSetting" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceNumberSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceNumberSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_SaveInvoiceNumberSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceNumberSetting" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_SaveInvoiceNumberSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceNumberSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_ExistCollectCategoryAtTemplate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCollectCategoryAtTemplate" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_ExistCollectCategoryAtTemplate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCollectCategoryAtTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceTemplateSettingByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceTemplateSettingByCode" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceTemplateSettingByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceTemplateSettingByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceTemplateSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceTemplateSettings" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_GetInvoiceTemplateSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceTemplateSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_SaveInvoiceTemplateSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceTemplateSetting" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_SaveInvoiceTemplateSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveInvoiceTemplateSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_DeleteInvoiceTemplateSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteInvoiceTemplateSetting" />
+  </wsdl:message>
+  <wsdl:message name="IInvoiceSettingService_DeleteInvoiceTemplateSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteInvoiceTemplateSettingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IInvoiceSettingService">
+    <wsdl:operation name="GetInvoiceCommonSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceCommonSetting" message="tns:IInvoiceSettingService_GetInvoiceCommonSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceCommonSettingResponse" message="tns:IInvoiceSettingService_GetInvoiceCommonSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoiceCommonSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/SaveInvoiceCommonSetting" message="tns:IInvoiceSettingService_SaveInvoiceCommonSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/SaveInvoiceCommonSettingResponse" message="tns:IInvoiceSettingService_SaveInvoiceCommonSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCollectCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/UpdateCollectCategory" message="tns:IInvoiceSettingService_UpdateCollectCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/UpdateCollectCategoryResponse" message="tns:IInvoiceSettingService_UpdateCollectCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceNumberHistories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceNumberHistories" message="tns:IInvoiceSettingService_GetInvoiceNumberHistories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceNumberHistoriesResponse" message="tns:IInvoiceSettingService_GetInvoiceNumberHistories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoiceNumberHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/SaveInvoiceNumberHistory" message="tns:IInvoiceSettingService_SaveInvoiceNumberHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/SaveInvoiceNumberHistoryResponse" message="tns:IInvoiceSettingService_SaveInvoiceNumberHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInvoiceNumberHistories">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/DeleteInvoiceNumberHistories" message="tns:IInvoiceSettingService_DeleteInvoiceNumberHistories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/DeleteInvoiceNumberHistoriesResponse" message="tns:IInvoiceSettingService_DeleteInvoiceNumberHistories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceNumberSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceNumberSetting" message="tns:IInvoiceSettingService_GetInvoiceNumberSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceNumberSettingResponse" message="tns:IInvoiceSettingService_GetInvoiceNumberSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoiceNumberSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/SaveInvoiceNumberSetting" message="tns:IInvoiceSettingService_SaveInvoiceNumberSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/SaveInvoiceNumberSettingResponse" message="tns:IInvoiceSettingService_SaveInvoiceNumberSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistCollectCategoryAtTemplate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/ExistCollectCategoryAtTemplate" message="tns:IInvoiceSettingService_ExistCollectCategoryAtTemplate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/ExistCollectCategoryAtTemplateResponse" message="tns:IInvoiceSettingService_ExistCollectCategoryAtTemplate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceTemplateSettingByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceTemplateSettingByCode" message="tns:IInvoiceSettingService_GetInvoiceTemplateSettingByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceTemplateSettingByCodeResponse" message="tns:IInvoiceSettingService_GetInvoiceTemplateSettingByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceTemplateSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceTemplateSettings" message="tns:IInvoiceSettingService_GetInvoiceTemplateSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/GetInvoiceTemplateSettingsResponse" message="tns:IInvoiceSettingService_GetInvoiceTemplateSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoiceTemplateSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/SaveInvoiceTemplateSetting" message="tns:IInvoiceSettingService_SaveInvoiceTemplateSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/SaveInvoiceTemplateSettingResponse" message="tns:IInvoiceSettingService_SaveInvoiceTemplateSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInvoiceTemplateSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IInvoiceSettingService/DeleteInvoiceTemplateSetting" message="tns:IInvoiceSettingService_DeleteInvoiceTemplateSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IInvoiceSettingService/DeleteInvoiceTemplateSettingResponse" message="tns:IInvoiceSettingService_DeleteInvoiceTemplateSetting_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IInvoiceSettingService" type="tns:IInvoiceSettingService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetInvoiceCommonSetting">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/GetInvoiceCommonSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoiceCommonSetting">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/SaveInvoiceCommonSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCollectCategory">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/UpdateCollectCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceNumberHistories">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/GetInvoiceNumberHistories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoiceNumberHistory">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/SaveInvoiceNumberHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInvoiceNumberHistories">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/DeleteInvoiceNumberHistories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceNumberSetting">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/GetInvoiceNumberSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoiceNumberSetting">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/SaveInvoiceNumberSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistCollectCategoryAtTemplate">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/ExistCollectCategoryAtTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceTemplateSettingByCode">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/GetInvoiceTemplateSettingByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceTemplateSettings">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/GetInvoiceTemplateSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveInvoiceTemplateSetting">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/SaveInvoiceTemplateSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInvoiceTemplateSetting">
+      <soap:operation soapAction="http://tempuri.org/IInvoiceSettingService/DeleteInvoiceTemplateSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InvoiceSettingService">
+    <wsdl:port name="BasicHttpBinding_IInvoiceSettingService" binding="tns:BasicHttpBinding_IInvoiceSettingService">
+      <soap:address location="http://localhost:3061/InvoiceSettingService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

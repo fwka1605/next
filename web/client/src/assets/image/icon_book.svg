@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="17px" viewBox="0 0 14 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>12A12133-6FAD-42C6-86BE-ACF6D25DCC6A</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M1,16 L11,16 L15,12 L15,0 L1,0 L1,16 Z M13,2 L13,11 L9,11 L9,14 L3,14 L3,2 L13,2 Z M12,12 L10,14 L10,12 L12,12 Z M5,4 L11,4 L11,6 L5,6 L5,4 Z M5,8 L9,8 L9,10 L5,10 L5,8 Z" id="path-1"></path>
+    </defs>
+    <g id="page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ホーム" transform="translate(-25.000000, -249.000000)">
+            <g id="Common/sidebar_Close">
+                <g id="Group-3" transform="translate(0.000000, 48.000000)">
+                    <g id="管理帳票" transform="translate(0.000000, 192.000000)">
+                        <g id="Icon/SideMenu" transform="translate(24.000000, 9.600000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Mask" fill="#C5D0DE" xlink:href="#path-1"></use>
+                            <g id="Color" mask="url(#mask-2)" fill="#FFFFFF">
+                                <rect id="Base" x="0" y="0" width="16" height="16"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

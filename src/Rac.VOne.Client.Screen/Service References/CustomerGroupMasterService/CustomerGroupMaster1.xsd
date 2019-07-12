@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CustomerGroupsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerGroups" nillable="true" type="tns:ArrayOfCustomerGroup" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGroupsResult" nillable="true" type="tns:CustomerGroupsResult" />
+  <xs:complexType name="ArrayOfCustomerGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerGroup" nillable="true" type="tns:CustomerGroup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerGroup" nillable="true" type="tns:ArrayOfCustomerGroup" />
+  <xs:complexType name="CustomerGroup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChildCustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChildCustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="ChildCustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentCustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentCustomerKana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGroup" nillable="true" type="tns:CustomerGroup" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="CustomerGroupResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerGroup" nillable="true" type="tns:CustomerGroup" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerGroupResult" nillable="true" type="tns:CustomerGroupResult" />
+  <xs:complexType name="ExistResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExistResult" nillable="true" type="tns:ExistResult" />
+  <xs:complexType name="ImportResultCustomerGroup">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ImportResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CustomerGroup" nillable="true" type="tns:ArrayOfCustomerGroup" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ImportResultCustomerGroup" nillable="true" type="tns:ImportResultCustomerGroup" />
+  <xs:complexType name="ImportResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeleteCount" type="xs:int" />
+      <xs:element minOccurs="0" name="InsertCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="UpdateCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportResult" nillable="true" type="tns:ImportResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+</xs:schema>

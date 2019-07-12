@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>6BF00D40-BB41-45F2-8244-39AC810FEFE8</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M1,8 C1,4.13425 4.133375,1 8,1 C11.86575,1 15,4.13425 15,8 C15,11.86575 11.86575,15 8,15 C4.133375,15 1,11.86575 1,8 Z M9.315,10.718 C9.702,11.105 10.331,11.105 10.718,10.718 C11.106,10.331 11.106,9.702 10.718,9.315 L9.41,8.007 L10.718,6.698 C11.105,6.311 11.105,5.683 10.718,5.295 C10.33,4.907 9.702,4.907 9.315,5.295 L8.007,6.603 L6.694,5.291 C6.307,4.903 5.678,4.903 5.291,5.291 C4.903,5.678 4.903,6.306 5.291,6.694 L6.603,8.006 L5.291,9.319 C4.903,9.707 4.903,10.335 5.291,10.722 C5.678,11.11 6.307,11.11 6.694,10.722 L8.007,9.41 L9.315,10.718 Z" id="path-1"></path>
+    </defs>
+    <g id="page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="メニュー-&gt;-サブメニュー" transform="translate(-912.000000, -291.000000)">
+            <g id="Notifications" transform="translate(895.000000, 126.000000)">
+                <g id="Notification---Error" transform="translate(0.000000, 156.000000)">
+                    <g id="Icon-(Left)" transform="translate(16.000000, 8.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Error-Icon"></g>
+                        <g id="Color" mask="url(#mask-2)" fill="#FFFFFF">
+                            <rect id="Base" x="0" y="0" width="16" height="16"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

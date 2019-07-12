@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net471;netcoreapp2.2</TargetFrameworks>
+    <RootNamespace>Rac.VOne.EbData</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rac.VOne.Common\Rac.VOne.Common.csproj" />
+    <ProjectReference Include="..\Rac.VOne.Web.Models\Rac.VOne.Web.Models.csproj" />
+  </ItemGroup>
+
+</Project>

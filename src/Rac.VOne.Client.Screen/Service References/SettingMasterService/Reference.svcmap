@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3e5bd981-f22c-4c6e-ba73-ecb7a8fb44cc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/SettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SettingMaster.xsd" MetadataType="Schema" ID="1f964d07-3768-4cba-b169-c1895039774a" SourceId="1" SourceUrl="http://localhost:3061/Master/SettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="SettingMaster1.xsd" MetadataType="Schema" ID="704192e6-c32b-4fd3-bb5b-daf891e26db7" SourceId="1" SourceUrl="http://localhost:3061/Master/SettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="SettingMaster2.xsd" MetadataType="Schema" ID="da067b3e-b120-41ec-b6f1-f91da79662e8" SourceId="1" SourceUrl="http://localhost:3061/Master/SettingMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="SettingMaster3.xsd" MetadataType="Schema" ID="832779b0-38b8-43d8-ace1-3cd229c24159" SourceId="1" SourceUrl="http://localhost:3061/Master/SettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="SettingMaster.wsdl" MetadataType="Wsdl" ID="0a821f31-b7e5-4072-8348-37fee1988418" SourceId="1" SourceUrl="http://localhost:3061/Master/SettingMaster.svc?wsdl" />
+    <MetadataFile FileName="SettingMaster.disco" MetadataType="Disco" ID="0a31d826-ad7c-4200-9336-fca2afff2070" SourceId="1" SourceUrl="http://localhost:3061/Master/SettingMaster.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

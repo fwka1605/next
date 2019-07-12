@@ -1,0 +1,23 @@
+// all-import
+// 
+// 各パーシャルファイルをimportし、"all-import.css"を生成 
+// 
+// Styleguide 0.1.0 
+
+// webフォント
+  @import "//fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap&subset=japanese";
+
+// ベース
+  @import "base/**";
+
+// ユーティリティ
+  @import "utility/**";
+
+// レイアウト
+  @import "layout/**";
+
+// モジュール
+  @import "module/**";
+  
+// ページ個別のスタイル
+  @import "pages/**";

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CustomerGroupMaster" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/Master/CustomerGroupMaster.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CustomerGroupMaster.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CustomerGroupMaster.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CustomerGroupMaster.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICustomerGroupMaster_GetByParent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByParent" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetByParent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByParentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_ExistCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCustomer" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_ExistCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_Import_InputMessage">
+    <wsdl:part name="parameters" element="tns:Import" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_Import_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetByChildId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByChildId" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetByChildId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByChildIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetPrintCustomerData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintCustomerData" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetPrintCustomerData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPrintCustomerDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetCustomerForCustomerGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerForCustomerGroup" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetCustomerForCustomerGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerForCustomerGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_HasChild_InputMessage">
+    <wsdl:part name="parameters" element="tns:HasChild" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_HasChild_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HasChildResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetUniqueGroupCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUniqueGroupCount" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerGroupMaster_GetUniqueGroupCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUniqueGroupCountResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICustomerGroupMaster">
+    <wsdl:operation name="GetByParent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetByParent" message="tns:ICustomerGroupMaster_GetByParent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetByParentResponse" message="tns:ICustomerGroupMaster_GetByParent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/Save" message="tns:ICustomerGroupMaster_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/SaveResponse" message="tns:ICustomerGroupMaster_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/ExistCustomer" message="tns:ICustomerGroupMaster_ExistCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/ExistCustomerResponse" message="tns:ICustomerGroupMaster_ExistCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetItems" message="tns:ICustomerGroupMaster_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetItemsResponse" message="tns:ICustomerGroupMaster_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/Import" message="tns:ICustomerGroupMaster_Import_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/ImportResponse" message="tns:ICustomerGroupMaster_Import_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByChildId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetByChildId" message="tns:ICustomerGroupMaster_GetByChildId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetByChildIdResponse" message="tns:ICustomerGroupMaster_GetByChildId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintCustomerData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetPrintCustomerData" message="tns:ICustomerGroupMaster_GetPrintCustomerData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetPrintCustomerDataResponse" message="tns:ICustomerGroupMaster_GetPrintCustomerData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerForCustomerGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetCustomerForCustomerGroup" message="tns:ICustomerGroupMaster_GetCustomerForCustomerGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetCustomerForCustomerGroupResponse" message="tns:ICustomerGroupMaster_GetCustomerForCustomerGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HasChild">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/HasChild" message="tns:ICustomerGroupMaster_HasChild_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/HasChildResponse" message="tns:ICustomerGroupMaster_HasChild_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUniqueGroupCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetUniqueGroupCount" message="tns:ICustomerGroupMaster_GetUniqueGroupCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerGroupMaster/GetUniqueGroupCountResponse" message="tns:ICustomerGroupMaster_GetUniqueGroupCount_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICustomerGroupMaster" type="tns:ICustomerGroupMaster">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetByParent">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/GetByParent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistCustomer">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/ExistCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/Import" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByChildId">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/GetByChildId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPrintCustomerData">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/GetPrintCustomerData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerForCustomerGroup">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/GetCustomerForCustomerGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HasChild">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/HasChild" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUniqueGroupCount">
+      <soap:operation soapAction="http://tempuri.org/ICustomerGroupMaster/GetUniqueGroupCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerGroupMaster">
+    <wsdl:port name="BasicHttpBinding_ICustomerGroupMaster" binding="tns:BasicHttpBinding_ICustomerGroupMaster">
+      <soap:address location="http://localhost:3061/Master/CustomerGroupMaster.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

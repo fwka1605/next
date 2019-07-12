@@ -1,0 +1,65 @@
+// .frame：グレー囲み
+//
+// sg-wrapper:
+// <div class="wrapperMarkup">
+//   <section class="contents">
+//     <div class="contents__container">
+//       <sg-wrapper-content/>
+//     </div>
+//   </section>
+// </div>
+//
+// Styleguide 2.3.0
+
+// グレー囲み、タイトル
+// 
+// フレーム幅を制御しているクラス"frame--w-●●"は5%単位。 
+// 
+// Markup:
+// <div class="frame mb--20">
+//   <h3 class="frame__title">frame幅指定なし</h3>
+//   <p>コンテンツ量よって、横幅は可変する</p>
+// </div>
+// <div class="frame--w-100 mb--20">
+//   <h3 class="frame__title">frame幅：100%</h3>
+//   <p>コンテンツ</p>
+// </div>
+// <div class="frame--w-90 mb--20">
+//   <h3 class="frame__title">frame幅：90%</h3>
+//   <p>コンテンツ</p>
+// </div>
+// <div class="frame--w-75 mb--20">
+//   <h3 class="frame__title">frame幅：75%</h3>
+//   <p>コンテンツ</p>
+// </div>
+// <div class="frame--w-25 mb--20">
+//   <h3 class="frame__title">frame幅：25%</h3>
+//   <p>コンテンツ</p>
+// </div>
+//
+// Styleguide 2.3.1
+
+.frame {
+  $frameSetting: #{&};
+  display: inline-block;
+  position: relative;
+  margin-top: 22px;
+  padding: 23px 16px 16px;
+  border: 1px solid #ccc;
+  @for $i from 1 through 20 {
+    &--w-#{$i*5} {
+      @extend #{$frameSetting};
+      width: #{$i*5%};
+    }
+  }
+  &__title {
+    display: inline-block;
+    position: absolute;
+    left: -1px;
+    top: -23px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 1.3rem;
+  }
+}

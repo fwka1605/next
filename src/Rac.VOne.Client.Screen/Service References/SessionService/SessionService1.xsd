@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3061/SessionService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+  <xs:complexType name="ConnectionInfoResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ConnectionInfo" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ProcessResult" nillable="true" type="q1:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConnectionInfoResult" nillable="true" type="tns:ConnectionInfoResult" />
+</xs:schema>

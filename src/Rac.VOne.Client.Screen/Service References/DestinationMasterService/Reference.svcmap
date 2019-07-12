@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bbc8f6c9-e80a-4842-b71b-402c0b78d65b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/DestinationMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DestinationMaster.wsdl" MetadataType="Wsdl" ID="ef1caec2-a3f3-4e1d-b1fd-36104b946c40" SourceId="1" SourceUrl="http://localhost:3061/Master/DestinationMaster.svc?wsdl" />
+    <MetadataFile FileName="DestinationMaster3.xsd" MetadataType="Schema" ID="43f1ee6e-0c12-4031-acaa-e21a429d9cef" SourceId="1" SourceUrl="http://localhost:3061/Master/DestinationMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="DestinationMaster.xsd" MetadataType="Schema" ID="a20cbacb-cb62-4fed-9946-8ec5f0a65a90" SourceId="1" SourceUrl="http://localhost:3061/Master/DestinationMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="DestinationMaster2.xsd" MetadataType="Schema" ID="3f55bfe9-9abd-424d-a31b-08a3a28f60af" SourceId="1" SourceUrl="http://localhost:3061/Master/DestinationMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="DestinationMaster.disco" MetadataType="Disco" ID="1a367357-6778-4f89-8a67-c88e2414ad06" SourceId="1" SourceUrl="http://localhost:3061/Master/DestinationMaster.svc?disco" />
+    <MetadataFile FileName="DestinationMaster1.xsd" MetadataType="Schema" ID="83bfdea7-2266-4c62-8fdf-42a7496c5377" SourceId="1" SourceUrl="http://localhost:3061/Master/DestinationMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

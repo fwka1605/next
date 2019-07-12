@@ -1,0 +1,39 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--small">
+  <h2 class="vModal__heading">消込処理年月日の設定
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <p class="mb--10 align--center">{{actionName}}を実行してよろしいですか？</p>
+      <p class="mb--20 align--center">消込対象の入金明細に前受金が含まれています。<br>消込処理年月日を指定してください。</p>
+      <dl class="definitionForm--align-center mb--15">
+        <dt class="definitionForm__title">消込処理年月日</dt>
+        <dd class="definitionForm__data">
+          <input
+            formControlName="matchingDateCtrl"
+            name="matchingDateCtrl"
+            ngbDatepicker #matchingDateDp="ngbDatepicker"
+            placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+            maxlength="10"
+            type="tel"
+            class="input-size--100">
+          <button class="btn btn-outline-secondary" (click)="matchingDateDp.toggle()" type="button"></button>
+        </dd>
+      </dl>
+      <hr class="separator">
+      <div class="common-btn mb--20">
+        <button 
+          [ngClass]="{'button-disable':  myFormGroup.invalid}" 
+          (click)="ok()" class="buttonSecondary">{{ItemNameConst.BTN_YES}}</button>
+        <button (click)="cancel()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

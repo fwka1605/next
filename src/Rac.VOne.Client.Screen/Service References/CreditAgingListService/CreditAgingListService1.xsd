@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CreditAgingListSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CalculateCreditLimitRegistered" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ClosingDay" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="ConsiderCustomerGroup" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ConsiderGroupWithCalculate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ConsiderReceiptAmount" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CustomerCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FilterPositiveCreditBalance" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RequireDepartmentTotal" type="xs:boolean" />
+      <xs:element minOccurs="0" name="RequireStaffTotal" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StaffCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UnitPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UseBilledAt" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseMasterStaff" type="xs:boolean" />
+      <xs:element minOccurs="0" name="YearMonth" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditAgingListSearch" nillable="true" type="tns:CreditAgingListSearch" />
+  <xs:complexType name="CreditAgingListsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreditAgingLists" nillable="true" type="tns:ArrayOfCreditAgingList" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditAgingListsResult" nillable="true" type="tns:CreditAgingListsResult" />
+  <xs:complexType name="ArrayOfCreditAgingList">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CreditAgingList" nillable="true" type="tns:CreditAgingList" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCreditAgingList" nillable="true" type="tns:ArrayOfCreditAgingList" />
+  <xs:complexType name="CreditAgingList">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ArrivalDueDate1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ArrivalDueDate2" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ArrivalDueDate3" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ArrivalDueDate4" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BillingRemain" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CollectCategory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CreditBalance" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CreditLimit" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCustomerFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentCustomerId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentCustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordType" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UnsettledRemain" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreditAgingList" nillable="true" type="tns:CreditAgingList" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+</xs:schema>

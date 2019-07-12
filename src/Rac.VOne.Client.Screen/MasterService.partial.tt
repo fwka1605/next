@@ -1,0 +1,43 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.ServiceModel" #>
+<#@ assembly name="$(SolutionDir)Rac.VOne.Web.Service\bin\Rac.VOne.Web.Service.dll" #>
+<#@ assembly name="$(SolutionDir)bin\$(ConfigurationName)\Rac.VOne.Client.Common.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.ServiceModel" #>
+<#@ import namespace="Rac.VOne.Client.Common" #>
+<#@ output extension=".cs" #>
+using Rac.VOne.Client.Common;
+
+<#
+Assembly asm = Assembly.GetAssembly(typeof(Rac.VOne.Web.Service.Global));
+Type[] interfaceTypes = asm.GetTypes()
+        .Where(t => t.Namespace == "Rac.VOne.Web.Service.Master"
+            && t.IsInterface
+            && t.IsPublic
+            && t.GetCustomAttributes(typeof(ServiceContractAttribute), false).Any())
+        .OrderBy(t => t.Name)
+        .ToArray();
+
+Type[] masterTypes = asm.GetTypes()
+        .Where(t => t.Namespace == "Rac.VOne.Web.Service.Master" && t.IsClass && t.IsPublic)
+        .ToArray();
+
+foreach (Type interfaceType in interfaceTypes)
+{
+    Type serviceType = masterTypes
+        .FirstOrDefault(t => interfaceType.IsAssignableFrom(t));
+    if (serviceType == null) continue;
+
+    string serviceName = serviceType.Name;
+#>
+namespace Rac.VOne.Client.Screen.<#= serviceName + "Service" #>
+{
+    [MasterService] partial class <#= serviceName + "Client" #> { }
+}
+<#
+}
+#>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3ca010b6-ef04-4eab-a902-6fab6b83ff79" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/ControlColorMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ControlColorMaster.disco" MetadataType="Disco" ID="1d3fbdd6-0070-461e-9161-3caab5d5a775" SourceId="1" SourceUrl="http://localhost:3061/Master/ControlColorMaster.svc?disco" />
+    <MetadataFile FileName="ControlColorMaster.xsd" MetadataType="Schema" ID="d3716b44-8884-4535-b789-3fb4112b9d7a" SourceId="1" SourceUrl="http://localhost:3061/Master/ControlColorMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="ControlColorMaster.wsdl" MetadataType="Wsdl" ID="bf76555d-5295-44c1-961f-c06aad2a00cf" SourceId="1" SourceUrl="http://localhost:3061/Master/ControlColorMaster.svc?wsdl" />
+    <MetadataFile FileName="ControlColorMaster1.xsd" MetadataType="Schema" ID="f3cb8d28-520a-489a-a498-18dd8ef2746b" SourceId="1" SourceUrl="http://localhost:3061/Master/ControlColorMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="ControlColorMaster2.xsd" MetadataType="Schema" ID="c32a3e1d-d6c1-4395-8ec8-85c094d7992d" SourceId="1" SourceUrl="http://localhost:3061/Master/ControlColorMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="ControlColorMaster3.xsd" MetadataType="Schema" ID="ca9937e7-1c9e-4606-83be-3b7b3c870534" SourceId="1" SourceUrl="http://localhost:3061/Master/ControlColorMaster.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

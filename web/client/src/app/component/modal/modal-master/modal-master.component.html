@@ -1,0 +1,281 @@
+<section class="vModal"
+  [style.z-index]="zIndex"
+  [ngClass]="{  
+      'vModal': !isLargeType,
+      'vModal--large': isLargeType
+    }"
+  [formGroup]="myFormGroup">
+  <h2 class="vModal__heading">{{TableName}}の選択
+    <span class="vModal__close"
+      (click)="close()"></span>
+  </h2>
+
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+      <button (click)="search()" class="buttonSecondary">{{ItemNameConst.BTN_SEARCH}}</button>
+      <button (click)="cancel()" class="buttonMinimum" >{{ItemNameConst.BTN_CANCEL}}</button>
+    </section>
+    
+    <section class="contents--x-scrollable">
+      <div class="contents__container">
+        <dl class="definitionForm mb--0">
+          <dt class="definitionForm__title">検索キー</dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="searchKeyCtrl"
+              name="searchKeyCtrl"
+              (keyup.enter)="search()"
+              class="input-size--400">
+          </dd>
+        </dl>
+        <div class="modalTable">
+          <table>
+            <thead>
+              <tr>
+                <th *ngFor="let item of TableClumn; let i = index">
+                  {{item}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_CUSTOMER">
+                <tr
+                  *ngFor="let customer of mastersResult?.customers; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{customer.code}}</td>
+                  <td class="col-size--350">{{customer.name}}</td>
+                  <td class="col-size--350">{{customer.kana}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_PARENT_CUSTOMER">
+                <tr
+                  *ngFor="let customer of mastersResult?.customers; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{customer.code}}</td>
+                  <td class="col-size--350">{{customer.name}}</td>
+                  <td class="col-size--350">{{customer.kana}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_CUSTOMER_PARENT">
+                <tr
+                  *ngFor="let customer of mastersResult?.customers; let i = index"
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{customer.code}}</td>
+                  <td class="col-size--350">{{customer.name}}</td>
+                  <td class="col-size--350">{{customer.kana}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_DEPARTMENT">
+                <tr
+                  *ngFor="let department of mastersResult?.departments; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{department.code}}</td>
+                  <td class="col-size--350">{{department.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_SECTION_WITH_DEPARTMENT">
+                <tr
+                  *ngFor="let department of mastersResult?.departments; let i = index"
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{department.code}}</td>
+                  <td class="col-size--350">{{department.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_STAFF">
+                <tr
+                  *ngFor="let staff of mastersResult?.staffs; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{staff.code}}</td>
+                  <td class="col-size--350">{{staff.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_DESTINATION">
+                <tr
+                  *ngFor="let destination of mastersResult?.destinations; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{destination.code}}</td>
+                  <td class="col-size--350">{{destination.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container 
+                *ngIf="TableIndex==TABLE_INDEX.MASTER_BILLING_IMPORTER_SETTING 
+                    || TableIndex==TABLE_INDEX.MASTER_RECEIPT_IMPORTER_SETTING
+                    || TableIndex==TABLE_INDEX.MASTER_SCHEDULE_PAYMENT_IMPORTER_SETTING
+                    || TableIndex==TABLE_INDEX.MASTER_CUSTOMER_IMPORTER_SETTING">
+                <tr
+                  *ngFor="let importerSetting of mastersResult?.importerSettings; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--170">{{importerSetting.code}}</td>
+                  <td class="col-size--350">{{importerSetting.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container 
+                *ngIf="TableIndex==TABLE_INDEX.MASTER_BILLING_CATEGORY
+                    || TableIndex==TABLE_INDEX.MASTER_RECEIPT_CATEGORY
+                    || TableIndex==TABLE_INDEX.MASTER_COLLECT_CATEGORY
+                    || TableIndex==TABLE_INDEX.MASTER_EXCLUDE_CATEGORY
+                    || TableIndex==TABLE_INDEX.MASTER_RECEIPT_CATEGORY_EXCLUDE_USE_LIMIT_DATE">
+                <tr
+                  *ngFor="let category of mastersResult?.categories; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{category.code}}</td>
+                  <td class="col-size--350">{{category.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_LOGIN_USER">
+                <tr
+                  *ngFor="let user of mastersResult?.users; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--200">{{user.code}}</td>
+                  <td class="col-size--350">{{user.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_LOGIN_USER_SECTION">
+                <tr
+                  *ngFor="let user of mastersResult?.users; let i = index"
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{user.code}}</td>
+                  <td class="col-size--350">{{user.name}}</td>
+                  <td class="col-size--150">{{user.departmentCode}}</td>
+                  <td class="col-size--350">{{user.departmentName}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_SECTION">
+                <tr
+                  *ngFor="let section of mastersResult?.sections; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{section.code}}</td>
+                  <td class="col-size--350">{{section.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_TAX_CLASS">
+                <tr
+                  *ngFor="let taxClass of mastersResult?.taxClasses; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{taxClass.id}}</td>
+                  <td class="col-size--350">{{taxClass.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_ACCOUNT_TITLE">
+                <tr
+                  *ngFor="let accountTitle of mastersResult?.accountTitles; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{accountTitle.code}}</td>
+                  <td class="col-size--350">{{accountTitle.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_CURRENCY">
+                <tr
+                  *ngFor="let currency of mastersResult?.currencies; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{currency.code}}</td>
+                  <td class="col-size--350">{{currency.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_PAYMENT_AGENCY">
+                <tr
+                  *ngFor="let paymentAgency of mastersResult?.paymentAgencies; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{paymentAgency.code}}</td>
+                  <td class="col-size--350">{{paymentAgency.name}}</td>
+                  <td class="col-size--350">{{paymentAgency.kana}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_ACCOUNT_TYPE">
+                <tr
+                  *ngFor="let bankAccountType of mastersResult?.bankAccountTypes; let i = index" 
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{bankAccountType.id}}</td>
+                  <td class="col-size--350">{{bankAccountType.name}}</td>
+                </tr>
+              </ng-container>
+
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_SHARE_TRANSFER_FEE">
+                <tr
+                  *ngFor="let shareTransferFee of mastersResult; let i = index"
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{shareTransferFee.id}}</td>
+                  <td class="col-size--350">{{shareTransferFee.val}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_PARENT_CUSTOMER_FLAG">
+                <tr
+                  *ngFor="let customerParentFlag of mastersResult; let i = index"
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{customerParentFlag.id}}</td>
+                  <td class="col-size--350">{{customerParentFlag.val}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_CUSTOMER_HOLIDAY_FLAG">
+                <tr
+                  *ngFor="let customerHolidayFlag of mastersResult; let i = index"
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{customerHolidayFlag.id}}</td>
+                  <td class="col-size--350">{{customerHolidayFlag.val}}</td>
+                </tr>
+              </ng-container>
+              <ng-container 
+                *ngIf="TableIndex==TABLE_INDEX.USE_FEE_LEARNING_YES_NO_FLAG
+                  || TableIndex==TABLE_INDEX.USE_KANA_LEARNING_YES_NO_FLAG
+                  || TableIndex==TABLE_INDEX.USE_FEE_TOLERANCE_YES_NO_FLAG
+                  || TableIndex==TABLE_INDEX.PRIORITIZE_MATCHING_INDIVIDUAL_YES_NO_FLAG">
+                <tr
+                  *ngFor="let yesNoFlag of mastersResult; let i = index"
+                  (click)="select(i)"
+                  class="line-selector">
+                  <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                  <td class="col-size--150">{{yesNoFlag.id}}</td>
+                  <td class="col-size--350">{{yesNoFlag.val}}</td>
+                </tr>
+              </ng-container>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

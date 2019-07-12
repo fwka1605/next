@@ -1,0 +1,261 @@
+/*
+ページ上部のベースボタンレイアウト
+*/
+
+$border-radius-standard: 3px;
+
+.common-btn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  border-radius: $border-radius-standard;
+  &__item {
+    border-radius: $border-radius-standard;
+    $this: &;
+    min-width: 100px;
+    min-height: 24px;
+    background-color: $btn-background-color;
+    color: $btn-text-color;
+    margin-right: 10px;
+    padding: 4px 8px;
+    transition: 0.3s;
+    font-size: $font-size;
+    user-select: none;
+
+    &:hover {
+      box-shadow: inset 0 0 0 1px $key-color;
+      border-radius: $border-radius-standard;
+      background-color: $btn-background-colorHover;
+    }
+
+    &:active {
+      opacity: 1;
+    }
+
+    &--open-options {
+      @extend #{$this};
+      position: relative;
+      padding: 10px 24px 10px 10px;
+      background: $btn-background-color url(/assets/image/icon_dropdown.png) no-repeat;
+      background-position: right 8px top 50%;
+      background-size: 8px 4px;
+    }
+  }
+
+  &__cancel {
+    border-radius: $border-radius-standard;
+    $this: &;
+    min-width: 100px;
+    min-height: 24px;
+    background-color: $btn-cancel-background-color;
+    color: $btn-text-color;
+    margin-right: 10px;
+    padding: 4px 8px;
+    transition: 0.3s;
+    font-size: $font-size;
+
+    &:hover {
+      opacity: 0.8;
+      box-shadow: inset 0 0 0 1px $key-color;
+      border-radius: $border-radius-standard;
+    }
+
+    &:active {
+      opacity: 1;
+    }
+  }
+
+  &__option {
+    position: relative;
+
+    &__lists {
+      display: block;
+      position: absolute;
+      top: 33px;
+      width: max-content;
+      padding: 8px;
+      transform: translateY(-10px);
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: 0.3s;
+      z-index: -1;
+      min-width: 100px;
+      color: #333;
+
+      &.is-open {
+        transform: translateY(0px);
+        opacity: 1;
+        z-index: 10;
+
+        &.button-disable {
+          line-height: unset;
+          margin-left: 0;
+        }
+
+        border-radius: 0 0 3px 3px;
+      }
+
+      li {
+        margin-right: 0px; //! margin-left: -2px;
+        margin-bottom: 5px;
+        padding: 0px;
+        border-radius: 0;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        a {
+          display: block;
+          padding: 8px;
+          cursor: pointer;
+          text-decoration-line: none;
+
+          &:hover {
+            background-color: rgb(255, 200, 196);
+            text-decoration-line: none;
+          }
+        }
+      }
+
+      // theadのソート用
+      &__sort {
+        @extend .common-btn__option__lists;
+        top: 20px;
+        right: 0;
+        font-size: 1.3rem;
+        font-weight: 400;
+
+        a {
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.invalid {
+  &__msg {
+    color: red;
+    margin-left: 10px;
+    font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+    line-height: 1.5;
+  }
+}
+
+
+/*
+## ボタンモジュール
+
+各種ボタンのためのCSS
+
+*/
+
+/*
+ 入力のクリア ボタン
+
+```
+<button class="button-clear">Primary</button>
+
+```
+*/
+
+.button-clear {
+  border-radius: 3px;
+  margin-left: 18px;
+  margin-right: 10px; //! margin-left: -2px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 0 3px 3px 0;
+  background-color: #fff;
+  line-height: 1.15;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+    box-shadow: inset 0 0 0 1px $key-color;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}
+
+
+/*
+ 横幅100％のボタン
+
+```
+<button class="button--style-100-login">100％ボタン ログイン用</button>
+
+```
+*/
+
+
+.checkbox-disabled {
+  outline-style: auto;
+  outline-width: 3px;
+  outline-color: #6c757d;
+  pointer-events: none;
+  &-hidden {
+    display: none;
+  }
+}
+
+
+/*
+ソートボタン
+*/
+.sort-box {
+  @include clearfix;
+  position: relative;
+  width: 100%;
+  &__btn {
+    float: right;
+    border-radius: 3px;
+    position: relative;
+    height: 20px;
+    padding: 4px 2px;
+    border: 1px solid #ddd;
+    background-size: 8px 5px;
+    background-position: left 50% top 50%;
+    margin-left: 4px;
+    line-height: 1;
+    display: block;
+    font-weight: bold;
+  }
+  &__lists {
+    transition: 0.3s;
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: 20px;
+    right: -1px;
+    width: 130px;
+    height: auto;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+    &.is-open {
+      z-index: 300;
+      opacity: 1;
+    }
+    &__item {
+      margin: 4px auto;
+      &__btn {
+        padding: 6px;
+        background-color: #fff;
+        transition: 0.3s;
+        display: block;
+        width: 100%;
+        &:hover {
+          background-color: #ddd;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3061/ReceiptService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+  <xs:import schemaLocation="http://localhost:3061/ReceiptService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="Save">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReceiptInput" nillable="true" type="q1:ArrayOfReceiptInput" />
+        <xs:element minOccurs="0" name="ClientKey" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="ParentCustomerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="SaveResult" nillable="true" type="q2:ReceiptInputsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Delete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="Id" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="DeleteResult" nillable="true" type="q3:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Get">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Id" nillable="true" type="q4:ArrayOflong" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetResult" nillable="true" type="q5:ReceiptsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReceiptSearch" nillable="true" type="q6:ReceiptSearch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetItemsResult" nillable="true" type="q7:ReceiptsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdvanceReceipts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="originalReceiptId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAdvanceReceiptsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetAdvanceReceiptsResult" nillable="true" type="q8:AdvanceReceiptsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveExcludeAmount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="RecExc" nillable="true" type="q9:ArrayOfReceiptExclude" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveExcludeAmountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="SaveExcludeAmountResult" nillable="true" type="q10:ReceiptExcludeResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveMemo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ReceiptId" type="xs:long" />
+        <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveMemoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="SaveMemoResult" nillable="true" type="q11:ReceiptResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteMemo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ReceiptId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteMemoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="DeleteMemoResult" nillable="true" type="q12:ReceiptResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMemo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ReceiptId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMemoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetMemoResult" nillable="true" type="q13:ReceiptMemoResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveAdvanceReceived">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReceiptInfo" nillable="true" type="q14:ArrayOfAdvanceReceived" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveAdvanceReceivedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="SaveAdvanceReceivedResult" nillable="true" type="q15:AdvanceReceivedResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelAdvanceReceived">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReceiptInfo" nillable="true" type="q16:ArrayOfAdvanceReceived" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelAdvanceReceivedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="CancelAdvanceReceivedResult" nillable="true" type="q17:AdvanceReceivedResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHeaderItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHeaderItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetHeaderItemsResult" nillable="true" type="q18:ReceiptHeadersResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApportionItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="receiptHeaderId" nillable="true" type="q19:ArrayOflong" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetApportionItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetApportionItemsResult" nillable="true" type="q20:ReceiptApportionsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Apportion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="receiptList" nillable="true" type="q21:ArrayOfReceiptApportion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ApportionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ApportionResult" nillable="true" type="q22:ReceiptApportionsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistCurrency">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistCurrencyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistCurrencyResult" nillable="true" type="q23:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistReceiptCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistReceiptCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistReceiptCategoryResult" nillable="true" type="q24:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistCustomer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistCustomerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistCustomerResult" nillable="true" type="q25:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistSection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="SectionId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistSectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistSectionResult" nillable="true" type="q26:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistCompany">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistCompanyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistCompanyResult" nillable="true" type="q27:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistExcludeCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CategoryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistExcludeCategoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistExcludeCategoryResult" nillable="true" type="q28:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistOriginalReceipt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ReceiptId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistOriginalReceiptResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistOriginalReceiptResult" nillable="true" type="q29:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistNonApportionedReceipt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+        <xs:element minOccurs="0" name="ClosingFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="ClosingTo" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistNonApportionedReceiptResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistNonApportionedReceiptResult" nillable="true" type="q30:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistNonOutputedReceipt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+        <xs:element minOccurs="0" name="ClosingFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="ClosingTo" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistNonOutputedReceiptResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistNonOutputedReceiptResult" nillable="true" type="q31:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistNonAssignmentReceipt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+        <xs:element minOccurs="0" name="ClosingFrom" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="ClosingTo" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistNonAssignmentReceiptResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistNonAssignmentReceiptResult" nillable="true" type="q32:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Omit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="doDelete" type="xs:int" />
+        <xs:element minOccurs="0" name="loginUserId" type="xs:int" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="transactions" nillable="true" type="q33:ArrayOfTransaction" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OmitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="OmitResult" nillable="true" type="q34:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveReceiptSectionTransfer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReceiptSectionTransfer" nillable="true" type="q35:ArrayOfReceiptSectionTransfer" />
+        <xs:element minOccurs="0" name="LoginUserId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveReceiptSectionTransferResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="SaveReceiptSectionTransferResult" nillable="true" type="q36:ReceiptSectionTransfersResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiptSectionTransferForPrint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiptSectionTransferForPrintResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetReceiptSectionTransferForPrintResult" nillable="true" type="q37:ReceiptSectionTransfersResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateReceiptSectionTransferPrintFlag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateReceiptSectionTransferPrintFlagResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="UpdateReceiptSectionTransferPrintFlagResult" nillable="true" type="q38:ReceiptSectionTransfersResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiptImportDuplicationCheck">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReceiptImportDuplication" nillable="true" type="q39:ArrayOfReceiptImportDuplication" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ImporterSettingDetail" nillable="true" type="q40:ArrayOfImporterSettingDetail" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceiptImportDuplicationCheckResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReceiptImportDuplicationCheckResult" nillable="true" type="q41:ReceiptImportDuplicationResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdvanceReceivedDataSplit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+        <xs:element minOccurs="0" name="LoginUserId" type="xs:int" />
+        <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+        <xs:element minOccurs="0" name="OriginalReceiptId" type="xs:long" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="AdvanceReceivedSplitList" nillable="true" type="q42:ArrayOfAdvanceReceivedSplit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdvanceReceivedDataSplitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="AdvanceReceivedDataSplitResult" nillable="true" type="q43:VoidResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelAdvanceReceivedDataSplit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+        <xs:element minOccurs="0" name="LoginUserId" type="xs:int" />
+        <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+        <xs:element minOccurs="0" name="OriginalReceiptId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelAdvanceReceivedDataSplitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="CancelAdvanceReceivedDataSplitResult" nillable="true" type="q44:VoidResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiptJournalizingSummary">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="option" nillable="true" type="q45:JournalizingOption" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiptJournalizingSummaryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q46="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetReceiptJournalizingSummaryResult" nillable="true" type="q46:JournalizingSummariesResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtractReceiptJournalizing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q47="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="option" nillable="true" type="q47:JournalizingOption" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtractReceiptJournalizingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExtractReceiptJournalizingResult" nillable="true" type="q48:ReceiptJournalizingsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtractReceiptGeneralJournalizing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q49="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="option" nillable="true" type="q49:JournalizingOption" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtractReceiptGeneralJournalizingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExtractReceiptGeneralJournalizingResult" nillable="true" type="q50:GeneralJournalizingsResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOutputAt">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q51="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="option" nillable="true" type="q51:JournalizingOption" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOutputAtResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="UpdateOutputAtResult" nillable="true" type="q52:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelReceiptJournalizing">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q53="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="option" nillable="true" type="q53:JournalizingOption" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelReceiptJournalizingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="CancelReceiptJournalizingResult" nillable="true" type="q54:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="TaskSchedule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillingAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Duration" type="xs:int" />
+      <xs:element minOccurs="0" name="FailedDirectory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportDirectory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImportSubType" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportType" type="xs:int" />
+      <xs:element minOccurs="0" name="Interval" type="xs:int" />
+      <xs:element minOccurs="0" name="LogDestination" type="xs:int" />
+      <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SuccessDirectory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetBillingAssignment" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateSameCustomer" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WeekDay" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaskSchedule" nillable="true" type="tns:TaskSchedule" />
+  <xs:complexType name="TaskScheduleResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="TaskSchedule" nillable="true" type="tns:TaskSchedule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaskScheduleResult" nillable="true" type="tns:TaskScheduleResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="TaskSchedulesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="TaskSchedules" nillable="true" type="tns:ArrayOfTaskSchedule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaskSchedulesResult" nillable="true" type="tns:TaskSchedulesResult" />
+  <xs:complexType name="ArrayOfTaskSchedule">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TaskSchedule" nillable="true" type="tns:TaskSchedule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTaskSchedule" nillable="true" type="tns:ArrayOfTaskSchedule" />
+  <xs:complexType name="ExistResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExistResult" nillable="true" type="tns:ExistResult" />
+</xs:schema>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfGridSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GridSetting" nillable="true" type="tns:GridSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfGridSetting" nillable="true" type="tns:ArrayOfGridSetting" />
+  <xs:complexType name="GridSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllLoginUser" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ColumnName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColumnNameJp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayWidth" type="xs:int" />
+      <xs:element minOccurs="0" name="GridId" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GridSetting" nillable="true" type="tns:GridSetting" />
+  <xs:complexType name="GridSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GridSetting" nillable="true" type="tns:GridSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GridSettingResult" nillable="true" type="tns:GridSettingResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="GridSettingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GridSettings" nillable="true" type="tns:ArrayOfGridSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GridSettingsResult" nillable="true" type="tns:GridSettingsResult" />
+</xs:schema>

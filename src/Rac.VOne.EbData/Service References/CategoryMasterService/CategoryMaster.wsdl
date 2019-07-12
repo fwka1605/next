@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CategoryMaster" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/Master/CategoryMaster.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CategoryMaster.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CategoryMaster.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CategoryMaster.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICategoryMaster_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_GetByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCode" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_GetByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_ExistAccountTitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistAccountTitle" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_ExistAccountTitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistAccountTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_ExistPaymentAgency_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistPaymentAgency" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_ExistPaymentAgency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistPaymentAgencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_GetInvoiceCollectCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceCollectCategories" />
+  </wsdl:message>
+  <wsdl:message name="ICategoryMaster_GetInvoiceCollectCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceCollectCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICategoryMaster">
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategoryMaster/Get" message="tns:ICategoryMaster_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategoryMaster/GetResponse" message="tns:ICategoryMaster_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategoryMaster/GetByCode" message="tns:ICategoryMaster_GetByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategoryMaster/GetByCodeResponse" message="tns:ICategoryMaster_GetByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategoryMaster/GetItems" message="tns:ICategoryMaster_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategoryMaster/GetItemsResponse" message="tns:ICategoryMaster_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistAccountTitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategoryMaster/ExistAccountTitle" message="tns:ICategoryMaster_ExistAccountTitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategoryMaster/ExistAccountTitleResponse" message="tns:ICategoryMaster_ExistAccountTitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategoryMaster/Save" message="tns:ICategoryMaster_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategoryMaster/SaveResponse" message="tns:ICategoryMaster_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategoryMaster/Delete" message="tns:ICategoryMaster_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategoryMaster/DeleteResponse" message="tns:ICategoryMaster_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistPaymentAgency">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategoryMaster/ExistPaymentAgency" message="tns:ICategoryMaster_ExistPaymentAgency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategoryMaster/ExistPaymentAgencyResponse" message="tns:ICategoryMaster_ExistPaymentAgency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceCollectCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICategoryMaster/GetInvoiceCollectCategories" message="tns:ICategoryMaster_GetInvoiceCollectCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICategoryMaster/GetInvoiceCollectCategoriesResponse" message="tns:ICategoryMaster_GetInvoiceCollectCategories_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICategoryMaster" type="tns:ICategoryMaster">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/ICategoryMaster/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <soap:operation soapAction="http://tempuri.org/ICategoryMaster/GetByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/ICategoryMaster/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistAccountTitle">
+      <soap:operation soapAction="http://tempuri.org/ICategoryMaster/ExistAccountTitle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/ICategoryMaster/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/ICategoryMaster/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistPaymentAgency">
+      <soap:operation soapAction="http://tempuri.org/ICategoryMaster/ExistPaymentAgency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceCollectCategories">
+      <soap:operation soapAction="http://tempuri.org/ICategoryMaster/GetInvoiceCollectCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CategoryMaster">
+    <wsdl:port name="BasicHttpBinding_ICategoryMaster" binding="tns:BasicHttpBinding_ICategoryMaster">
+      <soap:address location="http://localhost:3061/Master/CategoryMaster.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

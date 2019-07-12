@@ -1,0 +1,51 @@
+// ボタンの基本色
+  $btn-background-color: rgba($key-color,1);
+  $btn-background-colorHover: rgba($key-color,.8);
+  $btn-text-color: #fff;
+  $btn-cancel-background-color: #636060;
+
+
+// ボタン基本設定
+  @mixin buttonBasic($bgColor1:#192E79,$bgColor2:#192E79) {
+    height: 24px;
+    padding: 0px 13px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    background: linear-gradient(
+      to bottom,
+      rgba($bgColor1, .7),
+      rgba($bgColor2, .7)
+      );
+    background-color: $bgColor1;
+    font-size: $font-size;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+    transition: .3s;
+    &:hover {
+      background-color: #fff;
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.1);
+    }
+    &.button-disable {
+      background: linear-gradient(to bottom,#ddd,#ddd);
+    }
+  }
+
+
+// disable状態 
+  .button-disable {
+    background-color: #ddd !important;
+    color: #b6b6b6 !important;
+    text-decoration: none !important;
+    cursor: inherit;
+    pointer-events: none;
+    &:hover {
+      opacity: unset;
+      box-shadow: unset;
+      background-color: #ddd;
+      color: #b6b6b6;
+    }
+    &:active {
+      opacity: unset;
+    }
+  }

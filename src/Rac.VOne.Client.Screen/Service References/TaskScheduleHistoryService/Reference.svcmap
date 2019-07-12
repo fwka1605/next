@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="db5b7a1c-7e1f-45e7-b93e-17c80c2fe613" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/TaskScheduleHistoryService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TaskScheduleHistoryService.wsdl" MetadataType="Wsdl" ID="2d72e042-6018-4b6a-961d-e69090c003d3" SourceId="1" SourceUrl="http://localhost:3061/TaskScheduleHistoryService.svc?wsdl" />
+    <MetadataFile FileName="TaskScheduleHistoryService.xsd" MetadataType="Schema" ID="5d615a36-9d28-4c8c-981d-366895053ece" SourceId="1" SourceUrl="http://localhost:3061/TaskScheduleHistoryService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TaskScheduleHistoryService1.xsd" MetadataType="Schema" ID="cfa11664-4528-4620-bf63-40bad95598ff" SourceId="1" SourceUrl="http://localhost:3061/TaskScheduleHistoryService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TaskScheduleHistoryService.disco" MetadataType="Disco" ID="33467168-95f4-4af1-b9a2-5bc6d273c3ad" SourceId="1" SourceUrl="http://localhost:3061/TaskScheduleHistoryService.svc?disco" />
+    <MetadataFile FileName="TaskScheduleHistoryService2.xsd" MetadataType="Schema" ID="3e94d0df-33e6-4e5c-bbde-06bd8dec34ab" SourceId="1" SourceUrl="http://localhost:3061/TaskScheduleHistoryService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

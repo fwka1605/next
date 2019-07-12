@@ -1,0 +1,63 @@
+/*
+ヘッダ内の要素
+ロゴ、ページタイトル、infoアイコン
+*/
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  position: relative;
+  width: calc(100% - #{$menu-width});
+  height: $header-height;
+  padding: 0 $pageContainer-padding;
+  border-bottom: 1px solid $border-color;
+  background-color: $header-background-color;
+  transition: .3s;
+  .layout__header--nav-open & {
+    width: calc(100% - #{$menu-width-open});
+  }
+  &__title {
+    color: $text-color;
+    font-size: $font-size-large;
+    font-weight: bold;
+  }
+  &__nameSection {
+    position: relative;
+    text-align: right;
+  }
+  &__companyName,&__userName {
+    margin-right: 18px;
+  }
+  &__companyName {
+    font-size: $font-size-large;
+  }
+  &__userName {
+    font-size: $font-size;
+  }
+  &__triggerMenu {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    box-sizing: border-box;
+    &::before {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      right: 0;
+      width: 8px;
+      height: 8px;
+      margin: auto;
+      border: 4px solid transparent;
+      border-top: 6px solid #000;
+      content: '';
+      transition: .3s;
+    }
+    &:hover::before {
+      border-top-color: #999;
+    }
+  }
+}

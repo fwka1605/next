@@ -1,0 +1,35 @@
+/* 「ページトップへ戻る」ボタン */
+.gotoTop {
+  position: fixed;
+  bottom: 50px;
+  right: 70px;
+  &__icon {
+    display: block;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    border-radius: 5px;
+    background: #595959;
+    &::after {
+      display: block;
+      position: absolute;
+      top: 22px;
+      left: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      margin: auto;
+      transform: rotate(45deg);
+      border-top: 2px solid #fff;
+      border-left: 2px solid #fff;
+      content: '';
+    }
+    &:hover {
+      box-shadow: 0 0 2px 1px #777;
+      background: #fff;
+    }
+    &:hover::after {
+      border-color: #333;
+    }
+  }
+}

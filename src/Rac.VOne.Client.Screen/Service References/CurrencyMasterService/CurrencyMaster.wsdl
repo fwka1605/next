@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CurrencyMaster" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/Master/CurrencyMaster.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CurrencyMaster.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CurrencyMaster.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CurrencyMaster.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICurrencyMaster_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCode" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_Import_InputMessage">
+    <wsdl:part name="parameters" element="tns:Import" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_Import_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetImportItemsBilling_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsBilling" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetImportItemsBilling_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsBillingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetImportItemsReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsReceipt" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetImportItemsReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetImportItemsNetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsNetting" />
+  </wsdl:message>
+  <wsdl:message name="ICurrencyMaster_GetImportItemsNetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsNettingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICurrencyMaster">
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/Get" message="tns:ICurrencyMaster_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/GetResponse" message="tns:ICurrencyMaster_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/GetItems" message="tns:ICurrencyMaster_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/GetItemsResponse" message="tns:ICurrencyMaster_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/GetByCode" message="tns:ICurrencyMaster_GetByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/GetByCodeResponse" message="tns:ICurrencyMaster_GetByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/Save" message="tns:ICurrencyMaster_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/SaveResponse" message="tns:ICurrencyMaster_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/Delete" message="tns:ICurrencyMaster_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/DeleteResponse" message="tns:ICurrencyMaster_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/Import" message="tns:ICurrencyMaster_Import_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/ImportResponse" message="tns:ICurrencyMaster_Import_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsBilling">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/GetImportItemsBilling" message="tns:ICurrencyMaster_GetImportItemsBilling_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/GetImportItemsBillingResponse" message="tns:ICurrencyMaster_GetImportItemsBilling_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/GetImportItemsReceipt" message="tns:ICurrencyMaster_GetImportItemsReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/GetImportItemsReceiptResponse" message="tns:ICurrencyMaster_GetImportItemsReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsNetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICurrencyMaster/GetImportItemsNetting" message="tns:ICurrencyMaster_GetImportItemsNetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICurrencyMaster/GetImportItemsNettingResponse" message="tns:ICurrencyMaster_GetImportItemsNetting_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICurrencyMaster" type="tns:ICurrencyMaster">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/GetByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/Import" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsBilling">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/GetImportItemsBilling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsReceipt">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/GetImportItemsReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsNetting">
+      <soap:operation soapAction="http://tempuri.org/ICurrencyMaster/GetImportItemsNetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CurrencyMaster">
+    <wsdl:port name="BasicHttpBinding_ICurrencyMaster" binding="tns:BasicHttpBinding_ICurrencyMaster">
+      <soap:address location="http://localhost:3061/Master/CurrencyMaster.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

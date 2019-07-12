@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ExistResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExistResult" nillable="true" type="tns:ExistResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ReceiptExcludesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="ReceiptExcludes" nillable="true" type="tns:ArrayOfReceiptExclude" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiptExcludesResult" nillable="true" type="tns:ReceiptExcludesResult" />
+  <xs:complexType name="ArrayOfReceiptExclude">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReceiptExclude" nillable="true" type="tns:ReceiptExclude" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReceiptExclude" nillable="true" type="tns:ArrayOfReceiptExclude" />
+  <xs:complexType name="ReceiptExclude">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ExcludeAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ExcludeCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ExcludeFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="OutputAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReceiptId" type="xs:long" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceiptExclude" nillable="true" type="tns:ReceiptExclude" />
+</xs:schema>

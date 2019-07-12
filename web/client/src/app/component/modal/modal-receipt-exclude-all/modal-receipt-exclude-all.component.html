@@ -1,0 +1,35 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--dialog">
+
+  <h2 class="vModal__heading">入金データ検索【対象外区分の一括選択】
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <p class="align--center mb--10">
+      対象外区分を選択してください
+      </p>
+      <select
+        formControlName="excludeCategoryIdCtrl"
+        name="excludeCategoryIdCtrl"
+        class="select-size--140 select-pos--center">
+        <option *ngFor="let category of ExcludeCategories" value="{{category.id}}">
+          {{category.code}}：{{category.name}}
+        </option>
+      </select>
+      <hr class="separator">
+      <div class="common-btn mb--20">
+        <button 
+          (click)="select()" 
+          [ngClass]="{'button-disable': myFormGroup.invalid }"
+          class="buttonSecondary">{{ItemNameConst.BTN_SELECT}}</button>
+        <button (click)="cancel()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

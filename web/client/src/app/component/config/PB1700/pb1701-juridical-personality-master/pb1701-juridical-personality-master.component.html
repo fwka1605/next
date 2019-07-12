@@ -1,0 +1,102 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_INPUT_ITEM_HIDDEN:ItemNameConst.BTN_INPUT_ITEM_DISPLAY}}</button>
+    
+      <div class="contentsButton__subSection">
+        <ng-container *ngIf="securityHideShow">
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterImport)">
+            <button class="buttonImport infotip"
+              (click)="buttonAction(BUTTON_ACTION.IMPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterExport)">
+            <button class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section 
+          [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'"
+          [formGroup]="myFormGroup">
+          <div class="contents__container--flex">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title">法人格<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data">
+                <input
+                  formControlName="kanaCtrl"
+                  name="kanaCtrl"
+                  maxlength="48"
+                  (blur)="inputKana()"
+                  class="input-size--400"
+                >
+              </dd>
+            </dl>
+            <div class="contents__buttonGroup">
+              <button
+                (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+                [ngClass]="{'button-disable': myFormGroup.invalid}"
+                class="buttonSecondary">{{ComponentStatus==COMPONENT_STATUS_TYPE.CREATE?ItemNameConst.BTN_REGISTRY:ItemNameConst.BTN_UPDATE}}</button>
+              <button
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+              <button
+                (click)="buttonAction(BUTTON_ACTION.DELETE)"
+                [ngClass]="{'button-disable': DeleteButtonDisableFlag}"
+                class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+            </div>            
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <!-- 登録済みの法人格 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_REGISTER_JURIDICAL_PERSONALITY}}</h2>
+      <div class="contents__container">
+      <div class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_50_CODE}}">編集</th>
+              <th class="{{TableColumn.COL_1200_CODE}}">法人格</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let juridicalPersonality of juridicalPersonalitysResult?.juridicalPersonalities; let i = index"
+              class="line-selector">
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                  <a class="buttonEdit" (click)="selectLine(i)"></a>
+              </td>
+              <td class="{{TableColumn.COL_1200_NAME}}">{{juridicalPersonality.kana}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </section>
+
+  </section>
+
+</div>

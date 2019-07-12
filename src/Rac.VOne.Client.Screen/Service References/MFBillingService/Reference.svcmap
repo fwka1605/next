@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="649d1a28-4e30-4442-9a1b-9d2f6d582266" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/MFBillingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MFBillingService.wsdl" MetadataType="Wsdl" ID="ba916baa-7498-4237-bc7d-b9f0cb328991" SourceId="1" SourceUrl="http://localhost:3061/MFBillingService.svc?wsdl" />
+    <MetadataFile FileName="MFBillingService.disco" MetadataType="Disco" ID="59e25704-2d48-4deb-b2c5-61e37f38c46d" SourceId="1" SourceUrl="http://localhost:3061/MFBillingService.svc?disco" />
+    <MetadataFile FileName="MFBillingService.xsd" MetadataType="Schema" ID="6f4dc5d5-00ab-4b07-b993-7b1298b81bff" SourceId="1" SourceUrl="http://localhost:3061/MFBillingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MFBillingService3.xsd" MetadataType="Schema" ID="b486f2fc-b39a-45cb-a23c-4d496c55e97d" SourceId="1" SourceUrl="http://localhost:3061/MFBillingService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MFBillingService2.xsd" MetadataType="Schema" ID="ff8cf381-adb6-4066-a3d2-b8c404a4bcfb" SourceId="1" SourceUrl="http://localhost:3061/MFBillingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MFBillingService1.xsd" MetadataType="Schema" ID="1ef11a5f-7aed-4b6d-91e6-897d6afee44d" SourceId="1" SourceUrl="http://localhost:3061/MFBillingService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

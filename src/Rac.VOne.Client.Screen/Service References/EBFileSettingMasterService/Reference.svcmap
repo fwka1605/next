@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ec8be316-f228-457c-aaa6-3fcfaec7d867" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60157/Master/EBFileSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EBFileSettingMaster.xsd" MetadataType="Schema" ID="eb96e89b-79de-402e-8ab9-e81962922f09" SourceId="1" SourceUrl="http://localhost:60157/Master/EBFileSettingMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="EBFileSettingMaster.disco" MetadataType="Disco" ID="c5246f13-efec-45d3-93b0-7769edc46cbd" SourceId="1" SourceUrl="http://localhost:60157/Master/EBFileSettingMaster.svc?disco" />
+    <MetadataFile FileName="EBFileSettingMaster1.xsd" MetadataType="Schema" ID="b237d2b2-5dd5-421b-b0b0-7c5ec21166b2" SourceId="1" SourceUrl="http://localhost:60157/Master/EBFileSettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="EBFileSettingMaster.wsdl" MetadataType="Wsdl" ID="ec476872-e147-424c-93fd-6f4b513949ef" SourceId="1" SourceUrl="http://localhost:60157/Master/EBFileSettingMaster.svc?wsdl" />
+    <MetadataFile FileName="EBFileSettingMaster2.xsd" MetadataType="Schema" ID="f7353eaf-67f5-4bbe-8bed-7813b59e5986" SourceId="1" SourceUrl="http://localhost:60157/Master/EBFileSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="EBFileSettingMaster3.xsd" MetadataType="Schema" ID="150d5c67-da2f-4fb5-b0c8-de76b5265cc8" SourceId="1" SourceUrl="http://localhost:60157/Master/EBFileSettingMaster.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

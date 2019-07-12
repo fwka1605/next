@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="86387833-2905-4a97-b964-19e2f55bb7df" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/CustomerDiscountMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CustomerDiscountMaster.wsdl" MetadataType="Wsdl" ID="462e6a0d-3d9b-4c61-a368-3367c4d4def2" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerDiscountMaster.svc?wsdl" />
+    <MetadataFile FileName="CustomerDiscountMaster.xsd" MetadataType="Schema" ID="6389a347-e0dc-4978-976e-7e681ba2ccf2" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerDiscountMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="CustomerDiscountMaster1.xsd" MetadataType="Schema" ID="1f6da9fb-9386-4007-ab4c-1b92d6e409a5" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerDiscountMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="CustomerDiscountMaster.disco" MetadataType="Disco" ID="f1dd051b-9b34-4b60-8daa-1ba65908cca3" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerDiscountMaster.svc?disco" />
+    <MetadataFile FileName="CustomerDiscountMaster2.xsd" MetadataType="Schema" ID="b2736d3a-fc67-487c-b012-d8bef2b99352" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerDiscountMaster.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="TaskScheduleHistorySearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="EndAt_From" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EndAt_To" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ImportSubType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StartAt_From" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StartAt_To" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaskScheduleHistorySearch" nillable="true" type="tns:TaskScheduleHistorySearch" />
+  <xs:complexType name="TaskScheduleHistoryResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="TaskScheduleHistoryList" nillable="true" type="tns:ArrayOfTaskScheduleHistory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaskScheduleHistoryResult" nillable="true" type="tns:TaskScheduleHistoryResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ArrayOfTaskScheduleHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TaskScheduleHistory" nillable="true" type="tns:TaskScheduleHistory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTaskScheduleHistory" nillable="true" type="tns:ArrayOfTaskScheduleHistory" />
+  <xs:complexType name="TaskScheduleHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="EndAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Errors" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="ImportSubType" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportType" type="xs:int" />
+      <xs:element minOccurs="0" name="Result" type="xs:int" />
+      <xs:element minOccurs="0" name="StartAt" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaskScheduleHistory" nillable="true" type="tns:TaskScheduleHistory" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+</xs:schema>

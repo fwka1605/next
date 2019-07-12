@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="03aef25a-91c1-42b8-b6b9-f134dc585b36" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/PasswordPolicyMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PasswordPolicyMaster.xsd" MetadataType="Schema" ID="07c84fc8-390d-46ff-96d6-df7a291d7608" SourceId="1" SourceUrl="http://localhost:3061/Master/PasswordPolicyMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="PasswordPolicyMaster1.xsd" MetadataType="Schema" ID="2ef63dc1-b5ec-498e-a738-d414b8b93ab2" SourceId="1" SourceUrl="http://localhost:3061/Master/PasswordPolicyMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="PasswordPolicyMaster.wsdl" MetadataType="Wsdl" ID="66fba251-ec52-4a04-8323-b0402ad1cd20" SourceId="1" SourceUrl="http://localhost:3061/Master/PasswordPolicyMaster.svc?wsdl" />
+    <MetadataFile FileName="PasswordPolicyMaster.disco" MetadataType="Disco" ID="ed3815c8-7b56-442f-a96d-8caae3818a14" SourceId="1" SourceUrl="http://localhost:3061/Master/PasswordPolicyMaster.svc?disco" />
+    <MetadataFile FileName="PasswordPolicyMaster2.xsd" MetadataType="Schema" ID="f723c2cb-ac14-4923-a84e-289421001bcc" SourceId="1" SourceUrl="http://localhost:3061/Master/PasswordPolicyMaster.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

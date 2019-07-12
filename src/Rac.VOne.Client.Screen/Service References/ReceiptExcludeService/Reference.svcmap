@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cffadb82-805f-4c74-8b2a-cdfaf2240d1c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/ReceiptExcludeService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReceiptExcludeService.wsdl" MetadataType="Wsdl" ID="dc74d21b-1c93-4029-9be9-b7bdda7c3ecc" SourceId="1" SourceUrl="http://localhost:3061/ReceiptExcludeService.svc?wsdl" />
+    <MetadataFile FileName="ReceiptExcludeService2.xsd" MetadataType="Schema" ID="08710a81-aab4-49cd-b558-988cbcc8545a" SourceId="1" SourceUrl="http://localhost:3061/ReceiptExcludeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReceiptExcludeService.disco" MetadataType="Disco" ID="6fee314d-acdc-45d1-b604-92465428ef34" SourceId="1" SourceUrl="http://localhost:3061/ReceiptExcludeService.svc?disco" />
+    <MetadataFile FileName="ReceiptExcludeService3.xsd" MetadataType="Schema" ID="f96e4056-3579-4aa2-b620-f74cc7a35971" SourceId="1" SourceUrl="http://localhost:3061/ReceiptExcludeService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ReceiptExcludeService1.xsd" MetadataType="Schema" ID="bfd99d3d-7d96-4d05-b5b5-cf0f2c206abd" SourceId="1" SourceUrl="http://localhost:3061/ReceiptExcludeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReceiptExcludeService.xsd" MetadataType="Schema" ID="b1c8ee8e-0ebe-43ac-a617-371cb2392a69" SourceId="1" SourceUrl="http://localhost:3061/ReceiptExcludeService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

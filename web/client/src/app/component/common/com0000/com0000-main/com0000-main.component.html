@@ -1,0 +1,24 @@
+
+
+<section class="layout" >
+  <header [ngClass]="!panelOpenState ? 'layout__header' : 'layout__header--nav-open'">
+    <app-com0101-header></app-com0101-header>
+  </header>
+  <nav [ngClass]="!panelOpenState ? 'layout__menu' : 'layout__menu--nav-open'">
+    <!-- <button class="layout__menuChange"
+      (click)="menuChange()">{{panelOpenName()}}</button> -->
+    <app-com0301-menu></app-com0301-menu>
+  </nav>
+  <section [ngClass]="!isChangeCss() ? 'layout__main' : 'layout__main--noScroll'">
+    <router-outlet id="main"  (scroll)="scrollEvent($event)">
+    </router-outlet>
+    <div class="gotoTop" [style.visibility]="verticalOffset!=0 ? 'visible' : 'hidden'">
+      <a class="gotoTop__icon" href="{{router.url.replace('#top', '')}}#top" ></a>
+    </div>
+      <!---
+        <div id="footer-outer">
+      <app-com0201-footer></app-com0201-footer>
+    </div>
+    --->
+  </section>
+</section>

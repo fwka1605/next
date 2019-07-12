@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="EBFormatsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EBFileFormats" nillable="true" type="tns:ArrayOfEBFormat" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EBFormatsResult" nillable="true" type="tns:EBFormatsResult" />
+  <xs:complexType name="ArrayOfEBFormat">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EBFormat" nillable="true" type="tns:EBFormat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEBFormat" nillable="true" type="tns:ArrayOfEBFormat" />
+  <xs:complexType name="EBFormat">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="FileFieldTypes" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportableValues" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsDateSelectable" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RequireBankCode" type="xs:int" />
+      <xs:element minOccurs="0" name="RequireYear" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EBFormat" nillable="true" type="tns:EBFormat" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+</xs:schema>

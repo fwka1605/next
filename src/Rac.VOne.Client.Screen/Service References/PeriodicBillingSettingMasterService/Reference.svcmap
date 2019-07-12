@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="657faa42-6479-463c-b6fb-82c225a24050" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/PeriodicBillingSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PeriodicBillingSettingMaster.xsd" MetadataType="Schema" ID="ff9ea815-16f5-4b3c-966b-a765ddf34186" SourceId="1" SourceUrl="http://localhost:3061/Master/PeriodicBillingSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="PeriodicBillingSettingMaster1.xsd" MetadataType="Schema" ID="4c0dd0a8-7c48-48fd-b985-7eb2b4e2ffb8" SourceId="1" SourceUrl="http://localhost:3061/Master/PeriodicBillingSettingMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="PeriodicBillingSettingMaster2.xsd" MetadataType="Schema" ID="abe6511a-a51f-4c18-bd46-66cab15931b6" SourceId="1" SourceUrl="http://localhost:3061/Master/PeriodicBillingSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="PeriodicBillingSettingMaster.wsdl" MetadataType="Wsdl" ID="062c09dd-89c7-4304-82a3-038cf5e723f5" SourceId="1" SourceUrl="http://localhost:3061/Master/PeriodicBillingSettingMaster.svc?wsdl" />
+    <MetadataFile FileName="PeriodicBillingSettingMaster.disco" MetadataType="Disco" ID="43a5e487-b065-4d02-8d4e-d9589f4af170" SourceId="1" SourceUrl="http://localhost:3061/Master/PeriodicBillingSettingMaster.svc?disco" />
+    <MetadataFile FileName="PeriodicBillingSettingMaster3.xsd" MetadataType="Schema" ID="3cb063d8-fd66-439e-bb6a-104bef6ccc51" SourceId="1" SourceUrl="http://localhost:3061/Master/PeriodicBillingSettingMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2ac62f24-e4de-4ce7-a470-99459ba8d147" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/ReminderSettingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReminderSettingService.xsd" MetadataType="Schema" ID="07052df2-016a-4a84-afba-b7918fabf721" SourceId="1" SourceUrl="http://localhost:3061/ReminderSettingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReminderSettingService1.xsd" MetadataType="Schema" ID="43fc7a01-150c-4750-bf40-678709abaa5e" SourceId="1" SourceUrl="http://localhost:3061/ReminderSettingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReminderSettingService2.xsd" MetadataType="Schema" ID="60aaa827-f362-4342-972b-883b3680bccc" SourceId="1" SourceUrl="http://localhost:3061/ReminderSettingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ReminderSettingService.disco" MetadataType="Disco" ID="2a51f663-2d88-4353-a4c3-e40a452e3a6c" SourceId="1" SourceUrl="http://localhost:3061/ReminderSettingService.svc?disco" />
+    <MetadataFile FileName="ReminderSettingService.wsdl" MetadataType="Wsdl" ID="bb39806b-c8b0-499d-b737-0df836ad1f32" SourceId="1" SourceUrl="http://localhost:3061/ReminderSettingService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

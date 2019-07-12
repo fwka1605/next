@@ -1,0 +1,207 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+    <!--- 処理結果の表示 -->
+    <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.EXTRACT)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid}" 
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_EXTRACT}}
+        <span [innerHtml]="ButtonTipsConst.EXTRACTION | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.EXPORT)" 
+        [ngClass]="{'button-disable': extractionCount<=0}" 
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_OUTPUT}}
+        <span [innerHtml]="ButtonTipsConst.JOURNALIZING_DOWNLOAD | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+
+      <button 
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">
+        {{ItemNameConst.BTN_CLEAR}}
+      </button>
+
+      <div class="contentsButton__subSection">
+        <ul class="separator">
+          <li class="separator__item">
+            <button 
+              (click)="buttonAction(BUTTON_ACTION.REEXPORT)" 
+              [ngClass]="{'button-disable': !selectedJournalSummary}" 
+              class="buttonPrimary infotip">
+              {{ItemNameConst.BTN_REOUTPUT}}
+              <span [innerHtml]="ButtonTipsConst.HISTORY_JOURNALIZING_DOWNLOAD | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+          <li class="separator__item">
+            <button 
+              (click)="buttonAction(BUTTON_ACTION.HISTORY_DELETE)" 
+              [ngClass]="{'button-disable': !selectedJournalSummary}" 
+              class="buttonPrimary infotip">
+              {{ItemNameConst.BTN_DELETE_HISTORY}}
+              <span [innerHtml]="ButtonTipsConst.JOURNALIZING_CANCEL | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!--- 抽出条件 -->
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_EXPORT}}</h2>
+      <div class="contents__container">
+        <dl class="definitionForm--lh-narrow">
+          <dt class="definitionForm__title">請求日</dt>
+          <dd class="definitionForm__data">
+            <input
+              formControlName="billedAtFromCtrl"
+              name="billedAtFromCtrl"
+              (keyup.enter)="setBilledAtFrom($event.type)"
+              (dateSelect)="setBilledAtFrom($event.type)"
+              ngbDatepicker #billedAtFromDp="ngbDatepicker"
+              placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+              [ngClass]="{'input--error': billedAtFromCtrl.errors?.ngbDate}"
+              maxlength="10"
+              type="tel"
+              class="input-size--100">
+              <button class="btn btn-outline-secondary" (click)="billedAtFromDp.toggle()" type="button"></button>
+            <span class="wavy-line"></span>
+            <input
+              formControlName="billedAtToCtrl"
+              name="billedAtToCtrl"
+              (keyup.enter)="setBilledAtTo($event.type)"
+              (dateSelect)="setBilledAtTo($event.type)"
+              ngbDatepicker #billedAtToDp="ngbDatepicker"
+              placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+              [ngClass]="{'input--error': billedAtToCtrl.errors?.ngbDate}"
+              maxlength="10"
+              type="tel"
+              class="input-size--100">
+              <button class="btn btn-outline-secondary" (click)="billedAtToDp.toggle()" type="button"></button>
+              <br>
+              <div
+                class="message-result font__warning"
+                *ngIf="billedAtFromCtrl.errors?.ngbDate 
+                      || billedAtToCtrl.errors?.ngbDate">
+                {{ MSG_VAL.DATE_DAY }}
+              </div>
+          </dd>
+          <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1">
+            <dt class="definitionForm__title">通貨コード</dt>
+            <dd class="definitionForm__data">
+              <input
+                formControlName="currencyCodeCtrl"
+                name="currencyCodeCtrl"
+                (blur)="setCurrencyCode($event.type)"
+                (keyup.enter)="setCurrencyCode($event.type)"
+                (keyup)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY,$event.keyCode)"
+                type="tel"
+                maxlength="3"
+                class="input-size--60">
+            </dd>
+          </ng-container>
+        </dl>
+        <div class="searchConfig">
+          <div class="searchConfig__result contents__container--flex">
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractionCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出金額</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractionAmount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">出力件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{outputCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">出力金額</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{outputAmount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--- 抽出履歴 -->
+    <section class="contents">
+
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_EXPORT_HISTORY}}</h2>
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_200_CODE}}">選択</th>
+                <th class="{{TableColumn.COL_350_CODE}}">仕訳日</th>
+                <th class="{{TableColumn.COL_350_CODE}}">件数</th>
+                <th *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1" class="{{TableColumn.COL_350_CODE}}">通貨</th>
+                <th class="{{TableColumn.COL_350_CODE}}">金額</th>
+              </tr>
+            </thead>
+            <tbody class="searchResult__tableHeight--9999">
+              <tr *ngFor="let journalizingSummary of journalizingSummariesResult?.journalizingsSummaries index as i">
+                <td class="{{TableColumn.COL_200_CENTER_NAME}}">
+                  <div class="inputStyled--inTable">
+                    <input class="inputStyled__input"
+                      id="cbxJournalSummaryCtrl{{i}}" 
+                      formControlName="cbxJournalSummaryCtrl{{i}}" 
+                      name="cbxJournalSummaryCtrl{{i}}" 
+                      (change)="setCbxJournalSummary(i)"
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxJournalSummaryCtrl{{i}}"></label>
+                  </div>
+                </td>
+                <td class="{{TableColumn.COL_350_CENTER_NAME}}">{{journalizingSummary.outputAt|date:'yyyy/MM/dd HH:mm:ss':TIME_ZONE}}</td>
+                <td class="{{TableColumn.COL_350_RIGHT_NAME}}">{{journalizingSummary.count|currency_pipe}}</td>
+                <td 
+                  *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1" 
+                  class="{{TableColumn.COL_350_NAME}}">
+                  {{journalizingSummary.currencyCode}}
+                </td>
+                <td class="{{TableColumn.COL_350_RIGHT_NAME}}">{{journalizingSummary.amount|currency_pipe}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </section>
+  </section>
+
+
+</div>

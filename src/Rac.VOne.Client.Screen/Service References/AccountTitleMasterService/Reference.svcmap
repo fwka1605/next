@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8c84db74-7104-485a-8144-0941f176fa62" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/AccountTitleMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AccountTitleMaster.wsdl" MetadataType="Wsdl" ID="d6cf0d30-f5c3-4889-af8f-fed9019391f3" SourceId="1" SourceUrl="http://localhost:3061/Master/AccountTitleMaster.svc?wsdl" />
+    <MetadataFile FileName="AccountTitleMaster.xsd" MetadataType="Schema" ID="3195ced1-80b0-45f4-b683-b463f9c84eb8" SourceId="1" SourceUrl="http://localhost:3061/Master/AccountTitleMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="AccountTitleMaster1.xsd" MetadataType="Schema" ID="b7a0b7c8-9fcf-4110-b968-fdabb5bd6ed6" SourceId="1" SourceUrl="http://localhost:3061/Master/AccountTitleMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="AccountTitleMaster2.xsd" MetadataType="Schema" ID="ff20abb0-3a5e-4b76-8c72-a54ae90e1483" SourceId="1" SourceUrl="http://localhost:3061/Master/AccountTitleMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountTitleMaster.disco" MetadataType="Disco" ID="76732fc7-b648-4a72-9047-4f3cfd2de802" SourceId="1" SourceUrl="http://localhost:3061/Master/AccountTitleMaster.svc?disco" />
+    <MetadataFile FileName="AccountTitleMaster3.xsd" MetadataType="Schema" ID="e2d67e6b-6c88-45d4-8476-6a1e2721c91e" SourceId="1" SourceUrl="http://localhost:3061/Master/AccountTitleMaster.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

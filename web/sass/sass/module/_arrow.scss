@@ -1,0 +1,9 @@
+.figure {
+  &--right-arrow {
+    width: 24px;
+    height: 18px;
+    background-image: url("/assets/image/arrow-right.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+}

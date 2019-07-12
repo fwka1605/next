@@ -1,0 +1,565 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_ADD_HIDDEN:ItemNameConst.BTN_ADD_SEARCH}}</button>
+
+      <div class="contentsButton__subSection">
+        <ul class="separator">
+          <li class="separator__item">
+            <button
+              (click)="openFromSettingModal()"
+              [ngClass]="{'button-disable': !(scheduledPaymentListsResult==null || scheduledPaymentListsResult.scheduledPaymentLists.length==0)}"
+              class="buttonPrimary infotip">
+              {{ItemNameConst.BTN_SETTING_OUTPUT}}
+              <span
+                [innerHtml]="ButtonTipsConst.OUTPUT_CONTENT_SETTING | safeHtml_pipe"
+                class="infotip__frame"></span>
+            </button>
+          </li>
+          <li class="separator__item">
+            <button 
+              [ngClass]="{'button-disable': scheduledPaymentListsResult==null || scheduledPaymentListsResult.scheduledPaymentLists.length==0}" 
+              class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>    
+
+
+
+
+  <section class="pageContainer">
+
+    <!---照会条件-->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+
+          <h2 class="contents__title--underline">
+            {{ItemNameConst.LBL_SETTING_INQUIRY}}
+          </h2>
+
+          <div class="accordionContent__body contents__container--flex">
+
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--15">基準日<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="baseDateCtrl"
+                    name="baseDateCtrl"
+                    (keyup.enter)="setBaseDate($event.type)"
+                    (dateSelect)="setBaseDate($event.type)"
+                    ngbDatepicker #baseDateDp="ngbDatepicker"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': baseDateCtrl.errors?.ngbDate}"
+                    maxlength="10"
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="baseDateDp.toggle()" type="button"></button>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="baseDateCtrl.errors?.ngbDate">
+                      {{ MSG_VAL.DATE_DAY }}
+                    </div>
+                </dd>
+                <dt class="definitionForm__title w--15">請求日</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="billedAtFromCtrl"
+                    name="billedAtFromCtrl"
+                    (keyup.enter)="setBilledAtFrom($event.type)"
+                    (dateSelect)="setBilledAtFrom($event.type)"
+                    ngbDatepicker #billedAtFromDp="ngbDatepicker"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': billedAtFromCtrl.errors?.ngbDate}"
+                    maxlength="10"
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="billedAtFromDp.toggle()" type="button"></button>
+                  <span class="wavy-line"></span>
+                  <input
+                    formControlName="billedAtToCtrl"
+                    name="billedAtToCtrl"
+                    (keyup.enter)="setBilledAtTo($event.type)"
+                    (dateSelect)="setBilledAtTo($event.type)"
+                    ngbDatepicker #billedAtToDp="ngbDatepicker"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': billedAtToCtrl.errors?.ngbDate}"
+                    maxlength="10"
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="billedAtToDp.toggle()" type="button"></button>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="billedAtFromCtrl.errors?.ngbDate || billedAtToCtrl.errors?.ngbDate">
+                      {{ MSG_VAL.DATE_DAY }}
+                    </div>
+                </dd>
+                <dt class="definitionForm__title w--15">入金予定日</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="dueAtFromCtrl"
+                    name="dueAtFromCtrl"
+                    (keyup.enter)="setDueAtFrom($event.type)"
+                    (dateSelect)="setDueAtFrom($event.type)"
+                    ngbDatepicker #dueAtFromDp="ngbDatepicker"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': dueAtFromCtrl.errors?.ngbDate}"
+                    maxlength="10"
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="dueAtFromDp.toggle()" type="button"></button>
+                  <span class="wavy-line"></span>
+                  <input
+                    formControlName="dueAtToCtrl"
+                    name="dueAtToCtrl"
+                    (keyup.enter)="setDueAtTo($event.type)"
+                    (dateSelect)="setDueAtTo($event.type)"
+                    ngbDatepicker #dueAtToDp="ngbDatepicker"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': dueAtToCtrl.errors?.ngbDate}"
+                    maxlength="10"
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="dueAtToDp.toggle()" type="button"></button>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="dueAtFromCtrl.errors?.ngbDate || dueAtToCtrl.errors?.ngbDate">
+                      {{ MSG_VAL.DATE_DAY }}
+                    </div>
+                </dd>
+                <dt class="definitionForm__title w--15">請求締日</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="closingAtFromCtrl"
+                    name="closingAtFromCtrl"
+                    (keyup.enter)="setClosingAtFrom($event.type)"
+                    (dateSelect)="setClosingAtFrom($event.type)"
+                    ngbDatepicker #closingAtFromDp="ngbDatepicker"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': closingAtFromCtrl.errors?.ngbDate}"
+                    maxlength="10"
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="closingAtFromDp.toggle()" type="button"></button>
+                  <span class="wavy-line"></span>
+                  <input
+                    formControlName="closingAtToCtrl"
+                    name="closingAtToCtrl"
+                    (keyup.enter)="setClosingAtTo($event.type)"
+                    (dateSelect)="setClosingAtTo($event.type)"
+                    ngbDatepicker #closingAtToDp="ngbDatepicker"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': closingAtToCtrl.errors?.ngbDate}"
+                    maxlength="10"
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="closingAtToDp.toggle()" type="button"></button>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="closingAtFromCtrl.errors?.ngbDate || closingAtToCtrl.errors?.ngbDate">
+                      {{ MSG_VAL.DATE_DAY }}
+                    </div>
+                </dd>
+                <dt class="definitionForm__title w--15">請求書番号</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="invoiceCodeFromCtrl"
+                    name="invoiceCodeFromCtrl"
+                    (keyup.enter)="setInvoiceCodeFrom($event.type)"
+                    maxlength="20"
+                    class="input-size--200">
+                  <span class="wavy-line"></span>
+                  <input
+                    formControlName="invoiceCodeToCtrl"
+                    name="invoiceCodeToCtrl"
+                    (keyup.enter)="setInvoiceCodeTo($event.type)"
+                    maxlength="20"
+                    class="input-size--200">
+                </dd>
+                <dt class="definitionForm__title w--15">請求書番号</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="invoiceCodeCtrl"
+                    name="invoiceCodeCtrl"
+                    (keyup.enter)="setInvoiceCode($event.type)"
+                    maxlength="20"
+                    class="input-size--200">
+                </dd>
+                <dt class="definitionForm__title w--15">回収区分</dt>
+                <dd class="definitionForm__data w--85">
+                  <input 
+                    formControlName="collectCategoryCodeCtrl" 
+                    name="collectCategoryCodeCtrl"
+                    (keyup.enter)="setCollectCategoryCode($event.type)"
+                    (blur)="setCollectCategoryCode($event.type)"
+                    #collectCategoryCodeInput
+                    [formControl]="collectCategoryCodeCtrl" 
+                    [matAutocomplete]="autoCollectCategoryCode"
+                    maxlength="2" 
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                    type="tel"
+                    class="input-size--60">
+                  <mat-autocomplete 
+                    #autoCollectCategoryCode="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth150">
+                    <mat-option 
+                      *ngFor="let category of categoryFilterds[1] | async" 
+                      [value]="category.code">{{category.code}}:{{category.name}}
+                    </mat-option>
+                  </mat-autocomplete>  
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_COLLECT_CATEGORY)"></a>                    
+                  <input 
+                    formControlName="collectCategoryNameCtrl" 
+                    name="collectCategoryNameCtrl" 
+                    class="input-size--200"
+                    readonly>
+                </dd>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1">
+                  <dt class="definitionForm__title w--15">通貨コード</dt>
+                  <dd class="definitionForm__data w--85">
+                    <input
+                      formControlName="currencyCodeCtrl"
+                      name="currencyCodeCtrl"
+                      (blur)="setCurrencyCode($event.type)"
+                      (keyup.enter)="setCurrencyCode($event.type)"
+                      type="tel"
+                      maxlength="3"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      class="input-size--60">
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY)"></a>
+                  </dd>
+                </ng-container>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--17">請求部門コード</dt>
+                <dd class="definitionForm__data w--80">
+                  <input 
+                    formControlName="departmentCodeFromCtrl" 
+                    name="departmentCodeFromCtrl"
+                    (keyup.enter)="setDepartmentCodeFrom($event.type)" 
+                    (blur)="setDepartmentCodeFrom($event.type)"
+                    #departmentCodeFromInput
+                    [formControl]="departmentCodeFromCtrl" 
+                    [matAutocomplete]="autoDepartmentCodeFrom"
+                    type="tel"
+                    maxlength="{{userInfoService.ApplicationControl?.departmentCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                    class="input-size--110">
+                  <mat-autocomplete 
+                    #autoDepartmentCodeFrom="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let department of departmentFilterds[0] | async" 
+                      [value]="department.code">{{department.code}}:{{department.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_DEPARTMENT,'from')"></a>
+                  <input 
+                    formControlName="departmentNameFromCtrl" 
+                    name="departmentNameFromCtrl" 
+                    class="input-size--250"
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--17">
+                  <span class="end-checkbox">
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxDepartmentCtrl" 
+                        formControlName="cbxDepartmentCtrl" 
+                        name="cbxDepartmentCtrl" 
+                        (change)="setCbxDepartment($event.type)"
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxDepartmentCtrl"></label>
+                    </div>
+                  </span>                  
+                </dt>
+                <dd class="definitionForm__data w--80">
+                  <input 
+                    formControlName="departmentCodeToCtrl" 
+                    name="departmentCodeToCtrl"
+                    (keyup.enter)="setDepartmentCodeTo($event.type)" 
+                    (blur)="setDepartmentCodeTo($event.type)"
+                    #departmentCodeToInput
+                    [formControl]="departmentCodeToCtrl" 
+                    [matAutocomplete]="autoDepartmentCodeTo"
+                    type="tel"
+                    maxlength="{{userInfoService.ApplicationControl?.departmentCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                    class="input-size--110">
+                  <mat-autocomplete 
+                    #autoDepartmentCodeTo="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let department of departmentFilterds[1] | async" 
+                      [value]="department.code">{{department.code}}:{{department.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_DEPARTMENT,'to')"></a>
+                  <input 
+                  formControlName="departmentNameToCtrl" 
+                    name="departmentNameToCtrl" class="input-size--250"
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--17">担当者コード</dt>
+                <dd class="definitionForm__data w--80">
+                  <input 
+                    formControlName="staffCodeFromCtrl" 
+                    name="staffCodeFromCtrl"
+                    (keyup.enter)="setStaffCodeFrom($event.type)" 
+                    (blur)="setStaffCodeFrom($event.type)"
+                    #staffCodeFromInput
+                    [formControl]="staffCodeFromCtrl" 
+                    [matAutocomplete]="autoStaffCodeFrom"
+                    type="tel"
+                    maxlength="{{userInfoService.ApplicationControl?.staffCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                    class="input-size--110">
+                  <mat-autocomplete 
+                    #autoStaffCodeFrom="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let staff of staffFilterds[0] | async" 
+                      [value]="staff.code">{{staff.code}}:{{staff.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_STAFF,'from')"></a>
+                  <input 
+                    formControlName="staffNameFromCtrl" 
+                    name="staffNameFromCtrl" 
+                    class="input-size--250" 
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--17">
+                  <span class="end-checkbox">
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxStaffCtrl" 
+                        formControlName="cbxStaffCtrl" 
+                        name="cbxStaffCtrl" 
+                        (change)="setCbxStaff($event.type)"
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxStaffCtrl"></label>
+                    </div>
+                  </span>
+                </dt>
+                <dd class="definitionForm__data w--80">
+                  <input 
+                    formControlName="staffCodeToCtrl" 
+                    name="staffCodeToCtrl"
+                    (keyup.enter)="setStaffCodeTo($event.type)" 
+                    (blur)="setStaffCodeTo($event.type)"
+                    #staffCodeToInput
+                    [formControl]="staffCodeToCtrl" 
+                    [matAutocomplete]="autoStaffCodeTo"
+                    type="tel"
+                    maxlength="{{userInfoService.ApplicationControl?.staffCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                    class="input-size--110">
+                  <mat-autocomplete 
+                    #autoStaffCodeTo="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let staff of staffFilterds[1] | async" 
+                      [value]="staff.code">{{staff.code}}:{{staff.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_STAFF,'to')"></a>
+                  <input 
+                    formControlName="staffNameToCtrl" 
+                    name="staffNameToCtrl" 
+                    class="input-size--250" 
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--17">得意先コード</dt>
+                <dd class="definitionForm__data w--80">
+                  <input 
+                    formControlName="customerCodeFromCtrl" 
+                    name="customerCodeFromCtrl"
+                    (keyup.enter)="setCustomerCodeFrom($event.type)" 
+                    (blur)="setCustomerCodeFrom($event.type)"
+                    #customerCodeFromInput
+                    [formControl]="customerCodeFromCtrl" 
+                    [matAutocomplete]="autoCustomerCodeFrom"
+                    maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                    class="input-size--110">
+                  <mat-autocomplete 
+                    #autoCustomerCodeFrom="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let customer of customerFilterds[0] | async" 
+                      [value]="customer.code">
+                      {{customer.code}}:{{customer.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'from')"></a>
+                  <input 
+                    formControlName="customerNameFromCtrl" 
+                    name="customerNameFromCtrl" 
+                    class="input-size--250"
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--17">
+                  <span class="end-checkbox">
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxCustomerCtrl" 
+                        formControlName="cbxCustomerCtrl" 
+                        name="cbxCustomerCtrl" 
+                        (change)="setCbxCustomer()"
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxCustomerCtrl"></label>
+                    </div>
+                  </span>   
+                </dt>
+                <dd class="definitionForm__data w--80">
+                  <input 
+                    formControlName="customerCodeToCtrl" 
+                    name="customerCodeToCtrl"
+                    (keyup.enter)="setCustomerCodeTo($event.type)" 
+                    (blur)="setCustomerCodeTo($event.type)"
+                    #customerCodeToInput
+                    [formControl]="customerCodeToCtrl" 
+                    [matAutocomplete]="autoCustomerCodeTo"
+                    maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                    class="input-size--110">
+                  <mat-autocomplete 
+                    #autoCustomerCodeTo="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let customer of customerFilterds[1] | async" 
+                      [value]="customer.code">
+                      {{customer.code}}:{{customer.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'to')"></a>
+                  <input 
+                    formControlName="customerNameToCtrl" 
+                    name="customerNameToCtrl" 
+                    class="input-size--250" 
+                    readonly>
+                </dd>
+
+
+                <dt class="definitionForm__title w--17">
+                </dt>
+                <dd class="definitionForm__data w--80">
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="cbxCustomerAggregateCtrl" 
+                      formControlName="cbxCustomerAggregateCtrl" 
+                      name="cbxCustomerAggregateCtrl" 
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxCustomerAggregateCtrl">得意先毎に集計</label>
+                  </div>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__buttonGroup">
+              <button 
+                (click)="buttonAction(BUTTON_ACTION.SEARCH)" 
+                [ngClass]="{'button-disable': myFormGroup.invalid}" 
+                class="buttonSecondary infotip">
+                {{ItemNameConst.BTN_INQUIRY}}
+                <span [innerHtml]="ButtonTipsConst.INQUIRY | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+              <button
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+            </div>
+
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <!-- 照会結果 -->
+    <section class="contents searchResult">
+      <h2 class="contents__title--underline-slim">
+        <div class="contents__titleInner">{{ItemNameConst.LBL_RESULT_INQUIRY_RESULT}}
+          <div class="contents__titleEnd">回収予定金額合計
+          <input class="searchResult__totalField input-size--200" value="{{sumAmount|currency_pipe}}" readonly>
+          </div>
+        </div>
+      </h2>
+      <div class="contents__container">
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_100_CODE}}">請求ID</th>
+                <th class="{{TableColumn.COL_100_CODE}}">得意先コード</th>
+                <th class="{{TableColumn.COL_200_CODE}}">得意先名</th>
+                <th class="{{TableColumn.COL_100_CODE}}">請求日</th>
+                <th class="{{TableColumn.COL_100_CODE}}">売上日</th>
+                <th class="{{TableColumn.COL_100_CODE}}">請求締日</th>
+                <th class="{{TableColumn.COL_100_CODE}}">入金予定</th>
+                <th class="{{TableColumn.COL_100_CODE}}">当初入金予定</th>
+                <th class="{{TableColumn.COL_CENTER_KINGAKU}}">回収予定金額</th>
+                <th class="{{TableColumn.COL_100_CODE}}">遅延</th>
+                <th class="{{TableColumn.COL_100_CODE}}">回収区分</th>
+                <th class="{{TableColumn.COL_100_CODE}}">請求書番号</th>
+                <th class="{{TableColumn.COL_150_CODE}}">請求部門コード</th>
+                <th class="{{TableColumn.COL_200_CODE}}">請求部門名</th>
+                <th class="{{TableColumn.COL_100_CODE}}">担当者コード</th>
+                <th class="{{TableColumn.COL_150_CODE}}">担当者名</th>
+                <th class="{{TableColumn.COL_300_CODE}}">{{getColumnAlias("Note1")}}</th>
+                <th class="{{TableColumn.COL_300_CODE}}">{{getColumnAlias("Note2")}}</th>
+                <th class="{{TableColumn.COL_300_CODE}}">{{getColumnAlias("Note3")}}</th>
+                <th class="{{TableColumn.COL_300_CODE}}">{{getColumnAlias("Note4")}}</th>
+              </tr>
+            </thead>
+            <tbody class="searchResult__tableHeight--9999">
+              <tr (click)="selectLine(i)" *ngFor="let payment of scheduledPaymentListsResult?.scheduledPaymentLists index as i">
+                <td class="{{TableColumn.COL_100_RIGHT_NAME}}">{{payment.id}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{payment.customerCode}}</td>
+                <td class="{{TableColumn.COL_200_NAME}}">{{payment.customerName}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{payment.billedAt | date}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{payment.salesAt | date}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{payment.closingAt | date}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{payment.dueAt | date}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{payment.originalDueAt | date}}</td>
+                <td class="{{TableColumn.COL_KINGAKU}}">{{payment.remainAmount | currency_pipe}}</td>
+                <td class="{{TableColumn.COL_100_NAME}}">{{payment.delayDivision}}</td>
+                <td class="{{TableColumn.COL_100_NAME}}">{{payment.collectCategoryCode}}:{{payment.collectCategoryName}}</td>
+                <td class="{{TableColumn.COL_100_NAME}}">{{payment.invoiceCode}}</td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{payment.departmentCode}}</td>
+                <td class="{{TableColumn.COL_200_NAME}}">{{payment.departmentName}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{payment.staffCode}}</td>
+                <td class="{{TableColumn.COL_150_NAME}}">{{payment.staffName}}</td>
+                <td class="{{TableColumn.COL_300_NAME}}">{{payment.note1}}</td>
+                <td class="{{TableColumn.COL_300_NAME}}">{{payment.note2}}</td>
+                <td class="{{TableColumn.COL_300_NAME}}">{{payment.note3}}</td>
+                <td class="{{TableColumn.COL_300_NAME}}">{{payment.note4}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </section>
+</div>

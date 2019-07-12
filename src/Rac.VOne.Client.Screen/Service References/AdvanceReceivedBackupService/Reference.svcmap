@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7ec20def-6c0f-4059-aea0-44f0ed2db0fa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/AdvanceReceivedBackupService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AdvanceReceivedBackupService2.xsd" MetadataType="Schema" ID="34e30f20-6054-4fe0-ad0e-e9cf4b6e2aa1" SourceId="1" SourceUrl="http://localhost:3061/AdvanceReceivedBackupService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AdvanceReceivedBackupService.xsd" MetadataType="Schema" ID="64babdfd-5a9b-478b-9cd4-149fe088ca7c" SourceId="1" SourceUrl="http://localhost:3061/AdvanceReceivedBackupService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AdvanceReceivedBackupService1.xsd" MetadataType="Schema" ID="4c545596-229c-44a2-942f-2235c8de948b" SourceId="1" SourceUrl="http://localhost:3061/AdvanceReceivedBackupService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AdvanceReceivedBackupService.wsdl" MetadataType="Wsdl" ID="80bc9971-c25c-49fa-908f-4c6c9b0db518" SourceId="1" SourceUrl="http://localhost:3061/AdvanceReceivedBackupService.svc?wsdl" />
+    <MetadataFile FileName="AdvanceReceivedBackupService.disco" MetadataType="Disco" ID="2eb042de-b21b-491c-9b3b-404eff2131f9" SourceId="1" SourceUrl="http://localhost:3061/AdvanceReceivedBackupService.svc?disco" />
+    <MetadataFile FileName="AdvanceReceivedBackupService3.xsd" MetadataType="Schema" ID="189064f4-97fb-4459-855d-c9fae69b9370" SourceId="1" SourceUrl="http://localhost:3061/AdvanceReceivedBackupService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

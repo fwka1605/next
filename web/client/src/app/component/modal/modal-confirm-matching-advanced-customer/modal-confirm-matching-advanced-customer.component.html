@@ -1,0 +1,33 @@
+<section class="vModal--small"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup">
+  <h2 class="vModal__heading">消込確認 【前受振替】
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+        <p class="mb--20 align--center">前受振替を行います。<br>振替先の得意先コードを指定してください。</p>
+        <dl class="definitionForm mb--20">
+          <dt class="definitionForm__title w--20">振替先得意先</dt>
+          <dd class="definitionForm__data w--80">
+            <select
+              formControlName="customerIdCtrl" 
+              name="customerIdCtrl" 
+              class="select-size--200">
+              <option *ngFor="let customer of customers index as i" value="{{customer.id}}">
+                {{customer.name}}
+              </option>
+            </select>
+          </dd>
+        </dl>
+        <hr class="separator mt--20">
+        <div class="common-btn mb--20">
+          <button [ngClass]="{'button-disable':  myFormGroup.invalid}" (click)="select()" class="buttonSecondary">{{ItemNameConst.BTN_MATCHING}}</button>
+          <button (click)="cancel()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+        </div>
+    </div>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

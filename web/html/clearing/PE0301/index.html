@@ -1,0 +1,642 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="invoice-data-search">
+        <div id="breadcrumb-outer">
+          <h1>04 消込 - 03 消込履歴データ検索(PE0301)</h1>
+        </div>
+        <section class="contents invoice-data-search">
+          <h2 class="invoice-data-search__title">
+            <span class="invoice-data-search__title__text" data-accordion-trigger="1">
+              検索条件
+              <i class="invoice-data-search__title__icon">
+                <img src="/assets/image/icon_spread.png" alt="">
+              </i>
+            </span>
+          </h2>
+          <div class="invoice-data-search__accordion" data-accordion-body="1">
+            <div class="invoice-data-search__container">
+              <dl class="invoice-data-search__container__searce-items">
+                <dt class="invoice-data-search__container__searce-items__title">請求日</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="date" class="invoice-data-search__container__searce-items__detail__before">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="date" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">売上日</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="date" class="invoice-data-search__container__searce-items__detail__before">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="date" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">入金予定日</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="date" class="invoice-data-search__container__searce-items__detail__before">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="date" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">請求書番号</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__before">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">請求書番号</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">最終更新日</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="date" class="invoice-data-search__container__searce-items__detail__before">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="date" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">最終更新者</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__before">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">メモ有り</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__input-wide">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">請求区分</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="main-input">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="option">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">回収区分</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="main-input">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="option">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">入力区分</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <select name="" id="">
+                    <option value="all" selected>すべて</option>
+                  </select>
+                </dd>
+              </dl>
+
+              <dl class="invoice-data-search__container__searce-items">
+                <dt class="invoice-data-search__container__searce-items__title">請求部門コード</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__before">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title invoice-data-search__container__searce-items__title--checks">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="checkbox">
+                </dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__before">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">担当者コード</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__before">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title invoice-data-search__container__searce-items__title--checks">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="checkbox">
+                </dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__before">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">得意先コード</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__before">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title invoice-data-search__container__searce-items__title--checks">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="checkbox">
+                </dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__before">
+                  <button class="invoice-data-search__container__searce-items__detail__search-btn">検索</button>
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__after">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">得意先名</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__input-wide">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">得意先名カナ</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__input-wide">
+                  <label for="01">
+                    <input type="checkbox" id="01">
+                    口振依頼作成済みデータを表示
+                  </label>
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">&nbsp;</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">&nbsp;</dd>
+                <dt class="invoice-data-search__container__searce-items__title">消込区分</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <label for="001">
+                    <input type="checkbox" id="001" name="keshikomikubun">
+                    消込済
+                  </label>
+                  <label for="002">
+                    <input type="checkbox" id="002" name="keshikomikubun">
+                    一部消込
+                  </label>
+                  <label for="003">
+                    <input type="checkbox" id="003" name="keshikomikubun">
+                    未消込
+                  </label>
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">金額範囲</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <select name="" id="">
+                    <option value="01">請求金額(税込)</option>
+                  </select>
+                  <input type="text">
+                  <span class="invoice-data-search__container__searce-items__wavy-line">～</span>
+                  <input type="checkbox" class="vertical-middlecheckbox">
+                  <input type="text">
+                </dd>
+              </dl>
+            </div>
+
+            <div class="invoice-data-search__container">
+              <dl class="invoice-data-search__container__searce-items">
+                <dt class="invoice-data-search__container__searce-items__title">備考の名前</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__remarks">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">備考2</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__remarks">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">備考3</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__remarks">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">備考4</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__remarks">
+                </dd>
+              </dl>
+              <dl class="invoice-data-search__container__searce-items">
+                <dt class="invoice-data-search__container__searce-items__title">備考5</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__remarks">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">備考6</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__remarks">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">備考7</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__remarks">
+                </dd>
+                <dt class="invoice-data-search__container__searce-items__title">備考8</dt>
+                <dd class="invoice-data-search__container__searce-items__detail">
+                  <input type="text" class="invoice-data-search__container__searce-items__detail__remarks">
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </section>
+        <section class="contents">
+          <div class="invoice-data-search-result">
+            <h2 class="invoice-data-search-result__title">検索結果</h2>
+            <div class="invoice-data-search-result-table">
+              <table>
+                <tr>
+                  <th>請求ID</th>
+                  <th>消込区分</th>
+                  <th>得意先コード</th>
+                  <th>得意先名</th>
+                  <th>請求日</th>
+                  <th>売上日</th>
+                  <th>請求締日</th>
+                  <th>入金予定</th>
+                  <th>請求金額(税込)</th>
+                  <th>請求残</th>
+                  <th>請求書番号</th>
+                  <th>請求区分</th>
+                  <th>回収区分</th>
+                  <th>入力区分</th>
+                  <th>備考の名前</th>
+                  <th>メモ</th>
+                  <th>請求部門コード</th>
+                  <th>請求部門名</th>
+                  <th>担当者コード</th>
+                  <th>担当者名</th>
+                  <th>依頼作成日</th>
+                  <th>振替結</th>
+                  <th>備考2</th>
+                  <th>備考3</th>
+                  <th>備考4</th>
+                  <th>初回入金日</th>
+                  <th>最終入金日</th>
+                  <th>請求金額(税抜)</th>
+                  <th>消費税</th>
+                  <th>備考6</th>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="tempo">(請求ID)</span></td>
+                  <td><span class="tempo">(消込区分)</span></td>
+                  <td><span class="tempo">(得意先コード)</span></td>
+                  <td><span class="tempo">(得意先名)</span></td>
+                  <td><span class="tempo">(請求日)</span></td>
+                  <td><span class="tempo">(売上日)</span></td>
+                  <td><span class="tempo">(請求締日)</span></td>
+                  <td><span class="tempo">(入金予定)</span></td>
+                  <td><span class="tempo">(請求金額(税込))</span></td>
+                  <td><span class="tempo">(請求残)</span></td>
+                  <td><span class="tempo">(請求書番号)</span></td>
+                  <td><span class="tempo">(請求区分)</span></td>
+                  <td><span class="tempo">(回収区分)</span></td>
+                  <td><span class="tempo">(入力区分)</span></td>
+                  <td><span class="tempo">(備考の名前)</span></td>
+                  <td><span class="tempo">(メモ)</span></td>
+                  <td><span class="tempo">(請求部門コード)</span></td>
+                  <td><span class="tempo">(請求部門名)</span></td>
+                  <td><span class="tempo">(担当者コード)</span></td>
+                  <td><span class="tempo">(担当者名)</span></td>
+                  <td><span class="tempo">(依頼作成日)</span></td>
+                  <td><span class="tempo">(振替結)</span></td>
+                  <td><span class="tempo">(備考2)</span></td>
+                  <td><span class="tempo">(備考3)</span></td>
+                  <td><span class="tempo">(備考4)</span></td>
+                  <td><span class="tempo">(初回入金日)</span></td>
+                  <td><span class="tempo">(最終入金日)</span></td>
+                  <td><span class="tempo">(請求金額(税抜))</span></td>
+                  <td><span class="tempo">(消費税)</span></td>
+                  <td><span class="tempo">(備考6)</span></td>
+                </tr>
+
+              </table>
+
+            </div>
+
+
+          </div>
+        </section>
+        <div id="footer-outer">
+        </div>
+      </div>
+    </div>
+    <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>

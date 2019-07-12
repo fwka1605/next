@@ -1,0 +1,185 @@
+.searchResult {
+  &__title {
+    position: relative;
+    width: $contentsWidth;
+    min-height: 46.5px;
+    padding: 10px 24px;
+    font-size: 1.3rem;
+    line-height: 2;
+    + .contents__container {
+      padding-top: 0;
+    }
+    + .contents__container--flex {
+      margin-top: -10px;
+    }
+  }
+  &__controlHeightLabel {
+    display: inline-block;
+    margin: 0 20px;
+  }
+  &__controlHeightField {
+    margin-left: 10px;
+  }
+  $fieldMargin: 25px;
+  &__total { 
+  // 合計金額フィールド
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    + .searchResult__total {
+      padding-top: 0;
+    }
+  }
+  &__totalField {
+    width: 195px;
+    height: 24px;
+    min-height: auto;
+    margin: 0 $fieldMargin 0 5px;
+    text-align: right;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+// セル色：<tr>,<th>,<td>
+.searchResult {
+  $tableHeader-normal: #F6F8FA;
+  $cell-color-receive: #F8D9DD;
+  $data-color-receive: #fcdbea;
+  $cell-color-invoice: #DBE9F9;
+  $data-color-invoice: #bdeef5;
+  &__table {
+    $tableSetting: #{&};
+    .contents.searchResult > .common-inner-table--multipleHeader > & {
+      border-top: 1px solid $border-color;
+    }
+    
+    tr {
+      display: flex;
+    }
+    th {
+      border-right: 1px solid #E0E6EF;
+      border-top: 1px solid #E0E6EF;
+      background-color: $tableHeader-normal;
+      .cursor-pointer {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    td {
+      line-height: 22px;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      > input {
+        min-height: auto;
+      }
+      .infotip__frame {
+        top: 25px;
+      }
+    }
+    &--tableData-nowrap {
+      @extend #{$tableSetting};
+      td {
+        white-space: nowrap;
+      }
+    }
+  }
+  // 入金情報・請求情報
+    &__tableCell { // <th>
+      &--color-receive,&--color-invoice {
+        th {
+          border-right: 1px solid #EFF5FF;
+          border-bottom: 1px solid #EFF5FF;
+        }
+        .common-inner-table--multipleHeader > .searchResult__table & {
+          border-right: 1px solid #EFF5FF;
+          border-bottom: 1px solid #EFF5FF;
+        }
+        .searchResult__table > thead > tr:nth-child(2) & {
+          border-bottom-color: $border-color;
+        }
+      }
+      &--color-receive {
+        background-color: $cell-color-receive !important;
+      }
+      &--color-invoice {
+        background-color: $cell-color-invoice !important;
+      }
+      &--color-receive,&--color-invoice {
+        > th {
+          background-color: inherit !important;
+        }
+        &.is-hoverable {
+          cursor: pointer;
+          transition: .3s;
+          &:hover {
+            opacity: .8;
+          }
+        }
+      }
+    }
+    // &__tableData { // <td>
+    //   &--color-receive {
+    //     box-shadow: inset 0 0 0 100px rgba($data-color-receive, .3);
+    //   }
+    //   &--color-invoice {
+    //     box-shadow: inset 0 0 0 100px rgba($data-color-invoice, .3);
+    //   }
+    // }
+
+  // 合計行の色
+    &__tableCell { 
+      &--carryover,&--subTotal,&--grandTotal {
+        > td {
+          background-color: inherit !important;
+        }
+      }
+      &--carryover { // 繰り越し
+        background-color: #ccedf8 !important;
+      }
+      &--subTotal { // 合計
+        background-color: #fef7d5 !important;
+      }
+      &--grandTotal { // 総合計
+        background-color: #fff0a6 !important;
+      }
+      &--staffTotal { // 担当計
+        background-color: #c1efef !important;
+      }
+      &--departTotal { // 部門計
+        background-color: navajowhite !important;
+      }
+    }
+  }
+
+// 100px単位、テーブル高さを500pxから1500pxまで指定する場合使用
+.common-inner-table {
+  .searchResult__tableHeight {
+    $tbody_height: 52px;
+    @for $length from 1 through 25 {
+      &--#{$length*100} {
+        height: calc(#{$length*100}px - #{$tbody_height});
+      }
+    }
+    &--9999 {
+      height: 100%;
+      min-height: 130px;
+    }
+  }
+}
+
+.searchConfig {
+  &__result {
+    margin-top: 25px;
+    border-top: 1px solid $border-color;
+    &.contents__container--flex {
+      padding-top: 16px;
+    }
+  }
+}

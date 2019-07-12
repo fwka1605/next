@@ -1,0 +1,135 @@
+// .definitionForm：定義リスト
+//
+// sg-wrapper:
+// <div class="wrapperMarkup">
+//   <section class="contents">
+//     <div class="contents__container--flex">
+//       <sg-wrapper-content/>
+//     </div>
+//   </section>
+// </div>
+//
+// Styleguide 3.1.0
+
+// 定義リスト（タイトル＋formパーツの組み合わせ）
+// 
+// ヘルパークラス".w--●●"を指定することで、&lt;dt&gt;&lt;dd&gt;の幅指定が可能 
+// 
+// Markup:
+// <dl class="definitionForm">
+// <!-- helperクラス"w--xx"で幅を指定 -->
+//   <dt class="definitionForm__title w--20">タイトル 幅：20%</dt>
+//   <dd class="definitionForm__data w--80">
+//     <input class="definitionForm__input" type="text">コンテンツ 幅：80%
+//   </dd>
+// <!-- 幅指定なし -->
+//   <dt class="definitionForm__title">タイトル</dt>
+//   <dd class="definitionForm__data">コンテンツ</dd>
+// </dl>
+//
+// Styleguide 3.1.1
+
+  $lineSpacing: 8px;
+  .definitionForm {
+    $definitionFormSetting: #{&};
+    @include flexParent;
+    &:last-of-type {
+      margin-bottom: -$lineSpacing;
+    }
+    &--lh-narrow { // dt,ddの行間を狭くするとき
+      @extend #{$definitionFormSetting};
+      > dt,> dd {
+        margin-bottom: $lineSpacing;
+      }
+    }
+    &--vertical { // 縦レイアウト
+      display: inherit;
+      > .definitionForm__title,> .definitionForm__data {
+        margin-bottom: 0;
+      }
+    }
+    &--align-center { // 個別消込用モーダル内などで"definitionForm"を中央揃え
+      display: block;
+      text-align: center;
+      > .definitionForm__title,> .definitionForm__data {
+        display: inline-block;
+      }
+    }
+    &__title,&__data {
+      width: auto;
+      margin-bottom: $lineSpacing;
+      font-size: $font-size;
+      line-height: 2
+    }
+    &__title {
+      display: flex;
+      align-items: center;
+      min-height: 24px;
+      padding-right: 12px;
+      font-weight: bold;
+    }
+    &__data {
+      padding-right: 30px;
+    }
+    &__input {
+      margin-right: 8px;
+      &--numField {
+        text-align: right;
+      }
+    }
+  }
+
+  
+/* 
+  定義リスト（ボタン＋ボタンの説明）
+  モーダル内のボタンリストに使用
+*/
+  .definitionButton {
+    $buttonWidth: 120px;
+    @include flexParent;
+    margin: 30px 30px 20px;
+    &__title,&__data {
+      margin-bottom: 16px;
+    }
+    &__title {
+      width: $buttonWidth;
+      margin-right: 10px;
+      .vModal__contents--dialog & {
+        .common-btn {
+          margin-top: 0;
+        }
+      }
+    }
+    &__data {
+      width: calc(100% - #{$buttonWidth} - 10px);
+      align-self: center;
+    }
+  }
+
+
+// 定義リスト
+// 
+// シンプルな縦組みレイアウト（ログインフォームで使用） 
+// 
+// Markup:
+// <dl class="definitionPlain">
+//   <dt class="definitionPlain__title">ログイン ID</dt>
+//   <dd class="definitionPlain__data">
+//     <input class="input-size-130">
+//   </dd>
+//   <dt class="definitionPlain__title">パスワード</dt>
+//   <dd class="definitionPlain__data">
+//     <input class="input-size-130">
+//   </dd>
+// </dl>
+//
+// Styleguide 3.1.2
+
+  .definitionPlain {
+    &__title {
+      margin-bottom: 6px;
+    }
+    &__data {
+      margin-bottom: $pageContainer-padding;
+    }
+  }

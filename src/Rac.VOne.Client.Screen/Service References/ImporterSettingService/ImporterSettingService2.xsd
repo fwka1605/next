@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ImporterSettingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ImporterSettings" nillable="true" type="tns:ArrayOfImporterSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImporterSettingsResult" nillable="true" type="tns:ImporterSettingsResult" />
+  <xs:complexType name="ArrayOfImporterSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImporterSetting" nillable="true" type="tns:ImporterSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImporterSetting" nillable="true" type="tns:ArrayOfImporterSetting" />
+  <xs:complexType name="ImporterSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeDivisions" type="xs:int" />
+      <xs:element minOccurs="0" name="AutoCreationCustomer" type="xs:int" />
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DetailUpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EncodingCodePage" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FixedValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FormatId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IgnoreLastLine" type="xs:int" />
+      <xs:element minOccurs="0" name="ImportDivisions" type="xs:int" />
+      <xs:element minOccurs="0" name="InitialDirectory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsUnique" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemPriority" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PostAction" type="xs:int" />
+      <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+      <xs:element minOccurs="0" name="StartLineCount" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImporterSetting" nillable="true" type="tns:ImporterSetting" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ArrayOfImporterSettingDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImporterSettingDetail" nillable="true" type="tns:ImporterSettingDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImporterSettingDetail" nillable="true" type="tns:ArrayOfImporterSettingDetail" />
+  <xs:complexType name="ImporterSettingDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeDivision" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BaseAttributeDivision" type="xs:int" />
+      <xs:element minOccurs="0" name="BaseImportDivision" type="xs:int" />
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DoOverwrite" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldIndex" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FixedValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImportDivision" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporterSettingId" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporterSettingUpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsUnique" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemPriority" type="xs:int" />
+      <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+      <xs:element minOccurs="0" name="TargetColumn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateKey" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImporterSettingDetail" nillable="true" type="tns:ImporterSettingDetail" />
+  <xs:complexType name="ImporterSettingAndDetailResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ImporterSetting" nillable="true" type="tns:ImporterSetting" />
+      <xs:element minOccurs="0" name="ImporterSettingDetail" nillable="true" type="tns:ArrayOfImporterSettingDetail" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImporterSettingAndDetailResult" nillable="true" type="tns:ImporterSettingAndDetailResult" />
+  <xs:complexType name="ImporterSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ImporterSetting" nillable="true" type="tns:ImporterSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImporterSettingResult" nillable="true" type="tns:ImporterSettingResult" />
+  <xs:complexType name="ImporterSettingDetailsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ImporterSettingDetails" nillable="true" type="tns:ArrayOfImporterSettingDetail" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImporterSettingDetailsResult" nillable="true" type="tns:ImporterSettingDetailsResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+</xs:schema>

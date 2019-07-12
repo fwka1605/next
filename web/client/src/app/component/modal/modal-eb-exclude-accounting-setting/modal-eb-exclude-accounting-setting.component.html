@@ -1,0 +1,118 @@
+<section class="vModal--large height--550"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup"
+  data-modal-contents="taisyougai">
+
+  <h2 class="vModal__heading">{{ItemNameConst.LBL_SETTING_EXCLUDE}}
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+      <div class="contents__container--button">
+        <button 
+          (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+          [ngClass]="{'button-disable':  myFormGroup.invalid }" 
+          class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+        <button 
+          (click)="buttonAction(BUTTON_ACTION.DELETE)"  
+          [ngClass]="{'button-disable':  selectedEbExcludeIndex<0 }" 
+          class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+        <button 
+          (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+          class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+        <button 
+          (click)="cancel();processResultService.clearProcessCustomMsg(processCustomResult)" 
+          class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>          
+      </div>
+    </section>
+
+    <section class="contents">
+      <div class="xy-scroller-table__header common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_150_CODE}}"> 銀行コード </th>
+              <th class="{{TableColumn.COL_150_CODE}}"> 支店コード </th>
+              <th class="{{TableColumn.COL_250_CODE}}"> 預金種別(*) </th>
+              <th class="{{TableColumn.COL_200_CODE}}"> 仮想支店コード </th>
+              <th class="{{TableColumn.COL_300_CODE}}"> 仮想口座番号 </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr (click)="selectSetting(i)" *ngFor="let eBExcludeAccountSetting of ebExcludeAccountSettingsResult?.eBExcludeAccountSettingList index as i">
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{eBExcludeAccountSetting.bankCode}}</td>
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{eBExcludeAccountSetting.branchCode}}</td>
+              <td class="{{TableColumn.COL_250_NAME}}">{{accountTypeDictionary[eBExcludeAccountSetting.accountTypeId].val}}</td>
+              <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{eBExcludeAccountSetting.payerCode?.substring(0,3)}}</td>
+              <td class="{{TableColumn.COL_300_CENTER_NAME}}">{{eBExcludeAccountSetting.payerCode?.substring(3)}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title">銀行コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="bankCodeCtrl" 
+              name="bankCodeCtrl" 
+              (blur)="setBankCode($event.type)" 
+              (keyup.enter)="setBankCode($event.type)" 
+              type="tel"
+              maxlength="4"
+              class="input-size--60">
+          </dd>
+          <dt class="definitionForm__title">支店コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="branchCodeCtrl" 
+              name="branchCodeCtrl" 
+              (blur)="setBranchCode($event.type)" 
+              (keyup.enter)="setBranchCode($event.type)" 
+              type="tel"
+              maxlength="3"
+              class="input-size--40">
+          </dd>
+          <dt class="definitionForm__title">預金種別</dt>
+          <dd class="definitionForm__data">
+            <select formControlName="accountTypeIdCtrl">
+              <option *ngFor="let accountType of accountTypeDictionary index as i" value="{{accountType.id}}">{{accountType.id}}：{{accountType.val}}</option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">仮想支店コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="payerCode1Ctrl" 
+              name="payerCode1Ctrl" 
+              type="tel"
+              (blur)="setPayerCode1($event.type)" 
+              (keyup.enter)="setPayerCode1($event.type)" 
+              maxlength="3"
+              class="input-size--40">
+          </dd>
+          <dt class="definitionForm__title">仮想口座番号<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="payerCode2Ctrl" 
+              name="payerCode2Ctrl" 
+              type="tel"
+              (blur)="setPayerCode2($event.type)" 
+              (keyup.enter)="setPayerCode2($event.type)" 
+              maxlength="7"
+              class="input-size--100">
+          </dd>
+        </dl>
+      </div>
+    </section>
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

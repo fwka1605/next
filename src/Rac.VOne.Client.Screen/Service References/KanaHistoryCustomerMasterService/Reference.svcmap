@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4ae23efe-86be-4c8e-bba5-cf3ca24bab31" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/KanaHistoryCustomerMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="KanaHistoryCustomerMaster.xsd" MetadataType="Schema" ID="b7057bb6-8a4e-4962-a558-3697dba97323" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryCustomerMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="KanaHistoryCustomerMaster1.xsd" MetadataType="Schema" ID="50a5e975-7a27-42ea-94f4-b0ef047821ac" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryCustomerMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="KanaHistoryCustomerMaster2.xsd" MetadataType="Schema" ID="def19a3d-5bc7-4b7f-9dd4-00ebb32236ae" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryCustomerMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="KanaHistoryCustomerMaster.wsdl" MetadataType="Wsdl" ID="397c8497-fe42-4a7e-b0b1-d37ce3af3605" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryCustomerMaster.svc?wsdl" />
+    <MetadataFile FileName="KanaHistoryCustomerMaster.disco" MetadataType="Disco" ID="d343e896-accd-41fc-b084-d476d7565f60" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryCustomerMaster.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

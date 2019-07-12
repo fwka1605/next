@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ReminderSettingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/ReminderSettingService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/ReminderSettingService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/ReminderSettingService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IReminderSettingService_GetReminderCommonSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderCommonSetting" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderCommonSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderCommonSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_SaveReminderCommonSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReminderCommonSetting" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_SaveReminderCommonSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReminderCommonSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderTemplateSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderTemplateSettings" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderTemplateSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderTemplateSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderTemplateSettingByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderTemplateSettingByCode" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderTemplateSettingByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderTemplateSettingByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_SaveReminderTemplateSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReminderTemplateSetting" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_SaveReminderTemplateSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReminderTemplateSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_DeleteReminderTemplateSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteReminderTemplateSetting" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_DeleteReminderTemplateSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteReminderTemplateSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_ExistReminderTemplateSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistReminderTemplateSetting" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_ExistReminderTemplateSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistReminderTemplateSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderLevelSettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderLevelSettings" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderLevelSettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderLevelSettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderLevelSettingByLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderLevelSettingByLevel" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderLevelSettingByLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderLevelSettingByLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_ExistTemplateAtReminderLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistTemplateAtReminderLevel" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_ExistTemplateAtReminderLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistTemplateAtReminderLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetMaxReminderLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxReminderLevel" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetMaxReminderLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxReminderLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_SaveReminderLevelSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReminderLevelSetting" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_SaveReminderLevelSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReminderLevelSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_DeleteReminderLevelSetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteReminderLevelSetting" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_DeleteReminderLevelSetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteReminderLevelSettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderSummarySettings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderSummarySettings" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_GetReminderSummarySettings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderSummarySettingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_SaveReminderSummarySetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReminderSummarySetting" />
+  </wsdl:message>
+  <wsdl:message name="IReminderSettingService_SaveReminderSummarySetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReminderSummarySettingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IReminderSettingService">
+    <wsdl:operation name="GetReminderCommonSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderCommonSetting" message="tns:IReminderSettingService_GetReminderCommonSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderCommonSettingResponse" message="tns:IReminderSettingService_GetReminderCommonSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveReminderCommonSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/SaveReminderCommonSetting" message="tns:IReminderSettingService_SaveReminderCommonSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/SaveReminderCommonSettingResponse" message="tns:IReminderSettingService_SaveReminderCommonSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderTemplateSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderTemplateSettings" message="tns:IReminderSettingService_GetReminderTemplateSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderTemplateSettingsResponse" message="tns:IReminderSettingService_GetReminderTemplateSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderTemplateSettingByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderTemplateSettingByCode" message="tns:IReminderSettingService_GetReminderTemplateSettingByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderTemplateSettingByCodeResponse" message="tns:IReminderSettingService_GetReminderTemplateSettingByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveReminderTemplateSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/SaveReminderTemplateSetting" message="tns:IReminderSettingService_SaveReminderTemplateSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/SaveReminderTemplateSettingResponse" message="tns:IReminderSettingService_SaveReminderTemplateSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReminderTemplateSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/DeleteReminderTemplateSetting" message="tns:IReminderSettingService_DeleteReminderTemplateSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/DeleteReminderTemplateSettingResponse" message="tns:IReminderSettingService_DeleteReminderTemplateSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistReminderTemplateSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/ExistReminderTemplateSetting" message="tns:IReminderSettingService_ExistReminderTemplateSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/ExistReminderTemplateSettingResponse" message="tns:IReminderSettingService_ExistReminderTemplateSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderLevelSettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderLevelSettings" message="tns:IReminderSettingService_GetReminderLevelSettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderLevelSettingsResponse" message="tns:IReminderSettingService_GetReminderLevelSettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderLevelSettingByLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderLevelSettingByLevel" message="tns:IReminderSettingService_GetReminderLevelSettingByLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderLevelSettingByLevelResponse" message="tns:IReminderSettingService_GetReminderLevelSettingByLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistTemplateAtReminderLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/ExistTemplateAtReminderLevel" message="tns:IReminderSettingService_ExistTemplateAtReminderLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/ExistTemplateAtReminderLevelResponse" message="tns:IReminderSettingService_ExistTemplateAtReminderLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxReminderLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/GetMaxReminderLevel" message="tns:IReminderSettingService_GetMaxReminderLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/GetMaxReminderLevelResponse" message="tns:IReminderSettingService_GetMaxReminderLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveReminderLevelSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/SaveReminderLevelSetting" message="tns:IReminderSettingService_SaveReminderLevelSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/SaveReminderLevelSettingResponse" message="tns:IReminderSettingService_SaveReminderLevelSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReminderLevelSetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/DeleteReminderLevelSetting" message="tns:IReminderSettingService_DeleteReminderLevelSetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/DeleteReminderLevelSettingResponse" message="tns:IReminderSettingService_DeleteReminderLevelSetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderSummarySettings">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderSummarySettings" message="tns:IReminderSettingService_GetReminderSummarySettings_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/GetReminderSummarySettingsResponse" message="tns:IReminderSettingService_GetReminderSummarySettings_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveReminderSummarySetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderSettingService/SaveReminderSummarySetting" message="tns:IReminderSettingService_SaveReminderSummarySetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderSettingService/SaveReminderSummarySettingResponse" message="tns:IReminderSettingService_SaveReminderSummarySetting_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IReminderSettingService" type="tns:IReminderSettingService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetReminderCommonSetting">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/GetReminderCommonSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReminderCommonSetting">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/SaveReminderCommonSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderTemplateSettings">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/GetReminderTemplateSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderTemplateSettingByCode">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/GetReminderTemplateSettingByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReminderTemplateSetting">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/SaveReminderTemplateSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReminderTemplateSetting">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/DeleteReminderTemplateSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistReminderTemplateSetting">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/ExistReminderTemplateSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderLevelSettings">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/GetReminderLevelSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderLevelSettingByLevel">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/GetReminderLevelSettingByLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistTemplateAtReminderLevel">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/ExistTemplateAtReminderLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxReminderLevel">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/GetMaxReminderLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReminderLevelSetting">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/SaveReminderLevelSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteReminderLevelSetting">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/DeleteReminderLevelSetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderSummarySettings">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/GetReminderSummarySettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReminderSummarySetting">
+      <soap:operation soapAction="http://tempuri.org/IReminderSettingService/SaveReminderSummarySetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReminderSettingService">
+    <wsdl:port name="BasicHttpBinding_IReminderSettingService" binding="tns:BasicHttpBinding_IReminderSettingService">
+      <soap:address location="http://localhost:3061/ReminderSettingService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

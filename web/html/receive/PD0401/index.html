@@ -1,0 +1,433 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="receive-data-allocation">
+        <div id="breadcrumb-outer">
+          <h1>03 入金 - 04 入金データ振分(PD0401)</h1>
+        </div>
+        <section class="contents receive-data-allocation__history">
+          <div class="receive-data-allocation__header">
+            <div class="receive-controller">
+              <h2 class="receive-data-allocation__title">
+                取込履歴
+              </h2>
+              <button class="receive-controller__btn">一括振分</button>
+            </div>
+            <ul class="receive-data-allocation__header__notice">
+              <li class="receive-data-allocation__header__notice__item">
+                <span class="receive-data-allocation__header__notice__item__box receive-data-allocation__header__notice__item__box--before"></span>
+                更新前
+              </li>
+              <li class="receive-data-allocation__header__notice__item">
+                <span class="receive-data-allocation__header__notice__item__box receive-data-allocation__header__notice__item__box--after"></span>
+                更新後
+              </li>
+            </ul>
+          </div>
+          <div class="receive-data-allocation__history__table sticky-head-table">
+            <div class="sticky-head-table__header">
+              <table class="sticky-head-table__header__inner">
+                <tr>
+                  <th></th>
+                  <th> 選択 </th>
+                  <th> 銀行 </th>
+                  <th> 支店 </th>
+                  <th> 預金種目 </th>
+                  <th> 口座番号 </th>
+                  <th> 取込日時 </th>
+                  <th> 対象外区分 </th>
+                </tr>
+              </table>
+            </div>
+            <div class="sticky-head-table__body">
+              <table class="sticky-head-table__body__inner">
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <button class="receive-data-allocation__history__table__btn-detail">選択</button>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <button class="receive-data-allocation__history__table__btn-detail">選択</button>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>
+                    <button class="receive-data-allocation__history__table__btn-detail">選択</button>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>
+                    <button class="receive-data-allocation__history__table__btn-detail">選択</button>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>
+                    <button class="receive-data-allocation__history__table__btn-detail">選択</button>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>
+                    <button class="receive-data-allocation__history__table__btn-detail">選択</button>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>
+                    <button class="receive-data-allocation__history__table__btn-detail">選択</button>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>
+                    <button class="receive-data-allocation__history__table__btn-detail">選択</button>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section class="contents receive-data-allocation__detail">
+          <div class="receive-data-allocation__header">
+            <div class="receive-controller">
+              <h2 class="receive-data-allocation__title">
+                入金明細
+              </h2>
+              <button class="receive-controller__btn">クリア</button>
+              <button class="receive-controller__btn">印刷</button>
+            </div>
+
+            <ul class="receive-data-allocation__header__notice">
+              <li class="receive-data-allocation__header__notice__item">
+                <label for="kanacheck">
+                  <input id="kabacheck" type="checkbox" class="receive-data-allocation__header__notice__item__checkbox">
+                  除外カナを学習
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="receive-data-allocation__detail__table sticky-head-table">
+            <div class="sticky-head-table__header">
+              <table class="sticky-head-table__header__inner">
+                <tr>
+                  <th></th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      対象外
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      対象区分
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      対象外金額
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      得意先コード
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      得意先名
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      振込依頼人名
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      入金額
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      入金日
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      作成日
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      仕向銀行
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      仕向支店
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      仮想支店コード
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                  <th>
+                    <div class="receive-data-allocation__detail__table__head-cell">
+                      仮想口座番号
+                      <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                    </div>
+                  </th>
+                </tr>
+              </table>
+            </div>
+            <div class="sticky-head-table__body">
+              <table class="sticky-head-table__body__inner">
+                <tr>
+                  <td>1</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td><input type="checkbox"></td>
+                  <td>&nbsp;</td>
+                  <td>0</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>ﾄｳﾀﾞ ﾅｵｺ</td>
+                  <td>64,548</td>
+                  <td>2048/01/04</td>
+                  <td>2048/01/04</td>
+                  <td>ﾐﾂﾋﾞｼﾄｳｷﾖｳUFJ</td>
+                  <td>ﾀﾞｲﾚｸﾄｺｳﾎｳ</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div id="footer-outer">
+      </div>
+    </div>
+  </div>
+  <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>

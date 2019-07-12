@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>V-ONE-NEXT</title>
+  <base href="/">
+
+  <link rel="icon" type="image/x-icon" href="/assets/image/logo.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/image/logo.ico">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131217632-1"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-TT875BK');</script>
+      <!-- End Google Tag Manager -->
+
+</head>
+
+<body style="visibility: hidden">
+  <app-root></app-root>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-131217632-1');
+
+    document.addEventListener('DOMContentLoaded',function() {
+      document.querySelector('head').insertAdjacentHTML('beforeend','<link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">');
+      setInterval(
+        function () {
+          document.querySelector('body').style.visibility="visible";
+
+        }, 
+        500
+      );
+    });
+  </script>  
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT875BK"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+<!---
+<script type='text/javascript' data-show-always='true' data-hide='false' data-form='true' src='https://ws1.sinclo.jp/client/5c823163aab49.js'></script>
+  <script>
+// 'use strict';
+var sincloInfo;
+(function(){
+    sincloInfo = {
+        dataset: {},
+        site: {
+          key: "5c823163aab49",
+          socket: "https://ws1.sinclo.jp",
+          files: "https://ws1.sinclo.jp"
+        }
+    };
+
+    var b = document.getElementsByTagName('body')[0],
+        l = [
+            sincloInfo.site.files + '/websocket/jquery-2.2.0.min.js',
+            sincloInfo.site.socket + '/socket.io/socket.io.js',
+            sincloInfo.site.files + '/websocket/flatpickr.min.js',
+            sincloInfo.site.files + '/websocket/slick.min.js',
+            sincloInfo.site.files + '/websocket/common.js',
+            sincloInfo.site.files + '/websocket/sinclo.min.js'
+        ],
+        i = 0,
+        createElm = function (u){
+            var s = document.createElement("script");
+            s.type = 'text/javascript';
+            s.src = u;
+            s.charset="UTF-8";
+            b.appendChild(s);
+            i ++;
+            s.onload = function(){
+                if ( l[i] !== undefined ) createElm(l[i]);
+            }
+        };
+
+    createElm(l[i]);
+
+}());
+  </script>  
+  -->
+</body>
+
+
+
+</html>

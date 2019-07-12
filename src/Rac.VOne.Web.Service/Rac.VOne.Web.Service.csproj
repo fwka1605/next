@@ -1,0 +1,738 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.3\build\Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.3\build\Microsoft.CodeAnalysis.Analyzers.props')" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1469B384-D646-48E8-BD50-187B0FBC5690}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rac.VOne.Web.Service</RootNamespace>
+    <AssemblyName>Rac.VOne.Web.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>..\Rac.VOne.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Rac.VOne.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.5.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.4.5.1\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Wcf, Version=4.5.1.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Wcf.4.5.1\lib\net45\SimpleInjector.Integration.Wcf.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AdvanceReceivedBackupService.svc" />
+    <Content Include="BillingAgingListService.svc" />
+    <Content Include="BillingBalanceService.svc" />
+    <Content Include="BillingDiscount.svc" />
+    <Content Include="BillingInvoiceService.svc" />
+    <Content Include="BillingService.svc" />
+    <Content Include="ClosingService.svc" />
+    <Content Include="CollectionScheduleService.svc" />
+    <Content Include="CreditAgingListService.svc" />
+    <Content Include="CustomerLedgerService.svc" />
+    <Content Include="DataMaintenanceService.svc" />
+    <Content Include="DBService.svc" />
+    <Content Include="HatarakuDBJournalizingService.svc" />
+    <Content Include="ImporterSettingService.svc" />
+    <Content Include="ImportFileLogService.svc" />
+    <Content Include="InvoiceSettingService.svc" />
+    <Content Include="Master\BankAccountTypeMaster.svc" />
+    <Content Include="Master\ClosingSettingMaster.svc" />
+    <Content Include="Master\DestinationMaster.svc" />
+    <Content Include="Master\EBExcludeAccountSettingMaster.svc" />
+    <Content Include="Master\EBFormatMaster.svc" />
+    <Content Include="Master\EBFileSettingMaster.svc" />
+    <Content Include="Master\InputControlMaster.svc" />
+    <Content Include="LogDataService.svc" />
+    <Content Include="LogsService.svc" />
+    <Content Include="MailSettingService.svc" />
+    <Content Include="MailTemplateService.svc" />
+    <Content Include="Master\BillingDivisionContractMaster.svc" />
+    <Content Include="Master\BillingDivisionSettingMaster.svc" />
+    <Content Include="Master\CollationSettingMaster.svc" />
+    <Content Include="Master\ColumnNameSettingMaster.svc" />
+    <Content Include="Master\ExportFieldSettingMaster.svc" />
+    <Content Include="Master\LoginUserLicenseMaster.svc" />
+    <Content Include="Master\LoginUserPasswordMaster.svc" />
+    <Content Include="Master\PasswordPolicyMaster.svc" />
+    <Content Include="Master\PdfOutputSettingMaster.svc" />
+    <Content Include="Master\PeriodicBillingSettingMaster.svc" />
+    <Content Include="Master\ReportSettingMaster.svc" />
+    <Content Include="Master\ApplicationControlMaster.svc" />
+    <Content Include="Global.asax" />
+    <Content Include="Authentication.svc" />
+    <Content Include="Master\BankBranchMaster.svc" />
+    <Content Include="Master\CategoryMaster.svc" />
+    <Content Include="Master\AccountTitleMaster.svc" />
+    <Content Include="Master\BankAccountMaster.svc" />
+    <Content Include="Master\CompanyMaster.svc" />
+    <Content Include="Master\ControlColorMaster.svc" />
+    <Content Include="Master\CurrencyMaster.svc" />
+    <Content Include="Master\CustomerDiscountMaster.svc" />
+    <Content Include="Master\CustomerFeeMaster.svc" />
+    <Content Include="Master\CustomerGroupMaster.svc" />
+    <Content Include="Master\CustomerMaster.svc" />
+    <Content Include="Master\CustomerPaymentContractMaster.svc" />
+    <Content Include="Master\DepartmentMaster.svc" />
+    <Content Include="Master\FunctionAuthorityMaster.svc" />
+    <Content Include="Master\GeneralSettingMaster.svc" />
+    <Content Include="Master\GridSettingMaster.svc" />
+    <Content Include="Master\HolidayCalendarMaster.svc" />
+    <Content Include="Master\IgnoreKanaMaster.svc" />
+    <Content Include="Master\ImportSettingMaster.svc" />
+    <Content Include="Master\JuridicalPersonalityMaster.svc" />
+    <Content Include="Master\KanaHistoryCustomerMaster.svc" />
+    <Content Include="Master\KanaHistoryPaymentAgencyMaster.svc" />
+    <Content Include="Master\LoginUserMaster.svc" />
+    <Content Include="Master\LongTermAdvanceReceivedContractMaster.svc" />
+    <Content Include="Master\MasterImportSettingService.svc" />
+    <Content Include="Master\MenuAuthorityMaster.svc" />
+    <Content Include="Master\PaymentAgencyFeeMaster.svc" />
+    <Content Include="Master\PaymentAgencyMaster.svc" />
+    <Content Include="Master\SectionMaster.svc" />
+    <Content Include="Master\SectionWithDepartmentMaster.svc" />
+    <Content Include="Master\SectionWithLoginUserMaster.svc" />
+    <Content Include="Master\StaffMaster.svc" />
+    <Content Include="Master\StatusMaster.svc" />
+    <Content Include="Master\TaskScheduleMaster.svc" />
+    <Content Include="Master\TaxClassMaster.svc" />
+    <Content Include="Master\WebApiSettingMaster.svc" />
+    <Content Include="MatchingHistoryService.svc" />
+    <Content Include="MatchingService.svc" />
+    <Content Include="MFBillingService.svc" />
+    <Content Include="NettingService.svc" />
+    <Content Include="PeriodicBillingService.svc" />
+    <Content Include="ReceiptExcludeService.svc" />
+    <Content Include="ReceiptHeaderService.svc" />
+    <Content Include="ReceiptMemoService.svc" />
+    <Content Include="ReceiptService.svc" />
+    <Content Include="Master\SettingMaster.svc" />
+    <Content Include="ReminderService.svc" />
+    <Content Include="ReminderSettingService.svc" />
+    <Content Include="ReportService.svc" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.0.min.js" />
+    <Content Include="SessionService.svc" />
+    <Content Include="Synchronization.svc" />
+    <Content Include="TaskScheduleHistoryService.svc" />
+    <Content Include="AccountTransferService.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdvanceReceivedBackupService.svc.cs">
+      <DependentUpon>AdvanceReceivedBackupService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\SimpleInjectorWebCommonProcessorConfigurator.cs" />
+    <Compile Include="App_Start\SimpleInjectorConfigurator.cs" />
+    <Compile Include="App_Start\SimpleInjectorQueryProcessorConfigurator.cs" />
+    <Compile Include="BillingAgingListService.svc.cs">
+      <DependentUpon>BillingAgingListService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="BillingBalanceService.svc.cs">
+      <DependentUpon>BillingBalanceService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="BillingDiscount.svc.cs">
+      <DependentUpon>BillingDiscount.svc</DependentUpon>
+    </Compile>
+    <Compile Include="BillingInvoiceService.svc.cs">
+      <DependentUpon>BillingInvoiceService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="BillingService.svc.cs">
+      <DependentUpon>BillingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ClosingService.svc.cs">
+      <DependentUpon>ClosingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionScheduleService.svc.cs">
+      <DependentUpon>CollectionScheduleService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="CreditAgingListService.svc.cs">
+      <DependentUpon>CreditAgingListService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerLedgerService.svc.cs">
+      <DependentUpon>CustomerLedgerService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="DataMaintenanceService.svc.cs">
+      <DependentUpon>DataMaintenanceService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="DBService.svc.cs">
+      <DependentUpon>DBService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\HubContextExtensions.cs" />
+    <Compile Include="HatarakuDBJournalizingService.svc.cs">
+      <DependentUpon>HatarakuDBJournalizingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Hubs\ProgressHub.cs" />
+    <Compile Include="IAdvanceReceivedBackupService.cs" />
+    <Compile Include="IBillingAgingListService.cs" />
+    <Compile Include="IBillingBalanceService.cs" />
+    <Compile Include="IBillingDiscount.cs" />
+    <Compile Include="IBillingInvoiceService.cs" />
+    <Compile Include="IBillingService.cs" />
+    <Compile Include="IClosingService.cs" />
+    <Compile Include="ICollectionScheduleService.cs" />
+    <Compile Include="ICreditAgingListService.cs" />
+    <Compile Include="ICustomerLedgerService.cs" />
+    <Compile Include="IDataMaintenanceService.cs" />
+    <Compile Include="IDBService.cs" />
+    <Compile Include="IHatarakuDBJournalizingService.cs" />
+    <Compile Include="IImporterSettingService.cs" />
+    <Compile Include="IImportFileLogService.cs" />
+    <Compile Include="IInvoiceSettingService.cs" />
+    <Compile Include="IMFBillingService.cs" />
+    <Compile Include="InvoiceSettingService.svc.cs">
+      <DependentUpon>InvoiceSettingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="IPeriodicBillingService.cs" />
+    <Compile Include="IReceiptMemoService.cs" />
+    <Compile Include="IReminderService.cs" />
+    <Compile Include="IReminderSettingService.cs" />
+    <Compile Include="ISessionService.cs" />
+    <Compile Include="ITaskScheduleHistoryService.cs" />
+    <Compile Include="IAccountTransferService.cs" />
+    <Compile Include="Master\BankAccountTypeMaster.svc.cs">
+      <DependentUpon>BankAccountTypeMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\ClosingSettingMaster.svc.cs">
+      <DependentUpon>ClosingSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\DestinationMaster.svc.cs">
+      <DependentUpon>DestinationMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\EBExcludeAccountSettingMaster.svc.cs">
+      <DependentUpon>EBExcludeAccountSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\EBFormatMaster.svc.cs">
+      <DependentUpon>EBFormatMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\EBFileSettingMaster.svc.cs">
+      <DependentUpon>EBFileSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\IBankAccountTypeMaster.cs" />
+    <Compile Include="Master\IClosingSettingMaster.cs" />
+    <Compile Include="Master\IDestinationMaster.cs" />
+    <Compile Include="Master\IEBExcludeAccountSettingMaster.cs" />
+    <Compile Include="Master\IEBFormatMaster.cs" />
+    <Compile Include="Master\IEBFileSettingMaster.cs" />
+    <Compile Include="Master\IInputControlMaster.cs" />
+    <Compile Include="ILogDataService.cs" />
+    <Compile Include="ILogsService.cs" />
+    <Compile Include="IMailSettingService.cs" />
+    <Compile Include="IMailTemplateService.cs" />
+    <Compile Include="IMatchingHistoryService.cs" />
+    <Compile Include="IMatchingService.cs" />
+    <Compile Include="ImporterSettingService.svc.cs">
+      <DependentUpon>ImporterSettingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ImportFileLogService.svc.cs">
+      <DependentUpon>ImportFileLogService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="INettingService.cs" />
+    <Compile Include="Master\ILoginUserLicenseMaster.cs" />
+    <Compile Include="Master\ILoginUserPasswordMaster.cs" />
+    <Compile Include="Master\InputControlMaster.svc.cs">
+      <DependentUpon>InputControlMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="IReceiptExcludeService.cs" />
+    <Compile Include="IReceiptHeaderService.cs" />
+    <Compile Include="IReceiptService.cs" />
+    <Compile Include="IReportService.cs" />
+    <Compile Include="ISynchronization.cs" />
+    <Compile Include="LogsService.svc.cs">
+      <DependentUpon>LogsService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\BillingDivisionContractMaster.svc.cs">
+      <DependentUpon>BillingDivisionContractMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\BillingDivisionSettingMaster.svc.cs">
+      <DependentUpon>BillingDivisionSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CollationSettingMaster.svc.cs">
+      <DependentUpon>CollationSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\ExportFieldSettingMaster.svc.cs">
+      <DependentUpon>ExportFieldSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\IBillingDivisionContractMaster.cs" />
+    <Compile Include="Master\IBillingDivisionSettingMaster.cs" />
+    <Compile Include="Master\ICollationSettingMaster.cs" />
+    <Compile Include="Master\IExportFieldSettingMaster.cs" />
+    <Compile Include="Master\IPasswordPolicyMaster.cs" />
+    <Compile Include="Master\IPdfOutputSettingMaster.cs" />
+    <Compile Include="Master\IPeriodicBillingSettingMaster.cs" />
+    <Compile Include="Master\ISectionWithDepartmentMaster.cs" />
+    <Compile Include="Master\ISettingMaster.cs" />
+    <Compile Include="LogDataService.svc.cs">
+      <DependentUpon>LogDataService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="MailSettingService.svc.cs">
+      <DependentUpon>MailSettingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="MailTemplateService.svc.cs">
+      <DependentUpon>MailTemplateService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\ColumnNameSettingMaster.svc.cs">
+      <DependentUpon>ColumnNameSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\IReportSettingMaster.cs" />
+    <Compile Include="Master\IStatusMaster.cs" />
+    <Compile Include="Master\IWebApiSettingMaster.cs" />
+    <Compile Include="Master\LoginUserLicenseMaster.svc.cs">
+      <DependentUpon>LoginUserLicenseMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\LoginUserPasswordMaster.svc.cs">
+      <DependentUpon>LoginUserPasswordMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PasswordPolicyMaster.svc.cs">
+      <DependentUpon>PasswordPolicyMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PdfOutputSettingMaster.svc.cs">
+      <DependentUpon>PdfOutputSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PeriodicBillingSettingMaster.svc.cs">
+      <DependentUpon>PeriodicBillingSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\ReportSettingMaster.svc.cs">
+      <DependentUpon>ReportSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\ApplicationControlMaster.svc.cs">
+      <DependentUpon>ApplicationControlMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="Extensions\AuthorizationExtensions.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Authentication.svc.cs">
+      <DependentUpon>Authentication.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\BankBranchMaster.svc.cs">
+      <DependentUpon>BankBranchMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\ControlColorMaster.svc.cs">
+      <DependentUpon>ControlColorMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CurrencyMaster.svc.cs">
+      <DependentUpon>CurrencyMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CustomerDiscountMaster.svc.cs">
+      <DependentUpon>CustomerDiscountMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CustomerFeeMaster.svc.cs">
+      <DependentUpon>CustomerFeeMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CustomerPaymentContractMaster.svc.cs">
+      <DependentUpon>CustomerPaymentContractMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FunctionAuthorityMaster.svc.cs">
+      <DependentUpon>FunctionAuthorityMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\GridSettingMaster.svc.cs">
+      <DependentUpon>GridSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\HolidayCalendarMaster.svc.cs">
+      <DependentUpon>HolidayCalendarMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\IApplicationControlSettings.cs" />
+    <Compile Include="IAuthentication.cs" />
+    <Compile Include="Master\CategoryMaster.svc.cs">
+      <DependentUpon>CategoryMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\AccountTitleMaster.svc.cs">
+      <DependentUpon>AccountTitleMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\BankAccountMaster.svc.cs">
+      <DependentUpon>BankAccountMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CompanyMaster.svc.cs">
+      <DependentUpon>CompanyMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CustomerGroupMaster.svc.cs">
+      <DependentUpon>CustomerGroupMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\CustomerMaster.svc.cs">
+      <DependentUpon>CustomerMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\DepartmentMaster.svc.cs">
+      <DependentUpon>DepartmentMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\GeneralSettingMaster.svc.cs">
+      <DependentUpon>GeneralSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\IAuthentication.cs" />
+    <Compile Include="Master\IAuthroization.cs" />
+    <Compile Include="Master\IBankBranchMaster.cs" />
+    <Compile Include="Master\ICategoryMaster.cs" />
+    <Compile Include="Master\IAccountTitleMaster.cs" />
+    <Compile Include="Master\IBankAccountMaster.cs" />
+    <Compile Include="Master\IColumnNameSettingMaster.cs" />
+    <Compile Include="Master\ICompanyMaster.cs" />
+    <Compile Include="Master\IControlColorMaster.cs" />
+    <Compile Include="Master\ICurrencyMaster.cs" />
+    <Compile Include="Master\ICustomerDiscountMaster.cs" />
+    <Compile Include="Master\ICustomerFeeMaster.cs" />
+    <Compile Include="Master\ICustomerGroupMaster.cs" />
+    <Compile Include="Master\ICustomerMaster.cs" />
+    <Compile Include="Master\ICustomerPaymentContractMaster.cs" />
+    <Compile Include="Master\IDepartmentMaster.cs" />
+    <Compile Include="Master\IFunctionAuthorityMaster.cs" />
+    <Compile Include="Master\IGeneralSettingMaster.cs" />
+    <Compile Include="Master\IgnoreKanaMaster.svc.cs">
+      <DependentUpon>IgnoreKanaMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\IGridSettingMaster.cs" />
+    <Compile Include="Master\IHolidayCalendarMaster.cs" />
+    <Compile Include="Master\IIgnoreKanaMaster.cs" />
+    <Compile Include="Master\IJuridicalPersonalityMaster.cs" />
+    <Compile Include="Master\IKanaHistoryCustomerMaster.cs" />
+    <Compile Include="Master\IKanaHistoryPaymentAgencyMaster.cs" />
+    <Compile Include="Master\ILoginUserMaster.cs" />
+    <Compile Include="Master\IImportSettingMaster.cs" />
+    <Compile Include="Master\ILongTermAdvanceReceivedContractMaster.cs" />
+    <Compile Include="Master\IMasterImportSettingService.cs" />
+    <Compile Include="Master\IMenuAuthorityMaster.cs" />
+    <Compile Include="Master\ImportSettingMaster.svc.cs">
+      <DependentUpon>ImportSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\IPaymentAgencyFeeMaster.cs" />
+    <Compile Include="Master\IPaymentAgencyMaster.cs" />
+    <Compile Include="Master\ISectionMaster.cs" />
+    <Compile Include="Master\ISectionWithLoginUserMaster.cs" />
+    <Compile Include="Master\IStaffMaster.cs" />
+    <Compile Include="Master\ITaskScheduleMaster.cs" />
+    <Compile Include="Master\ITaxClassMaster.cs" />
+    <Compile Include="Master\JuridicalPersonalityMaster.svc.cs">
+      <DependentUpon>JuridicalPersonalityMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\KanaHistoryCustomerMaster.svc.cs">
+      <DependentUpon>KanaHistoryCustomerMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\KanaHistoryPaymentAgencyMaster.svc.cs">
+      <DependentUpon>KanaHistoryPaymentAgencyMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\LoginUserMaster.svc.cs">
+      <DependentUpon>LoginUserMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\LongTermAdvanceReceivedContractMaster.svc.cs">
+      <DependentUpon>LongTermAdvanceReceivedContractMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\MasterImportSettingService.svc.cs">
+      <DependentUpon>MasterImportSettingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\MenuAuthorityMaster.svc.cs">
+      <DependentUpon>MenuAuthorityMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PaymentAgencyFeeMaster.svc.cs">
+      <DependentUpon>PaymentAgencyFeeMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\PaymentAgencyMaster.svc.cs">
+      <DependentUpon>PaymentAgencyMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SectionMaster.svc.cs">
+      <DependentUpon>SectionMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SectionWithDepartmentMaster.svc.cs">
+      <DependentUpon>SectionWithDepartmentMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SectionWithLoginUserMaster.svc.cs">
+      <DependentUpon>SectionWithLoginUserMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\StaffMaster.svc.cs">
+      <DependentUpon>StaffMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\StatusMaster.svc.cs">
+      <DependentUpon>StatusMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\TaskScheduleMaster.svc.cs">
+      <DependentUpon>TaskScheduleMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\TaxClassMaster.svc.cs">
+      <DependentUpon>TaxClassMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\WebApiSettingMaster.svc.cs">
+      <DependentUpon>WebApiSettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingHistoryService.svc.cs">
+      <DependentUpon>MatchingHistoryService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingService.svc.cs">
+      <DependentUpon>MatchingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="MFBillingService.svc.cs">
+      <DependentUpon>MFBillingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="NettingService.svc.cs">
+      <DependentUpon>NettingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="PeriodicBillingService.svc.cs">
+      <DependentUpon>PeriodicBillingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReceiptExcludeService.svc.cs">
+      <DependentUpon>ReceiptExcludeService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptHeaderService.svc.cs">
+      <DependentUpon>ReceiptHeaderService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptMemoService.svc.cs">
+      <DependentUpon>ReceiptMemoService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptService.svc.cs">
+      <DependentUpon>ReceiptService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Master\SettingMaster.svc.cs">
+      <DependentUpon>SettingMaster.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ReminderService.svc.cs">
+      <DependentUpon>ReminderService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ReminderSettingService.svc.cs">
+      <DependentUpon>ReminderSettingService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ReportService.svc.cs">
+      <DependentUpon>ReportService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="SessionService.svc.cs">
+      <DependentUpon>SessionService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="Synchronization.svc.cs">
+      <DependentUpon>Synchronization.svc</DependentUpon>
+    </Compile>
+    <Compile Include="TaskScheduleHistoryService.svc.cs">
+      <DependentUpon>TaskScheduleHistoryService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="AccountTransferService.svc.cs">
+      <DependentUpon>AccountTransferService.svc</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Properties\PublishProfiles\ToDeployFolder.pubxml" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rac.VOne.Common\Rac.VOne.Common.csproj">
+      <Project>{1d20af29-47d8-4e93-85be-f49e1b851005}</Project>
+      <Name>Rac.VOne.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Data.SqlServer\Rac.VOne.Data.SqlServer.csproj">
+      <Project>{9dd791be-a368-4ef1-8271-df25a0b0557b}</Project>
+      <Name>Rac.VOne.Data.SqlServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Data\Rac.VOne.Data.csproj">
+      <Project>{8bda1d9c-ed75-4dec-99c7-84ea11fc487e}</Project>
+      <Name>Rac.VOne.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Web.Common\Rac.VOne.Web.Common.csproj">
+      <Project>{e544d257-175b-48e1-9ac6-3da5f314ef4c}</Project>
+      <Name>Rac.VOne.Web.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Web.Models\Rac.VOne.Web.Models.csproj">
+      <Project>{fdbb3498-9c90-427c-b780-b2893cfa67a3}</Project>
+      <Name>Rac.VOne.Web.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.3\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>このプロジェクトは、このコンピューター上にない NuGet パッケージを参照しています。それらのパッケージをダウンロードするには、[NuGet パッケージの復元] を使用します。詳細については、http://go.microsoft.com/fwlink/?LinkID=322105 を参照してください。見つからないファイルは {0} です。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.3\build\Microsoft.CodeAnalysis.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.3\build\Microsoft.CodeAnalysis.Analyzers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

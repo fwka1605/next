@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3ffd5277-7761-45a6-aec5-0bb225766754" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/GridSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GridSettingMaster.xsd" MetadataType="Schema" ID="a79448c2-fea2-4976-a340-d1f6363985a6" SourceId="1" SourceUrl="http://localhost:3061/Master/GridSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="GridSettingMaster1.xsd" MetadataType="Schema" ID="eadda838-4fba-4597-8171-9ef103c04f47" SourceId="1" SourceUrl="http://localhost:3061/Master/GridSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="GridSettingMaster.wsdl" MetadataType="Wsdl" ID="b0f9dd07-ba5e-4023-81ef-3c3605897bf5" SourceId="1" SourceUrl="http://localhost:3061/Master/GridSettingMaster.svc?wsdl" />
+    <MetadataFile FileName="GridSettingMaster.disco" MetadataType="Disco" ID="8ebad7bf-375a-4a27-82e2-98766db12b90" SourceId="1" SourceUrl="http://localhost:3061/Master/GridSettingMaster.svc?disco" />
+    <MetadataFile FileName="GridSettingMaster2.xsd" MetadataType="Schema" ID="cb5f3adc-a638-4454-bafd-3684d2a63bd7" SourceId="1" SourceUrl="http://localhost:3061/Master/GridSettingMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

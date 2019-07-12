@@ -1,0 +1,16 @@
+<!-- 三点リーダ表示 -->
+<ng-container *ngIf="!StringUtil.IsNullOrEmpty(outputShortData)">
+  <span class="infotip">
+    {{outputShortData}}
+    <span class="infotip__frame">
+      文字全体は<br>「{{outputLongData}}」<br>になります。<br>ダブルクリックで<br>得意先を確認できます
+    </span>
+  </span>
+</ng-container>
+
+<!-- 三点リーダなし -->
+<ng-container *ngIf="StringUtil.IsNullOrEmpty(outputShortData)">
+  <span class="infotip">{{outputLongData}}
+    <span class="infotip__frame">ダブルクリックで<br>得意先を確認できます</span>
+  </span>
+</ng-container>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2d6396cf-f635-4934-8dea-96d75987efa5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/PaymentAgencyFeeMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PaymentAgencyFeeMaster.disco" MetadataType="Disco" ID="661b4d55-0ae0-471c-9c1b-96ffca7b8c4b" SourceId="1" SourceUrl="http://localhost:3061/Master/PaymentAgencyFeeMaster.svc?disco" />
+    <MetadataFile FileName="PaymentAgencyFeeMaster.xsd" MetadataType="Schema" ID="9e53bc66-18f7-4ea4-9338-ee12467e25a0" SourceId="1" SourceUrl="http://localhost:3061/Master/PaymentAgencyFeeMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="PaymentAgencyFeeMaster1.xsd" MetadataType="Schema" ID="64cf3f5f-b4b1-42dc-8dae-42c519fde26d" SourceId="1" SourceUrl="http://localhost:3061/Master/PaymentAgencyFeeMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="PaymentAgencyFeeMaster.wsdl" MetadataType="Wsdl" ID="67758529-5661-4413-b6cf-ce6a072e69b2" SourceId="1" SourceUrl="http://localhost:3061/Master/PaymentAgencyFeeMaster.svc?wsdl" />
+    <MetadataFile FileName="PaymentAgencyFeeMaster2.xsd" MetadataType="Schema" ID="2c346b77-a6dd-4198-bb96-899857171d48" SourceId="1" SourceUrl="http://localhost:3061/Master/PaymentAgencyFeeMaster.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

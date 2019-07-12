@@ -1,0 +1,244 @@
+<section class="vModal height--450"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup"
+  data-modal-contents="id001">
+
+  <h2 class="vModal__heading">{{ outputTitle }}内容の選択
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+
+      <button
+        [disabled]="myFormGroup.invalid"
+        (click)="buttonAction(BUTTON_ACTION.PRINT)"
+        class="buttonSecondary">{{ outputTitle }}</button>
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+      <button 
+        (click)="cancel();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>    
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--16">出力対象</dt>
+          <dd class="definitionForm__data w--84">
+            <label class="labelWrap">
+              <div class="inputStyled">
+                <input
+                  id="rdoOutputTargetCtrl_01"
+                  class="inputStyled__input"
+                  formControlName="rdoOutputTargetCtrl"
+                  name="rdoOutputTargetCtrl"
+                  (change)="selectOutputType()"
+                  type="radio"
+                  value="1">
+                <label
+                  class="inputStyled__radio"
+                  for="rdoOutputTargetCtrl_01">得意先マスター一覧</label>
+              </div>
+            </label>
+            <ng-container *ngIf="outputTitle=='印刷'">
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="rdoOutputTargetCtrl_02"
+                    class="inputStyled__input"
+                    formControlName="rdoOutputTargetCtrl"
+                    name="rdoOutputTargetCtrl"
+                    (change)="selectOutputType()"
+                    type="radio"
+                    value="2">
+                  <label
+                    class="inputStyled__radio"
+                    for="rdoOutputTargetCtrl_02">得意先台帳</label>
+                </div>
+              </label>
+            </ng-container>
+            <label class="labelWrap">
+              <div class="inputStyled">
+                <input
+                  id="rdoOutputTargetCtrl_03"
+                  class="inputStyled__input"
+                  formControlName="rdoOutputTargetCtrl"
+                  name="rdoOutputTargetCtrl"
+                  (change)="selectOutputType()"
+                  type="radio"
+                  value="3">
+                <label
+                  class="inputStyled__radio"
+                  for="rdoOutputTargetCtrl_03">登録手数料一覧</label>
+              </div>
+            </label>
+          </dd>
+          
+          <dt class="definitionForm__title w--16">得意先コード</dt>
+          <dd class="definitionForm__data w--84">
+            <input
+              formControlName="customerCodeFromCtrl"
+              name="customerCodeFromCtrl"
+              (keyup.enter)="setCustomerCode($event.type,'from')"
+              (blur)="setCustomerCode($event.type,'from')"
+              maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              class="input-size--100 definitionForm__input">
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER, 'from')"></a>
+            <input
+              formControlName="customerNameFromCtrl"
+              name="customerNameFromCtrl"
+              class="input-size--300"
+              readonly>
+          </dd>
+          <dt class="definitionForm__title w--16">
+            <span class="end-checkbox">
+              <div class="inputStyled">
+                <input
+                  id="cbxCustomerCtrl"
+                  class="inputStyled__input"
+                  formControlName="cbxCustomerCtrl"
+                  name="cbxCustomerCtrl"
+                  (change)="setCbxCustomer($event.type)"
+                  type="checkbox">
+                <label
+                  class="inputStyled__checkbox"
+                  for="cbxCustomerCtrl"></label>
+              </div>
+            </span>
+          </dt>
+          <dd class="definitionForm__data w--84">
+            <input
+              formControlName="customerCodeToCtrl"
+              name="customerCodeToCtrl"
+              (keyup.enter)="setCustomerCode($event.type,'to')"
+              (blur)="setCustomerCode($event.type,'to')"
+              maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              class="input-size--100 definitionForm__input">
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER, 'to')"></a>
+            <input
+              formControlName="customerNameToCtrl"
+              name="customerNameToCtrl"
+              class="input-size--300"
+              readonly>
+          </dd>
+          <dt class="definitionForm__title w--16">締日</dt>
+          <dd class="definitionForm__data w--84">
+            <input
+              formControlName="closingDateCtrl"
+              name="closingDateCtrl"
+              (keyup.enter)="setClosingDate($event.type)"
+              maxlength="2"
+              type="tel"
+              class="input-size--60 definitionForm__input">日
+          </dd>
+          <dt class="definitionForm__title w--16">手数料負担区分</dt>
+          <dd class="definitionForm__data w--84">
+            <select
+              formControlName="cmbShareTransferFeeCtrl"
+              name="cmbShareTransferFeeCtrl"
+              class="select-size--100">
+              <option
+                *ngFor="let shareTransferFeeCtrl of shareTransferFeeDictionary index as i"
+                [ngValue]="shareTransferFeeCtrl.id"
+                value="{{shareTransferFeeCtrl.id}}">
+                {{shareTransferFeeCtrl.val}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title w--16">営業担当者コード</dt>
+          <dd class="definitionForm__data w--84">
+            <input
+              formControlName="staffCodeFromCtrl"
+              name="staffCodeFromCtrl"
+              (keyup.enter)="setStaffCode($event.type,'from')"
+              (blur)="setStaffCode($event.type,'from')"
+              maxlength="{{userInfoService.ApplicationControl?.staffCodeLength}}"
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              class="input-size--100 definitionForm__input">
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_STAFF, 'from')"></a>
+            <input
+              formControlName="staffNameFromCtrl"
+              name="staffNameFromCtrl"
+              class="input-size--300"
+              readonly>
+          </dd>
+          <dt class="definitionForm__title w--16">
+            <span class="end-checkbox">
+              <div class="inputStyled">
+                <input
+                  id="cbxStaffCtrl"
+                  class="inputStyled__input"
+                  formControlName="cbxStaffCtrl"
+                  name="cbxStaffCtrl"
+                  (change)="setCbxStaff($event.type)"
+                  type="checkbox">
+                <label
+                  class="inputStyled__checkbox"
+                  for="cbxStaffCtrl"></label>
+              </div>
+            </span>
+          </dt>
+          <dd class="definitionForm__data w--84">
+            <input
+              formControlName="staffCodeToCtrl"
+              name="staffCodeToCtrl"
+              (keyup.enter)="setStaffCode($event.type,'to')"
+              (blur)="setStaffCode($event.type,'to')"
+              maxlength="{{userInfoService.ApplicationControl?.staffCodeLength}}"
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              class="input-size--100 definitionForm__input">
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_STAFF, 'to')"></a>
+            <input
+              formControlName="staffNameToCtrl"
+              name="staffNameToCtrl"
+              class="input-size--300"
+              readonly>
+            </dd>
+            <dt class="definitionForm__title w--16">最終更新日</dt>
+            <dd class="definitionForm__data w--84">
+              <!-- form dataPicker -->
+              <input
+                formControlName="updateDatefromCtrl"
+                name="updateDatefromCtrl"
+                placeholder="YYYY/MM/DD"
+                ngbDatepicker
+                #fromDp="ngbDatepicker"
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+                <button
+                  class="btn btn-outline-secondary"
+                  (click)="fromDp.toggle()"
+                  type="button">
+                </button>
+              <span class="wavy-line"></span>
+              <!-- to dataPicker -->
+              <input
+                formControlName="updateDateToCtrl"
+                name="updateDateToCtrl"
+                placeholder="YYYY/MM/DD"
+                ngbDatepicker
+                #toDp="ngbDatepicker"
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+              <button
+                class="btn btn-outline-secondary"
+                (click)="toDp.toggle()"
+                type="button">
+              </button>
+            </dd>
+          </dl>
+        </div>
+      </section>
+    </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

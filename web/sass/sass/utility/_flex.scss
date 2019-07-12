@@ -1,0 +1,12 @@
+// mixin: flexParent
+// 
+// flexレイアウトを行いたい親モジュールへインクルードする
+// 
+// Styleguide 1.2.0 
+
+
+@mixin flexParent {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}

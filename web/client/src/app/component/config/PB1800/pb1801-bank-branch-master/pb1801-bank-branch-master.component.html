@@ -1,0 +1,124 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button
+        (click)="buttonAction(BUTTON_ACTION.DELETE)"
+        [ngClass]="{'button-disable': DeleteButtonDisableFlag}"
+        class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+
+      <div class="contentsButton__subSection">
+        <ng-container *ngIf="securityHideShow">
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterImport)">
+            <button class="buttonImport infotip"
+              (click)="buttonAction(BUTTON_ACTION.IMPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterExport)">
+            <button class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+      
+   </div>
+
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <section class="contents">
+      <div class="contents__container--flex">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--10">銀行コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--20">
+              <input
+                formControlName="bankCodeCtrl"
+                name="bankCodeCtrl"
+                (keyup.enter)="setBankCode($event.type)"
+                (blur)="setBankCode($event.type)"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                maxlength="4"
+                type="tel"
+                class="input-size--80 definitionForm__input"
+                [readonly]="this.componentStatus!=this.COMPONENT_STATUS_TYPE.CREATE">
+              <a class="buttonMasterSearch" (click)="openBankMasterModal()"></a>
+          </dd>
+          <dd class="definitionForm__data w--70">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title w--11">銀行名<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--89">
+              <input
+                formControlName="bankNameCtrl"
+                name="bankNameCtrl"
+                (keyup.enter)="setBankName($event.type)"
+                maxlength="120"
+                class="input-size--400">
+              </dd>
+              <dt class="definitionForm__title w--11">銀行名カナ</dt>
+              <dd class="definitionForm__data w--89">
+              <input
+                formControlName="bankNameKanaCtrl"
+                name="bankNameKanaCtrl"
+                (blur)="inputBankNameKana()"
+                (keyup.enter)="setBankNameKana($event.type)"
+                maxlength="120"
+                class="input-size--400">
+              </dd>
+            </dl>
+          </dd>
+          <dt class="definitionForm__title w--10">支店コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--20">
+            <input
+              formControlName="branchCodeCtrl"
+              name="branchCodeCtrl"
+              (keyup.enter)="setBranchCode($event.type)"
+              (blur)="setBranchCode($event.type)"
+              (keyup)="openBankMasterModal()"
+              maxlength="3"
+              type="tel"
+              [readonly]="this.componentStatus!=this.COMPONENT_STATUS_TYPE.CREATE">
+          </dd>
+          <dd class="definitionForm__data w--70">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title w--11">支店名<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--89">
+              <input
+                formControlName="branchNameCtrl"
+                name="branchNameCtrl"
+                (keyup.enter)="setBranchName($event.type)"
+                maxlength="120"
+                class="input-size--400">
+              </dd>
+              <dt class="definitionForm__title w--11">支店カナ</dt>
+              <dd class="definitionForm__data w--89">
+              <input
+                formControlName="branchNameKanaCtrl"
+                name="branchNameKanaCtrl"
+                (blur)="inputBranchNameKana()"
+                (keyup.enter)="setBranchNameKana($event.type)"
+                maxlength="120"
+                class="input-size--400">
+              </dd>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+  </section>
+
+</div>

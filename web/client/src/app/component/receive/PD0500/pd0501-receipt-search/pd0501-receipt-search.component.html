@@ -1,0 +1,1221 @@
+<div [formGroup]="myFormGroup" class="receipt-data-search">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="back()"  
+        *ngIf="!disableBack()"
+        class="buttonBack">
+        {{ItemNameConst.BTN_BACK}}</button>
+
+      <button 
+        (click)="saveAllExclude()" 
+        [ngClass]="{'button-disable': UpdateBulkExludeButtonDisableFlag }"
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_BULK_NOT_TARGET}}
+        <span [innerHtml]="ButtonTipsConst.BULK_SPLIT_EXCLUDING | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+
+      <button 
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_SEARCH_HIDE:ItemNameConst.BTN_SEARCH_ADD}}</button>
+
+      <div class="contentsButton__subSection">
+        <button 
+          (click)="buttonAction(BUTTON_ACTION.EXPORT)"
+          [ngClass]="{'button-disable': receiptsResult == null || receiptsResult?.receipts.length==0 || !UpdateBulkExludeButtonDisableFlag}"
+          class="buttonExport infotip">
+          <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="pageContainer">
+
+    <!---検索条件-->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+
+          <h2 class="contents__title--underline">
+            {{ItemNameConst.LBL_SEARCH_CONDITION}}
+            <button 
+              (click)="setSearchType($event);"
+              class="buttonMinimum ml--15"> {{simplePageSearch?ItemNameConst.BTN_TO_DETAIL_SEARCH:ItemNameConst.BTN_TO_SIMPLE_SEARCH}}
+            </button>            
+          </h2>
+
+          <div class="contents__container--flex">
+            <ng-container *ngIf="simplePageSearch">
+              <div class="contents__item--w-50">
+                <dl class="definitionForm--lh-narrow mb--40">
+                  <dt class="definitionForm__title w--17">入金日</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="recordedAtFromCtrl" 
+                      name="recordedAtFromCtrl"
+                      (keyup.enter)="setRecordedAtFrom($event.type)" 
+                      (dateSelect)="setRecordedAtFrom($event.type)"
+                      ngbDatepicker #recordedAtFromDp="ngbDatepicker" 
+                      [ngClass]="{'input--error': recordedAtFromCtrl.errors?.ngbDate}"
+                      placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                      maxlength="10" 
+                      type="tel"
+                      class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="recordedAtFromDp.toggle()" type="button"></button>
+                    <span class="wavy-line"></span>
+                    <input 
+                      formControlName="recordedAtToCtrl" 
+                      name="recordedAtToCtrl"
+                      (keyup.enter)="setRecordedAtTo($event.type)" 
+                      (dateSelect)="setRecordedAtTo($event.type)" 
+                      ngbDatepicker
+                      #recordedAtToDp="ngbDatepicker" 
+                      [ngClass]="{'input--error': recordedAtToCtrl.errors?.ngbDate}"
+                      placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                      maxlength="10" 
+                      type="tel"
+                      class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="recordedAtToDp.toggle()" type="button"></button>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="recordedAtFromCtrl.errors?.ngbDate 
+                            || recordedAtToCtrl.errors?.ngbDate">
+                      {{ MSG_VAL.DATE_DAY }}
+                    </div>
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy">振込依頼人名</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="payerNameCtrl" 
+                      name="payerNameCtrl" 
+                      (blur)="inputPayerName()"
+                      (keyup.enter)="setPayerName($event.type)" 
+                      type="text" 
+                      maxlength="140" 
+                      class="input-size--350">
+                  </dd>
+                </dl>
+                <div class="frame--w-90">
+                  <h3 class="frame__title">銀行情報</h3>
+                  <dl class="definitionForm--lh-narrow">
+                    <dt class="definitionForm__title w--17">銀行コード</dt>
+                    <dd class="definitionForm__data w--33">
+                      <input
+                        formControlName="bankCodeCtrl" 
+                        name="bankCodeCtrl" 
+                        (blur)="setBankCode($event.type)"
+                        (keyup.enter)="setBankCode($event.type)" 
+                        type="tel" 
+                        maxlength="4" 
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--100">
+                      <a class="buttonMasterSearch" (click)="openBankAccountMasterModal()"></a>
+                    </dd>
+                    <dt class="definitionForm__title w--17">支店コード</dt>
+                    <dd class="definitionForm__data w--33">
+                      <input
+                        formControlName="branchCodeCtrl" 
+                        name="branchCodeCtrl" 
+                        (blur)="setBranchCode($event.type)"
+                        (keyup.enter)="setBranchCode($event.type)" 
+                        type="tel"
+                        maxlength="3"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                        class="input-size--100">
+                        <a class="buttonMasterSearch" (click)="openBankAccountMasterModal()"></a>
+                      </dd>
+                    <dt class="definitionForm__title w--17">預金種別</dt>
+                    <dd class="definitionForm__data w--33">
+                      <select
+                        formControlName="accountTypeIdCtrl" 
+                        name="accountTypeIdCtrl" 
+                        class="select-size--100">
+                        <option *ngFor="let accountTypeIdCtrl of accountTypeDictionary index as i"
+                          [ngValue]="accountTypeIdCtrl.id">
+                          {{accountTypeIdCtrl.id}}：{{accountTypeIdCtrl.val}}
+                        </option>
+                      </select>
+                    </dd>
+                    <dt class="definitionForm__title w--17">口座番号</dt>
+                    <dd class="definitionForm__data w--33">
+                      <input
+                        formControlName="accountNumberCtrl" 
+                        name="accountNumberCtrl"
+                        (blur)="setAccountNumber($event.type)" 
+                        (keyup.enter)="setAccountNumber($event.type)"
+                        type="tel" 
+                        maxlength="7"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--100">
+                        <a class="buttonMasterSearch" (click)="openBankAccountMasterModal()"></a>
+                    </dd>
+                  </dl>
+                </div>
+                </div>
+                <div class="contents__item--w-50">
+                  <dl class="definitionForm--lh-narrow">
+                    <dt class="definitionForm__title w--17">得意先コード</dt>
+                    <dd class="definitionForm__data w--83">
+                      <input 
+                        formControlName="customerCodeFromCtrl" 
+                        name="customerCodeFromCtrl"
+                        (blur)="setCustomerCodeFrom($event.type)" 
+                        (keyup.enter)="setCustomerCodeFrom($event.type)"
+                        #customerCodeFromInput
+                        [formControl]="customerCodeFromCtrl" 
+                        [matAutocomplete]="autoCustomerCodeFrom"
+                        type="tel"
+                        maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--110">
+                      <mat-autocomplete 
+                        #autoCustomerCodeFrom="matAutocomplete"
+                        [panelWidth]="PanelConst.autocompleteWidth300">
+                        <mat-option 
+                          *ngFor="let customer of customerFilterds[0] | async" 
+                          [value]="customer.code">
+                          {{customer.code}}:{{customer.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'from')"></a>
+                      <input formControlName="customerNameFromCtrl" name="customerNameFromCtrl" class="input-size--250"
+                        readonly>
+                    </dd>
+                    <dt class="definitionForm__title w--17">
+                      <span class="end-checkbox">
+                        <div class="inputStyled">
+                          <input class="inputStyled__input"
+                            id="cbxCustomerCtrl" 
+                            formControlName="cbxCustomerCtrl" 
+                            name="cbxCustomerCtrl" 
+                            (change)="setCbxCustomer()"
+                            type="checkbox">
+                          <label class="inputStyled__checkbox" for="cbxCustomerCtrl"></label>
+                        </div>
+                      </span>
+                    </dt>
+                    <dd class="definitionForm__data w--83">
+                      <input 
+                        formControlName="customerCodeToCtrl" 
+                        name="customerCodeToCtrl"
+                        (blur)="setCustomerCodeTo($event.type)" 
+                        (keyup.enter)="setCustomerCodeTo($event.type)"
+                        (keyup)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,$event.keyCode,'to')" 
+                        #customerCodeToInput
+                        [formControl]="customerCodeToCtrl" 
+                        [matAutocomplete]="autoCustomerCodeTo"
+                        type="tel" 
+                        maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" class="input-size--110">
+                      <mat-autocomplete 
+                        #autoCustomerCodeTo="matAutocomplete"
+                        [panelWidth]="PanelConst.autocompleteWidth300">
+                        <mat-option 
+                          *ngFor="let customer of customerFilterds[1] | async" 
+                          [value]="customer.code">
+                          {{customer.code}}:{{customer.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'to')"></a>
+                      <input formControlName="customerNameToCtrl" class="input-size--250" readonly>
+                    </dd>
+                    <dt class="definitionForm__title w--17">入金区分</dt>
+                    <dd class="definitionForm__data w--83">
+                      <input 
+                        formControlName="receiptCategoryCodeFromCtrl" 
+                        name="receiptCategoryCodeFromCtrl"
+                        (blur)="setReceiptCategoryCodeFrom($event.type)" 
+                        (keyup.enter)="setReceiptCategoryCodeFrom($event.type)"
+                        #receiptCategoryCodeFromInput
+                        [formControl]="receiptCategoryCodeFromCtrl" 
+                        [matAutocomplete]="autoReceiptCategoryCodeFrom"
+                        type="tel"
+                        maxlength="2" 
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--60">
+                      <mat-autocomplete 
+                        #autoReceiptCategoryCodeFrom="matAutocomplete"
+                        [panelWidth]="PanelConst.autocompleteWidth150">
+                        <mat-option 
+                          *ngFor="let category of categoryFilterds[0] | async" 
+                          [value]="category.code">{{category.code}}:{{category.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY,'from')"></a>
+                      <input formControlName="receiptCategoryNameFromCtrl" name="receiptCategoryNameFromCtrl"
+                        class="input-size--180" readonly>
+                    </dd>
+                    <dt class="definitionForm__title w--17">
+                      <span class="end-checkbox">
+                        <div class="inputStyled">
+                          <input class="inputStyled__input"
+                            id="cbxReceiptCategoryCtrl" 
+                            formControlName="cbxReceiptCategoryCtrl" 
+                            name="cbxReceiptCategoryCtrl" 
+                            (change)="setCbxReceiptCategory($event.type)"
+                            type="checkbox">
+                          <label class="inputStyled__checkbox" for="cbxReceiptCategoryCtrl"></label>
+                        </div>
+                      </span>
+                    </dt>
+                    <dd class="definitionForm__data w--83">
+                      <input 
+                        formControlName="receiptCategoryCodeToCtrl" 
+                        name="receiptCategoryCodeToCtrl"
+                        (blur)="setReceiptCategoryCodeTo($event.type)" 
+                        (keyup.enter)="setReceiptCategoryCodeTo($event.type)"
+                        #receiptCategoryCodeToInput
+                        [formControl]="receiptCategoryCodeToCtrl" 
+                        [matAutocomplete]="autoReceiptCategoryCodeTo"
+                        type="tel"
+                        maxlength="2" 
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--60">
+                      <mat-autocomplete 
+                        #autoReceiptCategoryCodeTo="matAutocomplete"
+                        [panelWidth]="PanelConst.autocompleteWidth150">
+                        <mat-option 
+                          *ngFor="let category of categoryFilterds[1] | async" 
+                          [value]="category.code">{{category.code}}:{{category.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY,'to')"></a>
+                      <input formControlName="receiptCategoryNameToCtrl" name="receiptCategoryNameToCtrl"
+                        class="input-size--180" readonly>
+                    </dd>
+                    <dt class="definitionForm__title w--17">消込区分</dt>
+                    <dd class="definitionForm__data w--83">
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxFullAssignmentFlagCtrl" 
+                          formControlName="cbxFullAssignmentFlagCtrl" 
+                          name="cbxFullAssignmentFlagCtrl" 
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxFullAssignmentFlagCtrl">消込済</label>
+                      </div>
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxPartAssignmentFlagCtrl" 
+                          formControlName="cbxPartAssignmentFlagCtrl" 
+                          name="cbxPartAssignmentFlagCtrl" 
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxPartAssignmentFlagCtrl">一部消込</label>
+                      </div>
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxNoAssignmentFlagCtrl" 
+                          formControlName="cbxNoAssignmentFlagCtrl" 
+                          name="cbxNoAssignmentFlagCtrl" 
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxNoAssignmentFlagCtrl">未消込</label>
+                      </div>
+                    </dd>
+                    <dt class="definitionForm__title w--17">対象外状態</dt>
+                    <dd class="definitionForm__data w--33">
+                      <select 
+                        formControlName="excludeFlagCtrl" 
+                        name="excludeFlagCtrl" 
+                        (change)="setExcludeFlag($event.type)"
+                        class="select-size--150">
+                        <option *ngFor="let excludeFlagCtrl of excludeFlagDictionary index as i" [ngValue]="excludeFlagCtrl.id">
+                          {{excludeFlagCtrl.val}}
+                        </option>
+                      </select>
+                    </dd>
+                    <dt class="definitionForm__title w--17">対象外区分</dt>
+                    <dd class="definitionForm__data w--33">
+                      <select
+                        formControlName="excludeCategoryIdCtrl" 
+                        name="excludeCategoryIdCtrl"
+                        (change)="setExcludeCategoryId($event.type)" 
+                        class="select-size--140">
+                        <option value="0">すべて</option>
+                        <option *ngFor="let category of excludeCategoriesResult?.categories" value="{{category.id}}">
+                          {{category.name}}
+                        </option>
+                      </select>
+                    </dd>
+                    <dt class="definitionForm__title w--17">金額範囲</dt>
+                    <dd class="definitionForm__data w--83">
+                      <select 
+                        formControlName="amountRangeCtrl" 
+                        name="amountRangeCtrl" 
+                        (change)="setAmountRange($event.type)"
+                        class="select-size--100 definitionForm__input">
+                        <option *ngFor="let receiptAmountRangeCtrl of receiptAmountRangeDictionary index as i"
+                          [ngValue]="receiptAmountRangeCtrl.id">
+                          {{receiptAmountRangeCtrl.val}}
+                        </option>
+                      </select>
+                      <input 
+                        formControlName="receiptAmountFromCtrl" 
+                        name="receiptAmountFromCtrl"
+                        (keyup.enter)="setReceiptAmountFrom($event.type)"
+                        (blur)="onLeaveReceiptAmountFrom()"
+                        (focus)="onFocusReceiptAmountFrom()"
+                        type="tel"
+                        maxlength="16"
+                        class="{{InputText.INPUT_150_KINGAKU}}">
+                      <div class="vAlign--center">
+                      <span class="wavy-line"></span>
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxReceiptAmountCtrl" 
+                          formControlName="cbxReceiptAmountCtrl" 
+                          name="cbxReceiptAmountCtrl" 
+                          (change)="setCbxReceiptAmount($event.type)"
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxReceiptAmountCtrl"></label>
+                      </div>
+                      </div>
+                      <input 
+                        formControlName="receiptAmountToCtrl" 
+                        name="receiptAmountToCtrl"
+                        (keyup.enter)="setReceiptAmountTo($event.type)" 
+                        (blur)="onLeaveReceiptAmountTo()" 
+                        (focus)="onFocusReceiptAmountTo()"
+                        type="tel"
+                        maxlength="16"
+                        class="{{InputText.INPUT_150_KINGAKU}}">
+                    </dd>
+                  </dl>
+              </div>
+            </ng-container>        
+            <ng-container *ngIf="!simplePageSearch">
+              <div class="contents__item--w-50">
+                <dl class="definitionForm--lh-narrow mb--40">
+                  <dt class="definitionForm__title w--17">入金日</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="recordedAtFromCtrl" 
+                      name="recordedAtFromCtrl"
+                      (keyup.enter)="setRecordedAtFrom($event.type)" 
+                      (dateSelect)="setRecordedAtFrom($event.type)"
+                      ngbDatepicker #recordedAtFromDp="ngbDatepicker" 
+                      [ngClass]="{'input--error': recordedAtFromCtrl.errors?.ngbDate}"
+                      placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                      maxlength="10" 
+                      type="tel"
+                      class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="recordedAtFromDp.toggle()" type="button"></button>
+                    <span class="wavy-line"></span>
+                    <input 
+                      formControlName="recordedAtToCtrl" 
+                      name="recordedAtToCtrl"
+                      (keyup.enter)="setRecordedAtTo($event.type)" 
+                      (dateSelect)="setRecordedAtTo($event.type)" 
+                      ngbDatepicker
+                      #recordedAtToDp="ngbDatepicker" 
+                      [ngClass]="{'input--error': recordedAtToCtrl.errors?.ngbDate}"
+                      placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                      maxlength="10" 
+                      type="tel"
+                      class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="recordedAtToDp.toggle()" type="button"></button>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="recordedAtFromCtrl.errors?.ngbDate 
+                            || recordedAtToCtrl.errors?.ngbDate">
+                      {{ MSG_VAL.DATE_DAY }}
+                    </div>
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy">振込依頼人名</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="payerNameCtrl" 
+                      name="payerNameCtrl" 
+                      (blur)="inputPayerName()"
+                      (keyup.enter)="setPayerName($event.type)" 
+                      type="text" 
+                      maxlength="140" 
+                      class="input-size--350">
+                  </dd>
+                  <dt class="definitionForm__title w--17">最終更新日</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="updateAtFromCtrl" 
+                      name="updateAtFromCtrl"
+                      (keyup.enter)="setUpdateAtFrom($event.type)" 
+                      (dateSelect)="setUpdateAtFrom($event.type)" 
+                      ngbDatepicker
+                      #updateAtFromDp="ngbDatepicker" 
+                      [ngClass]="{'input--error': updateAtFromCtrl.errors?.ngbDate}"
+                      placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                      maxlength="10" 
+                      type="tel"
+                      class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="updateAtFromDp.toggle()" type="button"></button>
+                    <span class="wavy-line"></span>
+                    <input 
+                      formControlName="updateAtToCtrl" 
+                      name="updateAtToCtrl" 
+                      (keyup.enter)="setUpdateAtTo($event.type)"
+                      (dateSelect)="setUpdateAtTo($event.type)" 
+                      ngbDatepicker 
+                      #updateAtToDp="ngbDatepicker"
+                      [ngClass]="{'input--error': updateAtToCtrl.errors?.ngbDate}"
+                      placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                      maxlength="10" 
+                      type="tel" 
+                      class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="updateAtToDp.toggle()" type="button"></button>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="updateAtFromCtrl.errors?.ngbDate 
+                            || updateAtToCtrl.errors?.ngbDate">
+                      {{ MSG_VAL.DATE_DAY }}
+                    </div>
+                  </dd>
+                  <dt class="definitionForm__title w--17">最終更新者</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      name="updateByCodeCtrl" 
+                      formControlName="updateByCodeCtrl" 
+                      (blur)="setUpdateByCode($event.type)"
+                      (keyup.enter)="setUpdateByCode($event.type)"
+                      #updateByCodeInput
+                      [formControl]="updateByCodeCtrl" 
+                      [matAutocomplete]="autoUpdateByCode"
+                      type="tel"
+                      maxlength="{{userInfoService.ApplicationControl?.loginUserCodeLength}}"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                      class="input-size--110">
+                    <mat-autocomplete 
+                      #autoUpdateByCode="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth300">
+                      <mat-option 
+                        *ngFor="let loginUser of loginUserFilterds[0] | async" 
+                        [value]="loginUser.code">{{loginUser.code}}:{{loginUser.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_LOGIN_USER)"></a>
+                    <input formControlName="updateNameCtrl" name="updateNameCtrl" class="input-size--250" readonly>
+                  </dd>
+                  <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1;else elseCurrencyContent">
+                    <dt class="definitionForm__title w--17">通貨コード</dt>
+                    <dd class="definitionForm__data w--83">
+                      <input 
+                        formControlName="currencyCodeCtrl" 
+                        name="currencyCodeCtrl" 
+                        (blur)="setCurrencyCode($event.type)"
+                        (keyup.enter)="setCurrencyCode($event.type)"
+                        (keyup)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY,$event.keyCode)" 
+                        type="tel" 
+                        maxlength="3"
+                        class="input-size--60">
+                    </dd>
+                  </ng-container>
+                </dl>
+                <div class="frame--w-90 mb--40">
+                  <h3 class="frame__title">銀行情報</h3>
+                  <dl class="definitionForm--lh-narrow">
+                    <dt class="definitionForm__title w--20">銀行コード</dt>
+                    <dd class="definitionForm__data w--30">
+                      <input
+                        formControlName="bankCodeCtrl" 
+                        name="bankCodeCtrl" 
+                        (blur)="setBankCode($event.type)"
+                        (keyup.enter)="setBankCode($event.type)" 
+                        (keyup)="openBankAccountMasterModal($event.keyCode)"
+                        type="tel" 
+                        maxlength="4" 
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--100">
+                      <a class="buttonMasterSearch" (click)="openBankAccountMasterModal()"></a>
+                    </dd>
+                    <dt class="definitionForm__title w--20">支店コード</dt>
+                    <dd class="definitionForm__data w--30">
+                      <input
+                        formControlName="branchCodeCtrl" 
+                        name="branchCodeCtrl" 
+                        (blur)="setBranchCode($event.type)"
+                        (keyup.enter)="setBranchCode($event.type)" 
+                        type="tel"
+                        maxlength="3"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                        class="input-size--100">
+                      <a class="buttonMasterSearch" (click)="openBankAccountMasterModal()"></a>
+                    </dd>
+                    <dt class="definitionForm__title w--20">預金種別</dt>
+                    <dd class="definitionForm__data w--30">
+                      <select
+                        formControlName="accountTypeIdCtrl" 
+                        name="accountTypeIdCtrl" 
+                        class="select-size--100">
+                        <option *ngFor="let accountTypeIdCtrl of accountTypeDictionary index as i"
+                          [ngValue]="accountTypeIdCtrl.id">
+                          {{accountTypeIdCtrl.id}}：{{accountTypeIdCtrl.val}}
+                        </option>
+                      </select>
+                    </dd>
+                    <dt class="definitionForm__title w--20">口座番号</dt>
+                    <dd class="definitionForm__data w--30">
+                      <input
+                        formControlName="accountNumberCtrl" 
+                        name="accountNumberCtrl"
+                        (blur)="setAccountNumber($event.type)" 
+                        (keyup.enter)="setAccountNumber($event.type)"
+                        type="tel" 
+                        maxlength="7"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--100">
+                      <a class="buttonMasterSearch" (click)="openBankAccountMasterModal()"></a>
+                    </dd>
+                  </dl>
+                </div>
+                <div class="frame--w-90 mb--40">
+                  <h3 class="frame__title">専用入金口座</h3>
+                  <dl class="definitionForm--lh-narrow">
+                    <dt class="definitionForm__title w--20">銀行コード</dt>
+                    <dd class="definitionForm__data w--30">
+                      <input
+                        formControlName="privateBankCodeCtrl" 
+                        name="privateBankCodeCtrl"
+                        (blur)="setPrivateBankCode($event.type)" 
+                        (keyup.enter)="setPrivateBankCode($event.type)"
+                        type="tel" 
+                        maxlength="4" 
+                        class="input-size--100">
+                    </dd>
+                    <dt class="definitionForm__title w--20">支店コード</dt>
+                    <dd class="definitionForm__data w--30">
+                      <input
+                        formControlName="privateBranchCodeCtrl" 
+                        name="privateBranchCodeCtrl"
+                        (blur)="setPrivateBranchCode($event.type)" 
+                        (keyup.enter)="setPrivateBranchCode($event.type)"
+                        type="tel"
+                        maxlength="3" 
+                        class="input-size--100">
+                    </dd>
+                    <dt class="definitionForm__title w--20">口座番号</dt>
+                    <dd class="definitionForm__data w--30">
+                      <input
+                        formControlName="privateAccountNumberCtrl" 
+                        name="privateAccountNumberCtrl"
+                        (blur)="setPrivateAccountNumber($event.type)"
+                        (keyup.enter)="setPrivateAccountNumber($event.type)"
+                        type="tel"
+                        maxlength="7"
+                        class="input-size--100">
+                    </dd>
+                  </dl>
+                </div>
+                <div class="frame--w-90">
+                  <h3 class="frame__title">手形券面情報</h3>
+                  <dl class="definitionForm--lh-narrow">
+                    <dt class="definitionForm__title w--20 fuzzy">手形番号</dt>
+                    <dd class="definitionForm__data w--80">
+                      <input
+                        formControlName="billNumberCtrl" 
+                        name="billNumberCtrl"
+                        (keyup.enter)="setBillNumber($event.type)" 
+                        (blur)="setBillNumber($event.type)" 
+                        type="tel"
+                        maxlength="20" 
+                        class="input-size--200">
+                    </dd>
+                    <dt class="definitionForm__title w--20">券面銀行コード</dt>
+                    <dd class="definitionForm__data w--80">
+                      <input
+                        formControlName="billBankCodeCtrl" 
+                        name="billBankCodeCtrl"
+                        (keyup.enter)="setBillBankCode($event.type)"
+                        (blur)="setBillBankCode($event.type)" 
+                        type="tel" 
+                        maxlength="4"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" class="input-size--100">
+                      <a class="buttonMasterSearch" (click)="openBankMasterModal('bill')"></a>
+                    </dd>
+                    <dt class="definitionForm__title w--20">券面支店コード</dt>
+                    <dd class="definitionForm__data w--80">
+                      <input
+                        formControlName="billBranchCodeCtrl" 
+                        name="billBranchCodeCtrl"
+                        (keyup.enter)="setBillBranchCode($event.type)"
+                        (keyup)="openBankMasterModal('bill',$event.keyCode)" 
+                        (blur)="setBillBranchCode($event.type)"
+                        type="tel"
+                        maxlength="3"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--100">
+                      <a class="buttonMasterSearch" (click)="openBankMasterModal('bill')"></a>
+                    </dd>
+                    <dt class="definitionForm__title w--20">振出日</dt>
+                    <dd class="definitionForm__data w--80">
+                      <input
+                        formControlName="billDrawAtFromCtrl" 
+                        name="billDrawAtFromCtrl"
+                        (keyup.enter)="setBillDrawAtFrom($event.type)" 
+                        (dateSelect)="setBillDrawAtFrom($event.type)"
+                        ngbDatepicker 
+                        #billDrawAtFromDp="ngbDatepicker" 
+                        [ngClass]="{'input--error': billDrawAtFromCtrl.errors?.ngbDate}"
+                        placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                        maxlength="10" 
+                        type="tel"
+                        class="input-size--100">
+                      <button class="btn btn-outline-secondary" (click)="billDrawAtFromDp.toggle()"
+                        type="button"></button>
+                      <span class="wavy-line"></span>
+                      <input
+                        formControlName="billDrawAtToCtrl" 
+                        name="billDrawAtToCtrl"
+                        (keyup.enter)="setBillDrawAtTo($event.type)" 
+                        (dateSelect)="setBillDrawAtTo($event.type)"
+                        ngbDatepicker 
+                        #billDrawAtToDp="ngbDatepicker" 
+                        [ngClass]="{'input--error': billDrawAtToCtrl.errors?.ngbDate}"
+                        placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                        maxlength="10"
+                        type="tel"
+                        class="input-size--100">
+                      <button class="btn btn-outline-secondary" (click)="billDrawAtToDp.toggle()"
+                        type="button"></button>
+                      <br>
+                      <div
+                        class="message-result font__warning"
+                        *ngIf="billDrawAtFromCtrl.errors?.ngbDate 
+                              || billDrawAtToCtrl.errors?.ngbDate">
+                        {{ MSG_VAL.DATE_DAY }}
+                      </div>
+                    </dd>
+                    <dt class="definitionForm__title w--20 fuzzy">振出人</dt>
+                    <dd class="definitionForm__data w--80">
+                      <input
+                        formControlName="billDrawerCtrl" 
+                        name="billDrawerCtrl"
+                        (keyup.enter)="setBillDrawer($event.type)" 
+                        (blur)="setBillDrawer($event.type)" 
+                        maxlength="48"
+                        class="input-size--300">
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="contents__item--w-50">
+                <dl class="definitionForm--lh-narrow">
+                  <dt class="definitionForm__title w--17">得意先コード</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="customerCodeFromCtrl" 
+                      name="customerCodeFromCtrl"
+                      (blur)="setCustomerCodeFrom($event.type)" 
+                      (keyup.enter)="setCustomerCodeFrom($event.type)"
+                      (keyup)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,$event.keyCode,'from')" 
+                      #customerCodeFromInput
+                      [formControl]="customerCodeFromCtrl" 
+                      [matAutocomplete]="autoCustomerCodeFrom"
+                      type="tel"
+                      maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                      class="input-size--110">
+                    <mat-autocomplete 
+                      #autoCustomerCodeFrom="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth300">
+                      <mat-option 
+                        *ngFor="let customer of customerFilterds[0] | async" 
+                        [value]="customer.code">
+                        {{customer.code}}:{{customer.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'from')"></a>
+                    <input formControlName="customerNameFromCtrl" name="customerNameFromCtrl" class="input-size--250"
+                      readonly>
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy" >
+                    <span class="end-checkbox">
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxCustomerCtrl" 
+                          formControlName="cbxCustomerCtrl" 
+                          name="cbxCustomerCtrl" 
+                          (change)="setCbxCustomer()"
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxCustomerCtrl"></label>
+                      </div>
+                    </span>
+                  </dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="customerCodeToCtrl" 
+                      name="customerCodeToCtrl"
+                      (blur)="setCustomerCodeTo($event.type)" 
+                      (keyup.enter)="setCustomerCodeTo($event.type)"
+                      #customerCodeToInput
+                      [formControl]="customerCodeToCtrl" 
+                      [matAutocomplete]="autoCustomerCodeTo"
+                      type="tel" 
+                      maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                      class="input-size--110">
+                    <mat-autocomplete 
+                      #autoCustomerCodeTo="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth300">
+                      <mat-option 
+                        *ngFor="let customer of customerFilterds[1] | async" 
+                        [value]="customer.code">
+                        {{customer.code}}:{{customer.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'to')"></a>
+                    <input formControlName="customerNameToCtrl" class="input-size--250" readonly>
+                  </dd>
+
+                  <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1;else elseSectionCodeContent">
+                    <dt class="definitionForm__title w--17">入金部門</dt>
+                    <dd class="definitionForm__data w--83">
+                      <input formControlName="sectionCodeFromCtrl" 
+                        name="sectionCodeFromCtrl"
+                        (blur)="setSectionCodeFrom($event.type)" 
+                        (keyup.enter)="setSectionCodeFrom($event.type)"
+                        #sectionCodeFromInput
+                        [formControl]="sectionCodeFromCtrl" 
+                        [matAutocomplete]="autoSectionCodeFrom"
+                        type="tel" 
+                        maxlength="{{userInfoService.ApplicationControl?.sectionCodeLength}}"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--110">
+                      <mat-autocomplete 
+                        #autoSectionCodeFrom="matAutocomplete"
+                        [panelWidth]="PanelConst.autocompleteWidth300">
+                        <mat-option 
+                          *ngFor="let section of sectionFilterds[0] | async" 
+                          [value]="section.code">{{section.code}}:{{section.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION,'from')"></a>
+                      <input formControlName="sectionNameFromCtrl" class="input-size--250" readonly>
+                    </dd>
+                    <dt class="definitionForm__title w--17">
+                      <span class="end-checkbox">
+                        <div class="inputStyled">
+                          <input class="inputStyled__input"
+                            id="cbxSectionCtrl" 
+                            formControlName="cbxSectionCtrl" 
+                            name="cbxSectionCtrl" 
+                            (change)="setCbxSectino($event.type)"
+                            type="checkbox">
+                          <label class="inputStyled__checkbox" for="cbxSectionCtrl"></label>
+                        </div>
+                      </span>
+                    </dt>
+                    <dd class="definitionForm__data w--83">
+                      <input 
+                        formControlName="sectionCodeToCtrl" 
+                        name="sectionCodeToCtrl"
+                        (blur)="setSectionCodeTo($event.type)"
+                        (keyup.enter)="setSectionCodeTo($event.type)"
+                        #sectionCodeToInput
+                        [formControl]="sectionCodeToCtrl" 
+                        [matAutocomplete]="autosectionCodeTo"
+                        type="tel" 
+                        maxlength="{{userInfoService.ApplicationControl?.sectionCodeLength}}"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                        class="input-size--110">
+                      <mat-autocomplete 
+                        #autosectionCodeTo="matAutocomplete"
+                        [panelWidth]="PanelConst.autocompleteWidth300">
+                        <mat-option 
+                          *ngFor="let section of sectionFilterds[1] | async" 
+                          [value]="section.code">{{section.code}}:{{section.name}}
+                        </mat-option>
+                      </mat-autocomplete>
+                      <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION,'to')"></a>
+                      <input formControlName="sectionNameToCtrl" class="input-size--250" readonly>
+                    </dd>
+                  </ng-container>
+                  <dt class="definitionForm__title w--17 fuzzy">メモ有り</dt>
+                  <dd class="definitionForm__data w--83">
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxMemoCtrl" 
+                        formControlName="cbxMemoCtrl" 
+                        name="cbxMemoCtrl" 
+                        (change)="setCbxMemo($event.type)"
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxMemoCtrl"></label>
+                    </div>
+                    <input 
+                      formControlName="receiptMemoCtrl" 
+                      name="receiptMemoCtrl" 
+                      (blur)="setReceiptMemo($event.type)"
+                      (keyup.enter)="setReceiptMemo($event.type)" 
+                      maxlength="100" 
+                      class="input-size--250">
+                    <span>&nbsp;&nbsp;</span>
+                    <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxUseReceiptSectionCtrl" 
+                          formControlName="cbxUseReceiptSectionCtrl" 
+                          name="cbxUseReceiptSectionCtrl" 
+                          (change)="setCbxUseReceiptSection($event.type)"
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxUseReceiptSectionCtrl">入金部門対応マスターを使用</label>
+                      </div>
+                    </ng-container>
+                  </dd>
+                  <dt class="definitionForm__title w--17">入力区分</dt>
+                  <dd class="definitionForm__data w--83">
+                    <select 
+                      formControlName="inputTypeCtrl" 
+                      name="inputTypeCtrl" 
+                      class="select-size--150">
+                      <option *ngFor="let inputTypeCtrl of inputTypeDictionary index as i" [ngValue]="inputTypeCtrl.id">
+                        {{inputTypeCtrl.val}}
+                      </option>
+                    </select>
+                  </dd>
+                  <dt class="definitionForm__title w--17">入金区分</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="receiptCategoryCodeFromCtrl" 
+                      name="receiptCategoryCodeFromCtrl"
+                      (blur)="setReceiptCategoryCodeFrom($event.type)" 
+                      (keyup.enter)="setReceiptCategoryCodeFrom($event.type)"
+                      #receiptCategoryCodeFromInput
+                      [formControl]="receiptCategoryCodeFromCtrl" 
+                      [matAutocomplete]="autoReceiptCategoryCodeFrom"
+                      type="tel"
+                      maxlength="2" 
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                      class="input-size--60">
+                    <mat-autocomplete 
+                      #autoReceiptCategoryCodeFrom="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth150">
+                      <mat-option 
+                        *ngFor="let category of categoryFilterds[0] | async" 
+                        [value]="category.code">{{category.code}}:{{category.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY,'from')"></a>
+                    <input formControlName="receiptCategoryNameFromCtrl" name="receiptCategoryNameFromCtrl"
+                      class="input-size--180" readonly>
+                  </dd>
+                  <dt class="definitionForm__title w--17">
+                    <span class="end-checkbox">
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxReceiptCategoryCtrl" 
+                          formControlName="cbxReceiptCategoryCtrl" 
+                          name="cbxReceiptCategoryCtrl" 
+                          (change)="setCbxReceiptCategory($event.type)"
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxReceiptCategoryCtrl"></label>
+                      </div>
+                    </span>
+                  </dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="receiptCategoryCodeToCtrl" 
+                      name="receiptCategoryCodeToCtrl"
+                      (blur)="setReceiptCategoryCodeTo($event.type)" 
+                      (keyup.enter)="setReceiptCategoryCodeTo($event.type)"
+                      (keyup)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY,$event.keyCode,'to')"
+                      #receiptCategoryCodeToInput
+                      [formControl]="receiptCategoryCodeToCtrl" 
+                      [matAutocomplete]="autoReceiptCategoryCodeTo"
+                      type="tel"
+                      maxlength="2" 
+                      class="input-size--60">
+                    <mat-autocomplete 
+                      #autoReceiptCategoryCodeTo="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth150">
+                      <mat-option 
+                        *ngFor="let category of categoryFilterds[1] | async" 
+                        [value]="category.code">{{category.code}}:{{category.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY,'to')"></a>
+                    <input formControlName="receiptCategoryNameToCtrl" name="receiptCategoryNameToCtrl"
+                      class="input-size--180" readonly>
+                  </dd>
+                  <dt class="definitionForm__title w--17">消込区分</dt>
+                  <dd class="definitionForm__data w--83">
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxFullAssignmentFlagCtrl" 
+                        formControlName="cbxFullAssignmentFlagCtrl" 
+                        name="cbxFullAssignmentFlagCtrl" 
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxFullAssignmentFlagCtrl">消込済</label>
+                    </div>
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxPartAssignmentFlagCtrl" 
+                        formControlName="cbxPartAssignmentFlagCtrl" 
+                        name="cbxPartAssignmentFlagCtrl" 
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxPartAssignmentFlagCtrl">一部消込</label>
+                    </div>
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxNoAssignmentFlagCtrl" 
+                        formControlName="cbxNoAssignmentFlagCtrl" 
+                        name="cbxNoAssignmentFlagCtrl" 
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxNoAssignmentFlagCtrl">未消込</label>
+                    </div>
+                  </dd>
+                  <dt class="definitionForm__title w--17">対象外状態</dt>
+                  <dd class="definitionForm__data w--33">
+                    <select 
+                      formControlName="excludeFlagCtrl" 
+                      name="excludeFlagCtrl" 
+                      (change)="setExcludeFlag($event.type)"
+                      class="select-size--150">
+                      <option *ngFor="let excludeFlagCtrl of excludeFlagDictionary index as i" [ngValue]="excludeFlagCtrl.id">
+                        {{excludeFlagCtrl.val}}
+                      </option>
+                    </select>
+                  </dd>
+                  <dt class="definitionForm__title w--17">対象外区分</dt>
+                  <dd class="definitionForm__data w--33">
+                    <select
+                      formControlName="excludeCategoryIdCtrl" 
+                      name="excludeCategoryIdCtrl"
+                      (change)="setExcludeCategoryId($event.type)" 
+                      class="select-size--140">
+                      <option value="0">すべて</option>
+                      <option *ngFor="let category of excludeCategoriesResult?.categories" value="{{category.id}}">
+                        {{category.name}}
+                      </option>
+                    </select>
+                  </dd>
+                  <dt class="definitionForm__title w--17">金額範囲</dt>
+                  <dd class="definitionForm__data w--83">
+                    <select 
+                      formControlName="amountRangeCtrl" 
+                      name="amountRangeCtrl" 
+                      (change)="setAmountRange($event.type)"
+                      class="select-size--100 definitionForm__input">
+                      <option *ngFor="let receiptAmountRangeCtrl of receiptAmountRangeDictionary index as i"
+                        [ngValue]="receiptAmountRangeCtrl.id">
+                        {{receiptAmountRangeCtrl.val}}
+                      </option>
+                    </select>
+                    <input 
+                      formControlName="receiptAmountFromCtrl" 
+                      name="receiptAmountFromCtrl"
+                      (keyup.enter)="setReceiptAmountFrom($event.type)"
+                      (blur)="onLeaveReceiptAmountFrom()"
+                      (focus)="onFocusReceiptAmountFrom()"
+                      type="tel"
+                      maxlength="16"
+                      class="{{InputText.INPUT_150_KINGAKU}}">
+                    <span class="wavy-line"></span>
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxReceiptAmountCtrl" 
+                        formControlName="cbxReceiptAmountCtrl" 
+                        name="cbxReceiptAmountCtrl" 
+                        (change)="setCbxReceiptAmount($event.type)"
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxReceiptAmountCtrl"></label>
+                    </div>
+                    <input 
+                      formControlName="receiptAmountToCtrl" 
+                      name="receiptAmountToCtrl"
+                      (keyup.enter)="setReceiptAmountTo($event.type)" 
+                      (blur)="onLeaveReceiptAmountTo()" 
+                      (focus)="onFocusReceiptAmountTo()"
+                      type="tel"
+                      maxlength="16"
+                      class="{{InputText.INPUT_150_KINGAKU}}">
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy">仕向銀行</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="sourceBankNameCtrl" 
+                      name="sourceBankNameCtrl" 
+                      (blur)="inputSourceBankName()"
+                      (keyup.enter)="setSourceBankName($event.type)" 
+                      maxlength="140" 
+                      class="input-size--400">
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy">仕向支店</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="sourceBranchNameCtrl" 
+                      name="sourceBranchNameCtrl" 
+                      (blur)="inputSourceBranchName()"
+                      (keyup.enter)="setSourceBranchName($event.type)"
+                      maxlength="15"
+                      class="input-size--230">
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy">{{getGridSetting('Note1')|slice:0:7}}</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="note1Ctrl" 
+                      name="note1Ctrl" 
+                      (blur)="setNote1($event.type)"
+                      (keyup.enter)="setNote1($event.type)" 
+                      maxlength="100" 
+                      class="input-size--400">
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy">{{getGridSetting('Note2')|slice:0:7}}</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="note2Ctrl"
+                      name="note2Ctrl"
+                      (blur)="setNote2($event.type)"
+                      (keyup.enter)="setNote2($event.type)"
+                      maxlength="100"
+                      class="input-size--400">
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy">{{getGridSetting('Note3')|slice:0:7}}</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="note3Ctrl"
+                      name="note3Ctrl"
+                      (blur)="setNote3($event.type)"
+                      (keyup.enter)="setNote3($event.type)"
+                      maxlength="100"
+                      class="input-size--400">
+                  </dd>
+                  <dt class="definitionForm__title w--17 fuzzy">{{getGridSetting('Note4')|slice:0:7}}</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                      formControlName="note4Ctrl" 
+                      name="note4Ctrl" 
+                      (blur)="setNote4($event.type)"
+                      (keyup.enter)="setNote4($event.type)"
+                      maxlength="100"
+                      class="input-size--400">
+                  </dd>
+                </dl>
+              </div>
+            </ng-container>
+            <div class="contents__buttonGroup">
+              <button 
+                (click)="buttonAction(BUTTON_ACTION.SEARCH)" 
+                [ngClass]="{'button-disable':  myFormGroup.invalid }"
+                class="buttonSecondary">{{ItemNameConst.BTN_SEARCH}}</button>
+              <button (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+
+    <!-- 検索結果 -->
+    <section class="contents searchResult">
+      <h2 class="contents__title--underline-slim">
+        <div class="contents__titleInner">{{ItemNameConst.LBL_RESULT_SEARCH}}
+          <div class="contents__titleEnd">件数
+          <input
+            class="searchResult__totalField input-size--190 align--right"
+            value="{{dispSumCount}}件"
+            readonly>入金額合計
+          <input
+            class="searchResult__totalField input-size--190 align--right"
+            value="{{dispSumReceiptAmount|currency_pipe}}"
+            readonly>入金残合計
+          <input
+            class="searchResult__totalField input-size--190 align--right"
+            value="{{dispSumRemainAmount|currency_pipe}}"
+            readonly>
+          </div>
+        </div>
+      </h2>
+        <div class="common-inner-table">
+          <table class="searchResult__table--tableData-nowrap">
+            <thead>
+              <tr>
+                <th class="col-size--50 col-align-center">{{ cbxColumnName }}</th>
+                <ng-container *ngFor="let setting of gridSettingsResult?.gridSettings">
+                  <th class="col-size--{{setting.displayWidth}} col-align-center">
+                    {{setting.columnNameJp}}
+                    <div class="inputStyled--inTable"
+                      *ngIf="setting.columnName=='ExcludeFlag'">
+                      <input class="inputStyled__input"
+                        id="cbxCheckAllCtrl"
+                      formControlName="cbxCheckAllCtrl" 
+                      name="cbxCheckAllCtrl"                        
+                      (change)="checkAll()"
+                      type="checkbox">
+                      <label class="inputStyled__checkbox"
+                        for="cbxCheckAllCtrl"></label>
+                    </div>
+                  </th>
+                </ng-container>
+              </tr>
+            </thead>
+
+            <tbody class="searchResult__tableHeight--9999">
+              <tr *ngFor="let receipt of receiptsResult?.receipts  | slice:0: TABLE_MAX_DISPLAY_INDEX  let i = index ">
+                <td class="col-size--50 col-align-center">
+                  <a class="buttonEdit" (click)="selectUpdateLine(i)"></a>
+                </td>
+                <ng-container *ngFor="let setting of gridSettingsResult?.gridSettings">
+                  <td *ngIf="setting.columnName=='ExcludeFlag'"
+                    class="col-size--{{setting.displayWidth}} col-align-center">
+                    <div class="inputStyled--inTable">
+                      <input
+                        id="detailCbxExcludeFlagCtrl{{i}}"
+                        class="inputStyled__input"
+                        formControlName="detailCbxExcludeFlagCtrl{{i}}"
+                        name="detailCbxExcludeFlagCtrl{{i}}"
+                        (change)="setDetailCbxExcludeFlag($event.type,i)"
+                        [ngClass]="{'checkbox-disabled-hidden': isHiddenExcludeFlag(i)}"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="detailCbxExcludeFlagCtrl{{i}}"></label>
+                    </div>
+                  </td>
+                  <td *ngIf="setting.columnName=='ExcludeCategory'"
+                    class="col-size--{{setting.displayWidth}} col-align-center">
+                    <select formControlName="detailExcludeCategoryIdCtrl{{i}}" name="detailExcludeCategoryIdCtrl{{i}}"
+                      class="select-size--{{setting.displayWidth-20}}">
+                      <option *ngFor="let category of excludeCategoriesResult?.categories" value="{{category.id}}">
+                        {{category.name}}
+                      </option>
+                    </select>
+                  </td>
+                  <td *ngIf="setting.columnName=='ExcludeAmount'"
+                    (click)="selectLine(i)"
+                    (dblclick)="savePartExclude()"
+                    class="col-size--{{ setting.displayWidth }} {{ gridSettingHelper.getAlign(setting) }} infotip">
+                    {{ receiptHelper.getValue(receipt, setting) }}
+                    <span [innerHtml]="HtmlTipsConst.SPLIT_EXCLUDING | safeHtml_pipe" class="infotip__frame"></span>
+                  </td>
+                  <td *ngIf="setting.columnName=='Memo'"
+                    (click)="selectLine(i)"
+                    (dblclick)="openReceiptMemoModal(i)"
+                    class="col-size--{{ setting.displayWidth }} {{ gridSettingHelper.getAlign(setting) }} infotip">
+                    {{ receiptHelper.getValue(receipt, setting) }}
+                    <span [innerHtml]="HtmlTipsConst.RECEIPT_MEMO | safeHtml_pipe" class="infotip__frame"></span>
+                  </td>              
+                  <td *ngIf="!isFixedColumn(setting)"
+                    (click)="selectLine(i)"
+                    class="col-size--{{ setting.displayWidth }} {{ gridSettingHelper.getAlign(setting) }}"
+                    [innerHtml]="receiptHelper.getValue(receipt, setting) | safeHtml_pipe">
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </section>
+  </section>
+
+
+
+</div>

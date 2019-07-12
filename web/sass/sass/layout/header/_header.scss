@@ -1,0 +1,100 @@
+/*
+## ヘッダー モジュール
+*/
+
+/*
+ ヘッダーの指定
+*/
+
+
+.user-menu {
+  border-left: 1px solid $border-color;
+  padding: 18px;
+  position: relative;
+  z-index: 10;
+  &__user-info {
+    padding-right: 14px;
+    background: url("/assets/image/icon_spread.png") no-repeat;
+    background-position: right 5px top 50%;
+    background-size: 8px 5px;
+    cursor: pointer;
+    &__name {
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+  &__list {
+    &.is-open {
+      display: block;
+      animation: userMenuOpen ease-in-out .2s;
+      animation-iteration-count: 1;
+      transform-origin: center;
+    }
+    display: none;
+    position: absolute;
+    background-color: $header-background-color;
+    border: 1px solid $border-color;
+    box-shadow: 0px 2px 3px rgba(0,
+    0,
+    0,
+    0.1);
+    width: 180px;
+    height: auto;
+    right: 2px;
+    top: 48px;
+    &:after {
+      content: "";
+      position: absolute;
+      top: -8px;
+      right: 16px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 8px 8px 8px;
+      border-color: transparent transparent #fff transparent;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      right: 14px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 9px 10px;
+      opacity: 0.1;
+      border-color: transparent transparent #000 transparent;
+    }
+    &__item {
+      padding: 6px;
+      a {
+        display: block;
+        padding: 4px 8px;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+      }
+      &__icon {
+        width: 14px;
+        margin-right: 6px;
+      }
+      &--logout {
+        @extend .user-menu__list__item;
+        border-top: 1px solid $border-color;
+        padding: 10px 6px;
+      }
+    }
+  }
+}
+
+// animations
+@keyframes userMenuOpen {
+  0% {
+    transform: translate(0px, 16px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}

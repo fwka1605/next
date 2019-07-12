@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9625e40f-62df-4a5f-ae3c-6787bfe6b5ca" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/CurrencyMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CurrencyMaster.xsd" MetadataType="Schema" ID="c5e80dfe-4a9c-4384-8f62-deca8850f7d9" SourceId="1" SourceUrl="http://localhost:3061/Master/CurrencyMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="CurrencyMaster.wsdl" MetadataType="Wsdl" ID="51e01d20-0b6d-4bd6-8055-85f101d297b5" SourceId="1" SourceUrl="http://localhost:3061/Master/CurrencyMaster.svc?wsdl" />
+    <MetadataFile FileName="CurrencyMaster1.xsd" MetadataType="Schema" ID="10d6ef56-f4f6-4568-8648-d579cd339aed" SourceId="1" SourceUrl="http://localhost:3061/Master/CurrencyMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="CurrencyMaster.disco" MetadataType="Disco" ID="b8595118-cbcc-4a8e-a889-b525f7aadd0c" SourceId="1" SourceUrl="http://localhost:3061/Master/CurrencyMaster.svc?disco" />
+    <MetadataFile FileName="CurrencyMaster2.xsd" MetadataType="Schema" ID="5a4acd02-31c3-4f91-ae3b-71a03eb8d3c2" SourceId="1" SourceUrl="http://localhost:3061/Master/CurrencyMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="CurrencyMaster3.xsd" MetadataType="Schema" ID="6aef792e-2442-41f8-bf08-a48bb77ca073" SourceId="1" SourceUrl="http://localhost:3061/Master/CurrencyMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

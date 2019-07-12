@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a7c0679c-4ace-4b18-9202-987d84d6f219" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/JuridicalPersonalityMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="JuridicalPersonalityMaster.xsd" MetadataType="Schema" ID="f7577fe4-983d-40be-b148-aa8db0bae7b8" SourceId="1" SourceUrl="http://localhost:3061/Master/JuridicalPersonalityMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="JuridicalPersonalityMaster.disco" MetadataType="Disco" ID="8691ea54-c95f-4c84-95e6-d9d27d8ed6f2" SourceId="1" SourceUrl="http://localhost:3061/Master/JuridicalPersonalityMaster.svc?disco" />
+    <MetadataFile FileName="JuridicalPersonalityMaster1.xsd" MetadataType="Schema" ID="88e6ab9a-bef1-4c0f-8464-9423e7ac381a" SourceId="1" SourceUrl="http://localhost:3061/Master/JuridicalPersonalityMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="JuridicalPersonalityMaster2.xsd" MetadataType="Schema" ID="fb963766-4e0a-48b8-a2e2-78aa87488f73" SourceId="1" SourceUrl="http://localhost:3061/Master/JuridicalPersonalityMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="JuridicalPersonalityMaster.wsdl" MetadataType="Wsdl" ID="4f7eb1f6-11fe-4457-b5d5-ae97929e9c27" SourceId="1" SourceUrl="http://localhost:3061/Master/JuridicalPersonalityMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

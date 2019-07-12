@@ -1,0 +1,28 @@
+// マスタ検索ボタン（虫眼鏡アイコン）
+// 
+// Markup:
+//  <button class="buttonMasterSearch"></button><!-- 通常 -->
+//  <button class="buttonMasterSearch" disabled></button><!-- disableの場合 -->
+//
+// Styleguide 3.2.5
+
+  .buttonMasterSearch {
+    display: inline-block;
+    vertical-align: middle;
+    width: 24px;
+    height: $input-height;
+    border-radius: 3px;
+    background: url(#{$imagePath}icon_search.svg) no-repeat center;
+    cursor: pointer;
+    transition: .3s; 
+    &:hover {
+      background-color: #eee;
+    }
+    &:disabled {
+      opacity: .3;
+      cursor: inherit;
+    }
+    &.button-disable {
+      background-image: url(#{$imagePath}icon_search_white.svg);
+    }
+  }

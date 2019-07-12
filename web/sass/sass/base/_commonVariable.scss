@@ -1,0 +1,83 @@
+// 共通変数
+// 
+// 共通で使用するフォントサイズや色指定など 
+// 
+// Styleguide 0.2.0 
+
+
+// 画像パス
+  $imagePath: '/assets/image/';
+
+
+// 画面推奨サイズ
+  $displayWidth: 1400px;
+
+
+  
+// キーカラー
+  $key-color: #b43d35;
+  
+  
+// ページ：背景色
+  $main-background-color: #F7F9FB;
+  
+  
+// メニュー：幅
+  $menu-width: 64px;
+  
+  
+// メニュー：展開時の幅 
+  $menu-width-open: 200px;
+  
+
+  
+  
+  // メニュー：背景色
+  $menu-background-color: #000034;
+  
+  
+  // ヘッダー:高さ
+  $header-height: 40px;
+  
+  
+  // ヘッダー：背景色
+  $header-background-color: #fff;
+  
+  
+  // layout__main：padding
+  $pageContainer-padding: 16px;
+ 
+
+// コンテンツ幅
+  $contentsWidth: $displayWidth - $menu-width - $pageContainer-padding * 2;
+
+
+// テキスト：色
+  $text-color: #354052;;
+  $text-link: #2EA2F8;
+  $text-error: #ff0000;
+  $text-attention: #ff0000;
+  $text-warning: #ff0000;
+  $text-success: #0000ff;
+  $text-minusPrice: #ff0000;
+
+
+// ボーダー：色
+  $border-color: #E0E6EF;
+
+
+// フォントサイズ
+  $font-size: 1.2rem;
+  $font-size-small: 1rem;
+  $font-size-large: 1.4rem;
+
+
+// テーブルヘッダ：色セル
+  $table-header-color: #595959;
+
+  
+// セル：色
+  // $cell-grandTotal:;
+
+// inputフィールド:高さ
+  $input-height : 24px;

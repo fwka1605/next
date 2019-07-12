@@ -1,0 +1,46 @@
+.tag {
+  &--fullAssignment,&--partAssignment,&--noAssignment {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 2px 10px;
+    color: #fff;
+  }
+  &--noAssignment {
+    background-color: #6cb435;
+  }
+  &--partAssignment {
+    background-color: #3579b4;
+  }
+  &--fullAssignment {
+    background-color: #757575;
+  }
+  &--new {
+    margin-left: 10px;
+    padding: 1px 5px;
+    border-radius: 4px;
+    background-color: #1991EB;
+    color: #fff;
+    font-size: $font-size-small;
+    font-weight: normal;
+    letter-spacing: 2px;
+  }
+}
+
+/*
+ 必須アイコン
+*/
+  .must_have_icon {
+    height: auto;
+    width: auto;
+    border: none;
+    border-radius: 4px;
+    color: red;
+    padding: 0 1px;
+    margin: 0 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size;
+  }

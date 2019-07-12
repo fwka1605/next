@@ -1,0 +1,199 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.EXTRACT)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid}" 
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_EXTRACT}}
+        <span [innerHtml]="ButtonTipsConst.EXTRACTION | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.OUTPUT)" 
+        [ngClass]="{'button-disable': extractionCount ==0 || outputCount != 0}" 
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_OUTPUT}}
+        <span [innerHtml]="ButtonTipsConst.JOURNALIZING_DOWNLOAD | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+
+      <button 
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum ">
+        {{ItemNameConst.BTN_CLEAR}}
+      </button>
+
+
+      <div class="contentsButton__subSection">
+        <ul class="separator">
+          <li class="separator__item">
+            <button 
+              (click)="buttonAction(BUTTON_ACTION.REEXPORT)" 
+              [ngClass]="{'button-disable': !selectedJournalSummary}" 
+              class="buttonPrimary infotip">
+              {{ItemNameConst.BTN_REOUTPUT}}
+              <span [innerHtml]="ButtonTipsConst.HISTORY_JOURNALIZING_DOWNLOAD | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+          <li class="separator__item">
+            <button 
+              (click)="buttonAction(BUTTON_ACTION.CANCEL)" 
+              [ngClass]="{'button-disable': !selectedJournalSummary}" 
+              class="buttonPrimary infotip">
+              {{ItemNameConst.BTN_CANCEL}}
+              <span [innerHtml]="ButtonTipsConst.JOURNALIZING_CANCEL | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="pageContainer">
+    <!-- 抽出条件 -->
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_EXPORT}}</h2>
+        <div class="contents__container--flex">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title">伝票日付</dt>
+            <dd class="definitionForm__data">
+              <input
+                formControlName="recordedAtFromCtrl"
+                name="recordedAtFromCtrl"
+                (keyup.enter)="setRecordedAtFrom($event.type)"
+                (dateSelect)="setRecordedAtFrom($event.type)"
+                ngbDatepicker #recordedAtFromDp="ngbDatepicker"
+                [ngClass]="{'input--error': recordedAtFromCtrl.errors?.ngbDate}"
+                placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+                <button class="btn btn-outline-secondary" (click)="recordedAtFromDp.toggle()" type="button"></button>
+              <span class="wavy-line"></span>
+              <input
+                formControlName="recordedAtToCtrl"
+                name="recordedAtToCtrl"
+                (keyup.enter)="setRecordedAtTo($event.type)"
+                (dateSelect)="setRecordedAtTo($event.type)"
+                ngbDatepicker #recordedAtToDp="ngbDatepicker"
+                [ngClass]="{'input--error': recordedAtToCtrl.errors?.ngbDate}"
+                placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+              <button class="btn btn-outline-secondary definitionForm__input"
+                (click)="recordedAtToDp.toggle()"
+                type="button"></button>
+              <div class="inputStyled">
+                <input class="inputStyled__input"
+                  id="cbxSubAccountTitleAddCustomerCtrl" 
+                  formControlName="cbxSubAccountTitleAddCustomerCtrl" 
+                  name="cbxSubAccountTitleAddCustomerCtrl" 
+                  (change)="setCbxSubAccountTitleAddCustomerCtrl($event.type)"
+                  type="checkbox">
+                <label class="inputStyled__checkbox" for="cbxSubAccountTitleAddCustomerCtrl">貸方補助科目に得意先名を出力する</label>
+              </div>
+              <br>
+              <div
+                class="message-result font__warning"
+                *ngIf="recordedAtFromCtrl.errors?.ngbDate 
+                      || recordedAtToCtrl.errors?.ngbDate">
+                {{ MSG_VAL.DATE_DAY }}
+              </div>
+            </dd>
+          </dl>
+          <div class="searchConfig">
+          <div class="searchConfig__result contents__container--flex">
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractionCount|currency_pipe}}" readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出金額</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractionAmount|currency_pipe}}" readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">出力件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{outputCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">出力金額</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{outputAmount|currency_pipe}}" readonly>
+                </dd>
+              </dl>
+            </div>
+          </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- 抽出履歴 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_EXPORT_HISTORY}}</h2>
+      <div class="contents__container">
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_200_CODE}}">選択</th>
+                <th class="{{TableColumn.COL_350_CODE}}">仕訳日</th>
+                <th class="{{TableColumn.COL_350_CODE}}">件数</th>
+                <th class="{{TableColumn.COL_350_CODE}}">金額</th>
+              </tr>
+            </thead>
+            <tbody class="searchResult__tableHeight--9999">
+              <tr *ngFor="let journalizingSummary of journalizingSummariesResult?.journalizingsSummaries index as i">
+                <td class="{{TableColumn.COL_200_CENTER_NAME}}">
+                  <div class="inputStyled--inTable">
+                    <input class="inputStyled__input"
+                      id="cbxJournalSummaryCtrl{{i}}" 
+                      formControlName="cbxJournalSummaryCtrl{{i}}" 
+                      name="cbxJournalSummaryCtrl{{i}}" 
+                      (change)="setCbxJournalSummary(i)"
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxJournalSummaryCtrl{{i}}"></label>
+                  </div>
+                </td>
+                <td class="{{TableColumn.COL_350_CENTER_NAME}}">{{journalizingSummary.outputAt|date:'yyyy/MM/dd HH:mm:ss':TIME_ZONE}}</td>
+                <td class="{{TableColumn.COL_350_RIGHT_NAME}}">{{journalizingSummary.count|currency_pipe}}</td>
+                <td class="{{TableColumn.COL_350_RIGHT_NAME}}">{{journalizingSummary.amount|currency_pipe}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+</div>

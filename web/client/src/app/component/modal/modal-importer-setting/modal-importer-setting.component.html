@@ -1,0 +1,217 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--large">
+  <h2 class="vModal__heading"> {{title}}：フリーインポーター{{ItemNameConst.LBL_SETTING_IMPORT}}
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+        [ngClass]="{'button-disable': RegistryButtonDisableFlag || myFormGroup.invalid}" 
+        class="buttonSecondary">
+        {{ItemNameConst.BTN_REGISTRY}}
+      </button>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+        [ngClass]="{'button-disable': UpdateButtonDisableFlag}" 
+        class="buttonSecondary">
+        {{ItemNameConst.BTN_UPDATE}}
+      </button>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.DELETE)" 
+        [ngClass]="{'button-disable': DeleteButtonDisableFlag}" 
+        class="buttonMinimum">
+        {{ItemNameConst.BTN_DELETE}}
+      </button> 
+      <button 
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">
+        {{ItemNameConst.BTN_CLEAR}}
+      </button>
+      <button 
+        (click)="cancel();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+
+      <div class="contentsButton__subSection">
+        <button 
+          (click)="buttonAction(BUTTON_ACTION.REFERE_NEW)" 
+          [ngClass]="{'button-disable': RegistryButtonDisableFlag || StringUtil.IsNullOrEmpty(patternNoCtrl.value)}" 
+          class="buttonPrimary">
+          {{ItemNameConst.BTN_REGISTRY_REFERENCE}}
+        </button> 
+      </div>
+    </section>
+    
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_IMPORT}}</h2>
+      <div class="contents__container">
+        <dl class="definitionForm mb--20">
+          <dt class="definitionForm__title w--12">パターンNo.<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--88">
+            <input 
+              formControlName="patternNoCtrl" 
+              name="patternNoCtrl"
+              (blur)="setPatternNo()" 
+              (keyup.enter)="setPatternNo()" 
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              maxLength="2"
+              type="tel"
+              class="input-size--50">
+              <a class="buttonMasterSearch" (click)="openMasterModal()"></a>
+            <input 
+              formControlName="patternNameCtrl" 
+              name="patternNameCtrl" 
+              (keyup.enter)="setPatternName($event.type)"
+              maxLength="40"
+              class="input-size--600">    
+              </dd>
+              <dt class="definitionForm__title w--12">取込開始行<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--88">
+            <input 
+              formControlName="startLineCountCtrl" 
+              name="startLineCountCtrl"
+              [ngClass]="{'input--error': startLineCountCtrl.errors?.range}"
+              type="tel"
+              maxLength="1"
+              class="input-size--30 definitionForm__input">
+              <div class="inputStyled">
+                <input
+                  id="ignoreLastLineCtrl"
+                  class="inputStyled__input"
+                  formControlName="ignoreLastLineCtrl"
+                  name="ignoreLastLineCtrl"
+                  type="checkbox">
+                <label
+                  class="inputStyled__checkbox"
+                  for="ignoreLastLineCtrl">最終行を取込処理しない</label>
+              </div>
+            <ng-container *ngIf="importerFileType==FreeImporterFormatType.Billing">
+                <div class="inputStyled">
+                  <input
+                    id="autoCreationCustomerCtrl"
+                    class="inputStyled__input"
+                    formControlName="autoCreationCustomerCtrl"
+                    name="autoCreationCustomerCtrl"
+                    (change)="setCustomerMasterFixedValue($event)"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="autoCreationCustomerCtrl">得意先マスターを自動生成する</label>
+                </div>
+            </ng-container>
+            <br>
+            <div
+              class="message-result font__warning"
+              *ngIf="startLineCountCtrl.errors?.range">
+              {{ MSG_VAL.CAPTURE_START_ROW }}
+            </div>
+          </dd>
+        </dl>
+        <h3 class="contents__title--separateline">{{ItemNameConst.IMPORT_DETAIL_SETTING}}</h3>
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}">No.</th>
+                <th class="{{TableColumn.COL_50_CODE}}">重複</th>
+                <ng-container *ngIf="importerFileType==FreeImporterFormatType.Billing">
+                  <th class="{{TableColumn.COL_50_CODE}}">上書</th>
+                </ng-container>    
+                <th class="{{TableColumn.COL_150_CODE}}">VONE項目名</th>
+                <th class="{{TableColumn.COL_350_CODE}}">取込有無</th>
+                <th class="{{TableColumn.COL_100_CODE}}">固定値</th>
+                <th class="{{TableColumn.COL_80_CODE}}">項目番号</th>
+                <th class="{{TableColumn.COL_300_CODE}}">属性情報</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let importerSettingDetail of importerSettingDetaisResult?.importerSettingDetails let i = index">
+                <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{i+1}}</td>
+                <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                  <div class="inputStyled">
+                    <input
+                      id="chkDuplicateCtrl{{i}}"
+                      class="inputStyled__input"
+                      formControlName="chkDuplicateCtrl{{i}}"
+                      name="chkDuplicateCtrl{{i}}"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="chkDuplicateCtrl{{i}}"></label>
+                  </div>
+                </td>
+                <ng-container *ngIf="importerFileType==FreeImporterFormatType.Billing">
+                  <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                    <div class="inputStyled">
+                      <input
+                        id="chkDoOverwriteCtrl{{i}}"
+                        class="inputStyled__input"
+                        formControlName="chkDoOverwriteCtrl{{i}}"
+                        name="chkDoOverwriteCtrl{{i}}"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="chkDoOverwriteCtrl{{i}}"></label>
+                    </div>
+                  </td>
+                </ng-container>    
+                <td class="{{TableColumn.COL_150_NAME}}">{{importerSettingDetail.fieldName}}</td>
+                <td class="{{TableColumn.COL_350_CENTER_NAME}}">
+                  <select
+                    formControlName="cmbImportDivisionCtrl{{i}}"
+                    name="cmbImportDivisionCtrl{{i}}"
+                    (change)="setCmbImportDivision($event.type,i)"
+                    class="select-size--330">
+                    <option 
+                      *ngFor="let importDivisionDetail of cmbImportDivisionList[i] let iDivision = index"
+                      value="{{importDivisionDetail.itemKey}}">
+                      {{importDivisionDetail.itemValue}}
+                    </option>
+                  </select>
+                </td>  
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                  <input 
+                    formControlName="fixedValueCtrl{{i}}"
+                    name="fixedValueCtrl{{i}}"
+                    (keyup)="openMasterModalForDetail($event.keyCode,i)"
+                    (blur)="setFixedValue($event.type,i)"
+                    (keyup.enter)="setFixedValue($event.type,i)"
+                    placeholder="{{setPlaceHolder(i)}}"
+                    class="input-size--80">
+                </td>
+                <td class="{{TableColumn.COL_80_RIGHT_NAME}}">
+                  <input
+                    formControlName="fieldIndexCtrl{{i}}"
+                    name="fieldIndexCtrl{{i}}"
+                    type="tel"
+                    maxlength="3"
+                    class="input-size--40">
+                </td>
+                <td class="{{TableColumn.COL_300_CENTER_NAME}}">
+                  <select
+                    formControlName="cmbAttributeCtrl{{i}}"
+                    name="cmbAttributeCtrl{{i}}"
+                    class="select-size--280">
+                    <option 
+                      *ngFor="let attributeDetail of cmbAttributeList[i] let iAttribute = index"
+                      value="{{attributeDetail.itemKey}}">
+                      {{attributeDetail.itemValue}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

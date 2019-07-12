@@ -1,0 +1,61 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal height--550">
+  <h2 class="vModal__heading">登録手数料
+    <span class="vModal__close"
+      (click)="close()"></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+      <button (click)="buttonAction(BUTTON_ACTION.REGISTRY)" class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button (click)="close()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+        <h2 class="contents__title--underline">登録手数料設定</h2>
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--20">登録手数料</dt>
+          <dd class="definitionForm__data w--80 mb--20">
+            <input
+              formControlName="feeNumberCtrl"
+              name="feeNumberCtrl"
+              maxLength="18"
+              type="tel"
+              class="input-size--100">
+          </dd>
+        </dl>
+      </div>
+    </section>
+    <section class="contents">
+      <div class="contents__container">    
+        <h2 class="contents__title--underline-slim">登録手数料登録内容
+        </h2>
+        <div class="common-inner-table">
+          <div class="xy-scroller-table__header common-inner-table">
+            <table>
+              <thead>
+                <tr>
+                  <th class="{{TableColumn.COL_50_CODE}}"></th>
+                  <th class="{{TableColumn.COL_100_CODE}}">登録日付</th>
+                  <th class="{{TableColumn.COL_100_CODE}}">登録手数料</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let customerFee of customerFeesResult?.customerFees index as i">
+                  <td class="{{TableColumn.COL_50_RIGHT_NAME}}">{{ i + 1 }}</td>
+                  <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ customerFee.createAt }}</td>
+                  <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ customerFee.fee }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

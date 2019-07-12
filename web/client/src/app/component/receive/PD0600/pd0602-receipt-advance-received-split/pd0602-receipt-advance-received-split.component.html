@@ -1,0 +1,418 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button (click)="back()" class="buttonBack">戻る</button>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid || registryDisableFlag }" 
+        class="buttonSecondary">登録</button>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.CANCEL)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid || cancelSplitDisableFlag }" 
+        class="buttonSecondary">振替取消</button>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REDISPLAY)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid || reDisplayDisableFlag }" 
+        class="buttonMinimum">再表示</button>
+    </div>
+  </section>
+
+  <section class="contents">
+    <!-- <h2 class="contents__title">前受金振替・分割処理</h2> -->
+    <div class="contents__container--flex">
+      <div class="frame mt--20 mb--40">
+        <h3 class="frame__title">入金情報</h3>
+        <dl class="definitionForm--lh-narrow">
+          <dt class="definitionForm__title w--10">入金日</dt>
+          <dd class="definitionForm__data w--90">
+            <input
+              class="input-size--100 col-align-center"
+              type="text"
+              value="{{originalReceipt?.recordedAt|date:'yyyy/MM/dd'}}"
+              readonly>
+          </dd>
+          <dt class="definitionForm__title w--10">振込依頼人名</dt>
+          <dd class="definitionForm__data w--90">
+            <input
+              class="input-size--500"
+              type="text"
+              value="{{originalReceipt?.payerName}}"
+              readonly>
+          </dd>
+          <dt class="definitionForm__title w--10">得意先コード</dt>
+          <dd class="definitionForm__data w--90">
+            <input
+              class="input-size--110  definitionForm__input"
+              type="text"
+              value="{{originalReceipt?.customerCode}}"
+              readonly>
+            <input
+              class="input-size--250"
+              type="text"
+              value="{{originalReceipt?.customerName}}"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w--10">入金額</dt>
+          <dd class="definitionForm__data w--12">
+            <input
+              class="input-size--100 definitionForm__input--numField"
+              type="text"
+              value="{{originalReceipt?.receiptAmount|currency_pipe}}"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w-6">入金区分</dt>
+          <dd class="definitionForm__data w-12">
+            <input
+              class="input-size--100"
+              type="text"
+              value="{{getOriginalCategoryCodeName()}}"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w--5">入金残</dt>
+          <dd class="definitionForm__data w--55">
+            <input
+              class="input-size--100 definitionForm__input--numField"
+              type="text"
+              value="{{getOriginalRemainAmount()|currency_pipe}}"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w--10">メモ</dt>
+          <dd class="definitionForm__data w--90">
+            <input
+              class="input-size--700"
+              type="text"
+              value="{{originalReceipt?.receiptMemo}}"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w--10">{{getColumnAlias("Note1")|slice:0:7}}</dt>
+          <dd class="definitionForm__data w--35">
+            <input
+              class="input-size--300"
+              type="text"
+              value="{{originalReceipt?.note1}}"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w--10">{{getColumnAlias("Note2")|slice:0:7}}</dt>
+          <dd class="definitionForm__data w--45">
+            <input
+              class="input-size--300"
+              type="text"
+              value="{{originalReceipt?.note2}}"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w--10">{{getColumnAlias("Note3")|slice:0:7}}</dt>
+          <dd class="definitionForm__data w--35">
+            <input
+              class="input-size--300"
+              type="text"
+              value="{{originalReceipt?.note3}}"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w--10">{{getColumnAlias("Note4")|slice:0:7}}</dt>
+          <dd class="definitionForm__data w--45">
+            <input
+              class="input-size--300"
+              type="text"
+              value="{{originalReceipt?.note4}}"
+              readonly>
+          </dd>
+
+        </dl>
+      </div>
+      <div class="frame--w-100 mb--10">
+        <h3 class="frame__title">行の追加</h3>
+        <dl class="definitionForm">
+          <ng-container [formGroup]="myFormGroup.get('addRowsGroup')">
+  
+            <dt class="definitionForm__title w--7">処理予定日</dt>
+            <dd class="definitionForm__data w--13">
+              <input
+                formControlName="processingAtCtrl"
+                name="processingAtCtrl"
+                (keyup.enter)="setProcessingAt($event.type)"
+                (dateSelect)="setProcessingAt($event.type)"
+                ngbDatepicker #processingAtDp="ngbDatepicker"
+                placeholder="YYYY/MM/DD"
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+              <button class="btn btn-outline-secondary" (click)="processingAtDp.toggle()" type="button"></button>
+              <br>
+              <div
+                class="message-result font__warning"
+                *ngIf="myFormGroup.get('addRowsGroup')['controls'].processingAtCtrl.errors?.ngbDate">
+                {{ MSG_VAL.DATE_DAY }}
+              </div>               
+            </dd>
+  
+            <dt class="definitionForm__title w--8">得意先コード</dt>
+            <dd class="definitionForm__data  w--12">
+              <input
+                formControlName="customerCodeCtrl"
+                name="customerCodeCtrl"
+                (blur)="setCustomerCode($event.type)"
+                (keyup.enter)="setCustomerCode($event.type)"
+                #customerCodeInput
+                [formControl]="customerCodeCtrl"
+                [matAutocomplete]="autoCustomerCode"
+                type="tel"
+                maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                class="input-size--100">
+              <mat-autocomplete
+                #autoCustomerCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option
+                  *ngFor="let customer of customerFilterds[0] | async"
+                  [value]="customer.code">
+                  {{ customer.code }}:{{ customer.name }}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER)"></a>
+            </dd>
+  
+            <dt class="definitionForm__title  w--4">金額</dt>
+            <dd class="definitionForm__data  w--16">
+              <input
+                formControlName="receiptAmountCtrl"
+                name="receiptAmountCtrl"
+                (keyup.enter)="setReceiptAmount($event.type)"
+                (blur)="onLeaveReceiptAmount()"
+                (focus)="onFocusReceiptAmount()"
+                type="tel"
+                maxlength="16"
+                class="{{InputText.INPUT_150_KINGAKU}}">
+            </dd>
+  
+            <dt class="definitionForm__title  w--4">行数</dt>
+            <dd class="definitionForm__data  w--36">
+              <input
+                formControlName="numberOfLineCtrl"
+                name="numberOfLineCtrl"
+                type="tel"
+                class="input-size--30 definitionForm__input col-align-right"
+                maxlength="1" >
+              <button
+                (click)="addLine()"
+                [ngClass]="{'button-disable': myFormGroup.get('addRowsGroup').invalid || addLineBtnDisableFlag }"
+                class="buttonMinimum">追加</button>
+              <button
+                (click)="buttonAction(BUTTON_ACTION.DELETE)"
+                [ngClass]="{'button-disable': rowDeleteDisableFlag }"
+                class="buttonMinimum">削除</button>
+              <button
+                (click)="selectAll()"
+                [ngClass]="{'button-disable': advanceReceiptsResult == null || advanceReceiptsResult?.advanceReceipts.length==0 || selectAllDisableFlag }"
+                class="buttonMinimum">全選択</button>
+              <button
+                (click)="clearAll()"
+                [ngClass]="{'button-disable': advanceReceiptsResult == null || advanceReceiptsResult?.advanceReceipts.length==0  || selectAllDisableFlag }"
+                class="buttonMinimum">全解除</button>
+            </dd>
+          </ng-container>
+        </dl>
+      </div>
+    </div>
+    <div class="contents__container">
+      <div class="frame">
+        <h3 class="frame__title">前受金情報</h3>
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--4">計上仕訳日</dt>
+          <dd class="definitionForm__data w--6">
+            <input class="input-size--100 col-align-center" type="text" value="{{outputAtCtrl.value|date:'yyyy/MM/dd'}}"
+              readonly>
+          </dd>
+          <dt class="definitionForm__title w--5">振替処理年月日</dt>
+          <dd class="definitionForm__data w--7">
+            <input
+              formControlName="transferDateCtrl"
+              name="transferDateCtrl"
+              (keyup.enter)="setTransferDate($event.type)"
+              (dateSelect)="setTransferDate($event.type)"
+              ngbDatepicker #transferDateDp="ngbDatepicker"
+              placeholder="YYYY/MM/DD"
+              maxlength="10"
+              type="tel"
+              class="input-size--100">
+            <button class="btn btn-outline-secondary definitionForm__input" (click)="transferDateDp.toggle()"
+              type="button"></button>
+            <br>
+            <div
+              class="message-result font__warning"
+              *ngIf="myFormGroup.controls.transferDateCtrl.errors?.ngbDate 
+              || myFormGroup.controls.transferDateCtrl.errors?.ngbDate">
+              {{ MSG_VAL.DATE_DAY }}
+            </div>  
+          </dd>
+          <dt class="definitionForm__title w--1"></dt>
+          <dd class="definitionForm__data w--6">
+            <label class="labelWrap">
+              <input class="labelWrap__input"
+                formControlName="cbxTransferOutputAtCtrl" name="cbxTransferOutputAtCtrl" type="checkbox">振替仕訳有
+            </label>
+          </dd>
+          <dt class="definitionForm__title w--4">振替仕訳日</dt>
+          <dd class="definitionForm__data w--67">
+            <input
+              class="input-size--100 col-align-center"
+              type="text"
+              value="{{transferOutputAtCtrl.value|date:'yyyy/MM/dd'}}"
+              readonly>
+          </dd>
+        </dl>
+        <div class="searchResult__title">
+          <div class="searchResult__total">
+            振替額合計
+            <input class="searchResult__totalField" formControlName="transferAmountTotalCtrl"
+              value="{{ transferAmount | currency_pipe }}" readonly>
+            残額
+            <input class="searchResult__totalField" formControlName="splitRemainingCtrl"
+              value="{{ remainingAmount | currency_pipe }}" readonly>
+          </div>
+        </div>
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_60_CODE}}">削除</th>
+                <th class="{{TableColumn.COL_100_CODE}}">消込区分</th>
+                <th class="{{TableColumn.COL_150_CODE}}">処理予定日</th>
+                <th class="{{TableColumn.COL_150_CODE}}">得意先コード</th>
+                <th class="{{TableColumn.COL_280_CODE}}">得意先名</th>
+                <th class="{{TableColumn.COL_CENTER_KINGAKU}}">入金額</th>
+                <th class="{{TableColumn.COL_280_CODE}}">メモ</th>
+                <th class="{{TableColumn.COL_280_CODE}}">{{getColumnAlias("Note1")}}</th>
+                <th class="{{TableColumn.COL_280_CODE}}">{{getColumnAlias("Note2")}}</th>
+                <th class="{{TableColumn.COL_280_CODE}}">{{getColumnAlias("Note3")}}</th>
+                <th class="{{TableColumn.COL_280_CODE}}">{{getColumnAlias("Note4")}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let advanceReceipt of advanceReceipts index as i">
+                <td class="{{TableColumn.COL_60_CODE}}">
+                  <input
+                    name="cbxCancelAdvanceReceivedCtrl{{i}}"
+                    formControlName="cbxCancelAdvanceReceivedCtrl{{i}}"
+                    type="checkbox"
+                    (change)="setCbxCancelAdvanceReceived(i)"
+                    [style.visibility]="advanceReceipt.assignmentFlag>0 ? 'hidden' : 'visible'" >
+                </td>
+                <td class="{{TableColumn.COL_100_CODE}}" [innerHtml]="getAssignmentValue(advanceReceipt) | safeHtml_pipe"></td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">
+                    <input
+                      formControlName="detailProcessingAtCtrl{{i}}"
+                      name="detailProcessingAtCtrl{{i}}"
+                      (keyup.enter)="setDetailProcessingAt($event.type,i)"
+                      placeholder="YYYY/MM/DD"
+                      ngbDatepicker #detailProcessingAtDp="ngbDatepicker"
+                      maxlength="10"
+                      type="tel"
+                      class="input-size--100"
+                      [readonly]="advanceReceipt.assignmentFlag>0" >
+                    <button class="btn btn-outline-secondary"
+                      (click)="detailProcessingAtDp.toggle()"
+                      type="button"
+                      [style.visibility]="advanceReceipt.assignmentFlag>0 ? 'hidden' : 'visible'" ></button>
+                </td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">
+                  <input
+                    formControlName="detailCustomerCodeCtrl{{i}}"
+                    name="detailCustomerCodeCtrl{{i}}"
+                    (blur)="setDetailCustomerCode($event.type,i)"
+                    (keyup.enter)="setDetailCustomerCode($event.type,i)"
+                    type="tel"
+                    maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="input-size--110"
+                    [readonly]="advanceReceipt.assignmentFlag>0" >
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,i)"></a>
+                </td>
+                <td class="{{TableColumn.COL_280_CENTER_NAME}}">
+                  <input
+                    formControlName="detailCustomerNameCtrl{{i}}"
+                    name="detailCustomerNameCtrl{{i}}"
+                    class="input-size--250"
+                    readonly>
+                </td>
+                <td class="{{TableColumn.COL_KINGAKU}}">
+                  <input
+                    formControlName="detailReceiptAmountCtrl{{i}}"
+                    name="detailReceiptAmountCtrl{{i}}"
+                    (keyup.enter)="setDetailReceiptAmount($event.type,i)"
+                    (blur)="onLeaveDetailReceiptAmount(i)"
+                    (focus)="onFocusDetailReceiptAmount(i)"
+                    maxlength="100"
+                    class="{{InputText.INPUT_150_KINGAKU}}"
+                    [readonly]="advanceReceipt.assignmentFlag>0" >
+                </td>
+                <td class="{{TableColumn.COL_280_CENTER_NAME}}">
+                  <input
+                    formControlName="detailMemoCtrl{{i}}"
+                    name="detailMemoCtrl{{i}}"
+                    (keyup.enter)="setDetailMemo($event.type,i)"
+                    (blur)="setDetailMemo($event.type,i)"
+                    maxlength="100"
+                    class="input-size--250"
+                    [readonly]="advanceReceipt.assignmentFlag>0" >
+                </td>
+                <td class="{{TableColumn.COL_280_CENTER_NAME}}">
+                  <input
+                    formControlName="detailNote1Ctrl{{i}}"
+                    name="detailNote1Ctrl{{i}}"
+                    (keyup.enter)="setDetailNote1($event.type,i)"
+                    (blur)="setDetailNote1($event.type,i)"
+                    maxlength="100"
+                    class="input-size--250"
+                    [readonly]="advanceReceipt.assignmentFlag>0" >
+                </td>
+                <td class="{{TableColumn.COL_280_CENTER_NAME}}">
+                  <input
+                    formControlName="detailNote2Ctrl{{i}}"
+                    name="detailNote2Ctrl{{i}}"
+                    (keyup.enter)="setDetailNote2($event.type,i)"
+                    (blur)="setDetailNote2($event.type,i)"
+                    maxlength="100"
+                    class="input-size--250"
+                    [readonly]="advanceReceipt.assignmentFlag>0" >
+                </td>
+                <td class="{{TableColumn.COL_280_CENTER_NAME}}">
+                  <input
+                    formControlName="detailNote3Ctrl{{i}}"
+                    name="detailNote3Ctrl{{i}}"
+                    (keyup.enter)="setDetailNote3($event.type,i)"
+                    (blur)="setDetailNote3($event.type,i)"
+                    maxlength="100"
+                    class="input-size--250"
+                    [readonly]="advanceReceipt.assignmentFlag>0" >
+                </td>
+                <td class="{{TableColumn.COL_280_CENTER_NAME}}">
+                  <input
+                    formControlName="detailNote4Ctrl{{i}}"
+                    name="detailNote4Ctrl{{i}}"
+                    (keyup.enter)="setDetailNote4($event.type,i)"
+                    (blur)="setDetailNote4($event.type,i)"
+                    maxlength="100"
+                    class="input-size--250"
+                    [readonly]="advanceReceipt.assignmentFlag>0" >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

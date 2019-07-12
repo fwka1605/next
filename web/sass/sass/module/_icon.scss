@@ -1,0 +1,16 @@
+/*
+カレンダーアイコン
+*/
+  @mixin iconCalendar {
+    width: 15px;
+    min-height: $input-height;
+    margin-top: -1px;
+    margin-left: 4px;
+    border: none;
+    background: url('/assets/image/icon_calendar.svg') no-repeat center center /contain;
+  }
+
+  .btn.btn-outline-secondary, // bootstrapのクラス名
+  .iconCalendar {
+    @include iconCalendar;
+  }

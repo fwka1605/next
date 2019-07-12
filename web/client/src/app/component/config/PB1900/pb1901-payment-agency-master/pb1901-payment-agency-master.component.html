@@ -1,0 +1,324 @@
+<div [formGroup]="myFormGroup" class="company-master">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="back()"
+        *ngIf="!isDisableBackBtn"
+        class="buttonBack">{{ItemNameConst.BTN_BACK}}</button>
+      <button
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button
+        (click)="buttonAction(BUTTON_ACTION.DELETE)"
+        [ngClass]="{'button-disable': DeleteButtonDisableFlag}"
+        class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <section class="contents">
+      <div class="contents__container--flex">
+        <dl class="definitionForm mb--30">
+          <dt class="definitionForm__title w--15">決済代行会社コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+              <input
+              formControlName="paymentAgencyCodeCtrl"
+              name="paymentAgencyCodeCtrl"
+              (keyup.enter)="setPaymentAgencyCode($event.type)"
+              (blur)="setPaymentAgencyCode($event.type)"
+              #paymentAgencyCodeInput
+              [formControl]="paymentAgencyCodeCtrl" 
+              [matAutocomplete]="autoPaymentAgencyCode"
+              type="tel"
+              maxlength="2"
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              class="input-size--60 definitionForm__input">
+            <mat-autocomplete 
+              #autoPaymentAgencyCode="matAutocomplete"
+              [panelWidth]="PanelConst.autocompleteWidth300">
+              <mat-option 
+                *ngFor="let paymentAgency of paymentAgencyFilterds[0] | async" 
+                [value]="paymentAgency.code">{{paymentAgency.code}}:{{paymentAgency.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_PAYMENT_AGENCY)"></a>
+          </dd>
+          <dt class="definitionForm__title">委託者コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--60">
+              <input
+                formControlName="consigneeCodeCtrl"
+                name="consigneeCodeCtrl"
+                (keyup.enter)="setConsigneeCode($event.type)"
+                maxlength="10"
+                class="input-size--100">
+            </dd>
+            
+          <dt class="definitionForm__title w--15">決済代行会社名<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--80">
+              <input
+                formControlName="paymentAgencyNameCtrl"
+                name="paymentAgencyNameCtrl"
+                (keyup.enter)="setPaymentAgencyName($event.type)"
+                maxlength="40"
+                class="input-size--500">
+            </dd>
+            <dt class="definitionForm__title w--15">決済代行会社名カナ<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data">
+              <input
+                formControlName="paymentAgencyKanaCtrl"
+                name="paymentAgencyKanaCtrl"
+                (blur)="inputPaymentAgencyKana()"
+                (keyup.enter)="setPaymentAgencyKana($event.type)"
+                maxlength="48"
+                class="input-size--500">
+            </dd>
+        </dl>
+          <div class="frame--w-100 mb--40">
+            <h3 class="frame__title">取引銀行口座</h3>
+            <dl class="definitionForm">
+              <dt class="definitionForm__title w--10">銀行コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--10">
+                <input
+                  formControlName="bankCodeCtrl"
+                  name="bankCodeCtrl"
+                  (keyup.enter)="setBankCode($event.type)"
+                  (blur)="setBankCode($event.type)"
+                  type="tel"
+                  maxlength="4"
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                  class="input-size--60">
+                <a class="buttonMasterSearch" (click)="openBankMasterModal()"></a>
+              </dd>
+              <dt class="definitionForm__title w--10">銀行名カナ<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data">
+                <input
+                  formControlName="bankKanaCtrl"
+                  name="bankKanaCtrl"
+                  (blur)="inputBankName()"
+                  (keyup.enter)="setBankName($event.type)"
+                  maxlength="15"
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                  class="input-size--160">
+                <a class="buttonMasterSearch" (click)="openBankMasterModal()"></a>
+                </dd>
+              <dt class="definitionForm__title w--10">支店コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--10">
+                <input
+                  formControlName="branchCodeCtrl"
+                  name="branchCodeCtrl"
+                  (keyup.enter)="setBranchCode($event.type)"
+                  (blur)="setBranchCode($event.type)"
+                  type="tel"
+                  maxlength="3"
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                  class="input-size--60">
+                <a class="buttonMasterSearch" (click)="openBankMasterModal()"></a>
+              </dd>
+              <dt class="definitionForm__title w--10">支店名カナ<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--20">
+                <input
+                  formControlName="branchKanaCtrl"
+                  name="branchKanaCtrl"
+                  (blur)="inputBranchName()"
+                  (keyup.enter)="setBranchName($event.type)"
+                  maxlength="15"
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                  class="input-size--160">
+                <a class="buttonMasterSearch" (click)="openBankMasterModal()"></a>
+              </dd>
+              <dt class="definitionForm__title w--10">預金種別<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--10">
+                <select
+                  formControlName="cmbAccountTypeCtrl"
+                  name="cmbAccountTypeCtrl"
+                  (change)="setCmbAccountType($event.type)"
+                  class="select-size--100">
+                  <option
+                    *ngFor="let cmbAccountTypeCtrl of exclusiveAccountType index as i" 
+                    [ngValue]="cmbAccountTypeCtrl.id">
+                    {{cmbAccountTypeCtrl.val}}
+                  </option>
+                </select>
+              </dd>
+              <dt class="definitionForm__title w--10">口座番号<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data">
+                <input
+                  formControlName="accountNumberCtrl"
+                  name="accountNumberCtrl"
+                  (keyup.enter)="setAccountNumber($event.type)"
+                  (blur)="setAccountNumber($event.type)"
+                  maxlength="7"
+                  type="tel"
+                  class="input-size--100">
+              </dd>
+            </dl>
+          </div>
+          <div class="frame">
+            <h3 class="frame__title">口座振替</h3>
+            <dl class="definitionForm">
+            <dt class="definitionForm__title w--16">
+              <span *ngIf="myFormGroup.controls.cmbShareTransferFeeCtrl.invalid">
+                手数料負担区分<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span>
+              </span>
+              <span *ngIf="!myFormGroup.controls.cmbShareTransferFeeCtrl.invalid">
+                手数料負担区分<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span>
+              </span>
+            </dt>
+            <dd class="definitionForm__data w--84">
+              <select
+                formControlName="cmbShareTransferFeeCtrl"
+                name="cmbShareTransferFeeCtrl"
+                (change)="setCmbShareTransferFee($event.type)"
+                class="select-size--100">
+                <option
+                  *ngFor="let shareTransferFeeCtrl of shareTransferFeeDictionary index as i"
+                  [ngValue]="shareTransferFeeCtrl.id"
+                  value="{{shareTransferFeeCtrl.id}}">
+                  {{shareTransferFeeCtrl.val}}
+                </option>
+              </select>
+              <div class="labelWrap__wrap">
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="cbxUseFeeToleranceCtrl"
+                    class="inputStyled__input"
+                    formControlName="cbxUseFeeToleranceCtrl"
+                    name="cbxUseFeeToleranceCtrl"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxUseFeeToleranceCtrl">手数料誤差利用</label>
+                </div>
+              </label>
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="cbxUseFeeLearningCtrl"
+                    class="inputStyled__input"
+                    formControlName="cbxUseFeeLearningCtrl"
+                    name="cbxUseFeeLearningCtrl"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxUseFeeLearningCtrl">手数料自動学習</label>
+                </div>
+              </label>
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="cbxUseKanaLearningCtrl"
+                    class="inputStyled__input"
+                    formControlName="cbxUseKanaLearningCtrl"
+                    name="cbxUseKanaLearningCtrl"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxUseKanaLearningCtrl">カナ自動学習</label>
+                </div>
+              </label>
+              </div>
+            </dd>
+            <dt class="definitionForm__title w--16">書込みファイル名<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--84">
+              <input
+                formControlName="outputFileNameCtrl"
+                name="outputFileNameCtrl"
+                class="input-size--450 definitionForm__input">
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="cbxAppendDateCtrl"
+                    class="inputStyled__input"
+                    formControlName="cbxAppendDateCtrl"
+                    name="cbxAppendDateCtrl"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxAppendDateCtrl">自動的に日付を付与する。</label>
+                </div>
+              </label>
+            </dd>
+            <dt class="definitionForm__title"></dt>
+            <dd class="definitionForm__data">
+              <label class="labelWrap mr--20">
+                <div class="inputStyled">
+                  <input
+                    id="cbxConsiderUncollectedCtrl"
+                    class="inputStyled__input"
+                    formControlName="cbxConsiderUncollectedCtrl"
+                    name="cbxConsiderUncollectedCtrl"
+                    (change)="setCbxConsiderUncollected($event.type)"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxConsiderUncollectedCtrl"
+                  >振替不可データの回収区分を自動更新する。</label>
+                </div>
+              </label>
+              <span class="must_have_icon mr--15">{{ItemNameConst.LBL_REQUIRED}}</span>
+
+              <select
+                formControlName="cmbConsiderUncollectedCtrl"
+                name="cmbConsiderUncollectedCtrl"
+                (change)="setCmbConsiderUncollected($event.type)"
+                class="select-size--150">
+                <option
+                  *ngFor="let category of categoriesResult?.categories index as i"
+                  value="{{category.id}}">
+                  {{category.name}}
+                </option>
+              </select>
+            </dd>
+            <dt class="definitionForm__title">入金予定日<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--40">引当日より
+              <input
+                formControlName="dueDateOffsetCtrl"
+                name="dueDateOffsetCtrl"
+                (keyup.enter)="setDueDateOffset($event.type)"
+                type="tel"
+                maxlength="3"
+                class="input-size--60 definitionForm__input">日後
+            </dd>
+            <dt class="definitionForm__title w--16">口座データフォーマット<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data">
+              <select
+                formControlName="cmbFileFormatCtrl"
+                name="cmbFileFormatCtrl"
+                (keyup.enter)="setCmbFileFormat($event.type)"
+                class="select-size--500">
+                <option
+                  *ngFor="let cmbFileFormatCtrl of paymentFileFormatResult?.paymentFileFormats index as i"
+                  value="{{cmbFileFormatCtrl.id}}">
+                  {{cmbFileFormatCtrl.name}}
+                </option>
+              </select>
+            </dd>
+            <dt class="definitionForm__title">契約種別コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data">
+              <input
+                formControlName="contractCodeCtrl"
+                name="contractCodeCtrl"
+                (keyup.enter)="setContractCode($event.type)"
+                maxlength="2"
+                type="tel"
+                class="input-size--60">
+            </dd>
+          </dl>
+          </div>
+      </div>
+    </section>
+
+  </section>
+
+</div>

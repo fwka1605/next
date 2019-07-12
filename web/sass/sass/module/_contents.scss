@@ -1,0 +1,260 @@
+// .contents：タイトル、コンテナ、カラムレイアウト
+//
+// sg-wrapper:
+// <div class="wrapperMarkup">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.0
+
+// タイトル
+// 
+// Markup:
+// <!-- コンテナなし -->
+// <h2 class="heading">コンテナに入れない見出し</h2>
+// <h2 class="heading">見出しとフィールドの組み合わせ
+//   <div class="heading__subText">入金予定日
+//     <input class="heading__inputField input-size--130" type="text" readonly
+//       value="2019/07/07">
+//   </div>
+// </h2>
+// <h2 class="heading--fixWidth">固定幅の見出し</h2>
+// <!-- 基本レイアウト -->
+// <section class="contents">
+//   <h2 class="contents__title">タイトル</h2>
+//   <div class="contents__container">コンテンツ</div>
+// </section>
+// <!-- カラムレイアウト -->
+// <section class="contents">
+//   <h2 class="contents__title--underline">タイトル下線あり</h2>
+//   <div class="contents__container">コンテンツ</div>
+// </section>
+//
+// Styleguide 2.1.1
+
+  .heading {
+    $heading-prop: #{&};
+    display: flex;
+    align-items: center;
+    margin-bottom: $pageContainer-padding;
+    font-size: $font-size-large;
+    font-weight: bold;
+    &--fixWidth {
+      @extend #{$heading-prop};
+      justify-content: space-between;
+      width: $contentsWidth;
+    }
+    &__end {
+      font-size: $font-size;
+    }
+    &__subText {
+      font-size: $font-size;
+      margin-left: 40px;
+      &:first-child {
+        margin-left: 80px;
+      }
+    }
+    &__inputField {
+      height: 24px;
+      min-height: auto;
+      margin: 0 $pageContainer-padding 0 8px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .contents {
+    $contents-prop: #{&};
+    position: relative;
+    margin-bottom: $pageContainer-padding + 4;
+    border-radius: 3px;
+    border: 1px solid #E0E6EF;
+    background-color: #fff;
+    &--hidden {
+      @extend #{$contents-prop};
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      transition: .1s;
+      width: $contentsWidth;
+      height: 0;
+      min-height: 0;
+      margin-bottom: 0;
+    }
+    &--visible {
+      @extend #{$contents-prop};
+      transition: .3s;
+      width: $contentsWidth;
+      min-height: 100px;
+    }
+    &--fixWidth {
+      @extend #{$contents-prop};
+      width: $contentsWidth;
+    }
+    &__title {
+      $__title-prop: #{&};
+      margin: 0 16px;
+      padding: 16px 0 12px;
+      font-size: $font-size-large;
+      font-weight: bold;
+      line-height: 1;
+      + .contents__container,.contents__container--flex {
+        padding-top: 0;
+      }
+      &--underline {
+        @extend #{$__title-prop};
+        border-bottom: 3px solid $border-color;
+        + .contents__container,.contents__container--flex {
+          padding-top: 16px;
+        }
+      }
+      &--underline-slim {
+        @extend #{$__title-prop};
+        border-bottom: 1px solid $border-color;
+        margin-bottom: 5px;
+      }
+      &--separateline {
+        @extend #{$__title-prop};
+        margin: inherit;
+        padding: 13px 0;
+        border-top: 1px solid #ccc;
+      }
+    }
+    &__titleInner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: $contentsWidth - $pageContainer-padding;
+    }
+    &__titleEnd {
+      font-size: $font-size;
+    }
+  }
+
+
+// 404ページで使用
+  .contents--404 {
+    position: absolute;
+    top: 250px;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 200px;
+    margin: auto;
+    background-color: #fff;
+  }
+
+
+// コンテナ
+// 
+// Markup:
+// <!-- ボタン用のコンテナ -->
+// <section class="contents">
+//   <div class="contents__container--button">
+//     <button class="common-btn__item">ボタン用のコンテナ</button>
+//     <button class="common-btn__item">検索</button>
+//     <button class="common-btn__item button-disable">クリア</button>
+//   </div>
+// </section>
+// <section class="contents">
+//   <div class="contents__container">通常のコンテナ</div>
+// </section>
+//
+// Styleguide 2.1.2
+
+  $fixWidth: 1287px;
+  .contents {
+    &--x-scrollable {
+      @extend .contents;
+      overflow-x: auto;
+    }
+    &__container {
+      padding: 16px;
+      box-sizing: border-box;
+      &--button {
+        @include flexParent;
+        padding: 10px;
+      }
+      &--flex {
+        @extend .contents__container;
+        @include flexParent;
+        width: $fixWidth;
+      }
+      > .contents__title {
+        margin: 0 0 16px;
+      }
+    }
+    &__buttonGroup {
+      z-index: 1;
+      width: 100%;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid $border-color;
+ 
+    }
+  }
+
+  .contents__container,
+  .contents__container--flex { // containerがネストされている場合
+    .contents__container--flex {
+      padding: 0;
+    }
+  }
+
+
+// カラムレイアウト
+// 
+// カラムレイアウトのコンテナは"contents__container--flex"を指定する。<br> 
+// カラム幅を制御しているクラス"contents__item--w-●●"は5%単位。 
+// 
+// Markup:
+// <!-- 2カラム、マルチカラムレイアウト -->
+// <section class="contents">
+//   <h2 class="contents__title--underline">2カラム</h2>
+//   <div class="contents__container--flex">
+//     <div class="contents__item--w-5">幅：5%</div>
+//     <div class="contents__item--w-95">幅：95%</div>
+//     <div class="contents__item--w-10">幅：10%</div>
+//     <div class="contents__item--w-90">幅：90%</div>
+//     <div class="contents__item--w-15">幅：15%</div>
+//     <div class="contents__item--w-85">幅：85%</div>
+//     <div class="contents__item--w-20">幅：20%</div>
+//     <div class="contents__item--w-80">幅：80%</div>
+//     <div class="contents__item--w-25">幅：25%</div>
+//     <div class="contents__item--w-75">幅：75%</div>
+//     <div class="contents__item--w-30">幅：30%</div>
+//     <div class="contents__item--w-70">幅：70%</div>
+//     <div class="contents__item--w-35">幅：35%</div>
+//     <div class="contents__item--w-65">幅：65%</div>
+//     <div class="contents__item--w-40">幅：40%</div>
+//     <div class="contents__item--w-60">幅：60%</div>
+//     <div class="contents__item--w-45">幅：45%</div>
+//     <div class="contents__item--w-55">幅：55%</div>
+//     <div class="contents__item--w-50">幅：50%</div>
+//     <div class="contents__item--w-50">幅：50%</div>
+//   </div>
+//   <h2 class="contents__title--underline">マルチカラム</h2>
+//   <div class="contents__container--flex">
+//     <!-- 3カラム --> 
+//     <div class="contents__item--w-30">幅：30%</div>
+//     <div class="contents__item--w-30">幅：30%</div>
+//     <div class="contents__item--w-30">幅：30%</div>
+//     <!-- 4カラム --> 
+//     <div class="contents__item--w-25">幅：25%</div>
+//     <div class="contents__item--w-25">幅：25%</div>
+//     <div class="contents__item--w-25">幅：25%</div>
+//     <div class="contents__item--w-25">幅：25%</div>
+//   </div>
+// </section>
+//
+// Styleguide 2.1.3
+
+  .contents__item { // .contents__container--flex内のカラムレイアウト、5%単位
+    width: auto;
+    @for $width from 1 through 20 {
+      &--w-#{$width*5} {
+        width: #{$width*5%};
+      }
+    }
+  }

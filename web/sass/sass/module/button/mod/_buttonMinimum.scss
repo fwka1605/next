@@ -1,0 +1,59 @@
+// シンプルなボタン
+// 
+// Markup:
+//  <button class="buttonMinimum">削除</button>
+//
+// Styleguide 3.2.1
+
+  .buttonMinimum {
+    @include buttonBasic(#FFFFFF,#F2F4F7);
+    $buttonMinimum-prop: #{&};
+    white-space: nowrap;
+    text-decoration: none !important;
+    margin-right: $pageContainer-padding;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:active {
+      opacity: 1;
+    }
+    &--w-auto {
+      @extend #{$buttonMinimum-prop};
+      min-width: auto;
+    }
+  }
+  
+  .buttonPrev,.buttonNext {
+    @include buttonBasic(#FFFFFF,#F2F4F7);
+    width: 90px;
+    border-radius: 24px;
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      height: 6px;
+      margin: auto;
+      border-top: 2px solid #C5D0DE;
+      border-left: 2px solid #C5D0DE;
+      content: '';
+    }
+  }
+  
+  .buttonPrev {
+    margin-right: $pageContainer-padding;
+    padding-right: 20px;
+    text-align: right;
+    &::before {
+      left: 15px;
+      transform: rotate(-45deg);
+    }
+  }
+  .buttonNext {
+    padding-left: 20px;
+    text-align: left;
+    &::before {
+      right: 15px;
+      transform: rotate(135deg);
+    }
+  }

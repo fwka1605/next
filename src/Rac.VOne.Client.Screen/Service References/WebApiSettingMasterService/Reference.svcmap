@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="eae0fe0d-7899-44bc-b731-bbc7129d56cd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/WebApiSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WebApiSettingMaster.xsd" MetadataType="Schema" ID="5a2edc9b-61ef-4465-8ea3-1d0ece0cda32" SourceId="1" SourceUrl="http://localhost:3061/Master/WebApiSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="WebApiSettingMaster.wsdl" MetadataType="Wsdl" ID="215b30d9-8827-4408-9d95-0a3a124e18c8" SourceId="1" SourceUrl="http://localhost:3061/Master/WebApiSettingMaster.svc?wsdl" />
+    <MetadataFile FileName="WebApiSettingMaster1.xsd" MetadataType="Schema" ID="23995492-51c1-4ec0-8790-cd873e7a5e6d" SourceId="1" SourceUrl="http://localhost:3061/Master/WebApiSettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="WebApiSettingMaster2.xsd" MetadataType="Schema" ID="1e678a46-a136-4705-9f17-df5326de7fcc" SourceId="1" SourceUrl="http://localhost:3061/Master/WebApiSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="WebApiSettingMaster.disco" MetadataType="Disco" ID="b7d28626-fb44-41be-8a86-57436629fdc5" SourceId="1" SourceUrl="http://localhost:3061/Master/WebApiSettingMaster.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

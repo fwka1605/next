@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CustomerMaster" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/Master/CustomerMaster.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CustomerMaster.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CustomerMaster.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CustomerMaster.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICustomerMaster_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_SaveItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveItems" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_SaveItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetItemsWith_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsWith" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetItemsWith_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsWithResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_SavePaymentContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:SavePaymentContract" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_SavePaymentContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SavePaymentContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_SaveDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDiscount" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_SaveDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_DeletePaymentContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePaymentContract" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_DeletePaymentContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePaymentContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetPaymentContract_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentContract" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetPaymentContract_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentContractResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscount" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetParentItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetParentItems" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetParentItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetParentItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetCustomerDetailItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerDetailItems" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetCustomerDetailItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerDetailItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCode" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetByChildDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByChildDetails" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetByChildDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByChildDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_DeleteDiscount_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDiscount" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_DeleteDiscount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteDiscountResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetDiscountItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountItems" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetDiscountItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_ExistCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCategory" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_ExistCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_ExistStaff_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistStaff" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_ExistStaff_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistStaffResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_ExistCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCompany" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_ExistCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetCustomerGroup_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerGroup" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetCustomerGroup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetCustomerWithList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerWithList" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetCustomerWithList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerWithListResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetTopCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopCustomer" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetTopCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForCustomerGroupParent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForCustomerGroupParent" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForCustomerGroupParent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForCustomerGroupParentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForCustomerGroupChild_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForCustomerGroupChild" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForCustomerGroupChild_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForCustomerGroupChildResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForKanaHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForKanaHistory" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForKanaHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForKanaHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForBilling_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForBilling" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForBilling_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForBillingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForReceipt" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForNetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForNetting" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetImportItemsForNetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForNettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_Import_InputMessage">
+    <wsdl:part name="parameters" element="tns:Import" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_Import_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetMinItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMinItems" />
+  </wsdl:message>
+  <wsdl:message name="ICustomerMaster_GetMinItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMinItemsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICustomerMaster">
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/Save" message="tns:ICustomerMaster_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/SaveResponse" message="tns:ICustomerMaster_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/SaveItems" message="tns:ICustomerMaster_SaveItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/SaveItemsResponse" message="tns:ICustomerMaster_SaveItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/Get" message="tns:ICustomerMaster_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetResponse" message="tns:ICustomerMaster_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsWith">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetItemsWith" message="tns:ICustomerMaster_GetItemsWith_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetItemsWithResponse" message="tns:ICustomerMaster_GetItemsWith_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SavePaymentContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/SavePaymentContract" message="tns:ICustomerMaster_SavePaymentContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/SavePaymentContractResponse" message="tns:ICustomerMaster_SavePaymentContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/SaveDiscount" message="tns:ICustomerMaster_SaveDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/SaveDiscountResponse" message="tns:ICustomerMaster_SaveDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePaymentContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/DeletePaymentContract" message="tns:ICustomerMaster_DeletePaymentContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/DeletePaymentContractResponse" message="tns:ICustomerMaster_DeletePaymentContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentContract">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetPaymentContract" message="tns:ICustomerMaster_GetPaymentContract_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetPaymentContractResponse" message="tns:ICustomerMaster_GetPaymentContract_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetDiscount" message="tns:ICustomerMaster_GetDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetDiscountResponse" message="tns:ICustomerMaster_GetDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParentItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetParentItems" message="tns:ICustomerMaster_GetParentItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetParentItemsResponse" message="tns:ICustomerMaster_GetParentItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerDetailItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetCustomerDetailItems" message="tns:ICustomerMaster_GetCustomerDetailItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetCustomerDetailItemsResponse" message="tns:ICustomerMaster_GetCustomerDetailItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetByCode" message="tns:ICustomerMaster_GetByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetByCodeResponse" message="tns:ICustomerMaster_GetByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetItems" message="tns:ICustomerMaster_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetItemsResponse" message="tns:ICustomerMaster_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/Delete" message="tns:ICustomerMaster_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/DeleteResponse" message="tns:ICustomerMaster_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByChildDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetByChildDetails" message="tns:ICustomerMaster_GetByChildDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetByChildDetailsResponse" message="tns:ICustomerMaster_GetByChildDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiscount">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/DeleteDiscount" message="tns:ICustomerMaster_DeleteDiscount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/DeleteDiscountResponse" message="tns:ICustomerMaster_DeleteDiscount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetDiscountItems" message="tns:ICustomerMaster_GetDiscountItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetDiscountItemsResponse" message="tns:ICustomerMaster_GetDiscountItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/ExistCategory" message="tns:ICustomerMaster_ExistCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/ExistCategoryResponse" message="tns:ICustomerMaster_ExistCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistStaff">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/ExistStaff" message="tns:ICustomerMaster_ExistStaff_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/ExistStaffResponse" message="tns:ICustomerMaster_ExistStaff_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/ExistCompany" message="tns:ICustomerMaster_ExistCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/ExistCompanyResponse" message="tns:ICustomerMaster_ExistCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerGroup">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetCustomerGroup" message="tns:ICustomerMaster_GetCustomerGroup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetCustomerGroupResponse" message="tns:ICustomerMaster_GetCustomerGroup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerWithList">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetCustomerWithList" message="tns:ICustomerMaster_GetCustomerWithList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetCustomerWithListResponse" message="tns:ICustomerMaster_GetCustomerWithList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetTopCustomer" message="tns:ICustomerMaster_GetTopCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetTopCustomerResponse" message="tns:ICustomerMaster_GetTopCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForCustomerGroupParent">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForCustomerGroupParent" message="tns:ICustomerMaster_GetImportItemsForCustomerGroupParent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForCustomerGroupParentResponse" message="tns:ICustomerMaster_GetImportItemsForCustomerGroupParent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForCustomerGroupChild">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForCustomerGroupChild" message="tns:ICustomerMaster_GetImportItemsForCustomerGroupChild_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForCustomerGroupChildResponse" message="tns:ICustomerMaster_GetImportItemsForCustomerGroupChild_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForKanaHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForKanaHistory" message="tns:ICustomerMaster_GetImportItemsForKanaHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForKanaHistoryResponse" message="tns:ICustomerMaster_GetImportItemsForKanaHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForBilling">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForBilling" message="tns:ICustomerMaster_GetImportItemsForBilling_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForBillingResponse" message="tns:ICustomerMaster_GetImportItemsForBilling_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForReceipt" message="tns:ICustomerMaster_GetImportItemsForReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForReceiptResponse" message="tns:ICustomerMaster_GetImportItemsForReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForNetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForNetting" message="tns:ICustomerMaster_GetImportItemsForNetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetImportItemsForNettingResponse" message="tns:ICustomerMaster_GetImportItemsForNetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/Import" message="tns:ICustomerMaster_Import_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/ImportResponse" message="tns:ICustomerMaster_Import_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMinItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICustomerMaster/GetMinItems" message="tns:ICustomerMaster_GetMinItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICustomerMaster/GetMinItemsResponse" message="tns:ICustomerMaster_GetMinItems_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICustomerMaster" type="tns:ICustomerMaster">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveItems">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/SaveItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsWith">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetItemsWith" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SavePaymentContract">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/SavePaymentContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveDiscount">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/SaveDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePaymentContract">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/DeletePaymentContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentContract">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetPaymentContract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscount">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParentItems">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetParentItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerDetailItems">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetCustomerDetailItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByChildDetails">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetByChildDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDiscount">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/DeleteDiscount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountItems">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetDiscountItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistCategory">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/ExistCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistStaff">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/ExistStaff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistCompany">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/ExistCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerGroup">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetCustomerGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerWithList">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetCustomerWithList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopCustomer">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetTopCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForCustomerGroupParent">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetImportItemsForCustomerGroupParent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForCustomerGroupChild">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetImportItemsForCustomerGroupChild" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForKanaHistory">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetImportItemsForKanaHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForBilling">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetImportItemsForBilling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForReceipt">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetImportItemsForReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForNetting">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetImportItemsForNetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/Import" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMinItems">
+      <soap:operation soapAction="http://tempuri.org/ICustomerMaster/GetMinItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerMaster">
+    <wsdl:port name="BasicHttpBinding_ICustomerMaster" binding="tns:BasicHttpBinding_ICustomerMaster">
+      <soap:address location="http://localhost:3061/Master/CustomerMaster.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

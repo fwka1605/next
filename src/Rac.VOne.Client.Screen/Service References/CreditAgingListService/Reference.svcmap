@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3a4a5c44-0613-43a9-9895-ea362728a3e6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/CreditAgingListService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CreditAgingListService.xsd" MetadataType="Schema" ID="70a85412-528d-4062-870d-86a14d70b707" SourceId="1" SourceUrl="http://localhost:3061/CreditAgingListService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CreditAgingListService1.xsd" MetadataType="Schema" ID="73697eb5-db22-43bc-8246-79c4f86e980f" SourceId="1" SourceUrl="http://localhost:3061/CreditAgingListService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CreditAgingListService.disco" MetadataType="Disco" ID="98b50f12-0f1c-4246-ba89-9ca003ec37b9" SourceId="1" SourceUrl="http://localhost:3061/CreditAgingListService.svc?disco" />
+    <MetadataFile FileName="CreditAgingListService.wsdl" MetadataType="Wsdl" ID="c82940a6-dce4-4ab8-8185-1abf05c96aa0" SourceId="1" SourceUrl="http://localhost:3061/CreditAgingListService.svc?wsdl" />
+    <MetadataFile FileName="CreditAgingListService2.xsd" MetadataType="Schema" ID="835274c8-61cd-4b34-81d8-9658582a7834" SourceId="1" SourceUrl="http://localhost:3061/CreditAgingListService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

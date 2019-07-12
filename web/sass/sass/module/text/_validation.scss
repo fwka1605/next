@@ -1,0 +1,62 @@
+/*
+input バリデーションスタイル
+*/
+
+%validationDefault {
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    left: -37px;
+    content: '';
+    font-size: 1.3rem;
+    padding: 2px;
+    border: 1px solid;
+    border-radius: 3px;
+    width: 24px;
+    text-align: center;
+  }
+}
+
+/*
+必須color
+*/
+
+.is-required {
+  @extend %validationDefault;
+  &:after {
+    content: '必須';
+    border-color: #ffa2a2;
+    color: #ff9696;
+  }
+}
+
+/*
+バリデートOK
+*/
+
+.is-clear {
+  @extend %validationDefault;
+  box-shadow: 0 0 3px 2px #bcffa2;
+  &:after {
+    content: 'OK';
+    border-color: #bcffa2;
+    color: #78ca58;
+  }
+}
+
+/*
+バリデートOK
+*/
+
+.is-error {
+  @extend %validationDefault;
+  box-shadow: 0 0 3px 2px #ffa2a2;
+  &:after {
+    content: 'NG';
+    left: unset;
+    right: -40px;
+    border-color: #ffa2a2;
+    color: #ff9696;
+  }
+}

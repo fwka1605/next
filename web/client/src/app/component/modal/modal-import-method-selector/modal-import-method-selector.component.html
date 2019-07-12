@@ -1,0 +1,87 @@
+<section 
+  [style.z-index]="zIndex"
+  class="vModal height--450"
+  (dragover)="onDragOver($event)"
+  (drop)="onDrop($event)"
+  [formGroup]="myFormGroup"
+  data-modal-contents="id001">
+  <h2 class="vModal__heading">{{ItemNameConst.LBL_SELECT_IMPORT_METHOD}}
+    <span class="vModal__close"
+      (click)="close()"></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <p class="mb--15">{{ItemNameConst.LBL_DO_SELECT_IMPORT_METHOD}}</p>
+      <input #importFileCtrl
+        formControlName="importFileCtrl"
+        name="importFileCtrl"
+        (change)="fileSelect($event)"
+        style="display:none"
+        type="file">
+      <button class="buttonMinimum mr--15"
+        (click)="importFileCtrl.click()">ファイルを選択</button>
+      <input
+        formControlName="importFileNameCtrl" 
+        name="importFileNameCtrl"
+        placeholder="{{PlaceHolderConst.SELECT_FILE}}"
+        class="input-size--250 mr--15"
+        readonly>
+      <select
+        formControlName="cmbEncodeCtrl"
+        name="cmbEncodeCtrl"
+        class="select-size--100 mr--5">
+        <option
+          *ngFor="let cmbEncodeCtrl of encodeType index as i" 
+          [ngValue]="cmbEncodeCtrl.val">
+          {{cmbEncodeCtrl.val}}
+        </option>
+      </select>
+      インポートするファイルのエンコード
+      <dl class="definitionButton">
+        <dt class="definitionButton__title">
+          <div class="common-btn">
+            <button
+              (click)="import(ImportMethod.Replace)"
+              [ngClass]="{'button-disable': myFormGroup.invalid}"
+              class="buttonSecondary">{{ItemNameConst.BTN_OVERWRITING}}</button>
+          </div>
+        </dt>
+        <dd class="definitionButton__data">マスターを削除し、インポートファイルの内容に置き換えます。</dd>
+        <dt class="definitionButton__title">
+          <div class="common-btn">
+            <button
+              (click)="import(ImportMethod.InsertOnly)"
+              [ngClass]="{'button-disable': myFormGroup.invalid}"
+              class="buttonSecondary">{{ItemNameConst.BTN_ADD}}</button>
+          </div>
+        </dt>
+        <dd class="definitionButton__data">マスターに無いものだけ、インポートファイルから追加します。</dd>
+        <dt class="definitionButton__title">
+          <div class="common-btn">
+            <button 
+              (click)="import(ImportMethod.InsertAndUpdate)" 
+              [ngClass]="{'button-disable': myFormGroup.invalid}"
+              class="buttonSecondary">{{ItemNameConst.BTN_UPDATE}}</button>
+          </div>
+        </dt>
+        <dd class="definitionButton__data">マスターに無いものは追加、あるものは上書きします。</dd>
+      </dl>
+      <div class="inputStyled mb--30">
+        <input
+          id="cbxDownloadCtrl"
+          class="inputStyled__input"
+          formControlName="cbxDownloadCtrl"
+          name="cbxDownloadCtrl"
+          type="checkbox">
+        <label
+          class="inputStyled__checkbox"
+          for="cbxDownloadCtrl">取込エラーが発生した場合、エラーログをダウンロードする。</label>
+      </div>
+      <hr class="separator">
+      <div class="common-btn mb--20">
+        <button class="buttonMinimum" (click)="cancel()">キャンセル</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

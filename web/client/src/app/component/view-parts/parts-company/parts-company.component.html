@@ -1,0 +1,364 @@
+<div [formGroup]="myFormGroup">
+  <div class="contents__container--flex">
+    <div class="contents__item--w-45 mb--15">
+      <dl class="definitionForm">
+        <dt class="definitionForm__title w--20">会社コード</dt>
+        <dd class="definitionForm__data w--80">
+          <input
+            formControlName="companyCodeCtrl"
+            name="companyCodeCtrl"
+            class="input-size--120"
+            readonly>
+        </dd>
+        <dt class="definitionForm__title w--20">プロダクトキー</dt>
+        <dd class="definitionForm__data w--80">
+          <input
+            formControlName="productKeyCtrl"
+            name="productKeyCtrl"
+            class="input-size--120"
+            readonly>
+        </dd>
+        <dt class="definitionForm__title w--20">会社名<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+        <dd class="definitionForm__data w--80">
+          <input
+            formControlName="companyNameCtrl"
+            name="companyNameCtrl"
+            (keyup.enter)="setCompanyName($event.type)"
+            (blur)="setCompanyName($event.type)"
+            maxlength="140"
+            class="input-size--360">
+        </dd>
+        <dt class="definitionForm__title w--20">会社名ｶﾅ<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+        <dd class="definitionForm__data w--80">
+          <input
+            formControlName="companyNameKanaCtrl"
+            name="companyNameKanaCtrl"
+            (keyup.enter)="setCompanyNameKana($event.type)"
+            (blur)="inputCompanyNameKana()"
+            maxlength="140"
+            placeholder="{{PlaceHolderConst.HALF_WIDTH_KANA}}"
+            class="input-size--360">
+        </dd>
+      </dl>
+    </div>
+    <div class="contents__item--w-55 mb--15">
+      <dl class="definitionForm">
+        <dt class="definitionForm__title w--10">郵便番号</dt>
+        <dd class="definitionForm__data w--90">
+          <input
+            formControlName="postalCodeCtrl"
+            name="postalCodeCtrl"
+            (keyup.enter)="setPostalCode($event.type)"
+            placeholder="{{PlaceHolderConst.POSTAL_CODE}}"
+            type="tel"
+            maxlength="8"
+            class="input-size--120">
+            <br>
+            <div
+              class="message-result font__warning" *ngIf="postalCodeCtrl.errors?.pattern">
+              {{ MSG_VAL.PATTERN_POSTAL_CODE }}
+            </div>
+        </dd>
+        <dt class="definitionForm__title w--10">住所</dt>
+        <dd class="definitionForm__data w--90">
+          <input
+            formControlName="address1Ctrl"
+            name="address1Ctrl"
+            (keyup.enter)="setAddress1($event.type)"
+            maxlength="80"
+            class="input-size--360">
+          <input
+            formControlName="address2Ctrl"
+            name="address2Ctrl"
+            (keyup.enter)="setAddress2($event.type)"
+            maxlength="80"
+            class="input-size--360">
+        </dd>
+        <dt class="definitionForm__title w--10">電話番号</dt>
+        <dd class="definitionForm__data">
+          <input
+            formControlName="telCtrl"
+            name="telCtrl"
+            (keyup.enter)="setTel($event.type)"
+            maxlength="20"
+            type="tel"
+            class="input-size--120">
+            <br>
+            <div
+              class="message-result font__warning" *ngIf="telCtrl.errors?.pattern">
+              {{ MSG_VAL.PATTERN_TEL }}
+            </div>
+        </dd>
+        <dt class="definitionForm__title w--10">FAX番号</dt>
+        <dd class="definitionForm__data">
+          <input
+            formControlName="faxCtrl"
+            name="faxCtrl"
+            (keyup.enter)="setFax($event.type)"
+            maxlength="20"
+            type="tel"
+            class="input-size--120">
+            <br>
+            <div
+              class="message-result font__warning" *ngIf="faxCtrl.errors?.pattern">
+              {{ MSG_VAL.PATTERN_TEL }}
+            </div>
+        </dd>
+      </dl>
+    </div>
+    <div class="frame--w-40 mb--20">
+      <h3 class="frame__title">振込口座情報</h3>
+      <dl class="definitionForm">
+        <dt class="definitionForm__title w--20">口座名義人</dt>
+        <dd class="definitionForm__data w--80">
+          <input
+            formControlName="bankAccountNameCtrl"
+            name="bankAccountNameCtrl"
+            (keyup.enter)="setBankAccountName($event.type)"
+            maxlength="48"
+            class="input-size--360">
+        </dd>
+        <dt class="definitionForm__title w--20">(ｶﾅ)</dt>
+        <dd class="definitionForm__data w--80">
+          <input
+            formControlName="bankAccountNameKanaCtrl"
+            name="bankAccountNameKanaCtrl"
+            (keyup.enter)="setBankAccountNameKana($event.type)"
+            (blur)="inputBankAccountNameKana()"
+            maxlength="48"
+            class="input-size--360">
+        </dd>
+      </dl>
+      <!---
+          <dl class="liner-dl-wrap__container">
+            <dt class="liner-dl-wrap__container__title">ロゴ</dt>
+            <dd class="liner-dl-wrap__container__detail--multi-line">
+              <p class="upload-viewer">アップロードした画像が表示されます
+              </p>
+              <div class="company-master__content__image-controller">
+                <input 
+                  formControlName="logoCtrl"
+                  name="logoCtrl"
+                  type="file" 
+                  class="input-size--300">
+                <button class="button-clear">ロゴクリア</button>
+              </div>
+            </dd>
+            <dt class="liner-dl-wrap__container__title">社判</dt>
+            <dd class="liner-dl-wrap__container__detail--multi-line">
+              <p class="upload-viewer">アップロードした画像が表示されます
+              </p>
+              <div class="company-master__content__image-controller">
+                <input 
+                  formControlName="squareSealCtrl"
+                  name="squareSealCtrl"
+                  type="file" 
+                  class="input-size--300">
+                <button class="button-clear">社判クリア</button>
+              </div>
+            </dd>
+            <dt class="liner-dl-wrap__container__title">丸印</dt>
+            <dd class="liner-dl-wrap__container__detail--multi-line">
+              <p class="upload-viewer">アップロードした画像が表示されます
+              </p>
+              <div class="company-master__content__image-controller">
+                <input 
+                  formControlName="roundSealCtrl"
+                  name="roundSealCtrl"
+                  type="file" 
+                  class="input-size--300">
+                <button class="button-clear">丸印クリア</button>
+              </div>
+            </dd>
+          </dl>
+          -->
+    </div>
+
+    <table class="borderlessTable mb--20">
+      <tr>
+        <td class="borderlessTable__data"></td>
+        <th class="borderlessTable__header">銀行名</th>
+        <th class="borderlessTable__header">支店名</th>
+        <th class="borderlessTable__header">預金種別</th>
+        <th class="borderlessTable__header">口座番号</th>
+      </tr>
+      <tr>
+        <th class="borderlessTable__header">1.</th>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="bankName1Ctrl"
+            name="bankName1Ctrl"
+            (keyup.enter)="setBankName1($event.type)"
+            maxlength="80"
+            class="input-size--320">
+        </td>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="branchName1Ctrl"
+            name="branchName1Ctrl"
+            (keyup.enter)="setBranchName1($event.type)"
+            maxlength="80"
+            class="input-size--320">
+        </td>
+        <td class="borderlessTable__data">
+          <select
+            formControlName="cmbAccountType1Ctrl"
+            name="cmbAccountType1Ctrl"
+            (change)="setCmbAccountType1($event.type)"
+            class="select-size--100">
+            <option
+              *ngFor="let cmbAccountType1Ctrl of exclusiveAccountType index as i"
+              [ngValue]="cmbAccountType1Ctrl.val">
+              {{cmbAccountType1Ctrl.id}}：{{cmbAccountType1Ctrl.val}}
+            </option>
+          </select>
+        </td>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="accountNumber1Ctrl"
+            name="accountNumber1Ctrl"
+            (keyup.enter)="setAccountNumber1($event.type)"
+            maxlength="7"
+            type="tel"
+            class="input-size--120">
+        </td>
+      </tr>
+      <tr>
+        <th class="borderlessTable__header">2.</th>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="bankName2Ctrl"
+            name="bankName2Ctrl"
+            (keyup.enter)="setBankName2($event.type)"
+            maxlength="80"
+            class="input-size--320">
+        </td>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="branchName2Ctrl"
+            name="branchName2Ctrl"
+            (keyup.enter)="setBranchName2($event.type)"
+            maxlength="80"
+            class="input-size--320">
+        </td>
+        <td class="borderlessTable__data">
+          <select
+            formControlName="cmbAccountType2Ctrl"
+            name="cmbAccountType2Ctrl"
+            (change)="setCmbAccountType2($event.type)"
+            class="select-size--100">
+            <option
+              *ngFor="let cmbAccountType2Ctrl of exclusiveAccountType index as i"
+              [ngValue]="cmbAccountType2Ctrl.val">
+              {{cmbAccountType2Ctrl.id}}：{{cmbAccountType2Ctrl.val}}
+            </option>
+          </select>
+        </td>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="accountNumber2Ctrl"
+            name="accountNumber2Ctrl"
+            (keyup.enter)="setAccountNumber2($event.type)"
+            maxlength="7"
+            type="tel"
+            class="input-size--120">
+        </td>
+      </tr>
+      <tr>
+        <th class="borderlessTable__header">3.</th>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="bankName3Ctrl"
+            name="bankName3Ctrl"
+            (keyup.enter)="setBankName3($event.type)"
+            maxlength="80"
+            class="input-size--320">
+        </td>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="branchName3Ctrl"
+            name="branchName3Ctrl"
+            (keyup.enter)="setBranchName3($event.type)"
+            maxlength="80"
+            class="input-size--320">
+        </td>
+        <td class="borderlessTable__data">
+          <select
+            formControlName="cmbAccountType3Ctrl"
+            name="cmbAccountType3Ctrl"
+            (change)="setCmbAccountType3($event.type)"
+            class="select-size--100">
+            <option
+              *ngFor="let cmbAccountType3Ctrl of exclusiveAccountType index as i"
+              [ngValue]="cmbAccountType3Ctrl.val">
+              {{cmbAccountType3Ctrl.id}}：{{cmbAccountType3Ctrl.val}}
+            </option>
+          </select>
+        </td>
+        <td class="borderlessTable__data">
+          <input
+            formControlName="accountNumber3Ctrl"
+            name="accountNumber3Ctrl"
+            (keyup.enter)="setAccountNumber3($event.type)"
+            maxlength="7"
+            type="tel"
+            class="input-size--120">
+        </td>
+      </tr>
+    </table>
+
+    <dl class="definitionForm">
+      <dt class="definitionForm__title">会計帳簿の締日<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+      <dd class="definitionForm__data">
+        <input
+          formControlName="closingDateCtrl"
+          name="closingDateCtrl"
+          (keyup.enter)="setClosingDate($event.type)"
+          (blur)="setClosingDate($event.type)"
+          maxlength="2"
+          type="tel"
+          class="input-size--60 definitionForm__input">
+          日　※末日(28日以降) = 99
+      </dd>
+      <dd class="definitionForm__data">
+        <!-- <label class="company-master__content__options__checks__item">
+              <input
+                formControlName="cbxPresetCodeSearchDialogCtrl"
+                name="cbxPresetCodeSearchDialogCtrl"
+                type="checkbox">検索時に全権初期表示する
+            </label>
+            <label class="company-master__content__options__checks__item">
+              <input
+                formControlName="cbxShowConfirmDialogCtrl"
+                name="cbxShowConfirmDialogCtrl"
+                type="checkbox">確認メッセージを表示する
+            </label>
+            <label class="company-master__content__options__checks__item">
+              <input
+                formControlName="cbxShowWarningDialogCtrl"
+                name="cbxShowWarningDialogCtrl"
+                type="checkbox">警告時ダイアログを表示する
+            </label>
+            <label class="company-master__content__options__checks__item">
+              <input
+                formControlName="cbxAutoCloseProgressDialogCtrl"
+                name="cbxAutoCloseProgressDialogCtrl"
+                type="checkbox">処理状況ダイアログを自動で閉じる
+            </label> -->
+        <label class="labelWrap">
+          <div class="inputStyled">
+            <input
+              id="cbxTransferAggregateCtrl"
+              class="inputStyled__input"
+              formControlName="cbxTransferAggregateCtrl"
+              name="cbxTransferAggregateCtrl"
+              type="checkbox">
+            <label
+              class="inputStyled__checkbox"
+              for="cbxTransferAggregateCtrl">口座振替データ作成/取込時に口座単位で集計する</label>
+          </div>
+        </label>
+      </dd>
+    </dl>
+  </div>
+</div>

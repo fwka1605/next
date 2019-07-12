@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:55258/ReminderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+  <xs:import schemaLocation="http://localhost:55258/ReminderService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="Exist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="companyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExistResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ExistResult" nillable="true" type="q1:ExistResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="condition" nillable="true" type="q2:ReminderSearch" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="setting" nillable="true" type="q3:ReminderCommonSetting" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="summary" nillable="true" type="q4:ArrayOfReminderSummarySetting" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetItemsResult" nillable="true" type="q5:ReminderResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSummaryItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="condition" nillable="true" type="q6:ReminderSearch" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="setting" nillable="true" type="q7:ReminderCommonSetting" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSummaryItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetSummaryItemsResult" nillable="true" type="q8:ReminderSummaryResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReminderBillingForPrint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="companyId" type="xs:int" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="reminderIds" nillable="true" type="q9:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReminderBillingForPrintResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetReminderBillingForPrintResult" nillable="true" type="q10:ReminderBillingResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReminderBillingForSummaryPrint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="companyId" type="xs:int" />
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="customerIds" nillable="true" type="q11:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReminderBillingForSummaryPrintResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetReminderBillingForSummaryPrintResult" nillable="true" type="q12:ReminderBillingResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReminderBillingForReprint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="companyId" type="xs:int" />
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="reminderOutputNo" nillable="true" type="q13:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReminderBillingForReprintResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetReminderBillingForReprintResult" nillable="true" type="q14:ReminderBillingResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Create">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="companyId" type="xs:int" />
+        <xs:element minOccurs="0" name="loginUserId" type="xs:int" />
+        <xs:element minOccurs="0" name="useForeignCurrency" type="xs:int" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="Reminder" nillable="true" type="q15:ArrayOfReminder" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="setting" nillable="true" type="q16:ReminderCommonSetting" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="summary" nillable="true" type="q17:ArrayOfReminderSummarySetting" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="CreateResult" nillable="true" type="q18:ReminderResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHistoryItemsByReminderId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reminderId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHistoryItemsByReminderIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetHistoryItemsByReminderIdResult" nillable="true" type="q19:ReminderHistoryResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSummaryHistoryItemsByReminderSummaryId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reminderSummaryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSummaryHistoryItemsByReminderSummaryIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetSummaryHistoryItemsByReminderSummaryIdResult" nillable="true" type="q20:ReminderSummaryHistoryResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="loginUserId" type="xs:int" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="Reminder" nillable="true" type="q21:ArrayOfReminder" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="UpdateStatusResult" nillable="true" type="q22:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSummaryStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="loginUserId" type="xs:int" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReminderSummary" nillable="true" type="q23:ArrayOfReminderSummary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateSummaryStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="UpdateSummaryStatusResult" nillable="true" type="q24:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateReminderOutputed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="loginUserId" type="xs:int" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReminderOutputed" nillable="true" type="q25:ArrayOfReminderOutputed" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateReminderOutputedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="UpdateReminderOutputedResult" nillable="true" type="q26:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateReminderSummaryOutputed">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="loginUserId" type="xs:int" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="reminderOutputed" nillable="true" type="q27:ArrayOfReminderOutputed" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="ReminderSummary" nillable="true" type="q28:ArrayOfReminderSummary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateReminderSummaryOutputedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="UpdateReminderSummaryOutputedResult" nillable="true" type="q29:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOutputedItems">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="search" nillable="true" type="q30:ReminderOutputedSearch" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOutputedItemsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetOutputedItemsResult" nillable="true" type="q31:ReminderOutputedResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaxOutputNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="companyId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMaxOutputNoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetMaxOutputNoResult" nillable="true" type="q32:CountResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReminderList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SessionKey" nillable="true" type="xs:string" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="search" nillable="true" type="q33:ReminderSearch" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="setting" nillable="true" type="q34:ReminderCommonSetting" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReminderListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" minOccurs="0" name="GetReminderListResult" nillable="true" type="q35:ReminderHistoryResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

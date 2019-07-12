@@ -1,0 +1,59 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.DELETE)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary">{{ItemNameConst.BTN_DO}}</button>
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 不要データ削除 -->
+    <section class="contents">
+      <h3 class="contents__title--underline">{{ItemNameConst.LBL_DELETE_NOT_NEED_DATA}}</h3>
+      <div class="contents__container">
+        <dl class="definitionForm mb--0">
+          <dt class="definitionForm__title w--12">入金データ：入金日</dt>
+          <dd class="definitionForm__data w--80">
+              <input
+                formControlName="deleteDateCtrl"
+                name="deleteDateCtrl"
+                ngbDatepicker #deleteDateDp="ngbDatepicker"
+                placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                [ngClass]="{'input--error': deleteDateCtrl.errors?.ngbDate}"
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+            <button class="btn btn-outline-secondary definitionForm__input"
+              (click)="deleteDateDp.toggle()"
+              type="button"></button>以前のデータを削除する
+              <br>
+              <div
+                class="message-result font__warning" *ngIf="deleteDateCtrl.errors?.ngbDate">
+                {{ MSG_VAL.DATE_DAY }}
+              </div>
+          </dd>
+          <dt class="definitionForm__title">請求データ：入金予定日</dt>
+        </dl>
+        <ul class="listNote">
+          <li class="listNote__item">※入金データと請求データは同時に削除されます。</li>
+          <li class="listNote__item">※実行時間は数分ほどかかる場合があります。
+            <ul class="listNote">
+              <li class="listNote__item text--attention">※削除したデータを元に戻すことはできませんので、日付の設定には十分に注意してください。</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </section>
+
+</div>

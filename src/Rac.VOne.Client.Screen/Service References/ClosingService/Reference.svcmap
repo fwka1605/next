@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7bb354f8-b19f-4444-b448-6992f6fcef49" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/ClosingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ClosingService.xsd" MetadataType="Schema" ID="0d7d1e6f-4404-4b3c-a8b4-5e826d67063c" SourceId="1" SourceUrl="http://localhost:3061/ClosingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ClosingService1.xsd" MetadataType="Schema" ID="6146ac35-d442-4d2e-9940-bed8f016707d" SourceId="1" SourceUrl="http://localhost:3061/ClosingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ClosingService.wsdl" MetadataType="Wsdl" ID="6444de26-6c38-43d6-9062-f63fc5a0ef4a" SourceId="1" SourceUrl="http://localhost:3061/ClosingService.svc?wsdl" />
+    <MetadataFile FileName="ClosingService.disco" MetadataType="Disco" ID="78dea687-6590-4d1b-b92b-9dd8ee22229e" SourceId="1" SourceUrl="http://localhost:3061/ClosingService.svc?disco" />
+    <MetadataFile FileName="ClosingService2.xsd" MetadataType="Schema" ID="19d14279-6085-4f60-b731-cd749af63183" SourceId="1" SourceUrl="http://localhost:3061/ClosingService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

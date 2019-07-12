@@ -1,0 +1,107 @@
+/*
+02 請求	01 請求フリーインポーター	PC0101
+*/
+
+.invoice {
+  &-container {
+    padding: 16px;
+    &__search-config {
+      &__header {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        border-bottom: 1px solid $border-color;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        &__title {
+          font-size: 1.3rem;
+          line-height: 1;
+        }
+        &__checkbox {
+          margin-right: 12px;
+        }
+      }
+      &__body {
+        &__items {
+          @include clearfix;
+          $dlMargin: 16px;
+          &__title,&__detail {
+            margin-bottom: $dlMargin;
+          }
+          &__title {
+            float: left;
+            width: 11.5%;
+            margin-top: 2px;
+            clear: both;
+            font-size: 1.3rem;
+          }
+          &__detail {
+            float: left;
+            display: flex;
+            justify-content: start;
+            align-content: center;
+            &__main-input {
+              width: 10%;
+              margin-right: 6px;
+              padding: 2px 4px;
+            }
+            &__option {
+              width: 300px;
+              padding: 2px 4px;
+              &--wide {
+                width: 382px;
+              }
+            }
+          }
+        }
+        &__title {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+}
+
+
+/*
+PC0201 modal contents style
+*/
+
+.invoice-remarks {
+  padding: 16px 0;
+  background-color: $main-background-color;
+  &__controller {
+    display: flex;
+    padding: 16px;
+    justify-content: center;
+  }
+  &__container {
+    padding: 16px 16px 0 16px;
+    &__items {
+      @include clearfix;
+      $dtWidth: 100px;
+      $dlMargin: 16px;
+      &__title {
+        float: left;
+        width: $dtWidth;
+        margin-bottom: $dlMargin;
+        clear: both;
+        margin-top: 2px;
+        align-items: center;
+        display: flex;
+      }
+      &__detail {
+        float: left;
+        display: flex;
+        width: calc(100% - #{$dtWidth});
+        justify-content: start;
+        align-content: center;
+        margin-bottom: $dlMargin;
+        &__input-liner {
+          width: 100%;
+          padding: 2px 4px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfFunctionAuthority">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FunctionAuthority" nillable="true" type="tns:FunctionAuthority" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFunctionAuthority" nillable="true" type="tns:ArrayOfFunctionAuthority" />
+  <xs:complexType name="FunctionAuthority">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthorityLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="Available" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="FunctionType" type="tns:FunctionType" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FunctionAuthority" nillable="true" type="tns:FunctionAuthority" />
+  <xs:simpleType name="FunctionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MasterImport" />
+      <xs:enumeration value="MasterExport" />
+      <xs:enumeration value="ModifyBilling" />
+      <xs:enumeration value="RecoverBilling" />
+      <xs:enumeration value="ModifyReceipt" />
+      <xs:enumeration value="RecoverReceipt" />
+      <xs:enumeration value="CancelMatching" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FunctionType" nillable="true" type="tns:FunctionType" />
+  <xs:complexType name="FunctionAuthoritiesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FunctionAuthorities" nillable="true" type="tns:ArrayOfFunctionAuthority" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FunctionAuthoritiesResult" nillable="true" type="tns:FunctionAuthoritiesResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="FunctionAuthorityResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FunctionAuthority" nillable="true" type="tns:FunctionAuthority" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FunctionAuthorityResult" nillable="true" type="tns:FunctionAuthorityResult" />
+</xs:schema>

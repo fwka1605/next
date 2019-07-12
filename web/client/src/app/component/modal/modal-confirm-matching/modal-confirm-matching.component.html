@@ -1,0 +1,51 @@
+<section class="vModal--small"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup">
+  <h2 class="vModal__heading">消込確認
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <ng-container *ngIf="remainType==3">
+        <p class="mb--10 align--center">入金残計{{remainAmount|currency_pipe}}、うち過入金{{carryOverAmount|currency_pipe}}ですが、<br>消込を実行してもよろしいですか？</p>
+        <ul class="mb--10">
+          <li>
+            <span class="font--bold">はい：</span>過入金を{{customerName}}の前受として処理します。
+          </li>
+          <li>
+            <span class="font--bold">いいえ：</span>入金残をそのまま残します。
+          </li>
+          <li>
+            <span class="font--bold">キャンセル：</span>処理を中断します。
+          </li>
+        </ul>
+      </ng-container>
+      <ng-container *ngIf="remainType==2">
+        <p class="align--center">入金残計{{remainAmount|currency_pipe}}ですが、<br>消込を実行してもよろしいですか？</p>              
+      </ng-container>
+      <ng-container *ngIf="remainType==1">
+        <p class="align--center">請求残計{{remainAmount|currency_pipe}}ですが、<br>消込を実行してもよろしいですか？</p>              
+      </ng-container>
+      <ng-container *ngIf="remainType==0">
+        <p class="align--center">消込を実行してもよろしいですか？</p>              
+      </ng-container>
+      <dl class="definitionForm mt--20">
+        <dt class="definitionForm__title w--15">消込メモ</dt>
+        <dd class="definitionForm__data w--85">
+          <input class="input-size--350"
+            formControlName="MemoCtrl">
+        </dd>
+      </dl>
+      <hr class="separator mt--20">
+      <div class="common-btn mb--20">
+        <button (click)="yes()" class="buttonSecondary">{{ItemNameConst.BTN_YES}}</button>
+        <button (click)="no()" class="buttonMinimum">{{ItemNameConst.BTN_NO}}</button>
+        <button *ngIf="remainType==3" (click)="cancel()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

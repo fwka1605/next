@@ -1,0 +1,24 @@
+// ソートボタン
+// 
+// Markup:
+//  <button class="buttonSort"></button>
+//
+// Styleguide 3.2.8
+
+  .buttonSort {
+    position: relative;
+    width: 20px;
+    height: 100%;
+    &__upward,&__downward {
+      position: absolute;
+      border: 4px solid transparent;
+    }
+    &__upward {
+      top: -4px;
+      border-bottom: 5px solid #A8AAB7;
+    }
+    &__downward {
+      bottom: -4px;
+      border-top: 5px solid #A8AAB7;
+    }
+  }

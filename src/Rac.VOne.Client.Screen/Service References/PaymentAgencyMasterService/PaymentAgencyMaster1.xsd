@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="PaymentAgenciesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PaymentAgencies" nillable="true" type="tns:ArrayOfPaymentAgency" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentAgenciesResult" nillable="true" type="tns:PaymentAgenciesResult" />
+  <xs:complexType name="ArrayOfPaymentAgency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentAgency" nillable="true" type="tns:PaymentAgency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPaymentAgency" nillable="true" type="tns:ArrayOfPaymentAgency" />
+  <xs:complexType name="PaymentAgency">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="AppendDate" type="xs:int" />
+      <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BranchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollectCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="ConsiderUncollected" type="xs:int" />
+      <xs:element minOccurs="0" name="ConsigneeCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DueDateOffset" type="xs:int" />
+      <xs:element minOccurs="0" name="FileFormatId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Kana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutputFileName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShareTransferFee" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UseFeeLearning" type="xs:int" />
+      <xs:element minOccurs="0" name="UseFeeTolerance" type="xs:int" />
+      <xs:element minOccurs="0" name="UseKanaLearning" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentAgency" nillable="true" type="tns:PaymentAgency" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="PaymentAgencyResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PaymentAgency" nillable="true" type="tns:PaymentAgency" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentAgencyResult" nillable="true" type="tns:PaymentAgencyResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="PaymentFileFormatResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PaymentFileFormats" nillable="true" type="tns:ArrayOfPaymentFileFormat" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentFileFormatResult" nillable="true" type="tns:PaymentFileFormatResult" />
+  <xs:complexType name="ArrayOfPaymentFileFormat">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PaymentFileFormat" nillable="true" type="tns:PaymentFileFormat" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPaymentFileFormat" nillable="true" type="tns:ArrayOfPaymentFileFormat" />
+  <xs:complexType name="PaymentFileFormat">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Available" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsNeedYear" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PaymentFileFormat" nillable="true" type="tns:PaymentFileFormat" />
+</xs:schema>

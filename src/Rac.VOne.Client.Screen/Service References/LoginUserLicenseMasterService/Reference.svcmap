@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="76ff9a30-50cb-4dc7-b0dc-553e2e06c12b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/LoginUserLicenseMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LoginUserLicenseMaster2.xsd" MetadataType="Schema" ID="27bc4271-a5ea-4462-bf37-aa007ca0b5d3" SourceId="1" SourceUrl="http://localhost:3061/Master/LoginUserLicenseMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="LoginUserLicenseMaster1.xsd" MetadataType="Schema" ID="368333da-cabb-4959-bfe0-525c6e4bc5a7" SourceId="1" SourceUrl="http://localhost:3061/Master/LoginUserLicenseMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="LoginUserLicenseMaster3.xsd" MetadataType="Schema" ID="1a1fe4f4-5ec2-46de-bc43-36cfb2cd3755" SourceId="1" SourceUrl="http://localhost:3061/Master/LoginUserLicenseMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="LoginUserLicenseMaster.disco" MetadataType="Disco" ID="c30ef3a6-0cdf-4567-96d3-7ce9066216c8" SourceId="1" SourceUrl="http://localhost:3061/Master/LoginUserLicenseMaster.svc?disco" />
+    <MetadataFile FileName="LoginUserLicenseMaster.wsdl" MetadataType="Wsdl" ID="5bfc5cde-13c4-41cd-8f5d-1ecebdb57be6" SourceId="1" SourceUrl="http://localhost:3061/Master/LoginUserLicenseMaster.svc?wsdl" />
+    <MetadataFile FileName="LoginUserLicenseMaster.xsd" MetadataType="Schema" ID="3659766b-fc68-42dc-9a11-8d8cf664ad56" SourceId="1" SourceUrl="http://localhost:3061/Master/LoginUserLicenseMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

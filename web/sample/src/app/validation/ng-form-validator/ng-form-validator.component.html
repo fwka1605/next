@@ -1,0 +1,47 @@
+<input type="text" validator-required 
+    [validator-manager]="validatorManager" [validator-property]="'RequiredField'">
+<br>
+ 
+<input type="text" validator-required validator-integer
+    [validator-manager]="validatorManager" [validator-property]="'IntegerField'">
+<br>
+ 
+<input type="text" validator-ip 
+    [validator-manager]="validatorManager" [validator-property]="'IPField'">
+<br>
+ 
+<input type="text"
+            validator-range
+            [validator-range-from]="5"
+            [validator-range-to]="10"
+            [validator-range-from-inclusive]="true"
+            [validator-range-to-inclusive]="true"
+            required="false"
+            [validator-manager]="validatorManager" [validator-property]="'RangeFieldValidation'">
+            <br>
+
+<h3>Errors</h3>
+<pre>
+Global -> Is Valid: {{ validatorManager.IsValid() }}
+             
+    <table>
+        <thead>
+            <tr>
+                <td>Property</td>
+                <td>ValidationType</td>
+                <td>Is Valid?</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let el of validatorManager.Results">
+                <td>{{ el.PropertyName }}</td>
+                <td>{{ el.ValidatorType }}</td>
+                <td>{{ el.IsValid }}</td>
+            </tr>
+        </tbody>
+    </table>
+</pre>
+
+<br>
+<input type="button" value="check" (click)="runValidation()">
+            

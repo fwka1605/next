@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1acea3e4-31f5-42f5-a515-14bcd4899eae" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/ReportSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReportSettingMaster.xsd" MetadataType="Schema" ID="4e742a47-e8ef-4988-a042-08831d15b560" SourceId="1" SourceUrl="http://localhost:3061/Master/ReportSettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReportSettingMaster1.xsd" MetadataType="Schema" ID="10b23927-3b7a-4f03-a7df-d115ac27eac8" SourceId="1" SourceUrl="http://localhost:3061/Master/ReportSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReportSettingMaster.disco" MetadataType="Disco" ID="ca09815e-0e86-41da-b9e9-d41b44623c65" SourceId="1" SourceUrl="http://localhost:3061/Master/ReportSettingMaster.svc?disco" />
+    <MetadataFile FileName="ReportSettingMaster.wsdl" MetadataType="Wsdl" ID="adf69166-cb7c-4d3d-b3ad-71256c938c43" SourceId="1" SourceUrl="http://localhost:3061/Master/ReportSettingMaster.svc?wsdl" />
+    <MetadataFile FileName="ReportSettingMaster2.xsd" MetadataType="Schema" ID="f22cef71-c120-47a6-9d20-63a9ca9e0f74" SourceId="1" SourceUrl="http://localhost:3061/Master/ReportSettingMaster.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

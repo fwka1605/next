@@ -1,0 +1,177 @@
+<div [formGroup]="myFormGroup"
+ (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.IMPORT)" 
+        [ngClass]="{'button-disable':  myFormGroup.invalid || ebFileInfos.length<=0 || importFinishedFlag }" 
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_IMPORT}}
+        <span [innerHtml]="ButtonTipsConst.EB_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.DELETE)"  
+        [ngClass]="{'button-disable': !isSelectedLog }" 
+        class="buttonSecondary">
+        {{ItemNameConst.BTN_DELETE}}
+      </button>
+      <button 
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">
+        {{ItemNameConst.BTN_CLEAR}}
+      </button>
+
+      <div class="contentsButton__subSection">
+        <ul class="separator">
+          <li class="separator__item">
+            <button 
+              (click)="openEbFileSettingModal()" 
+              class="buttonPrimary infotip" 
+              data-modal="torikomi">
+              {{ItemNameConst.BTN_SETTING_REGISTRY}}
+              <span [innerHtml]="ButtonTipsConst.IMPORT_LAYOUT_SETTING | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+          <li class="separator__item">
+            <button 
+              (click)="openEbExcludeAccountingSettingModal()" 
+              class="buttonPrimary infotip" 
+              data-modal="taisyougai">
+              {{ItemNameConst.BTN_SETTING_NOT_TARGET}}
+              <span [innerHtml]="ButtonTipsConst.EXCLUDE_ACCOUNT_SETTING | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>          
+        </ul>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="pageContainer">
+    <!-- 取込条件 -->
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_IMPORT}}</h2>
+      <div class="contents__container">
+        <dl class="definitionForm mb--5">
+          <dt class="definitionForm__title">標準EBファイル設定<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="ebFileSettingCtrl" 
+              name="ebFileSettingCtrl"
+              (change)="setEBFileSetting()"
+              class="select-size--300" >
+              <option *ngFor="let ebFileSetting of ebFileSettingsResult?.eBFileSettings  index as i" value="{{i}}">
+                {{ebFileSetting.name}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">入金年</dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="ebFileYearCtlr"
+              name="ebFileYearCtlr"
+              type="tel"
+              maxlength="4"
+              class="input-size--60">
+          </dd>
+        </dl>
+        <div class="common-inner-table">
+          <table class="mb--15">
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_100_CODE}}"></th>
+                <th class="{{TableColumn.COL_50_CODE}}"> 取込 </th>
+                <th class="{{TableColumn.COL_750_CODE}}"> ファイルパス </th>
+                <th class="{{TableColumn.COL_400_CODE}}"> EBファイル設定 </th>
+                <th class="{{TableColumn.COL_150_CODE}}"> 読込件数 </th>
+                <th class="{{TableColumn.COL_150_CODE}}"> 取込件数 </th>
+                <th class="{{TableColumn.COL_150_CODE}}"> 取込状況</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ebFileInfo of ebFileInfos  index as i">
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{(i+1)}}</td>
+                <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="importFlagCtrl{{i}}" 
+                      formControlName="importFlagCtrl{{i}}" 
+                      name="importFlagCtrl{{i}}" 
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="importFlagCtrl{{i}}"></label>
+                  </div>
+                </td>
+                <td class="{{TableColumn.COL_750_NAME}}">{{ebFileInfo.filePath}}</td>
+                <td class="{{TableColumn.COL_400_NAME}}">
+                    <select 
+                    formControlName="ebFileSettingCtrl{{i}}" 
+                    name="ebFileSettingCtrl{{i}}"
+                    (change)="setTableEBFileSetting()"
+                    class="select-size--300" >
+                    <option *ngFor="let ebFileSetting of ebFileSettingsResult.eBFileSettings  index as i" value="{{i}}">
+                      {{ebFileSetting.name}}({{ebFileSetting.fileFieldTypeName}})
+                    </option>
+                  </select>              
+                </td>
+                <td class="{{TableColumn.COL_150_NAME}}">{{ebFileInfo.readCount|currency_pipe:false}}</td>
+                <td class="{{TableColumn.COL_150_NAME}}">{{ebFileInfo.importCount|currency_pipe:false}}</td>
+                <td class="{{TableColumn.COL_150_NAME}}">{{ebFileInfo.status}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="font__accent__drop" *ngIf="ebFileInfos.length==0">ファイルをドラッグ＆ドロップできます。</div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 取込履歴 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_IMPORT_HISTORY}}</h2>
+      <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_100_CODE}}"></th>
+                <th class="{{TableColumn.COL_50_CODE}}"> 削除 </th>
+                <th class="{{TableColumn.COL_500_CODE}}"> ファイル名 </th>
+                <th class="{{TableColumn.COL_150_CODE}}"> ファイルサイズ（B） </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 取込日時 </th>
+                <th class="{{TableColumn.COL_100_CODE}}"> 件数 </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 金額 </th>
+              </tr>
+            </thead>
+            <tbody class="searchResult__tableHeight--9999">
+              <tr *ngFor="let importFileLog of importFileLogsResult?.importFileLogs index as i">
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{i+1}}</td>
+                <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                  <div class="inputStyled--inTable">
+                    <input class="inputStyled__input"
+                      id="importFileLogFlagCtrl{{i}}" 
+                      formControlName="importFileLogFlagCtrl{{i}}" 
+                      name="importFileLogFlagCtrl{{i}}" 
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="importFileLogFlagCtrl{{i}}"></label>
+                  </div>
+                </td>
+                <td class="{{TableColumn.COL_500_NAME}}">{{importFileLog.fileName}}</td>
+                <td class="{{TableColumn.COL_150_RIGHT_NAME}}">{{importFileLog.fileSize|currency_pipe:false}}</td>
+                <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{importFileLog.createAt| date:'yyyy/MM/LL HH:mm:ss'}}</td>
+                <td class="{{TableColumn.COL_100_RIGHT_NAME}}">{{importFileLog.importCount|currency_pipe:false}}</td>
+                <td class="{{TableColumn.COL_200_RIGHT_NAME}}">{{importFileLog.importAmount|currency_pipe:false}}</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </section>
+
+  </section>
+
+
+</div>

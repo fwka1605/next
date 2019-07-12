@@ -1,0 +1,27 @@
+// 検索フィールド（inputフィールドとボタンの組み合わせ）
+// 
+// Markup:
+//  <div class="searchField">
+//    <input class="searchField__input"
+//      placeholder="得意先名 / 得意先コード">
+//    <button class="searchField__button buttonPrimary">検索</button>
+//  </div>
+//
+// Styleguide 3.2.3
+
+  .searchField {
+    display: inline-block;
+    &__input {
+      height: 24px;
+      min-height: auto;
+      box-sizing: border-box;
+      border-radius: 3px 0 0 3px;
+    }
+    &__button {
+      letter-spacing: .25rem;
+      &.buttonPrimary {
+        min-width: 50px;
+        border-radius: 0 3px 3px 0;
+      }
+    }
+  }

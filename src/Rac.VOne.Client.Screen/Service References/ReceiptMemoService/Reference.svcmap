@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="53df43b9-fbf7-424b-a2f8-300528a58eb5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/ReceiptMemoService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReceiptMemoService.xsd" MetadataType="Schema" ID="0506bd09-9b18-4b3b-ad79-ee6d9ac19e84" SourceId="1" SourceUrl="http://localhost:3061/ReceiptMemoService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReceiptMemoService1.xsd" MetadataType="Schema" ID="94723b43-48ef-4b52-9816-0ad08689f540" SourceId="1" SourceUrl="http://localhost:3061/ReceiptMemoService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReceiptMemoService2.xsd" MetadataType="Schema" ID="790a4b2a-e4d4-4e66-a432-b671d8779024" SourceId="1" SourceUrl="http://localhost:3061/ReceiptMemoService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ReceiptMemoService3.xsd" MetadataType="Schema" ID="9eb45fde-18c8-48dd-a92f-0fbec836d71f" SourceId="1" SourceUrl="http://localhost:3061/ReceiptMemoService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ReceiptMemoService.wsdl" MetadataType="Wsdl" ID="d25a1d41-8c5b-4f77-9cdd-f4778a3ea159" SourceId="1" SourceUrl="http://localhost:3061/ReceiptMemoService.svc?wsdl" />
+    <MetadataFile FileName="ReceiptMemoService.disco" MetadataType="Disco" ID="01727371-58dc-406b-9e02-28eda2c38ded" SourceId="1" SourceUrl="http://localhost:3061/ReceiptMemoService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

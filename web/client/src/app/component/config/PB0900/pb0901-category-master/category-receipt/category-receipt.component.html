@@ -1,0 +1,34 @@
+  <div class="common-inner-table">
+    <table>
+      <thead>
+        <tr>
+          <th class="{{TableColumn.COL_50_CODE}}">編集</th>
+          <th class="{{TableColumn.COL_150_CODE}}">区分コード</th>
+          <th class="{{TableColumn.COL_200_CODE}}">区分名</th>
+          <th class="{{TableColumn.COL_150_CODE}}">科目コード</th>
+          <th class="{{TableColumn.COL_200_CODE}}">科目名</th>
+          <th class="{{TableColumn.COL_150_CODE}}">補助コード</th>
+          <th class="{{TableColumn.COL_100_CODE}}">期日入力</th>
+          <th class="{{TableColumn.COL_150_CODE}}">消費税属性</th>
+          <th class="{{TableColumn.COL_100_CODE}}">消込順序</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let category of categoriesResult?.categories; let i = index"
+          class="line-selector">
+          <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+              <a class="buttonDetail" (click)="selectLine(i)"></a>
+          </td>
+          <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{category.code}}</td>
+          <td class="{{TableColumn.COL_200_NAME}}">{{category.name}}</td>
+          <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{category.accountTitleCode}}</td>
+          <td class="{{TableColumn.COL_200_NAME}}">{{category.accountTitleName}}</td>
+          <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{category.subCode}}</td>
+          <td class="{{TableColumn.COL_100_NAME}}">{{useLimitDateDictionary[category.useLimitDate].val}}</td>
+          <td class="{{TableColumn.COL_150_NAME}}">{{category.taxClassName}}</td>
+          <td class="{{TableColumn.COL_100_RIGHT_NAME}}">{{category.matchingOrder}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

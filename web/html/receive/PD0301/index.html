@@ -1,0 +1,463 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="receive">
+        <div id="breadcrumb-outer">
+          <h1>03 入金 - 03 入金データ入力(PD0301)</h1>
+        </div>
+        <section class="contents receive-data-add">
+          <h2 class="receive-data-add__title">入金データ入力 新規</h2>
+          <div class="receive-data-add__container">
+            <dl class="receive-data-add__container__settings">
+              <dt class="receive-data-add__container__settings__title">入金ID</dt>
+              <dd class="receive-data-add__container__settings__detail">
+                <input type="text" class="receive-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="receive-data-add__container__settings__title">入金日</dt>
+              <dd class="receive-data-add__container__settings__detail">
+                <input type="text" class="receive-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="receive-data-add__container__settings__title">得意先コード</dt>
+              <dd class="receive-data-add__container__settings__detail">
+                <input type="text" class="receive-data-add__container__settings__detail__main-input">
+                <button class="receive-data-add__container__settings__detail__search-btn">検索</button>
+                <input type="text" class="receive-data-add__container__settings__detail__option">
+              </dd>
+            </dl>
+            <dl class="receive-data-add__container__settings">
+              <dt class="receive-data-add__container__settings__title">振込依頼人名</dt>
+              <dd class="receive-data-add__container__settings__detail">
+                <input type="text" class="receive-data-add__container__settings__detail__option">
+              </dd>
+
+            </dl>
+          </div>
+        </section>
+        <section class="contents">
+          <div class="receive-controller">
+            <button class="receive-controller__btn">登録</button>
+            <button class="receive-controller__btn">クリア</button>
+            <button class="receive-controller__btn">請求内訳</button>
+            <button class="receive-controller__btn">入力設定</button>
+            <button class="receive-controller__btn">入金検索</button>
+          </div>
+        </section>
+
+        <section class="contents">
+          <div class="receive-data-add-result">
+            <div class="receive-data-add-result-table sticky-head-table">
+              <div class="sticky-head-table__header">
+                <table class="sticky-head-table__header__inner">
+                  <tr class="top_line">
+                    <th>入金区分</th>
+                    <th colspan="3">備考</th>
+                    <th>期日</th>
+                    <th>金額</th>
+                    <th></th>
+                    <th>編集</th>
+                    <th>ボタン</th>
+                  </tr>
+                  <tr class="middle_line">
+                    <th>手形番号</th>
+                    <th>銀行コード</th>
+                    <th>支店コード</th>
+                    <th>手形券面銀行</th>
+                    <th>振出日</th>
+                    <th colspan="4">振出人</th>
+                  </tr>
+                  <tr class="bottom_line">
+                    <th colspan="3">備考2</th>
+                    <th colspan="2">備考3</th>
+                    <th colspan="4">備考4</th>
+                  </tr>
+                </table>
+              </div>
+              <div class="sticky-head-table__body">
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>入金区分</td>
+                    <td colspan="3">備考</td>
+                    <td>期日</td>
+                    <td>金額</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>メモ</button>
+                    </td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+                  <tr class="middle_line">
+                    <td>手形番号</td>
+                    <td>銀行コード</td>
+                    <td>支店コード</td>
+                    <td>手形券面銀行</td>
+                    <td>振出日</td>
+                    <td colspan="4">振出人</td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td colspan="3">備考2</td>
+                    <td colspan="2">備考3</td>
+                    <td colspan="4">備考4</td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+            <div class="receive-data-add-result__footer">
+              <div class="receive-data-add-result__footer__total-viewer">
+                <h4 class="receive-data-add-result__footer__total-viewer__title">合計金額</h4>
+                <div class="receive-data-add-result__footer__total-viewer__amount">
+                  <ul class="receive-data-add-result__footer__total-viewer__lists">
+                    <li class="receive-data-add-result__footer__total-viewer__lists__item">10,000</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+      <div id="footer-outer">
+      </div>
+    </div>
+  </div>
+  <div id="modal-body" class="modal-box receive ">
+    <span class="modal-box__close" data-modal-close></span>
+    <div class="modal-box__contents">
+      <div class="modal-box__contents__inner">
+        <h2 class="modal-box__contents__title">入金メモ</h2>
+        <div class="modal-box__contents__item-container">
+          <div class="receive-remarks">
+            <section class="contents">
+              <div class="receive-remarks__container">
+                <dl class="receive-remarks__container__items">
+                  <dt class="receive-remarks__container__items__title">メモ</dt>
+                  <dd class="receive-remarks__container__items__detail">
+                    <input type="text" class="receive-remarks__container__items__detail__input-liner">
+                  </dd>
+
+                </dl>
+              </div>
+              <div class="receive-remarks__controller">
+                <button class="receive-controller__btn">登録</button>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>

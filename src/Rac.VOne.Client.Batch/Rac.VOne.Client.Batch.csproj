@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1D651AE6-E8B1-4556-B51E-D13C461A0E7B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rac.VOne.Client.Batch</RootNamespace>
+    <AssemblyName>VOneG4Importer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Rac.VOne.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>..\Rac.VOne.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>g4_logo_icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConcreteWorker\BillingImporterWorker.cs" />
+    <Compile Include="ConcreteWorker\CustomerGroupImporterWorker.cs" />
+    <Compile Include="ConcreteWorker\EBDataImporterWorker.cs" />
+    <Compile Include="ConcreteWorker\PaymentScheduleImporterWorker.cs" />
+    <Compile Include="ConcreteWorker\ReceiptImporterWorker.cs" />
+    <Compile Include="WorkerBase.cs" />
+    <Compile Include="IWorker.cs" />
+    <Compile Include="LogWriter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Worker.cs" />
+    <Compile Include="ConcreteWorker\CustomerImporterWorker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rac.VOne.Client.Common\Rac.VOne.Client.Common.csproj">
+      <Project>{4101d2a0-542d-48a6-bdfb-cfc7cc4c6f91}</Project>
+      <Name>Rac.VOne.Client.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Client.Screen\Rac.VOne.Client.Screen.csproj">
+      <Project>{028008ca-ebeb-4c89-a07d-b77d62cf4df8}</Project>
+      <Name>Rac.VOne.Client.Screen</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Client\Rac.VOne.Client.csproj">
+      <Project>{f5c00d99-86c2-4a76-b86e-12629c9ca76f}</Project>
+      <Name>Rac.VOne.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Common\Rac.VOne.Common.csproj">
+      <Project>{1432373b-cdef-46be-8949-84a3d8735053}</Project>
+      <Name>Rac.VOne.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.EbData.Core\Rac.VOne.EbData.Core.csproj">
+      <Project>{4816adcb-c432-4631-9c07-753428ecb526}</Project>
+      <Name>Rac.VOne.EbData.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.EbData\Rac.VOne.EbData.csproj">
+      <Project>{db79eb55-39ad-4314-a869-1433effa5643}</Project>
+      <Name>Rac.VOne.EbData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Import\Rac.VOne.Import.csproj">
+      <Project>{d0d42868-2b51-4b45-a4ac-64197bea0c32}</Project>
+      <Name>Rac.VOne.Import</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Web.Models\Rac.VOne.Web.Models.csproj">
+      <Project>{8f35634e-57d6-4677-be0d-c4fc3e4c0773}</Project>
+      <Name>Rac.VOne.Web.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="g4_logo_icon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

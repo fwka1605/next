@@ -1,0 +1,639 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <ng-container *ngIf="securityHideShow">
+        <button
+          (click)="buttonAction(BUTTON_ACTION.MATCHING)"
+          [ngClass]="{'button-disable': diableExecution() }"
+          class="buttonSecondary infotip">
+          {{collationInfo.matchingButtonName}}
+          <span
+            [innerHtml]="ButtonTipsConst.BULK_MATCHING | safeHtml_pipe"
+            class="infotip__frame"></span>
+        </button>
+      </ng-container>
+
+      <button 
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_ADD_HIDDEN:ItemNameConst.BTN_ADD_SEARCH}}</button>
+
+      <div class="contentsButton__subSection">
+        <button class="buttonExport"
+          (click)="buttonAction(BUTTON_ACTION.EXPORT)"></button>
+        <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+      </div>
+
+    </div>
+
+  </section>
+  
+  <section class="pageContainer">
+
+    <!---検索条件-->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+
+          <h2 class="contents__title--underline">
+            {{ItemNameConst.LBL_SETTING_COLLATION}}
+          </h2>
+
+          <div class="accordionContent__body contents__container--flex" 
+            data-accordion-body="clearing-all">
+
+            <div class="contents__item--w-50">
+              <dl class="definitionForm--lh-narrow">
+                <dt class="definitionForm__title w--15">入金日</dt>
+                <dd 
+                  *ngIf="collationInfo.collationSetting?.useFromToNarrowing==1" 
+                  class="definitionForm__data w--85">
+                  <input 
+                    formControlName="receiptRecordedAtFromCtrl" 
+                    name="receiptRecordedAtFromCtrl" 
+                    (keyup.enter)="setReceiptRecordedAtFrom($event.type)"
+                    ngbDatepicker #receiptRecordedAtFromDp="ngbDatepicker" 
+                    (dateSelect)="setReceiptRecordedAtFrom($event.type)" 
+                    [ngClass]="{'input--error': receiptRecordedAtFromCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="receiptRecordedAtFromDp.toggle()" type="button"></button>
+                  <span class="wavy-line"></span>
+                  <input 
+                    formControlName="receiptRecordedAtToCtrl" 
+                    name="receiptRecordedAtToCtrl" 
+                    (keyup.enter)="setReceiptRecordedAtTo($event.type)"
+                    (dateSelect)="setReceiptRecordedAtTo($event.type)" 
+                    ngbDatepicker #receiptRecordedAtToDp="ngbDatepicker" 
+                    [ngClass]="{'input--error': receiptRecordedAtToCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                  <button class="btn btn-outline-secondary" (click)="receiptRecordedAtToDp.toggle()" type="button"></button>
+                  <br>
+                  <div
+                    class="message-result font__warning"
+                    *ngIf="receiptRecordedAtFromCtrl.errors?.ngbDate 
+                          || receiptRecordedAtToCtrl.errors?.ngbDate">
+                    {{ MSG_VAL.DATE_DAY }}
+                  </div>              
+                </dd>
+                <dd 
+                  *ngIf="collationInfo.collationSetting?.useFromToNarrowing==0" 
+                  class="definitionForm__data w--85">
+                  <input 
+                    formControlName="receiptRecordedAtToCtrl" 
+                    name="receiptRecordedAtToCtrl" 
+                    (keyup.enter)="setReceiptRecordedAtTo($event.type)"
+                    (dateSelect)="setReceiptRecordedAtTo($event.type)" 
+                    ngbDatepicker #receiptRecordedAtToDp="ngbDatepicker" 
+                    [ngClass]="{'input--error': receiptRecordedAtToCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary definitionForm__input"
+                      (click)="receiptRecordedAtToDp.toggle()" type="button"></button>
+                  <span>以前</span>
+                  <br>
+                  <div
+                    class="message-result font__warning"
+                    *ngIf="receiptRecordedAtToCtrl.errors?.ngbDate">
+                    {{ MSG_VAL.DATE_DAY }}
+                  </div>              
+                </dd>
+                <dt class="definitionForm__title w--15">入金予定日</dt>
+                <dd 
+                  *ngIf="collationInfo.collationSetting?.useFromToNarrowing==1" 
+                  class="definitionForm__data w--85">
+                  <input 
+                    formControlName="billingDueAtFromCtrl" 
+                    name="billingDueAtFromCtrl" 
+                    (keyup.enter)="setBillingDueAtFrom($event.type)"
+                    (dateSelect)="setBillingDueAtFrom($event.type)" 
+                    ngbDatepicker #billingDueAtFromDp="ngbDatepicker" 
+                    [ngClass]="{'input--error': billingDueAtFromCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                  <button class="btn btn-outline-secondary"
+                    (click)="billingDueAtFromDp.toggle()" type="button"></button>
+                  <span class="wavy-line"></span>
+                  <input 
+                    formControlName="billingDueAtToCtrl" 
+                    name="billingDueAtToCtrl" 
+                    (keyup.enter)="setBillingDueAtTo($event.type)"
+                    (dateSelect)="setBillingDueAtTo($event.type)" 
+                    ngbDatepicker #billingDueAtToDp="ngbDatepicker" 
+                    [ngClass]="{'input--error': billingDueAtToCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                  <button class="btn btn-outline-secondary" (click)="billingDueAtToDp.toggle()" type="button"></button>
+                  <br>
+                  <div
+                    class="message-result font__warning"
+                    *ngIf="billingDueAtFromCtrl.errors?.ngbDate 
+                          || billingDueAtToCtrl.errors?.ngbDate">
+                    {{ MSG_VAL.DATE_DAY }}
+                  </div>
+                </dd>
+                <dd 
+                  *ngIf="collationInfo.collationSetting?.useFromToNarrowing==0" 
+                  class="definitionForm__data w--85">
+                  <input 
+                    formControlName="billingDueAtToCtrl" 
+                    name="billingDueAtToCtrl" 
+                    (keyup.enter)="setBillingDueAtTo($event.type)"
+                    (dateSelect)="setBillingDueAtTo($event.type)" 
+                    ngbDatepicker #billingDueAtToDp="ngbDatepicker" 
+                    [ngClass]="{'input--error': billingDueAtToCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary definitionForm__input"
+                      (click)="billingDueAtToDp.toggle()" type="button"></button>
+                  <span>以前</span>
+                  <br>
+                  <div
+                    class="message-result font__warning"
+                    *ngIf="billingDueAtToCtrl.errors?.ngbDate">
+                    {{ MSG_VAL.DATE_DAY }}
+                  </div>
+                </dd>
+              </dl>
+              <div class="inputStyled">
+                <input class="inputStyled__input"
+                  id="cbxShowMatchedCtrl_01" 
+                  formControlName="cbxShowMatchedCtrl" 
+                  name="cbxShowMatchedCtrl" 
+                  (change)="setCbxShowMatched()"
+                  type="checkbox">
+                <label class="inputStyled__checkbox" for="cbxShowMatchedCtrl_01">消込完了データを表示する</label>
+              </div>
+              <dl class="definitionForm--lh-narrow">
+                <dt class="definitionForm__title w--15">消込日</dt>
+                <dd class="definitionForm__data w--85">
+                  <input 
+                    formControlName="createAtFromCtrl" 
+                    name="createAtFromCtrl" 
+                    (keyup.enter)="setCreateAtFrom($event.type)"
+                    (dateSelect)="setCreateAtFrom($event.type)" 
+                    ngbDatepicker #createAtFromDp="ngbDatepicker"
+                    [ngClass]="{'input--error': createAtFromCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                  <button class="btn btn-outline-secondary" (click)="createAtFromDp.toggle()" type="button"></button>
+                  <span class="wavy-line"></span>
+                  <input 
+                    formControlName="createAtToCtrl" 
+                    name="createAtToCtrl" 
+                    (keyup.enter)="setCreateAtTo($event.type)"
+                    (dateSelect)="setCreateAtTo($event.type)" 
+                    ngbDatepicker #createAtToDp="ngbDatepicker" 
+                    [ngClass]="{'input--error': createAtToCtrl.errors?.ngbDate}"
+                    placeholder={{PlaceHolderConst.INPUT_DAY}}
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                  <button class="btn btn-outline-secondary" (click)="createAtToDp.toggle()" type="button"></button>
+                  <br>
+                  <div
+                    class="message-result font__warning"
+                    *ngIf="createAtFromCtrl.errors?.ngbDate 
+                          || createAtToCtrl.errors?.ngbDate">
+                    {{ MSG_VAL.DATE_DAY }}
+                  </div>              
+                </dd>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1;else elseCurrencyContent">
+                  <dt class="definitionForm__title w--15">通貨コード</dt>
+                  <dd class="definitionForm__data w--85">
+                    <input 
+                      formControlName="currencyCodeCtrl" 
+                      name="currencyCodeCtrl" 
+                      (keyup.enter)="setCurrencyCode($event.type)" 
+                      (blur)="setCurrencyCode($event.type)"
+                      maxlength="3" 
+                      type="tel" 
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      class="input-size--60">
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY)"></a>
+                  </dd>
+                </ng-container>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm--lh-narrow">
+                <dt class="definitionForm__title w--15">請求部門</dt>
+                <dd class="definitionForm__data w--85">
+                  <input 
+                    formControlName="departmentNameCtrl" 
+                    name="departmentNameCtrl" 
+                    class="input-size--150 definitionForm__input"
+                    readonly>
+                  <button 
+                    (click)="openMultiMasterModal(TABLE_INDEX.MASTER_DEPARTMENT)" 
+                    class="buttonMinimum definitionForm__input">{{ItemNameConst.BTN_SELECT}}</button>
+                  <button 
+                    (click)="initializeDepartmentSelection()"
+                    class="buttonMinimum">{{ItemNameConst.BTN_INITIALIZE}}</button>
+                </dd>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1;else elseSectionContent">
+                  <dt class="definitionForm__title w--15">入金部門</dt>
+                  <dd class="definitionForm__data w--85">
+                    <input 
+                      formControlName="sectionNameCtrl" 
+                      name="departmentNameCtrl" 
+                      class="input-size--150 definitionForm__input" 
+                      readonly>
+                    <button 
+                      (click)="openMultiMasterModal(TABLE_INDEX.MASTER_SECTION)" 
+                      class="buttonMinimum definitionForm__input"
+                      data-modal="seikyu-bumon">{{ItemNameConst.BTN_SELECT}}</button>
+                    <button
+                      (click)="initializeSectionSelection()"
+                      class="buttonMinimum">{{ItemNameConst.BTN_INITIALIZE}}</button>
+                  </dd>
+                </ng-container>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useCashOnDueDates==1;else elseBillingDataContent">
+                  <dt class="definitionForm__title w--15">請求データ</dt>
+                  <dd class="definitionForm__data w--85">
+                    <select 
+                      formControlName="cmbBillingDataCtrl" 
+                      name="cmbBillingDataCtrl" 
+                      class="select-size--150">
+                      <option value="0">すべて</option>
+                      <option value="1">通常請求</option>
+                      <option 
+                        *ngIf="userInfoService.ApplicationControl?.useCashOnDueDates==1"  
+                        value="2">期日入金予定
+                      </option>
+                      <option 
+                        *ngIf="userInfoService.ApplicationControl?.useFactoring==1" 
+                        value="3">ファクタリング債権
+                      </option>
+                    </select>
+                  </dd>
+                </ng-container>
+                <dt class="definitionForm__title w--15">表示金額</dt>
+                <dd class="definitionForm__data w--85">
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="rdoDisplayTargetAmountCtrl_01"
+                      formControlName="rdoDisplayTargetAmountCtrl" 
+                      name="rdoDisplayTargetAmountCtrl" 
+                      type="radio"
+                      value="0">
+                    <label class="inputStyled__radio" for="rdoDisplayTargetAmountCtrl_01">消込対象</label>
+                  </div>
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="rdoDisplayTargetAmountCtrl_02"
+                      formControlName="rdoDisplayTargetAmountCtrl" 
+                      name="rdoDisplayTargetAmountCtrl" 
+                      type="radio"
+                      value="1">
+                    <label class="inputStyled__radio" for="rdoDisplayTargetAmountCtrl_02">請求額</label>
+                  </div>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__buttonGroup">
+              <button 
+                (click)="buttonAction(BUTTON_ACTION.COLLATE)" 
+                [ngClass]="{'button-disable':  myFormGroup.invalid || loadingData }" 
+                class="buttonSecondary infotip" 
+                data-modal="shogo-progress">
+                {{collationInfo.collateButtonName}}
+                <span [innerHtml]="ButtonTipsConst.COLLATION | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+              <button 
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+            </div>
+
+
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <!---検索結果-->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{collationInfo.resutlTitle}}</h2>
+
+      <ng-container *ngIf="collationInfo.collationSetting?.billingReceiptDisplayOrder!=1">
+        <!-- 請求・入金 -->
+        <div class="common-inner-table--multipleHeader">
+            <table class="searchResult__table--tableData-nowrap">
+              <thead class="table_row">
+                <tr class="colspan-title">
+                  <th class="{{TableColumn.COL_50_CODE}}" rowspan="2"></th>
+                  <ng-container *ngIf="securityHideShow">
+                    <th class="{{TableColumn.COL_70_CODE}}" rowspan="2">
+                      <span class="cursor-pointer"
+                        (click)="setSort(0)">{{ collationInfo?.selectionAlias }}
+                        <span 
+                          *ngIf="!StringUtil.IsNullOrEmpty(getSortRow(0))" 
+                          class="buttonSort" data-sort-btn>{{getSortRow(0)}}
+                        </span>
+                      </span>
+                      <br>
+                      <div class="inputStyled">
+                        <input 
+                          id="cbxCheckAllCtrl"
+                          class="inputStyled__input"
+                          formControlName="cbxCheckAllCtrl" 
+                          name="cbxCheckAllCtrl" 
+                          (change)="checkAll()"
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxCheckAllCtrl"></label>
+                      </div>
+                    </th>
+                  </ng-container>
+                  <th class="{{TableColumn.COL_50_CODE}}" rowspan="2">個別</th>
+
+                  <th 
+                    class="searchResult__tableCell--color-invoice is-hoverable"
+                    [ngClass]="{'font--bold': collationInfo.billingPriority}"      
+                    (click)="setHeaderSort(CategoryType.Billing)" colspan="4">
+                    請求情報
+                    <span 
+                      *ngIf="!StringUtil.IsNullOrEmpty(getHeaderSortRow(CategoryType.Billing))" 
+                      class="buttonSort" data-sort-btn >
+                      {{getHeaderSortRow(CategoryType.Billing)}}
+                    </span>
+                  </th>
+                  <th 
+                    class="searchResult__tableCell--color-receive is-hoverable"
+                    [ngClass]="{'font--bold': !collationInfo.billingPriority}"      
+                    (click)="setHeaderSort(CategoryType.Receipt)" colspan="3">
+                    入金情報
+                    <span 
+                      *ngIf="!StringUtil.IsNullOrEmpty(getHeaderSortRow(CategoryType.Receipt))" 
+                      class="buttonSort" data-sort-btn >
+                      {{getHeaderSortRow(CategoryType.Receipt)}}
+                    </span>
+                  </th>
+                  <th class="{{TableColumn.COL_60_CODE}}" rowspan="2">手数料</th>
+                  <th class="{{TableColumn.COL_150_CODE}}" rowspan="2">差額</th>
+                  <th 
+                    (click)="setSort(1)"
+                    class="{{TableColumn.COL_50_CODE}}">
+                    {{ collationInfo?.noteAlias }}
+                  </th>
+                </tr>
+                <tr class="no-margin-head">
+                  <th class="{{TableColumn.COL_110_CODE}} searchResult__tableCell--color-invoice">得意先コード</th>
+                  <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell--color-invoice">得意先名(代表者)</th>
+                  <th class="{{TableColumn.COL_50_CODE}} searchResult__tableCell--color-invoice">件数</th>
+                  <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell--color-invoice">金額</th>
+                  <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell--color-receive">振込依頼人名</th>
+                  <th class="{{TableColumn.COL_50_CODE}} searchResult__tableCell--color-receive">件数</th>
+                  <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell--color-receive">金額</th>
+                  <th class="{{TableColumn.COL_50_CODE}} is-hoverable" (click)="setSort(1)">
+                    <button 
+                      *ngIf="!StringUtil.IsNullOrEmpty(getSortRow(1))" 
+                      class="sort-box__btn" data-sort-btn >
+                      {{getSortRow(1)}}
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="searchResult__tableHeight--9999">
+                <tr *ngFor="let collation of collationInfo.collations  index as i">
+                  <td class="{{TableColumn.COL_50_CENTER_NAME}}" class="line-selecter"><span>{{i+1}}</span></td>
+                  <td class="{{TableColumn.COL_70_CENTER_NAME}}">
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxDetailKesiCtrl{{i}}" 
+                        formControlName="cbxDetailKesiCtrl{{i}}" 
+                        name="cbxDetailKesiCtrl{{i}}" 
+                        (change)="collation.checked = !collation.checked"
+                        [checked]="collation.checked"
+                        type="checkbox">
+                      <label 
+                        [ngClass]="{'checkbox-disabled-hidden': !collation.checkable}"                    
+                        class="inputStyled__checkbox"
+                        for="cbxDetailKesiCtrl{{i}}"></label>
+                    </div>
+                  </td>
+                  <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                    <a class="buttonDetail" (click)="selectLine(i)"></a>
+                  </td>
+                  <!-- 得意先コード -->
+                  <td 
+                    class="{{TableColumn.COL_110_CENTER_NAME}} searchResult__tableData--color-invoice infotip" 
+                    (click)="openCustomerModal(i)">
+                    <span class="anchor">{{collation.dispCustomerCode}}</span>
+                  </td>
+                  <!-- 得意先名 -->
+                  <td 
+                    class="{{TableColumn.COL_150_NAME}} searchResult__tableData--color-invoice infotip" 
+                    (click)="openCustomerModal(i)">
+                    <span class="anchor">{{collation.dispCustomerName}}</span>
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_50_RIGHT_NAME}} searchResult__tableData--color-invoice">
+                    {{collation.dispBillingCount | currency_pipe}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}} searchResult__tableData--color-invoice">
+                    {{collation.dispBillingAmount | currency_pipe}}
+                  </td>
+                  <!-- 振込依頼人名 -->
+                  <td 
+                    [ngClass]="{'flag_dupeCheck_off': collation.dupeCheck==0, 'flag_dupeCheck_on': collation.dupeCheck==1}"                
+                    class="{{TableColumn.COL_150_NAME}} searchResult__tableData--color-receive">
+                    {{collation.payerName}}
+                  </td>
+                  <td
+                    [ngClass]="{'flag_dupeCheck_off': collation.dupeCheck==0, 'flag_dupeCheck_on': collation.dupeCheck==1}"                
+                    class="{{TableColumn.COL_50_RIGHT_NAME}} searchResult__tableData--color-receive">
+                    {{collation.dispReceiptCount | currency_pipe}}
+                  </td>
+                  <td 
+                    [ngClass]="{'flag_dupeCheck_off': collation.dupeCheck==0, 'flag_dupeCheck_on': collation.dupeCheck==1}"
+                    class="{{TableColumn.COL_SMALL_KINGAKU}} searchResult__tableData--color-receive">
+                    {{collation.dispReceiptAmount | currency_pipe}}
+                  </td>
+                  <!-- 手数料 -->
+                  <td class="{{TableColumn.COL_60_NAME}}">{{collation.dispShareTransferFee}}</td>
+                  <td class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    [ngClass]="{'flag_bg': collation.checkable, 'flag_amount': collation.dispDifferent<0}">
+                    {{collation.dispDifferent | currency_pipe}}
+                  </td>
+                  <td class="{{TableColumn.COL_50_CENTER_NAME}} font__large">
+                    {{collation.dispAdvanceReceivedCount}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="collationInfo.collationSetting?.billingReceiptDisplayOrder==1">
+        <!-- 入金・請求 -->
+        <div class="common-inner-table--multipleHeader">
+            <table class="searchResult__table">
+              <thead class="table_row">
+                <tr class="colspan-title">
+                  <th class="{{TableColumn.COL_50_CODE}}" rowspan="2"></th>
+                  <ng-container *ngIf="securityHideShow">
+                    <th class="{{TableColumn.COL_70_CODE}}" rowspan="2">
+                      <span class="cursor-pointer"
+                        (click)="setSort(0)">{{ collationInfo?.selectionAlias }}
+                        <span 
+                          *ngIf="!StringUtil.IsNullOrEmpty(getSortRow(0))" 
+                          class="buttonSort" data-sort-btn>{{getSortRow(0)}}
+                        </span>
+                      </span>
+                      <br>
+                      <div class="inputStyled">
+                        <input 
+                          id="cbxCheckAllCtrl"
+                          class="inputStyled__input"
+                          formControlName="cbxCheckAllCtrl" 
+                          name="cbxCheckAllCtrl" 
+                          (change)="checkAll()"
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxCheckAllCtrl"></label>
+                      </div>
+                    </th>
+                  </ng-container>
+                  <th class="{{TableColumn.COL_50_CODE}}" rowspan="2">個別</th>
+                  <th 
+                    class="searchResult__tableCell--color-receive is-hoverable"
+                    [ngClass]="{'font--bold': !collationInfo.billingPriority}"      
+                    (click)="setHeaderSort(CategoryType.Receipt)" colspan="3">
+                    入金情報
+                    <button 
+                      *ngIf="!StringUtil.IsNullOrEmpty(getHeaderSortRow(CategoryType.Receipt))" class="sort-box__btn" data-sort-btn >
+                      {{getHeaderSortRow(CategoryType.Receipt)}}
+                    </button>
+                  </th>
+                  <th 
+                    class="searchResult__tableCell--color-invoice is-hoverable"
+                    [ngClass]="{'font--bold': collationInfo.billingPriority}"      
+                    (click)="setHeaderSort(CategoryType.Billing)" colspan="4">
+                    請求情報
+                    <button 
+                      *ngIf="!StringUtil.IsNullOrEmpty(getHeaderSortRow(CategoryType.Billing))" 
+                      class="sort-box__btn" data-sort-btn >
+                      {{getHeaderSortRow(CategoryType.Billing)}}
+                    </button>
+                  </th>
+                  <th class="{{TableColumn.COL_60_CODE}}" rowspan="2">手数料</th>
+                  <th class="{{TableColumn.COL_150_CODE}}" rowspan="2">差額</th>
+                  <th 
+                    (click)="setSort(1)"
+                    class="{{TableColumn.COL_50_CODE}}">
+                    {{ collationInfo?.noteAlias }}
+                  </th>
+                </tr>
+                <tr class="no-margin-head">
+                  <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell--color-receive">振込依頼人名</th>
+                  <th class="{{TableColumn.COL_50_CODE}} searchResult__tableCell--color-receive">件数</th>
+                  <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell--color-receive">金額</th>
+                  <th class="{{TableColumn.COL_110_CODE}} searchResult__tableCell--color-invoice">得意先コード</th>
+                  <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell--color-invoice">得意先名(代表者)</th>
+                  <th class="{{TableColumn.COL_50_CODE}} searchResult__tableCell--color-invoice">件数</th>
+                  <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell--color-invoice">金額</th>
+                  <th class="{{TableColumn.COL_50_CODE}} is-hoverable" (click)="setSort(1)">
+                    <button 
+                      *ngIf="!StringUtil.IsNullOrEmpty(getSortRow(1))" 
+                      class="sort-box__btn" data-sort-btn >
+                      {{getSortRow(1)}}
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="searchResult__tableHeight--9999">
+                <tr *ngFor="let collation of collationInfo.collations  index as i">
+                  <td class="{{TableColumn.COL_50_CENTER_NAME}}" class="line-selecter"><span>{{i+1}}</span></td>
+                  <ng-container *ngIf="securityHideShow">
+                    <td class="{{TableColumn.COL_60_CENTER_NAME}}">
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxDetailKesiCtrl{{i}}" 
+                          formControlName="cbxDetailKesiCtrl{{i}}" 
+                          name="cbxDetailKesiCtrl{{i}}" 
+                          (change)="collation.checked = !collation.checked"
+                          [checked]="collation.checked"
+                          type="checkbox">
+                        <label [ngClass]="{'checkbox-disabled-hidden': !collation.checkable}" class="inputStyled__checkbox" for="cbxDetailKesiCtrl{{i}}"></label>
+                      </div>
+                    </td>
+                  </ng-container>
+                  <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                    <a class="buttonDetail" (click)="selectLine(i)"></a>
+                  </td>
+                  <!-- 振込依頼人名 -->
+                  <td 
+                    [ngClass]="{'flag_dupeCheck_off': collation.dupeCheck==0, 'flag_dupeCheck_on': collation.dupeCheck==1}"                
+                    class="{{TableColumn.COL_150_NAME}} searchResult__tableData--color-receive">
+                    {{collation.payerName}}
+                  </td>
+                  <td
+                    [ngClass]="{'flag_dupeCheck_off': collation.dupeCheck==0, 'flag_dupeCheck_on': collation.dupeCheck==1}"                
+                    class="{{TableColumn.COL_50_RIGHT_NAME}} searchResult__tableData--color-receive">
+                    {{collation.dispReceiptCount | currency_pipe}}
+                  </td>
+                  <td 
+                    [ngClass]="{'flag_dupeCheck_off': collation.dupeCheck==0, 'flag_dupeCheck_on': collation.dupeCheck==1}"
+                    class="{{TableColumn.COL_SMALL_KINGAKU}} searchResult__tableData--color-receive">
+                    {{collation.dispReceiptAmount | currency_pipe}}
+                  </td>
+                  <!-- 得意先コード -->
+                  <td 
+                    class="{{TableColumn.COL_110_CENTER_NAME}} searchResult__tableData--color-invoice" 
+                    (click)="openCustomerModal(i)">
+                    <span class="anchor">{{collation.dispCustomerCode}}</span>
+                    <span [innerHtml]="HtmlTipsConst.CUSTOMER_REFERER | safeHtml_pipe" class="infotip__frame"></span>
+                  </td>
+                  <!-- 得意先名 -->
+                  <td
+                    class="{{TableColumn.COL_150_NAME}} searchResult__tableData--color-invoice"
+                    (click)="openCustomerModal(i)">
+                    <span class="anchor">{{collation.dispCustomerName}}</span>
+                    <span [innerHtml]="HtmlTipsConst.CUSTOMER_REFERER | safeHtml_pipe" class="infotip__frame"></span>
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_50_RIGHT_NAME}} searchResult__tableData--color-invoice">
+                    {{collation.dispBillingCount | currency_pipe}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}} searchResult__tableData--color-invoice">
+                    {{collation.dispBillingAmount | currency_pipe}}
+                  </td>
+                  <!-- 手数料 -->
+                  <td class="{{TableColumn.COL_60_NAME}}">{{collation.dispShareTransferFee}}</td>
+                  <td class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    [ngClass]="{'flag_bg': collation.checkable, 'flag_amount': collation.dispDifferent<0}">
+                    {{collation.dispDifferent | currency_pipe}}
+                  </td>
+                  <td 
+                    class="{{TableColumn.COL_50_CENTER_NAME}} font__large">
+                    {{collation.dispAdvanceReceivedCount}}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+      </ng-container>
+    </section>
+    
+  </section>
+</div>

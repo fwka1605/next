@@ -1,0 +1,344 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+      
+      <button
+        (click)="buttonAction(BUTTON_ACTION.DELETE)"
+        [ngClass]="{'button-disable': DeleteButtonDisableFlag}"
+        class="buttonSecondary">{{ItemNameConst.BTN_DELETE}}</button>
+        
+      <button
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_SEARCH_ITEM_HIDDEN:ItemNameConst.BTN_SEARCH_ITEM_DISPLAY}}</button>    
+
+      <div class="contentsButton__subSection">
+        <ng-container *ngIf="securityHideShow">
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterImport)">
+            <button class="buttonImport infotip"
+              (click)="buttonAction(BUTTON_ACTION.IMPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterExport)">
+            <button class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>        
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 検索条件 -->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+          <h2 class="contents__title--underline">
+            {{ItemNameConst.LBL_SEARCH_CONDITION}}
+          </h2>
+          <div class="contents__container--flex">
+            <div class="contents__item--w-50">
+              <div class="inputStyled mb--10">
+                <input type="radio" class="inputStyled__input" name="rdoSearchObjectCtrl" id="radio-01"
+                  formControlName="rdoSearchObjectCtrl"
+                  (change)="selectSearchObject()"
+                  value="1">
+                <label for="radio-01" class="inputStyled__radio">得意先</label>
+              </div>
+              <div class="inputStyled mb--10">
+                <input type="radio" class="inputStyled__input" name="rdoSearchObjectCtrl" id="radio-02"
+                  formControlName="rdoSearchObjectCtrl"
+                  (change)="selectSearchObject()"
+                  value="2">
+                <label for="radio-02" class="inputStyled__radio">決済代行会社</label>
+              </div>
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--15">振込依頼人名</dt>
+                <dd class="definitionForm__data">
+                  <input
+                    formControlName="payerNameCtrl"
+                    name="payerNameCtrl"
+                    (blur)="inputPayerName()"
+                    (keyup.enter)="setPayerName($event.type)"
+                    maxlength="140"
+                    class="input-size--500">
+                </dd>
+              </dl>
+              <dl class="definitionForm"
+                *ngIf="isCustomerSearchObject">
+                <dt class="definitionForm__title w--15">得意先コード</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="customerCodeFromCtrl"
+                    name="customerCodeFromCtrl"
+                    (blur)="setCustomerCodeFrom($event.type)"
+                    (keyup.enter)="setCustomerCodeFrom($event.type)"
+                    #customerCodeFromInput
+                    [formControl]="customerCodeFromCtrl" 
+                    [matAutocomplete]="autoCustomerCodeFrom"
+                    maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="definitionForm__input input-size--110">
+                  <mat-autocomplete 
+                    #autoCustomerCodeFrom="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let customer of customerFilterds[0] | async" 
+                      [value]="customer.code">
+                      {{customer.code}}:{{customer.name}}
+                    </mat-option>
+                  </mat-autocomplete>   
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER, 'from')"></a>
+                  <input
+                    formControlName="customerNameFromCtrl"
+                    class="input-size--180"
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--15">
+                  <div class="end-checkbox">
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxCustomerCtrl_01"
+                        formControlName="cbxCustomerCtrl"
+                        (change)="setCbxCustomer($event.type)"
+                        type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxCustomerCtrl_01"></label>
+                    </div>
+                  </div>
+                </dt>
+                <dd class="definitionForm__data">
+                  <input
+                    formControlName="customerCodeToCtrl"
+                    name="customerCodeToCtrl"
+                    (blur)="setCustomerCodeTo($event.type)"
+                    (keyup.enter)="setCustomerCodeTo($event.type)"
+                    #customerCodeToInput
+                    [formControl]="customerCodeToCtrl" 
+                    [matAutocomplete]="autoCustomerCodeTo"
+                    maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="definitionForm__input input-size--110">
+                  <mat-autocomplete 
+                    #autoCustomerCodeTo="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let customer of customerFilterds[1] | async" 
+                      [value]="customer.code">
+                      {{customer.code}}:{{customer.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'to')"></a>
+                  <input
+                    formControlName="customerNameToCtrl"
+                    class="input-size--180"
+                    readonly>
+                </dd>
+              </dl>
+              <dl class="definitionForm"
+                *ngIf="!isCustomerSearchObject">
+                <dt class="definitionForm__title w--15">決済代行会社</dt>
+                <dd class="definitionForm__data w--85">
+                  <input
+                    formControlName="customerCodeFromCtrl"
+                    name="customerCodeFromCtrl"
+                    (blur)="setCustomerCodeFrom($event.type)"
+                    (keyup.enter)="setCustomerCodeFrom($event.type)"
+                    #customerCodeFromInput
+                    [formControl]="customerCodeFromCtrl" 
+                    [matAutocomplete]="autoCustomerCodeFrom"
+                    maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="definitionForm__input input-size--110">
+                  <mat-autocomplete 
+                    #autoCustomerCodeFrom="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let customer of customerFilterds[0] | async" 
+                      [value]="customer.code">
+                      {{customer.code}}:{{customer.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_PAYMENT_AGENCY,'from')"></a>
+                  <input
+                    formControlName="customerNameFromCtrl"
+                    class="input-size--180"
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--15">
+                  <div class="end-checkbox">
+                    <div class="inputStyled">
+                      <input class="inputStyled__input"
+                        id="cbxCustomerCtrl_01"
+                        formControlName="cbxCustomerCtrl"
+                        type="checkbox">
+                      <label class="inputStyled__checkbox" for="cbxCustomerCtrl_01"></label>
+                    </div>
+                  </div>
+                </dt>
+                <dd class="definitionForm__data">
+                  <input
+                    formControlName="customerCodeToCtrl"
+                    name="customerCodeToCtrl"
+                    (blur)="setCustomerCodeTo($event.type)"
+                    (keyup.enter)="setCustomerCodeTo($event.type)"
+                    #customerCodeToInput
+                    [formControl]="customerCodeToCtrl" 
+                    [matAutocomplete]="autoCustomerCodeTo"
+                    maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="definitionForm__input input-size--110">
+                  <mat-autocomplete 
+                    #autoCustomerCodeTo="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let customer of customerFilterds[1] | async" 
+                      [value]="customer.code">
+                      {{customer.code}}:{{customer.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_PAYMENT_AGENCY,'to')"></a>
+                  <input
+                    formControlName="customerNameToCtrl"
+                    class="input-size--180"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <div class="frame--w-60">
+                <div class="inputStyled">
+                  <input type="radio" class="inputStyled__input" name="rdoOrderCtrl" id="radio-03"
+                    formControlName="rdoOrderCtrl"
+                    (change)="selectOrder()"
+                    value="1">
+                  <label for="radio-03" class="inputStyled__radio">振込依頼人名(カナ)順</label>
+                </div>
+                <div class="inputStyled">
+                  <input type="radio" class="inputStyled__input" name="rdoOrderCtrl" id="radio-04"
+                    formControlName="rdoOrderCtrl"
+                    (change)="selectOrder()"
+                    value="2">
+                  <label for="radio-04" class="inputStyled__radio">
+                  <span *ngIf="isCustomerSearchObject">得意先コード順</span>
+                  <span *ngIf="!isCustomerSearchObject">決済代行会社コード順</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="contents__buttonGroup">
+            <button
+              (click)="buttonAction(BUTTON_ACTION.SEARCH)"
+              [ngClass]="{'button-disable': myFormGroup.invalid}"
+              class="buttonSecondary">{{ItemNameConst.BTN_SEARCH}}</button>
+            <button
+              (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+              class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <!-- 消込履歴 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_HISTORY_CLEARING}}</h2>
+      <div class="contents__container">
+      <div  *ngIf="isCustomerSearchObject" class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_50_CODE}}"></th>
+              <th class="{{TableColumn.COL_50_CODE}}">削除</th>
+              <th class="{{TableColumn.COL_250_CODE}}">振込依頼人名</th>
+              <th class="{{TableColumn.COL_150_CODE}}">得意先コード</th>
+              <th class="{{TableColumn.COL_200_CODE}}">得意先名</th>
+              <th class="{{TableColumn.COL_200_CODE}}">仕向銀行</th>
+              <th class="{{TableColumn.COL_200_CODE}}">仕向支店</th>
+              <th class="{{TableColumn.COL_150_CODE}}">個別消込回数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              *ngFor="let kanaHistoryCustomer of kanaHistoryCustomersResult?.kanaHistoryCustomers index as i"
+              class="line-selector">
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{ i + 1 }}</td>
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                <div class="inputStyled--inTable">
+                  <input
+                    id="cbxDetailDelFlagCtrl{{i}}"
+                    class="inputStyled__input"
+                    formControlName="cbxDetailDelFlagCtrl{{i}}"
+                    name="cbxDetailDelFlagCtrl{{i}}"
+                    (click)="onChecked(i)"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxDetailDelFlagCtrl{{i}}"></label>
+                </div>
+              </td>
+              <td class="{{TableColumn.COL_250_NAME}}">{{kanaHistoryCustomer.payerName}}</td>
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{kanaHistoryCustomer.customerCode}}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{kanaHistoryCustomer.customerName}}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{kanaHistoryCustomer.sourceBankName}}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{kanaHistoryCustomer.sourceBranchName}}</td>
+              <td class="{{TableColumn.COL_150_RIGHT_NAME}}">{{kanaHistoryCustomer.hitCount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div  *ngIf="!isCustomerSearchObject" class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_50_CODE}}"></th>
+              <th class="{{TableColumn.COL_50_CODE}}">削除</th>
+              <th class="{{TableColumn.COL_250_CODE}}">振込依頼人名</th>
+              <th class="{{TableColumn.COL_150_CODE}}">決済代行会社コード</th>
+              <th class="{{TableColumn.COL_200_CODE}}">決済代行会社名</th>
+              <th class="{{TableColumn.COL_200_CODE}}">仕向銀行</th>
+              <th class="{{TableColumn.COL_200_CODE}}">仕向支店</th>
+              <th class="{{TableColumn.COL_150_CODE}}">個別消込回数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let kanaHistoryPaymentAgency of kanaHistoryPaymentAgencyResult?.kanaHistoryPaymentAgency; let i = index">
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{ i + 1 }}</td>
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                <div class="inputStyled--inTable">
+                  <input
+                    id="cbxDetailDelFlagCtrl{{i}}"
+                    class="inputStyled__input"
+                    formControlName="cbxDetailDelFlagCtrl{{i}}"
+                    name="cbxDetailDelFlagCtrl{{i}}"
+                    (click)="onChecked(i)"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxDetailDelFlagCtrl{{i}}"></label>
+                </div>
+              </td>
+              <td class="{{TableColumn.COL_250_NAME}}">{{kanaHistoryPaymentAgency.payerName}}</td>
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{kanaHistoryPaymentAgency.paymentAgencyCode}}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{kanaHistoryPaymentAgency.paymentAgencyName}}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{kanaHistoryPaymentAgency.sourceBankName}}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{kanaHistoryPaymentAgency.sourceBranchName}}</td>
+              <td class="{{TableColumn.COL_150_RIGHT_NAME}}">{{kanaHistoryPaymentAgency.hitCount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>    
+      </div>
+    </section>
+
+  </section>
+
+
+</div>

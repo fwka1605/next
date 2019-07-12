@@ -1,0 +1,27 @@
+<section
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--small">
+  <h2 class="vModal__heading">個別消込【請求メモ入力】
+    <span class="vModal__close" (click)="close()"></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <dl class="definitionForm">
+        <dt class="definitionForm__title w--20">請求メモ</dt>
+        <dd class="definitionForm__data w--80">
+          <input 
+            formControlName="memoCtrl" 
+            class="input-size--350">
+        </dd>
+      </dl>
+      <hr class="separator">
+      <div class="common-btn mb--20">
+        <button (click)="registry()" class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+        <button (click)="cancel()" class="buttonMinimum mr--0">{{ItemNameConst.BTN_CANCEL}}</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

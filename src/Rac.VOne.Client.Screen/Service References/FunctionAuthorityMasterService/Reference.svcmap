@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1aee5a92-31d1-4fb8-abc2-04a39fe6b8e3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/FunctionAuthorityMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="FunctionAuthorityMaster.disco" MetadataType="Disco" ID="ca7bf4b2-7a1e-467a-8d9a-4f7ce9c7d6ca" SourceId="1" SourceUrl="http://localhost:3061/Master/FunctionAuthorityMaster.svc?disco" />
+    <MetadataFile FileName="FunctionAuthorityMaster.xsd" MetadataType="Schema" ID="d38d8bf6-53a5-43d0-8a75-77842cdace1b" SourceId="1" SourceUrl="http://localhost:3061/Master/FunctionAuthorityMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="FunctionAuthorityMaster1.xsd" MetadataType="Schema" ID="4c57d237-5629-45a0-a425-c684dc1a554a" SourceId="1" SourceUrl="http://localhost:3061/Master/FunctionAuthorityMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="FunctionAuthorityMaster2.xsd" MetadataType="Schema" ID="e268edc3-c4f7-4c33-a94b-ac75be8eb2e6" SourceId="1" SourceUrl="http://localhost:3061/Master/FunctionAuthorityMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="FunctionAuthorityMaster3.xsd" MetadataType="Schema" ID="9d10947d-4219-495d-86a7-5e7e499c40fd" SourceId="1" SourceUrl="http://localhost:3061/Master/FunctionAuthorityMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="FunctionAuthorityMaster.wsdl" MetadataType="Wsdl" ID="cb48e041-0c2f-42df-bb68-bf0a36ed35b1" SourceId="1" SourceUrl="http://localhost:3061/Master/FunctionAuthorityMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

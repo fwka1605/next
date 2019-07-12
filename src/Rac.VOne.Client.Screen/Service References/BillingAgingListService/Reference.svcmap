@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="feabedee-8e13-42d0-baa9-f489766a6f68" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/BillingAgingListService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BillingAgingListService.disco" MetadataType="Disco" ID="154ef789-02be-49c2-8ee8-c2da8ada545b" SourceId="1" SourceUrl="http://localhost:3061/BillingAgingListService.svc?disco" />
+    <MetadataFile FileName="BillingAgingListService.wsdl" MetadataType="Wsdl" ID="bf1b6efd-31cf-4cfe-bf67-14f93aa8daef" SourceId="1" SourceUrl="http://localhost:3061/BillingAgingListService.svc?wsdl" />
+    <MetadataFile FileName="BillingAgingListService.xsd" MetadataType="Schema" ID="96366c6a-ba64-4306-a729-cbf8b2f5a102" SourceId="1" SourceUrl="http://localhost:3061/BillingAgingListService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BillingAgingListService1.xsd" MetadataType="Schema" ID="813bad81-e623-46af-bf1e-26d27dc96f25" SourceId="1" SourceUrl="http://localhost:3061/BillingAgingListService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BillingAgingListService2.xsd" MetadataType="Schema" ID="f9349acb-d248-4464-9316-ad1bfe7450b9" SourceId="1" SourceUrl="http://localhost:3061/BillingAgingListService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

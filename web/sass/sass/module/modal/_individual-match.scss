@@ -1,0 +1,89 @@
+%smallBase {
+    height: auto;
+    width: unset;
+    min-width: unset;
+    .individual-modal-box__contents__item-container {
+        overflow: hidden;
+    }
+}
+
+// モダルボックスのタイトルの文字の大きさと色などを指定する
+%modalContentTitle {
+    line-height: 1;
+    font-size: 1.6rem; // 一括でモダルボックスのタイトルの文字の大きさを変更する
+    border-bottom: 2px solid $border-color;
+    color: $key-color; // 一括でモダルボックスのタイトルの色を変更する
+}
+
+/*
+small popup modal
+*/
+
+.individual-modal-box {
+    opacity: 0;
+    transition: .3s;
+    display: block;
+    position: fixed;
+    z-index: -1;
+    background-color: #fff;
+    width: 1020px;
+    height:270px;
+    left: 70%;
+    top: 15%;
+    position: fixed;
+    transform: translate(-50%, -50%) scale(0.5);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    &.is-show {
+        display: block;
+        min-width: 1100 * 0.6px;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        z-index: 300;
+    }
+    &__close {
+        $closeBtnSize: 40px;
+        position: absolute;
+        right: 6px;
+        top: 6px;
+        height: $closeBtnSize;
+        width: $closeBtnSize;
+        background-color: #fff;
+        cursor: pointer;
+        &:after,
+        &:before {
+            content: '';
+            width: 2px;
+            height: 26px;
+            background-color: $text-color;
+            display: block;
+            position: absolute;
+            top: 6px;
+            left: 19px;
+            border-radius: 2px;
+        }
+        &:before {
+            transform: rotate(-45deg);
+        }
+        &:after {
+            transform: rotate(45deg);
+        }
+    }
+    &__contents {
+        border-radius: 3px;
+        overflow: hidden;
+        $titleMaxHeight: 40px;
+        &__ {
+        }
+        &__item-container {
+            height: calc(100% - #{$titleMaxHeight}); // titleの高さ
+            overflow-y: scroll;
+            background-color: #efefef;
+        }
+        &__title {
+            padding: 16px;
+            height: $titleMaxHeight;
+            @extend %modalContentTitle;
+        }
+    }
+}

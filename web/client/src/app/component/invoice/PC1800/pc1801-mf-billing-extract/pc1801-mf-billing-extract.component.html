@@ -1,0 +1,276 @@
+<div [formGroup]="myFormGroup" class="mf-billing-extract">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.EXTRACT)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid || disableExtract()}" 
+        class="buttonSecondary  infotip">
+        {{ItemNameConst.BTN_EXTRACT}}
+        <span [innerHtml]="ButtonTipsConst.EXTRACTION | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid || disableRegister()}" 
+        class="buttonSecondary ">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button 
+        (click)="clear()" 
+        class="buttonMinimum ">{{ItemNameConst.BTN_CLEAR}}</button>
+
+
+      <div class="contentsButton__subSection">
+        <ul class="separator">
+          <li class="separator__item">
+            <button 
+              (click)="openApiSetting()" 
+              class="buttonPrimary infotip">
+              {{ItemNameConst.BTN_SETTING_CONNECTION}}
+              <span [innerHtml]="ButtonTipsConst.MF_COOPERATION_SETTING | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+
+
+
+  </section>
+
+  <section class="pageContainer">
+    <!-- 抽出条件 --->
+    <section 
+      class="contents">
+      <h2 class="contents__title--underline">
+        {{ItemNameConst.LBL_SETTING_EXPORT}}
+      </h2>
+      <div class="accordionContent__body searchConfig contents__container--flex">
+        <dl class="definitionForm mb--30">
+          <dt class="definitionForm__title">請求日</dt>
+          <dd class="definitionForm__data">
+            <input
+              formControlName="billedAtFromCtrl"
+              name="billedAtFromCtrl"
+              (keyup.enter)="setBilledAtFrom($event.type)"
+              (dateSelect)="setBilledAtFrom($event.type)"
+              ngbDatepicker #billedAtFromDp="ngbDatepicker"
+              placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+              [ngClass]="{'input--error': billedAtFromCtrl.errors?.ngbDate}"
+              maxlength="10"
+              type="tel"
+              class="input-size--100">
+              <button class="btn btn-outline-secondary" (click)="billedAtFromDp.toggle()" type="button"></button>
+            <span class="wavy-line"></span>
+            <input
+              formControlName="billedAtToCtrl"
+              name="billedAtToCtrl"
+              (keyup.enter)="setBilledAtTo($event.type)"
+              (dateSelect)="setBilledAtTo($event.type)"
+              ngbDatepicker #billedAtToDp="ngbDatepicker"
+              placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+              [ngClass]="{'input--error': billedAtToCtrl.errors?.ngbDate}"
+              maxlength="10"
+              type="tel"
+              class="input-size--100">
+              <button class="btn btn-outline-secondary" (click)="billedAtToDp.toggle()" type="button"></button>
+              <br>
+              <div
+                class="message-result font__warning"
+                *ngIf="billedAtFromCtrl.errors?.ngbDate
+                      || billedAtToCtrl.errors?.ngbDate">
+                {{ MSG_VAL.DATE_DAY }}
+              </div>
+          </dd>
+        </dl>
+        <div class="frame">
+          <h3 class="frame__title">得意先登録情報</h3>
+          <dl class="definitionForm--lh-narrow">
+            <dt class="definitionForm__title w--10">請求区分<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--90">
+              <input
+                formControlName="billingCategoryCodeCtrl"
+                name="billingCategoryCodeCtrl"
+                (blur)="setBillingCategoryCode($event.type)"
+                (keyup.enter)="setBillingCategoryCode($event.type)"
+                #billingCategoryCodeInput
+                [formControl]="billingCategoryCodeCtrl" 
+                [matAutocomplete]="autoBillingCategoryCode"
+                type="tel"
+                maxlength="2"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                class="input-size--60">
+              <mat-autocomplete 
+                #autoBillingCategoryCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth150">
+                <mat-option 
+                  *ngFor="let category of categoryFilterds[0] | async" 
+                  [value]="category.code">{{category.code}}:{{category.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_BILLING_CATEGORY)"></a>
+              <input
+                formControlName="billingCategoryNameCtrl"
+                name="billingCategoryNameCtrl"
+                class="input-size--200"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--10">営業担当者<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--90">
+              <input
+                formControlName="staffCodeCtrl"
+                name="staffCodeCtrl"
+                (blur)="setStaffCode($event.type)"
+                (keyup.enter)="setStaffCode($event.type)"
+                (keyup)="openMasterModal(TABLE_INDEX.MASTER_STAFF)"
+                maxlength="{{this.userInfoService.ApplicationControl.staffCodeLength}}"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                #staffCodeInput
+                [formControl]="staffCodeCtrl" 
+                [matAutocomplete]="autoStaffCode"
+                type="tel"
+                class="input-size--100">
+              <mat-autocomplete 
+                #autoStaffCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option 
+                  *ngFor="let staff of staffFilterds[0] | async"
+                  [value]="staff.code">
+                  {{ staff.code }}:{{ staff.name }}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_STAFF)"></a>
+              <input
+                formControlName="staffNameCtrl"
+                name="staffNameCtrl"
+                class="input-size--400"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--10">締日<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--90">
+              <input
+                formControlName="closingDayCtrl"
+                name="closingDayCtrl"
+                (keyup.enter)="setClosingDay($event.type)"
+                maxlength="2"
+                type="tel"
+                class="input-size--40 definitionForm__input">
+
+
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input class="inputStyled__input"
+                    id="cbxIssueBillEachTimeCtrl" 
+                    formControlName="cbxIssueBillEachTimeCtrl" 
+                    name="cbxIssueBillEachTimeCtrl" 
+                    (change)="setCbxIssueBillEachTime($event.type)"
+                    type="checkbox">
+                  <label class="inputStyled__checkbox" for="cbxIssueBillEachTimeCtrl">都度請求</label>
+                </div>
+              </label>
+            </dd>
+            <dt class="definitionForm__title w--10">回収予定<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--90">
+              <input
+                formControlName="collectOffsetMonthCtrl"
+                name="collectOffsetMonthCtrl"
+                (keyup.enter)="setCollectOffsetMonth($event.type)"
+                maxlength="1"
+                type="tel"
+                class="input-size--40 definitionForm__input">
+              <span class="definitionForm__input">{{ collectOffsetMonthLabel1 }}</span>
+              <input
+                formControlName="collectOffsetDayCtrl"
+                name="collectOffsetDayCtrl"
+                (keyup.enter)="setCollectOffsetDay($event.type)"
+                maxlength="2"
+                type="tel"
+                class="input-size--40 definitionForm__input">
+              <span class="definitionForm__input">{{ collectOffsetDayLabel }}</span>{{ collectOffsetMonthLabel2 }}
+            </dd>
+            <dt class="definitionForm__title w--10">回収方法<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--90">
+              <select
+                formControlName="cmbCollectCategoryIdCtrl"
+                name="cmbCollectCategoryIdCtrl"
+                (change)="setCollectCategoryId($event.type)"
+                class="select-size--150">
+                <option
+                  *ngFor="let category of collectCategories index as i" value="{{category.id}}">
+                  {{category.code}}:{{category.name}}
+                </option>
+              </select>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!--- 抽出結果 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_EXPORT}}</h2>
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}">選択
+                  <div class="inputStyled--inTable">
+                    <input class="inputStyled__input"
+                      id="cbxCheckAllCtrl" 
+                      formControlName="cbxCheckAllCtrl" 
+                      name="cbxCheckAllCtrl" 
+                      (change)="checkAll()"
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxCheckAllCtrl"></label>
+                  </div>
+                </th>
+                <th class="{{TableColumn.COL_200_CODE}}">得意先名</th>
+                <th class="{{TableColumn.COL_100_CODE}}">請求日</th>
+                <th class="{{TableColumn.COL_100_CODE}}">支払期限</th>
+                <th class="{{TableColumn.COL_100_CODE}}">請求書番号</th>
+                <th class="{{TableColumn.COL_150_CODE}}">請求金額</th>
+                <th class="{{TableColumn.COL_200_CODE}}">件名</th>
+                <th class="{{TableColumn.COL_100_CODE}}">郵送</th>
+                <th class="{{TableColumn.COL_100_CODE}}">メール送信</th>
+                <th class="{{TableColumn.COL_100_CODE}}">ダウンロード</th>
+                <th class="{{TableColumn.COL_200_CODE}}">MFクラウド請求書取引先名</th>
+              </tr>
+            </thead>
+            <tbody class="searchResult__tableHeight--9999">
+              <tr *ngFor="let mfBilling of mfBillings index as i">
+                <td class="{{TableColumn.COL_50_NAME}}">
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="cbxCreateBillingCtrl{{i}}" 
+                      formControlName="cbxCreateBillingCtrl{{i}}" 
+                      name="cbxCreateBillingCtrl{{i}}" 
+                      (change)="setCbxCreateBilling(i)"
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxCreateBillingCtrl{{i}}"></label>
+                  </div>
+                </td>
+                <td class="{{TableColumn.COL_200_NAME}}">{{ getCustomerName(mfBilling) }}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ mfBilling.billing_date | date }}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ mfBilling.due_date | date }}</td>
+                <td class="{{TableColumn.COL_100_NAME}}">{{ mfBilling.billing_number }}</td>
+                <td class="{{TableColumn.COL_SMALL_KINGAKU}}">{{ mfBilling.total_price | currency_pipe}}</td>
+                <td class="{{TableColumn.COL_200_NAME}}">{{ mfBilling.title }}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ mfBilling.status.posting }}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ mfBilling.status.email }}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ mfBilling.status.download }}</td>
+                <td class="{{TableColumn.COL_200_NAME}}">{{ mfBilling.partner_name }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </section>
+  </section>
+
+
+
+</div>

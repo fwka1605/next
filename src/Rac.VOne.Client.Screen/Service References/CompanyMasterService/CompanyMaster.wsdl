@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="CompanyMaster" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/Master/CompanyMaster.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CompanyMaster.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/CompanyMaster.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ICompanyMaster_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_DeleteLogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLogo" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_DeleteLogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_DeleteLogos_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLogos" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_DeleteLogos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLogosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_GetByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCode" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_GetByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_GetLogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogo" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_GetLogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_GetLogos_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogos" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_GetLogos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_SaveLogo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveLogo" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_SaveLogo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveLogoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_SaveLogos_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveLogos" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_SaveLogos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveLogosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="ICompanyMaster_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ICompanyMaster">
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/Delete" message="tns:ICompanyMaster_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/DeleteResponse" message="tns:ICompanyMaster_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/DeleteLogo" message="tns:ICompanyMaster_DeleteLogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/DeleteLogoResponse" message="tns:ICompanyMaster_DeleteLogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLogos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/DeleteLogos" message="tns:ICompanyMaster_DeleteLogos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/DeleteLogosResponse" message="tns:ICompanyMaster_DeleteLogos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/Get" message="tns:ICompanyMaster_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/GetResponse" message="tns:ICompanyMaster_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/GetByCode" message="tns:ICompanyMaster_GetByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/GetByCodeResponse" message="tns:ICompanyMaster_GetByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/GetLogo" message="tns:ICompanyMaster_GetLogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/GetLogoResponse" message="tns:ICompanyMaster_GetLogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/GetLogos" message="tns:ICompanyMaster_GetLogos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/GetLogosResponse" message="tns:ICompanyMaster_GetLogos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/Save" message="tns:ICompanyMaster_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/SaveResponse" message="tns:ICompanyMaster_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveLogo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/SaveLogo" message="tns:ICompanyMaster_SaveLogo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/SaveLogoResponse" message="tns:ICompanyMaster_SaveLogo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveLogos">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/SaveLogos" message="tns:ICompanyMaster_SaveLogos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/SaveLogosResponse" message="tns:ICompanyMaster_SaveLogos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/GetItems" message="tns:ICompanyMaster_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/GetItemsResponse" message="tns:ICompanyMaster_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICompanyMaster/Create" message="tns:ICompanyMaster_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICompanyMaster/CreateResponse" message="tns:ICompanyMaster_Create_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ICompanyMaster" type="tns:ICompanyMaster">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLogo">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/DeleteLogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLogos">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/DeleteLogos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/GetByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogo">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/GetLogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogos">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/GetLogos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveLogo">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/SaveLogo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveLogos">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/SaveLogos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://tempuri.org/ICompanyMaster/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CompanyMaster">
+    <wsdl:port name="BasicHttpBinding_ICompanyMaster" binding="tns:BasicHttpBinding_ICompanyMaster">
+      <soap:address location="http://localhost:3061/Master/CompanyMaster.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

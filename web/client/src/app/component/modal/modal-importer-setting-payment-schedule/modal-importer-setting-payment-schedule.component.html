@@ -1,0 +1,182 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--large"
+  data-modal-contents="id001">
+  <h2 class="vModal__heading"> 入金予定 - フリーインポーター {{ItemNameConst.LBL_SETTING_IMPORT}}
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contents">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+      <div class="contents__container--button">
+        <button (click)="buttonAction(BUTTON_ACTION.REGISTRY)" [ngClass]="{'button-disable': RegistryButtonDisableFlag || myFormGroup.invalid}" class="common-btn__item">
+          {{ItemNameConst.BTN_REGISTRY}}
+        </button>
+        <button (click)="buttonAction(BUTTON_ACTION.REGISTRY)" [ngClass]="{'button-disable': UpdateButtonDisableFlag}" class="common-btn__item">
+          {{ItemNameConst.BTN_UPDATE}}
+        </button>
+        <button (click)="buttonAction(BUTTON_ACTION.DELETE)" [ngClass]="{'button-disable': DeleteButtonDisableFlag}" class="common-btn__item">
+          {{ItemNameConst.BTN_DELETE}}
+        </button> 
+        <button (click)="buttonAction(BUTTON_ACTION.REFERE_NEW)" [ngClass]="{'button-disable': RegistryButtonDisableFlag || StringUtil.IsNullOrEmpty(patternNoCtrl.value)}" class="common-btn__item">
+          {{ItemNameConst.BTN_REGISTRY_REFERENCE}}
+        </button> 
+        <button (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" class="common-btn__item">クリア</button>
+      </div>
+    </section>
+
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_IMPORT}}</h2>
+      <div class="contents__container">
+        <dl class="definitionForm mb--20">
+          <dt class="definitionForm__title w--12">パターンNo.<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--88">
+        <input 
+          formControlName="patternNoCtrl" 
+          name="patternNoCtrl"
+          (blur)="setPatternNo()" 
+          (keyup.enter)="setPatternNo()" 
+          placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+          maxLength="2"
+          type="tel"
+          class="input-size--50 definitionForm__input">
+          <a class="buttonMasterSearch" (click)="openMasterModal()"></a>
+        <input 
+          formControlName="patternNameCtrl" 
+          name="patternNameCtrl" 
+          (keyup.enter)="setPatternName($event.type)"
+          maxLength="40"
+          class="input-size--600">    
+          </dd>
+          <dt class="definitionForm__title w--12">取込開始行<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--88">
+        <input 
+          formControlName="startLineCountCtrl" 
+          name="startLineCountCtrl"
+          [ngClass]="{'input--error': startLineCountCtrl.errors?.range}"
+          type="tel"
+          maxLength="1"
+          class="input-size--30 definitionForm__input">
+          <label class="labelWrap">
+            <div class="inputStyled">
+              <input
+                id="ignoreLastLineCtrl"
+                class="inputStyled__input"
+                formControlName="ignoreLastLineCtrl"
+                name="ignoreLastLineCtrl"
+                type="checkbox">
+              <label
+                class="inputStyled__checkbox"
+                for="ignoreLastLineCtrl">最終行を取込処理しない</label>
+            </div>
+          </label>
+          <br>
+          <div
+            class="message-result font__warning"
+            *ngIf="startLineCountCtrl.errors?.range">
+            {{ MSG_VAL.CAPTURE_START_ROW }}
+          </div>
+          </dd>
+        </dl>
+        <h3 class="contents__title--separateline">{{ItemNameConst.IMPORT_DETAIL_SETTING}}</h3>
+        <div class="common-inner-table">
+          <table class="searchResult__table">
+    <thead class="table_row">
+      <tr class="colspan-title">
+        <th class="{{TableColumn.COL_50_CODE}}" rowspan="2">No.</th>
+        <th class="{{TableColumn.COL_150_CODE}}" rowspan="2">項目名</th>
+        <th class="searchResult__tableCell" colspan="3">取込</th>
+        <th class="searchResult__tableCell" colspan="2">引当優先順位</th>
+        <th class="{{TableColumn.COL_350_CODE}}" rowspan="2">属性情報</th>
+      </tr>
+      <tr class="no-margin-head">
+        <th class="{{TableColumn.COL_80_CODE}} searchResult__tableCell">キー</th>
+        <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell">項目番号</th>
+        <th class="{{TableColumn.COL_150_CODE}} searchResult__tableCell">項目名（注釈）</th>
+
+        <th class="{{TableColumn.COL_100_CODE}} searchResult__tableCell">項目間</th>
+        <th class="{{TableColumn.COL_100_CODE}} searchResult__tableCell">項目内</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let importerSettingDetail of importerSettingDetaisResult?.importerSettingDetails let i = index">
+          <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{i+1}}</td>
+          <!-- 項目名 -->
+          <td class="{{TableColumn.COL_150_NAME}}">{{importerSettingDetail.fieldName}}</td>
+
+          <!-- 取込 -->
+          <td class="{{TableColumn.COL_80_CENTER_NAME}} searchResult__tableData">
+            <div class="inputStyled">
+              <input
+                id="chkKeyCtrl{{i}}"
+                class="inputStyled__input"
+                formControlName="chkKeyCtrl{{i}}"
+                name="chkKeyCtrl{{i}}"
+                (change)="setChkKey(i)"
+                type="checkbox">
+              <label
+                class="inputStyled__checkbox"
+                for="chkKeyCtrl{{i}}"></label>
+            </div>
+          </td>
+          <td class="{{TableColumn.COL_150_RIGHT_NAME}} searchResult__tableData">
+    <input
+      formControlName="fieldIndexCtrl{{i}}"
+      name="fieldIndexCtrl{{i}}"
+      type="tel"
+      maxlength="3"
+      class="input-size--130">
+          </td>
+          <td class="{{TableColumn.COL_150_RIGHT_NAME}} searchResult__tableData">
+    <input
+      formControlName="fieldCaptionCtrl{{i}}"
+      name="fieldCaptionCtrl{{i}}"
+      maxlength="50"
+      class="input-size--130">
+          </td>
+
+          <!-- 引当優先順位 -->
+          <td class="{{TableColumn.COL_100_RIGHT_NAME}} searchResult__tableData">
+    <input
+      formControlName="fieldIndexPriorityCtrl{{i}}"
+      name="fieldIndexPriorityCtrl{{i}}"
+      maxlength="3"
+      class="input-size--80">
+          </td>
+          <td class="{{TableColumn.COL_100_CENTER_NAME}} searchResult__tableData">
+    <select
+      formControlName="cmbSortOrderCtrl{{i}}"
+      name="cmbSortOrderCtrl{{i}}"
+      class="select-size--80">
+      <option *ngFor="let sortOrder of sortOrders" value="{{sortOrder.id}}">
+        {{sortOrder.orderName}}
+      </option>
+    </select>
+          </td>
+          <!-- 属性情報 -->
+          <td class="{{TableColumn.COL_350_CENTER_NAME}}">
+    <select
+      formControlName="cmbAttributeCtrl{{i}}"
+      name="cmbAttributeCtrl{{i}}"
+      class="select-size--330">
+      <option 
+        *ngFor="let attributeDetail of cmbAttributeList[i] let iAttribute = index"
+        value="{{attributeDetail.itemKey}}">
+        {{attributeDetail.itemValue}}
+      </option>
+    </select>
+          </td>
+        </tr>
+      </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

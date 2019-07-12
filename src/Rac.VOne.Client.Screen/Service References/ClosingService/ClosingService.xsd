@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ClosingInformationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClosingInformation" nillable="true" type="tns:ClosingInformation" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClosingInformationResult" nillable="true" type="tns:ClosingInformationResult" />
+  <xs:complexType name="ClosingInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Closing" nillable="true" type="tns:Closing" />
+      <xs:element minOccurs="0" name="UseClosing" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClosingInformation" nillable="true" type="tns:ClosingInformation" />
+  <xs:complexType name="Closing">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClosingMonth" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Closing" nillable="true" type="tns:Closing" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ClosingHistorysResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClosingHistorys" nillable="true" type="tns:ArrayOfClosingHistory" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClosingHistorysResult" nillable="true" type="tns:ClosingHistorysResult" />
+  <xs:complexType name="ArrayOfClosingHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ClosingHistory" nillable="true" type="tns:ClosingHistory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfClosingHistory" nillable="true" type="tns:ArrayOfClosingHistory" />
+  <xs:complexType name="ClosingHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillingCount" type="xs:long" />
+      <xs:element minOccurs="0" name="ClosingMonth" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsClosed" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReceiptCount" type="xs:long" />
+      <xs:element minOccurs="0" name="Selected" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClosingHistory" nillable="true" type="tns:ClosingHistory" />
+  <xs:complexType name="ClosingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Closing" nillable="true" type="tns:Closing" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClosingResult" nillable="true" type="tns:ClosingResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+</xs:schema>

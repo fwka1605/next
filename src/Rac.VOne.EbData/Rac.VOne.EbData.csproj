@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DB79EB55-39AD-4314-A869-1433EFFA5643}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rac.VOne.EbData</RootNamespace>
+    <AssemblyName>Rac.VOne.EbData</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Rac.VOne.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Rac.VOne.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MasterService.partial.cs">
+      <DependentUpon>MasterService.partial.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="EbDataImporter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ApplicationControlMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\BankAccountMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CategoryMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CollationSettingMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CurrencyMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CustomerMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\EBExcludeAccountSettingMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\IgnoreKanaMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ImportFileLogService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\JuridicalPersonalityMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SectionMasterService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rac.VOne.Client.Common\Rac.VOne.Client.Common.csproj">
+      <Project>{4101d2a0-542d-48a6-bdfb-cfc7cc4c6f91}</Project>
+      <Name>Rac.VOne.Client.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Client\Rac.VOne.Client.csproj">
+      <Project>{f5c00d99-86c2-4a76-b86e-12629c9ca76f}</Project>
+      <Name>Rac.VOne.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Common\Rac.VOne.Common.csproj">
+      <Project>{1432373b-cdef-46be-8949-84a3d8735053}</Project>
+      <Name>Rac.VOne.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.EbData.Core\Rac.VOne.EbData.Core.csproj">
+      <Project>{4816adcb-c432-4631-9c07-753428ecb526}</Project>
+      <Name>Rac.VOne.EbData.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Web.Models\Rac.VOne.Web.Models.csproj">
+      <Project>{8f35634e-57d6-4677-be0d-c4fc3e4c0773}</Project>
+      <Name>Rac.VOne.Web.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.ApplicationControlResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.BankAccountResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.BankAccountsResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CategoriesResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CategoryResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CollationOrdersResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CollationSettingResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CountResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CurrenciesResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CurrencyResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CustomerDiscountResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CustomerDiscountsResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CustomerMinsResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CustomerPaymentContractResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CustomerPaymentContractsResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CustomerResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.CustomersResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.EBExcludeAccountSettingListResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.EBExcludeAccountSettingResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.ExistResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.IgnoreKanaResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.IgnoreKanasResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.ImportFileLogsResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.ImportResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.ImportResultSection.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.JuridicalPersonalityResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.JuridicalPersonalitysResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.MasterDatasResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.MatchingOrdersResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.SectionResult.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.SectionResults.datasource" />
+    <None Include="Properties\DataSources\Rac.VOne.Web.Models.SectionsResult.datasource" />
+    <None Include="Service References\ApplicationControlMasterService\ApplicationControlMaster.wsdl" />
+    <None Include="Service References\ApplicationControlMasterService\ApplicationControlMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationControlMasterService\ApplicationControlMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ApplicationControlMasterService\ApplicationControlMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankAccountMasterService\BankAccountMaster.wsdl" />
+    <None Include="Service References\BankAccountMasterService\BankAccountMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankAccountMasterService\BankAccountMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankAccountMasterService\BankAccountMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\BankAccountMasterService\BankAccountMaster3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategoryMasterService\CategoryMaster.wsdl" />
+    <None Include="Service References\CategoryMasterService\CategoryMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategoryMasterService\CategoryMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategoryMasterService\CategoryMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategoryMasterService\CategoryMaster3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CollationSettingMasterService\CollationSettingMaster.wsdl" />
+    <None Include="Service References\CollationSettingMasterService\CollationSettingMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CollationSettingMasterService\CollationSettingMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CollationSettingMasterService\CollationSettingMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CurrencyMasterService\CurrencyMaster.wsdl" />
+    <None Include="Service References\CurrencyMasterService\CurrencyMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CurrencyMasterService\CurrencyMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CurrencyMasterService\CurrencyMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CurrencyMasterService\CurrencyMaster3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerMasterService\CustomerMaster.wsdl" />
+    <None Include="Service References\CustomerMasterService\CustomerMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerMasterService\CustomerMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerMasterService\CustomerMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CustomerMasterService\CustomerMaster3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EBExcludeAccountSettingMasterService\EBExcludeAccountSettingMaster.wsdl" />
+    <None Include="Service References\EBExcludeAccountSettingMasterService\EBExcludeAccountSettingMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EBExcludeAccountSettingMasterService\EBExcludeAccountSettingMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EBExcludeAccountSettingMasterService\EBExcludeAccountSettingMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IgnoreKanaMasterService\IgnoreKanaMaster.wsdl" />
+    <None Include="Service References\IgnoreKanaMasterService\IgnoreKanaMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IgnoreKanaMasterService\IgnoreKanaMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IgnoreKanaMasterService\IgnoreKanaMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImportFileLogService\ImportFileLogService.wsdl" />
+    <None Include="Service References\ImportFileLogService\ImportFileLogService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImportFileLogService\ImportFileLogService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImportFileLogService\ImportFileLogService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ImportFileLogService\ImportFileLogService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\JuridicalPersonalityMasterService\JuridicalPersonalityMaster.wsdl" />
+    <None Include="Service References\JuridicalPersonalityMasterService\JuridicalPersonalityMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\JuridicalPersonalityMasterService\JuridicalPersonalityMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\JuridicalPersonalityMasterService\JuridicalPersonalityMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SectionMasterService\SectionMaster.wsdl" />
+    <None Include="Service References\SectionMasterService\SectionMaster.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SectionMasterService\SectionMaster1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SectionMasterService\SectionMaster2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\SectionMasterService\SectionMaster3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ApplicationControlMasterService\" />
+    <WCFMetadataStorage Include="Service References\BankAccountMasterService\" />
+    <WCFMetadataStorage Include="Service References\CategoryMasterService\" />
+    <WCFMetadataStorage Include="Service References\CollationSettingMasterService\" />
+    <WCFMetadataStorage Include="Service References\CurrencyMasterService\" />
+    <WCFMetadataStorage Include="Service References\CustomerMasterService\" />
+    <WCFMetadataStorage Include="Service References\EBExcludeAccountSettingMasterService\" />
+    <WCFMetadataStorage Include="Service References\IgnoreKanaMasterService\" />
+    <WCFMetadataStorage Include="Service References\ImportFileLogService\" />
+    <WCFMetadataStorage Include="Service References\JuridicalPersonalityMasterService\" />
+    <WCFMetadataStorage Include="Service References\SectionMasterService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MasterService.partial.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MasterService.partial.cs</LastGenOutput>
+    </Content>
+    <None Include="Service References\ApplicationControlMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ApplicationControlMasterService\configuration.svcinfo" />
+    <None Include="Service References\ApplicationControlMasterService\configuration91.svcinfo" />
+    <None Include="Service References\ApplicationControlMasterService\ApplicationControlMaster.disco" />
+    <None Include="Service References\BankAccountMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\BankAccountMasterService\configuration.svcinfo" />
+    <None Include="Service References\BankAccountMasterService\configuration91.svcinfo" />
+    <None Include="Service References\BankAccountMasterService\BankAccountMaster.disco" />
+    <None Include="Service References\CategoryMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CategoryMasterService\configuration.svcinfo" />
+    <None Include="Service References\CategoryMasterService\configuration91.svcinfo" />
+    <None Include="Service References\CategoryMasterService\CategoryMaster.disco" />
+    <None Include="Service References\CollationSettingMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CollationSettingMasterService\configuration.svcinfo" />
+    <None Include="Service References\CollationSettingMasterService\configuration91.svcinfo" />
+    <None Include="Service References\CollationSettingMasterService\CollationSettingMaster.disco" />
+    <None Include="Service References\CurrencyMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CurrencyMasterService\configuration.svcinfo" />
+    <None Include="Service References\CurrencyMasterService\configuration91.svcinfo" />
+    <None Include="Service References\CurrencyMasterService\CurrencyMaster.disco" />
+    <None Include="Service References\CustomerMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\CustomerMasterService\configuration.svcinfo" />
+    <None Include="Service References\CustomerMasterService\configuration91.svcinfo" />
+    <None Include="Service References\CustomerMasterService\CustomerMaster.disco" />
+    <None Include="Service References\EBExcludeAccountSettingMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\EBExcludeAccountSettingMasterService\configuration.svcinfo" />
+    <None Include="Service References\EBExcludeAccountSettingMasterService\configuration91.svcinfo" />
+    <None Include="Service References\EBExcludeAccountSettingMasterService\EBExcludeAccountSettingMaster.disco" />
+    <None Include="Service References\IgnoreKanaMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\IgnoreKanaMasterService\configuration.svcinfo" />
+    <None Include="Service References\IgnoreKanaMasterService\configuration91.svcinfo" />
+    <None Include="Service References\IgnoreKanaMasterService\IgnoreKanaMaster.disco" />
+    <None Include="Service References\ImportFileLogService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ImportFileLogService\configuration.svcinfo" />
+    <None Include="Service References\ImportFileLogService\configuration91.svcinfo" />
+    <None Include="Service References\ImportFileLogService\ImportFileLogService.disco" />
+    <None Include="Service References\JuridicalPersonalityMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\JuridicalPersonalityMasterService\configuration.svcinfo" />
+    <None Include="Service References\JuridicalPersonalityMasterService\configuration91.svcinfo" />
+    <None Include="Service References\JuridicalPersonalityMasterService\JuridicalPersonalityMaster.disco" />
+    <None Include="Service References\SectionMasterService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SectionMasterService\configuration.svcinfo" />
+    <None Include="Service References\SectionMasterService\configuration91.svcinfo" />
+    <None Include="Service References\SectionMasterService\SectionMaster.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

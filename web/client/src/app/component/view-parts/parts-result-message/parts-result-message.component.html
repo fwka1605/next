@@ -1,0 +1,32 @@
+<section
+  *ngIf="isSuccessDisplay()&&canOpen" 
+  class="statsField">
+  <span class="statsField__text">{{processCustomResult?.message}}</span>
+  <span 
+    (click)="closeMessage()" 
+    [ngClass]="{'statsField__close': !processCustomResult.isModal,'statsField__close--inModal': processCustomResult.isModal }">
+    閉じる
+  </span>
+</section>
+
+<section 
+  *ngIf="isWarningDisplay()&&canOpen" 
+  class="statsField--warning">
+  <span class="statsField__text">警告！{{processCustomResult?.message}}</span>
+  <span 
+    (click)="closeMessage()" 
+    [ngClass]="{'statsField__close': !processCustomResult.isModal,'statsField__close--inModal': processCustomResult.isModal }">
+    閉じる
+  </span>
+</section>
+
+<section 
+  *ngIf="isFailureDisplay()&&canOpen" 
+  class="statsField--failure">
+  <span class="statsField__text">失敗！{{processCustomResult?.message}}</span>
+  <span 
+    (click)="closeMessage()" 
+    [ngClass]="{'statsField__close': !processCustomResult.isModal,'statsField__close--inModal': processCustomResult.isModal }">
+    閉じる
+  </span>
+</section>

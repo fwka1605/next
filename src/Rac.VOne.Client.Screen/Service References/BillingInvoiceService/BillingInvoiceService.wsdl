@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="BillingInvoiceService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/BillingInvoiceService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/BillingInvoiceService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/BillingInvoiceService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+      <xsd:import schemaLocation="http://localhost:3061/BillingInvoiceService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBillingInvoiceService_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_PublishInvoices_InputMessage">
+    <wsdl:part name="parameters" element="tns:PublishInvoices" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_PublishInvoices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PublishInvoicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_GetDetailsForPrint_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailsForPrint" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_GetDetailsForPrint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailsForPrintResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_GetCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCount" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_GetCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_DeleteWorkTable_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkTable" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_DeleteWorkTable_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteWorkTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_CancelPublish_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelPublish" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_CancelPublish_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelPublishResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_GetDetailsForExport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailsForExport" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_GetDetailsForExport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailsForExportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_UpdatePublishAt_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePublishAt" />
+  </wsdl:message>
+  <wsdl:message name="IBillingInvoiceService_UpdatePublishAt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePublishAtResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBillingInvoiceService">
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBillingInvoiceService/Get" message="tns:IBillingInvoiceService_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBillingInvoiceService/GetResponse" message="tns:IBillingInvoiceService_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PublishInvoices">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBillingInvoiceService/PublishInvoices" message="tns:IBillingInvoiceService_PublishInvoices_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBillingInvoiceService/PublishInvoicesResponse" message="tns:IBillingInvoiceService_PublishInvoices_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailsForPrint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBillingInvoiceService/GetDetailsForPrint" message="tns:IBillingInvoiceService_GetDetailsForPrint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBillingInvoiceService/GetDetailsForPrintResponse" message="tns:IBillingInvoiceService_GetDetailsForPrint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBillingInvoiceService/GetCount" message="tns:IBillingInvoiceService_GetCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBillingInvoiceService/GetCountResponse" message="tns:IBillingInvoiceService_GetCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkTable">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBillingInvoiceService/DeleteWorkTable" message="tns:IBillingInvoiceService_DeleteWorkTable_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBillingInvoiceService/DeleteWorkTableResponse" message="tns:IBillingInvoiceService_DeleteWorkTable_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelPublish">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBillingInvoiceService/CancelPublish" message="tns:IBillingInvoiceService_CancelPublish_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBillingInvoiceService/CancelPublishResponse" message="tns:IBillingInvoiceService_CancelPublish_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailsForExport">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBillingInvoiceService/GetDetailsForExport" message="tns:IBillingInvoiceService_GetDetailsForExport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBillingInvoiceService/GetDetailsForExportResponse" message="tns:IBillingInvoiceService_GetDetailsForExport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePublishAt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IBillingInvoiceService/UpdatePublishAt" message="tns:IBillingInvoiceService_UpdatePublishAt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IBillingInvoiceService/UpdatePublishAtResponse" message="tns:IBillingInvoiceService_UpdatePublishAt_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IBillingInvoiceService" type="tns:IBillingInvoiceService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/IBillingInvoiceService/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishInvoices">
+      <soap:operation soapAction="http://tempuri.org/IBillingInvoiceService/PublishInvoices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailsForPrint">
+      <soap:operation soapAction="http://tempuri.org/IBillingInvoiceService/GetDetailsForPrint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCount">
+      <soap:operation soapAction="http://tempuri.org/IBillingInvoiceService/GetCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkTable">
+      <soap:operation soapAction="http://tempuri.org/IBillingInvoiceService/DeleteWorkTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelPublish">
+      <soap:operation soapAction="http://tempuri.org/IBillingInvoiceService/CancelPublish" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailsForExport">
+      <soap:operation soapAction="http://tempuri.org/IBillingInvoiceService/GetDetailsForExport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePublishAt">
+      <soap:operation soapAction="http://tempuri.org/IBillingInvoiceService/UpdatePublishAt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BillingInvoiceService">
+    <wsdl:port name="BasicHttpBinding_IBillingInvoiceService" binding="tns:BasicHttpBinding_IBillingInvoiceService">
+      <soap:address location="http://localhost:3061/BillingInvoiceService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

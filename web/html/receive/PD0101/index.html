@@ -1,0 +1,415 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="receive-data-capture">
+        <div id="breadcrumb-outer">
+          <h1>03 入金 - 01 入金EBデータ取込(PD0101)</h1>
+        </div>
+        <section class="contents">
+          <div class="receive-data-capture__controller">
+            <button class="receive-data-capture__controller__btn">読込</button>
+            <button class="receive-data-capture__controller__btn">クリア</button>
+            <button class="receive-data-capture__controller__btn" data-modal="torikomi">取込設定</button>
+            <button class="receive-data-capture__controller__btn" data-modal="taisyougai">対象外設定</button>
+          </div>
+        </section>
+        <section class="contents receive-data-capture__designate">
+          <h2 class="receive-data-capture__title">
+            取込指定
+          </h2>
+          <div class="receive-data-capture__designate__controller">
+            <dl class="receive-data-capture__designate__controller__item">
+              <dt class="receive-data-capture__designate__controller__item__title">標準EBファイル設定</dt>
+              <dd class="receive-data-capture__designate__controller__item__detail">
+                <select name="" id="" class="receive-data-capture__designate__controller__item__detail__select">
+                  <option value="" selected>金銀振込入金明細(カンマ区切)</option>
+                </select>
+              </dd>
+              <dt class="receive-data-capture__designate__controller__item__title">入金年</dt>
+              <dd class="receive-data-capture__designate__controller__item__detail">
+                <p class="receive-data-capture__designate__controller__item__detail__box">2018</p>
+              </dd>
+            </dl>
+            <button class="receive-data-capture__designate__controller__file-assign">ファイル指定</button>
+          </div>
+          <div class="receive-data-capture__designate__table sticky-head-table">
+            <div class="sticky-head-table__header">
+              <table class="sticky-head-table__header__inner">
+                <tr>
+                  <th></th>
+                  <th> 取込 </th>
+                  <th> ファイルパス </th>
+                  <th> EBファイル設定 </th>
+                  <th> 読込件数 </th>
+                  <th> 取込対象件数 </th>
+                  <th> 取込状況 </th>
+                </tr>
+              </table>
+            </div>
+            <div class="sticky-head-table__body">
+              <table class="sticky-head-table__body__inner">
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="contents receive-data-capture__history">
+          <h2 class="receive-data-capture__title">
+            取込履歴
+          </h2>
+          <div class="receive-data-capture__history__table sticky-head-table">
+            <div class="sticky-head-table__header">
+              <table class="sticky-head-table__header__inner">
+                <tr>
+                  <th></th>
+                  <th> 削除 </th>
+                  <th> ファイル名 </th>
+                  <th> ファイルサイズ </th>
+                  <th> 取込日時 </th>
+                  <th> 件数 </th>
+                  <th> 金額 </th>
+                </tr>
+              </table>
+            </div>
+            <div class="sticky-head-table__body">
+              <table class="sticky-head-table__body__inner">
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <input type="checkbox" id="checkbox-sample-001" class="fix-header-checkbox__check-all">
+                    <label for="checkbox-sample-001"></label>
+                  </td>
+                  <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                  <td>808 B</td>
+                  <td>2018/10/05 17:12:56</td>
+                  <td>11</td>
+                  <td>2,420,000</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </div>
+      <div id="footer-outer">
+      </div>
+    </div>
+  </div>
+  <div id="modal-body" class="full-modal-box master-config">
+    <span class="full-modal-box__close" data-modal-close></span>
+    <div class="full-modal-box__contents multi-modal" data-modal-contents="torikomi">
+      <div class="full-modal-box__contents__inner">
+        <h2 class="full-modal-box__contents__title">取込設定</h2>
+        <div class="full-modal-box__contents__item-container">
+          <div class="receive-setting">
+            <section class="contents">
+              <div class="receive-setting__controller">
+                <button class="invoice-controller__btn">登録</button>
+                <button class="invoice-controller__btn">クリア</button>
+              </div>
+            </section>
+            <section class="contents">
+              <div class="receive-setting__container-capture">
+                <dl class="receive-setting__container-capture__config-options">
+                  <dt class="receive-setting__container-capture__config-options__title">EBフォーマット</dt>
+                  <dd class="receive-setting__container-capture__config-options__detail">
+                    <select name="" id="" class="receive-setting__container-capture__config-options__detail__select">
+                      <option value=""></option>
+                    </select>
+                  </dd>
+                  <dt class="receive-setting__container-capture__config-options__title">区切文字</dt>
+                  <dd class="receive-setting__container-capture__config-options__detail">
+                    <select name="" id="" class="receive-setting__container-capture__config-options__detail__select">
+                      <option value=""></option>
+                    </select>
+                  </dd>
+                  <dt class="receive-setting__container-capture__config-options__title">EBファイル設定名</dt>
+                  <dd class="receive-setting__container-capture__config-options__detail">
+                    <input type="text" class="receive-setting__container-capture__config-options__detail__liner">
+                  </dd>
+                  <dt class="receive-setting__container-capture__config-options__title">銀行コード</dt>
+                  <dd class="receive-setting__container-capture__config-options__detail">
+                    <input type="text" class="receive-setting__container-capture__config-options__detail__box">
+                  </dd>
+                  <dt class="receive-setting__container-capture__config-options__title">取込区分</dt>
+                  <dd class="receive-setting__container-capture__config-options__detail">
+                    <input type="text" class="receive-setting__container-capture__config-options__detail__before">
+                    <button class="receive-setting__container-capture__config-options__detail__search-btn">検索</button>
+                  </dd>
+                  <dt class="receive-setting__container-capture__config-options__title">表示順</dt>
+                  <dd class="receive-setting__container-capture__config-options__detail">
+                    <input type="text" class="receive-setting__container-capture__config-options__detail__box">
+                  </dd>
+                </dl>
+              </div>
+
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="full-modal-box__contents multi-modal" data-modal-contents="taisyougai">
+      <div class="full-modal-box__contents__inner">
+        <h2 class="full-modal-box__contents__title">対象外設定</h2>
+        <div class="full-modal-box__contents__item-container">
+          <div class="receive-setting">
+            <section class="contents">
+              <div class="receive-setting__controller">
+                <button class="invoice-controller__btn">登録</button>
+                <button class="invoice-controller__btn">クリア</button>
+                <button class="invoice-controller__btn">削除</button>
+              </div>
+            </section>
+            <section class="contents">
+              <div class="receive-setting__container-exclude sticky-head-table">
+                <div class="sticky-head-table__header">
+                  <table class="sticky-head-table__header__inner">
+                    <tr>
+                      <th> 銀行コード </th>
+                      <th> 支店コード </th>
+                      <th> 預金種別 </th>
+                      <th> 仮想支店コード </th>
+                      <th> 仮想口座番号 </th>
+                    </tr>
+                  </table>
+                </div>
+                <div class="sticky-head-table__body">
+                  <table class="sticky-head-table__body__inner">
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                      <td>2018/10/05 17:12:56</td>
+                      <td>11</td>
+                      <td>2,420,000</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                      <td>2018/10/05 17:12:56</td>
+                      <td>11</td>
+                      <td>2,420,000</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                      <td>2018/10/05 17:12:56</td>
+                      <td>11</td>
+                      <td>2,420,000</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                      <td>2018/10/05 17:12:56</td>
+                      <td>11</td>
+                      <td>2,420,000</td>
+                    </tr>
+                  </table>
+                </div>
+
+              </div>
+            </section>
+            <section class="contents">
+              <div class="receive-setting__container-exclude">
+                <dl class="receive-setting__container-exclude__config-options">
+                  <dt class="receive-setting__container-exclude__config-options__title">銀行コード</dt>
+                  <dd class="receive-setting__container-exclude__config-options__detail">
+                    <input type="text" class="receive-setting__container-capture__config-options__detail__box">
+                  </dd>
+                </dl>
+                <dl class="receive-setting__container-exclude__config-options">
+                  <dt class="receive-setting__container-exclude__config-options__title">支店コード</dt>
+                  <dd class="receive-setting__container-exclude__config-options__detail">
+                    <input type="text" class="receive-setting__container-capture__config-options__detail__box">
+                  </dd>
+                </dl>
+                <dl class="receive-setting__container-exclude__config-options">
+                  <dt class="receive-setting__container-exclude__config-options__title">預金種別</dt>
+                  <dd class="receive-setting__container-exclude__config-options__detail">
+                    <select name="" id="" class="receive-setting__container-exclude__config-options__detail__box">
+                      <option value=""></option>
+                    </select>
+                  </dd>
+                </dl>
+                <dl class="receive-setting__container-exclude__config-options">
+                  <dt class="receive-setting__container-exclude__config-options__title">仮想支店コード</dt>
+                  <dd class="receive-setting__container-exclude__config-options__detail">
+                    <input type="text" class="receive-setting__container-capture__config-options__detail__box">
+                  </dd>
+                </dl>
+                <dl class="receive-setting__container-exclude__config-options">
+                  <dt class="receive-setting__container-exclude__config-options__title">仮想口座番号</dt>
+                  <dd class="receive-setting__container-exclude__config-options__detail">
+                    <input type="text" class="receive-setting__container-capture__config-options__detail__box">
+                  </dd>
+                </dl>
+              </div>
+
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>

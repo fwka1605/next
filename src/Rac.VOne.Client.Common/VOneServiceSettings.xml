@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VOneServices>
+  <ApplicationPath>http://localhost:3061/</ApplicationPath>
+  <MaxReceivedMessageSize>2147483647</MaxReceivedMessageSize>
+  <MaxBufferSize>2147483647</MaxBufferSize>
+  <MaxBufferPoolSize>2147483647</MaxBufferPoolSize>
+  <MaxArrayLength>2147483647</MaxArrayLength>
+  <OpenCloseTimeoutSecond>60</OpenCloseTimeoutSecond>
+  <SendReceiveTimeoutSecond>3600</SendReceiveTimeoutSecond>
+  <TransferMode>Streamed</TransferMode>
+</VOneServices>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="56d9a5be-58a9-47c4-a8de-7f4074d3ae82" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/PdfOutputSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PdfOutputSettingMaster.xsd" MetadataType="Schema" ID="862e94ac-618e-4de0-b77d-ab0b04f195bf" SourceId="1" SourceUrl="http://localhost:3061/Master/PdfOutputSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="PdfOutputSettingMaster.disco" MetadataType="Disco" ID="4bf8b22e-74e2-49a5-a142-d9b691e882a2" SourceId="1" SourceUrl="http://localhost:3061/Master/PdfOutputSettingMaster.svc?disco" />
+    <MetadataFile FileName="PdfOutputSettingMaster1.xsd" MetadataType="Schema" ID="64b505b1-2853-4169-9500-839b7a103e04" SourceId="1" SourceUrl="http://localhost:3061/Master/PdfOutputSettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="PdfOutputSettingMaster.wsdl" MetadataType="Wsdl" ID="a711090a-e32d-4a6c-b9a4-32a9d8b8ef8d" SourceId="1" SourceUrl="http://localhost:3061/Master/PdfOutputSettingMaster.svc?wsdl" />
+    <MetadataFile FileName="PdfOutputSettingMaster2.xsd" MetadataType="Schema" ID="05b79a92-53ea-45ab-b38b-d20f9ecbe24b" SourceId="1" SourceUrl="http://localhost:3061/Master/PdfOutputSettingMaster.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

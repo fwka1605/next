@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="28b496d5-e6e8-4389-ad5a-7d40c17bee33" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/CollectionScheduleService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CollectionScheduleService.wsdl" MetadataType="Wsdl" ID="b95de810-f950-4be8-9a34-7846366afbdc" SourceId="1" SourceUrl="http://localhost:3061/CollectionScheduleService.svc?wsdl" />
+    <MetadataFile FileName="CollectionScheduleService.xsd" MetadataType="Schema" ID="7a216730-c49e-4d70-92a2-3a2a0f0f8c17" SourceId="1" SourceUrl="http://localhost:3061/CollectionScheduleService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CollectionScheduleService1.xsd" MetadataType="Schema" ID="6f257df1-ae2a-4f03-a4d5-a8a44621ce6b" SourceId="1" SourceUrl="http://localhost:3061/CollectionScheduleService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CollectionScheduleService2.xsd" MetadataType="Schema" ID="5436e2bc-86eb-4fa6-a5ea-5ef8b829a6c2" SourceId="1" SourceUrl="http://localhost:3061/CollectionScheduleService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CollectionScheduleService.disco" MetadataType="Disco" ID="d33067ba-3214-48f9-8a64-d7cba1b1e7c4" SourceId="1" SourceUrl="http://localhost:3061/CollectionScheduleService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

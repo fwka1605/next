@@ -1,0 +1,16 @@
+﻿using Rac.VOne.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Rac.VOne.Data.QueryProcessors
+{
+    public interface IAddBillingBalanceQueryProcessor
+    {
+        Task<BillingBalance> SaveAsync(BillingBalance BillingBalance, CancellationToken token = default(CancellationToken));
+        Task<IEnumerable<BillingBalance>> RestoreBillingBalanceAsync(int CompanyId, CancellationToken token = default(CancellationToken));
+    }
+}

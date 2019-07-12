@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="10px" viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>F2854E2C-6449-4F19-9DBC-4E0288C19807</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M10.8848795,12.6318482 L8.00312149,9.75152877 L5.11512049,12.6368401 C4.6319141,13.1210533 3.84654763,13.1210533 3.36334124,12.6368401 C2.87888625,12.153875 2.87888625,11.3701485 3.36334124,10.8859354 L6.25009364,7.99937601 L3.36334124,5.11406464 C2.87888625,4.62985149 2.87888625,3.84612505 3.36334124,3.36315987 C3.84654763,2.87894671 4.6319141,2.87894671 5.11512049,3.36315987 L8.00312149,6.24847123 L10.8848795,3.36815175 C11.3680859,2.8839386 12.1522038,2.8839386 12.6366588,3.36815175 C13.1198652,3.85236491 13.1198652,4.63609135 12.6366588,5.11905653 L9.75490074,8.00062399 L12.6366588,10.8809435 C13.1211137,11.3639086 13.1211137,12.1488831 12.6366588,12.6318482 C12.1534524,13.1148134 11.3680859,13.1148134 10.8848795,12.6318482 Z" id="path-1"></path>
+    </defs>
+    <g id="page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="メニュー-&gt;-サブメニュー" transform="translate(-1322.000000, -137.000000)">
+            <g id="Notifications" transform="translate(895.000000, 126.000000)">
+                <g id="Notification---Success">
+                    <g id="Icon-(Right)" transform="translate(424.000000, 8.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <g id="Error-Icon"></g>
+                        <g id="Color" mask="url(#mask-2)" fill="#FFFFFF">
+                            <rect id="Base" x="0" y="0" width="16" height="16"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c619d4d3-4b38-4001-8d41-efb5bb88a632" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/TaskScheduleMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TaskScheduleMaster.xsd" MetadataType="Schema" ID="f35b9ab5-4315-43ac-89d4-0c26d30d8117" SourceId="1" SourceUrl="http://localhost:3061/Master/TaskScheduleMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="TaskScheduleMaster1.xsd" MetadataType="Schema" ID="06a4129a-4597-4ea5-944b-34437b3d8082" SourceId="1" SourceUrl="http://localhost:3061/Master/TaskScheduleMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="TaskScheduleMaster2.xsd" MetadataType="Schema" ID="cd92e7a9-daab-4cc2-ae67-3ebc31bda461" SourceId="1" SourceUrl="http://localhost:3061/Master/TaskScheduleMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="TaskScheduleMaster.wsdl" MetadataType="Wsdl" ID="3f4c52e6-26b9-4042-85ae-42f1ad8b7e4a" SourceId="1" SourceUrl="http://localhost:3061/Master/TaskScheduleMaster.svc?wsdl" />
+    <MetadataFile FileName="TaskScheduleMaster.disco" MetadataType="Disco" ID="2a3d3fca-eb75-46d9-aaa0-d9ae9ba4d23c" SourceId="1" SourceUrl="http://localhost:3061/Master/TaskScheduleMaster.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

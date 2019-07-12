@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3061/Master/ControlColorMaster.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Drawing" />
+  <xs:complexType name="ControlColorResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Color" nillable="true" type="tns:ArrayOfControlColor" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ControlColorResult" nillable="true" type="tns:ControlColorResult" />
+  <xs:complexType name="ArrayOfControlColor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ControlColor" nillable="true" type="tns:ControlColor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfControlColor" nillable="true" type="tns:ArrayOfControlColor" />
+  <xs:complexType name="ControlColor">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="ButtonBackColor" type="q1:Color" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="ControlActiveBackColor" type="q2:Color" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="ControlDisableBackColor" type="q3:Color" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="ControlEnableBackColor" type="q4:Color" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="ControlForeColor" type="q5:Color" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="ControlRequiredBackColor" type="q6:Color" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="FormBackColor" type="q7:Color" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="FormForeColor" type="q8:Color" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="GridAlternatingRowBackColor" type="q9:Color" />
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="GridLineColor" type="q10:Color" />
+      <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="GridRowBackColor" type="q11:Color" />
+      <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="InputGridAlternatingBackColor" type="q12:Color" />
+      <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="InputGridBackColor" type="q13:Color" />
+      <xs:element minOccurs="0" name="LoginUserId" type="xs:int" />
+      <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="MatchingGridBillingBackColor" type="q14:Color" />
+      <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="MatchingGridBillingSelectedCellBackColor" type="q15:Color" />
+      <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="MatchingGridBillingSelectedRowBackColor" type="q16:Color" />
+      <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="MatchingGridReceiptBackColor" type="q17:Color" />
+      <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="MatchingGridReceiptSelectedCellBackColor" type="q18:Color" />
+      <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/System.Drawing" minOccurs="0" name="MatchingGridReceiptSelectedRowBackColor" type="q19:Color" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ControlColor" nillable="true" type="tns:ControlColor" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ControlColorsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Colors" nillable="true" type="tns:ArrayOfControlColor" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ControlColorsResult" nillable="true" type="tns:ControlColorsResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+</xs:schema>

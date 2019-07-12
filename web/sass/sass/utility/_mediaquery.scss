@@ -1,0 +1,11 @@
+// mixin: mediaquery
+// 
+// @include mq-large {}内にメディアクエリ（推奨画面サイズより大きい場合）のスタイルを記述する
+// 
+// Styleguide 1.1.1
+
+  @mixin mq-large {
+    @media screen and ( min-width: $displayWidth + 1 ) {
+      @content;
+    }
+  }

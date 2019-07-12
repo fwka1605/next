@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1795a611-d285-4de2-bf88-3901ee102f67" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/CustomerGroupMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CustomerGroupMaster.xsd" MetadataType="Schema" ID="8e4f6681-acaa-4df3-adca-4c60d85cbc63" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerGroupMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="CustomerGroupMaster1.xsd" MetadataType="Schema" ID="442aa669-53d5-43fd-9261-9f150713c747" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerGroupMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="CustomerGroupMaster2.xsd" MetadataType="Schema" ID="3c9bc62f-2e78-418e-8ae0-25366ec257f1" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerGroupMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="CustomerGroupMaster3.xsd" MetadataType="Schema" ID="a01db199-14f1-4384-bd51-91d11b1584bd" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerGroupMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="CustomerGroupMaster.disco" MetadataType="Disco" ID="1a524630-02fb-42c4-a2f1-8522e4f66a76" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerGroupMaster.svc?disco" />
+    <MetadataFile FileName="CustomerGroupMaster.wsdl" MetadataType="Wsdl" ID="42f1db4f-a332-413d-b387-27c57ef6e576" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerGroupMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

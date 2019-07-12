@@ -1,0 +1,49 @@
+<div id="header">
+  <div class="service_title">
+    <img src="/assets/image/logo_full_color.png" alt="">
+  </div>
+  <div class="infomation_menu">
+    <a class="infomation_menu__link" href=""><img src="/assets/image/icon_support.png" alt="お問合せ"></a>
+    <a class="infomation_menu__link" href=""><img src="/assets/image/icon_manual.png" alt="マニュアル"></a>
+    <div class="user-menu">
+      <div class="user-menu__user-info">
+        <span class="user-menu__user-info__name">
+          株式会社R&AC
+        </span>
+      </div>
+      <ul class="user-menu__list">
+        <li class="user-menu__list__item">
+          <a href="">
+            <img class="user-menu__list__item__icon" src="/assets/image/icon_usersetting.png" alt="ユーザ情報設定">
+            ユーザ情報設定
+          </a>
+        </li>
+        <li class="user-menu__list__item">
+          <a href="">
+            <img class="user-menu__list__item__icon" src="/assets/image/icon_message.png" alt="メッセージ">
+            メッセージ
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script>
+  const userInfoMenuBtn = document.querySelector('.user-menu__user-info');
+  const userInfoMenu = document.querySelector('.user-menu__list');
+  const openClass = 'is-open';
+  const closeClass = 'is-closing-animation'
+  userInfoMenuBtn.addEventListener('click', () => {
+    const menuIsOpen = userInfoMenu.classList.contains(openClass);
+    if (menuIsOpen) {
+      userInfoMenu.classList.remove(openClass)
+      userInfoMenu.classList.add(closeClass);
+      userInfoMenu.addEventListener("animationend", () => {
+        userInfoMenu.classList.remove(closeClass)
+      })
+    } else {
+      userInfoMenu.classList.add(openClass);
+    }
+
+  });
+</script>

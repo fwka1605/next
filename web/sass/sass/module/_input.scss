@@ -1,0 +1,138 @@
+/*
+input バリデーションスタイル
+*/
+
+%validationDefault {
+  position: relative;
+}
+
+/*  
+input multi length 
+*/
+
+select {
+  min-height: 26px;
+  background: linear-gradient(0deg, #F3F5F7 0%, #FFFFFF 100%);
+  &:disabled {
+    background: #ebebe4;
+  }
+}
+
+.select-pos--center {
+  display: block;
+  margin: auto;
+}
+
+
+@for $length from 1 to 100 {
+  .input-size--#{$length*10},
+  .select-size--#{$length*10} {
+    width: $length * 10px;
+  }
+}
+
+input:read-only {
+  border: 1px solid #ccc;
+  background-color: #eee;
+}
+
+
+.input-uppercase {
+  text-transform: uppercase;
+}
+
+.input--error{
+  border: 1px solid red;
+  outline-color: red;
+}
+
+input[type="date"] {
+  padding: 2px 4px;
+}
+
+input[type="file"] {
+  padding: 2px;
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 4px;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  min-height: unset;
+  vertical-align: middle;
+}
+
+/*
+ angular class
+ */
+
+// error
+input.ng-invalid {
+  background-color: white;
+}
+
+input.ng-invalid-required {
+  background-color: #fdd5d2;
+  border-color: #b7524b;
+}
+
+input.ng-valid-required {
+  border-color: #65acc1;
+}
+
+
+.wavy-line {
+  display: inline-block;
+  margin: 0 6px;
+  line-height: 1;
+  position: relative;
+  width: 18px;
+  text-align: center;
+  &:after {
+    content: '～';
+    display: block;
+  }
+}
+
+/*
+check box offset
+*/
+.end-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: end;
+  width: 100%;
+  &:before {
+    display: block;
+    content: '～';
+    margin-right: 10px;
+  }
+}
+
+
+/*
+  <input>を<label>でラップしている場合
+*/
+  .labelWrap {
+    display: inline-block;
+    margin-right: 20px;
+    user-select: none;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    + .must_have_icon {
+      margin-left: -20px;
+    }
+    &__wrap {
+      display: block;
+    }
+    &__input {
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+  }

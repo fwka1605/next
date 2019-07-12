@@ -1,0 +1,217 @@
+<div [formGroup]="myFormGroup" (dragover)="onDragOver($event)" (drop)="onDrop($event)" class="billing-due-at-modify">
+
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.READ)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid || (readCount>0 && invalidSourcesCount==0) }" 
+        class="buttonSecondary  infotip">
+        {{ItemNameConst.BTN_IMPORT}}
+        <span [innerHtml]="ButtonTipsConst.EB_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.IMPORT)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid || readCount==0 || importDisableFlag }" 
+        class="buttonSecondary">
+        {{ItemNameConst.BTN_REGISTRY}}
+      </button>
+
+      <button 
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">
+        {{ItemNameConst.BTN_CLEAR}}
+      </button>
+
+    </div>
+  </section>    
+  
+  <section class="pageContainer">
+    <!-- 取込条件 --->
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_IMPORT}}</h2>
+      <div class="contents__container--flex">
+        <div class="contents__item--w-50">
+          <dl class="definitionForm--lh-narrow">
+            <dt class="definitionForm__title w--23">決済手段コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--77">
+              <input
+                formControlName="paymentAgencyCodeCtrl"
+                name="paymentAgencyCodeCtrl"
+                (keyup.enter)="setPaymentAgencyCode($event.type)"
+                (blur)="setPaymentAgencyCode($event.type)"
+                #paymentAgencyCodeInput
+                [formControl]="paymentAgencyCodeCtrl" 
+                [matAutocomplete]="autoPaymentAgencyCode"
+                type="tel"
+                maxlength="2"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                class="input-size--60">
+              <mat-autocomplete 
+                #autoPaymentAgencyCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option 
+                  *ngFor="let paymentAgency of paymentAgencyFilterds[0] | async" 
+                  [value]="paymentAgency.code">{{paymentAgency.code}}:{{paymentAgency.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_PAYMENT_AGENCY)"></a>
+              <input
+                formControlName="paymentAgencyNameCtrl"
+                name="paymentAgencyNameCtrl"
+                class="input-size--250"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--23">取込フォーマット</dt>
+            <dd class="definitionForm__data w--77">
+              <input
+                formControlName="fileFormatNameCtrl"
+                name="fileFormatNameCtrl"
+                class="input-size--300"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--23">取込ファイル<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--77">
+              <input 
+                #importFileCtrl
+                (change)="fileSelect($event)"
+                type="file" 
+                style="display:none" 
+                class="input-size--500">
+              <button class="buttonMinimum definitionForm__input" (click)="importFileCtrl.click()">
+                ファイルを選択
+              </button>
+              <input 
+                formControlName="importFileNameCtrl" 
+                name="importFileNameCtrl" 
+                placeholder="{{PlaceHolderConst.SELECT_FILE}}"
+                class="input-size--300" 
+                readonly>
+            </dd>
+          </dl>
+        </div>
+        <div class="contents__item--w-50">
+          <dl class="definitionForm--lh-narrow">
+            <dt class="definitionForm__title w--15">引落年</dt>
+            <dd class="definitionForm__data w--85">
+              <input
+                formControlName="transferYearCtrl"
+                name="transferYearCtrl"
+                class="input-size--60">
+            </dd>
+            <dd class="definitionForm__data">
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input class="inputStyled__input"
+                    id="cbxConsiderUncollectedCtrl" 
+                    formControlName="cbxConsiderUncollectedCtrl" 
+                    name="cbxConsiderUncollectedCtrl" 
+                    (change)="setCbxConsiderUncollected($event.type)"
+                    type="checkbox">
+                  <label class="inputStyled__checkbox" for="cbxConsiderUncollectedCtrl">振替不可データの回収区分を自動更新する。</label>
+                </div>
+              </label>
+              <span>&nbsp;</span>
+              <select 
+                formControlName="cmbConsiderUncollectedCtrl"
+                name="cmbConsiderUncollectedCtrl"
+                (change)="setCmbConsiderUncollected($event.type)"
+                class="select-size--150">
+                <option *ngFor="let category of collectCategoriesResult?.categories" value="{{category.id}}">
+                  {{category.code}}:{{category.name}}
+                </option>
+              </select>            
+            </dd>                
+          </dl>
+        </div>
+        <div class="searchConfig">
+          <div class="searchConfig__result contents__container--flex">
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">読込件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{readCount|currency_pipe}}" readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">振替済件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{validCount|currency_pipe}}" readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">振替済金額</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{validAmount|currency_pipe}}" readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">振替不能件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{invalidCount|currency_pipe}}" readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">振替不能金額</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{invalidAmount|currency_pipe}}" readonly>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 振替不能データ一覧 --->
+    <section class="contents">
+        <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_UNTRANSFER}}</h2>
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_150_CODE}}">得意先コード</th>
+                <th class="{{TableColumn.COL_350_CODE}}">得意先名</th>
+                <th class="{{TableColumn.COL_200_CODE}}">金額</th>
+                <th class="{{TableColumn.COL_550_CODE}}">振替結果</th>
+              </tr>
+            </thead>
+            <tbody class="searchResult__tableHeight--9999">
+              <tr *ngFor="let accountTransferSource of accountTransferSources index as i">
+                <td class="{{TableColumn.COL_150_NAME}}">{{getTransferCustomerCode(accountTransferSource.billings)}}</td>
+                <td class="{{TableColumn.COL_350_NAME}}">{{getTransferCustomerName(accountTransferSource.billings)}}</td>
+                <td class="{{TableColumn.COL_KINGAKU}}">{{accountTransferSource.transferAmount|currency_pipe}}</td>
+                <td class="{{TableColumn.COL_550_NAME}}">{{getTransferResult(accountTransferSource.transferResultCode)}}</td>
+              </tr>
+            </tbody>
+          </table>  
+        </div>  
+    </section>
+
+  </section>    
+
+</div>
+  

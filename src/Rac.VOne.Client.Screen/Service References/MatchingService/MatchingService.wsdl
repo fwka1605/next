@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MatchingService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/MatchingService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/MatchingService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/MatchingService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+      <xsd:import schemaLocation="http://localhost:3061/MatchingService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMatchingService_Collate_InputMessage">
+    <wsdl:part name="parameters" element="tns:Collate" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Collate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CollateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SequentialMatching_InputMessage">
+    <wsdl:part name="parameters" element="tns:SequentialMatching" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SequentialMatching_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SequentialMatchingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SearchMatchedData_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMatchedData" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SearchMatchedData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchMatchedDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_CancelMatching_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMatching" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_CancelMatching_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMatchingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SearchBillingData_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBillingData" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SearchBillingData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchBillingDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SearchReceiptData_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchReceiptData" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SearchReceiptData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchReceiptDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Solve_InputMessage">
+    <wsdl:part name="parameters" element="tns:Solve" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Solve_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SolveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_MatchingIndividually_InputMessage">
+    <wsdl:part name="parameters" element="tns:MatchingIndividually" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_MatchingIndividually_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MatchingIndividuallyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Simulate_InputMessage">
+    <wsdl:part name="parameters" element="tns:Simulate" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Simulate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SimulateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Approve_InputMessage">
+    <wsdl:part name="parameters" element="tns:Approve" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Approve_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApproveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_CancelApproval_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelApproval" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_CancelApproval_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelApprovalResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_searchReceiptById_InputMessage">
+    <wsdl:part name="parameters" element="tns:searchReceiptById" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_searchReceiptById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:searchReceiptByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_GetHeaderItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeaderItems" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_GetHeaderItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeaderItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_GetMatchingJournalizingDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingJournalizingDetail" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_GetMatchingJournalizingDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingJournalizingDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_CancelMatchingJournalizingDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMatchingJournalizingDetail" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_CancelMatchingJournalizingDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMatchingJournalizingDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_GetMatchingJournalizingSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingJournalizingSummary" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_GetMatchingJournalizingSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchingJournalizingSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_ExtractMatchingJournalizing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractMatchingJournalizing" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_ExtractMatchingJournalizing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractMatchingJournalizingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_ExtractGeneralJournalizing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractGeneralJournalizing" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_ExtractGeneralJournalizing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractGeneralJournalizingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_GetMatchedReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchedReceipt" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_GetMatchedReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMatchedReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_UpdateOutputAt_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOutputAt" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_UpdateOutputAt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOutputAtResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_CancelMatchingJournalizing_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMatchingJournalizing" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_CancelMatchingJournalizing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMatchingJournalizingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SaveWorkDepartmentTarget_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveWorkDepartmentTarget" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SaveWorkDepartmentTarget_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveWorkDepartmentTargetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SaveWorkSectionTarget_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveWorkSectionTarget" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_SaveWorkSectionTarget_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveWorkSectionTargetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_MFExtractMatchingJournalizing_InputMessage">
+    <wsdl:part name="parameters" element="tns:MFExtractMatchingJournalizing" />
+  </wsdl:message>
+  <wsdl:message name="IMatchingService_MFExtractMatchingJournalizing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MFExtractMatchingJournalizingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMatchingService">
+    <wsdl:operation name="Collate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/Collate" message="tns:IMatchingService_Collate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/CollateResponse" message="tns:IMatchingService_Collate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SequentialMatching">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/SequentialMatching" message="tns:IMatchingService_SequentialMatching_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/SequentialMatchingResponse" message="tns:IMatchingService_SequentialMatching_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchMatchedData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/SearchMatchedData" message="tns:IMatchingService_SearchMatchedData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/SearchMatchedDataResponse" message="tns:IMatchingService_SearchMatchedData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelMatching">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/CancelMatching" message="tns:IMatchingService_CancelMatching_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/CancelMatchingResponse" message="tns:IMatchingService_CancelMatching_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchBillingData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/SearchBillingData" message="tns:IMatchingService_SearchBillingData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/SearchBillingDataResponse" message="tns:IMatchingService_SearchBillingData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchReceiptData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/SearchReceiptData" message="tns:IMatchingService_SearchReceiptData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/SearchReceiptDataResponse" message="tns:IMatchingService_SearchReceiptData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Solve">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/Solve" message="tns:IMatchingService_Solve_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/SolveResponse" message="tns:IMatchingService_Solve_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MatchingIndividually">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/MatchingIndividually" message="tns:IMatchingService_MatchingIndividually_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/MatchingIndividuallyResponse" message="tns:IMatchingService_MatchingIndividually_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Simulate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/Simulate" message="tns:IMatchingService_Simulate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/SimulateResponse" message="tns:IMatchingService_Simulate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Approve">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/Approve" message="tns:IMatchingService_Approve_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/ApproveResponse" message="tns:IMatchingService_Approve_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelApproval">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/CancelApproval" message="tns:IMatchingService_CancelApproval_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/CancelApprovalResponse" message="tns:IMatchingService_CancelApproval_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="searchReceiptById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/searchReceiptById" message="tns:IMatchingService_searchReceiptById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/searchReceiptByIdResponse" message="tns:IMatchingService_searchReceiptById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/Get" message="tns:IMatchingService_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/GetResponse" message="tns:IMatchingService_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/GetHeaderItems" message="tns:IMatchingService_GetHeaderItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/GetHeaderItemsResponse" message="tns:IMatchingService_GetHeaderItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingJournalizingDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/GetMatchingJournalizingDetail" message="tns:IMatchingService_GetMatchingJournalizingDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/GetMatchingJournalizingDetailResponse" message="tns:IMatchingService_GetMatchingJournalizingDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelMatchingJournalizingDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/CancelMatchingJournalizingDetail" message="tns:IMatchingService_CancelMatchingJournalizingDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/CancelMatchingJournalizingDetailResponse" message="tns:IMatchingService_CancelMatchingJournalizingDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingJournalizingSummary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/GetMatchingJournalizingSummary" message="tns:IMatchingService_GetMatchingJournalizingSummary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/GetMatchingJournalizingSummaryResponse" message="tns:IMatchingService_GetMatchingJournalizingSummary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtractMatchingJournalizing">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/ExtractMatchingJournalizing" message="tns:IMatchingService_ExtractMatchingJournalizing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/ExtractMatchingJournalizingResponse" message="tns:IMatchingService_ExtractMatchingJournalizing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtractGeneralJournalizing">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/ExtractGeneralJournalizing" message="tns:IMatchingService_ExtractGeneralJournalizing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/ExtractGeneralJournalizingResponse" message="tns:IMatchingService_ExtractGeneralJournalizing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchedReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/GetMatchedReceipt" message="tns:IMatchingService_GetMatchedReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/GetMatchedReceiptResponse" message="tns:IMatchingService_GetMatchedReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOutputAt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/UpdateOutputAt" message="tns:IMatchingService_UpdateOutputAt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/UpdateOutputAtResponse" message="tns:IMatchingService_UpdateOutputAt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelMatchingJournalizing">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/CancelMatchingJournalizing" message="tns:IMatchingService_CancelMatchingJournalizing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/CancelMatchingJournalizingResponse" message="tns:IMatchingService_CancelMatchingJournalizing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveWorkDepartmentTarget">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/SaveWorkDepartmentTarget" message="tns:IMatchingService_SaveWorkDepartmentTarget_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/SaveWorkDepartmentTargetResponse" message="tns:IMatchingService_SaveWorkDepartmentTarget_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveWorkSectionTarget">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/SaveWorkSectionTarget" message="tns:IMatchingService_SaveWorkSectionTarget_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/SaveWorkSectionTargetResponse" message="tns:IMatchingService_SaveWorkSectionTarget_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MFExtractMatchingJournalizing">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMatchingService/MFExtractMatchingJournalizing" message="tns:IMatchingService_MFExtractMatchingJournalizing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMatchingService/MFExtractMatchingJournalizingResponse" message="tns:IMatchingService_MFExtractMatchingJournalizing_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IMatchingService" type="tns:IMatchingService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Collate">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/Collate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SequentialMatching">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/SequentialMatching" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchMatchedData">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/SearchMatchedData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelMatching">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/CancelMatching" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchBillingData">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/SearchBillingData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchReceiptData">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/SearchReceiptData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Solve">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/Solve" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchingIndividually">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/MatchingIndividually" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Simulate">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/Simulate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Approve">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/Approve" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelApproval">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/CancelApproval" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchReceiptById">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/searchReceiptById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderItems">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/GetHeaderItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingJournalizingDetail">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/GetMatchingJournalizingDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelMatchingJournalizingDetail">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/CancelMatchingJournalizingDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchingJournalizingSummary">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/GetMatchingJournalizingSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtractMatchingJournalizing">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/ExtractMatchingJournalizing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtractGeneralJournalizing">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/ExtractGeneralJournalizing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMatchedReceipt">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/GetMatchedReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOutputAt">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/UpdateOutputAt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelMatchingJournalizing">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/CancelMatchingJournalizing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveWorkDepartmentTarget">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/SaveWorkDepartmentTarget" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveWorkSectionTarget">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/SaveWorkSectionTarget" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MFExtractMatchingJournalizing">
+      <soap:operation soapAction="http://tempuri.org/IMatchingService/MFExtractMatchingJournalizing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MatchingService">
+    <wsdl:port name="BasicHttpBinding_IMatchingService" binding="tns:BasicHttpBinding_IMatchingService">
+      <soap:address location="http://localhost:3061/MatchingService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="966ddf9a-4d86-407d-a2cd-94e9c6a8fafa" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/BillingInvoiceService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BillingInvoiceService.disco" MetadataType="Disco" ID="af6f8589-9fd9-45c4-a52b-69899ba9d5ae" SourceId="1" SourceUrl="http://localhost:3061/BillingInvoiceService.svc?disco" />
+    <MetadataFile FileName="BillingInvoiceService.wsdl" MetadataType="Wsdl" ID="50503e2a-8241-41fb-8ef5-6d9cd3553a52" SourceId="1" SourceUrl="http://localhost:3061/BillingInvoiceService.svc?wsdl" />
+    <MetadataFile FileName="BillingInvoiceService1.xsd" MetadataType="Schema" ID="f0105dc0-e4da-424c-ba98-9b68f24a7bdc" SourceId="1" SourceUrl="http://localhost:3061/BillingInvoiceService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BillingInvoiceService2.xsd" MetadataType="Schema" ID="5266e6dd-f94d-4557-90a3-39dc554d8b58" SourceId="1" SourceUrl="http://localhost:3061/BillingInvoiceService.svc?xsd=xsd2" />
+    <MetadataFile FileName="BillingInvoiceService3.xsd" MetadataType="Schema" ID="bf7daa1f-dac7-43d6-bf36-7e0528fd457e" SourceId="1" SourceUrl="http://localhost:3061/BillingInvoiceService.svc?xsd=xsd3" />
+    <MetadataFile FileName="BillingInvoiceService.xsd" MetadataType="Schema" ID="63cdff40-eabb-4868-8a6e-512044203a5e" SourceId="1" SourceUrl="http://localhost:3061/BillingInvoiceService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B1A5AB7B-69E0-4B79-A3ED-062CE42D6E7F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rac.VOne.Web.Reports</RootNamespace>
+    <AssemblyName>Rac.VOne.Web.Reports</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GrapeCity.ActiveReports.Document.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
+    <Reference Include="GrapeCity.ActiveReports.Export.Pdf.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
+    <Reference Include="GrapeCity.ActiveReports.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Transaction\BillingAccountTransferImprotReportProcessor.cs" />
+    <Compile Include="Transaction\BillingImporterReportProcessor.cs" />
+    <Compile Include="Transaction\ArrearagesListReportProcessor.cs" />
+    <Compile Include="Transaction\BillingAgingListDetailReportProcessor.cs" />
+    <Compile Include="Transaction\BillingAgingListReportProcessor.cs" />
+    <Compile Include="Transaction\BillingInvoiceReportProcessor.cs" />
+    <Compile Include="Transaction\BillingJournalizingReportProcessor.cs" />
+    <Compile Include="Transaction\BillingScheduledPaymentImportReportProcessor.cs" />
+    <Compile Include="Transaction\BillingScheduledPaymentReportProcessor.cs" />
+    <Compile Include="Transaction\BillingSearchReportProcessor.cs" />
+    <Compile Include="Transaction\CollectionScheduleListReportProcessor.cs" />
+    <Compile Include="Transaction\CreditAgingListReportProcessor.cs" />
+    <Compile Include="Transaction\CustomerLedgerReportProcessor.cs" />
+    <Compile Include="Master\CustomerFeeReportProcessor.cs" />
+    <Compile Include="Master\CustomerGroupReportProcessor.cs" />
+    <Compile Include="Master\CustomerRegisterReportProcessor.cs" />
+    <Compile Include="Master\CustomerReportProcessor.cs" />
+    <Compile Include="Master\DepartmentReportProcessor.cs" />
+    <Compile Include="Extension\ActiveReportsSectionReportsExtensions.cs" />
+    <Compile Include="Master\GeneralSettingReportProcessor.cs" />
+    <Compile Include="Master\JuridicalPersonalityReportProcessor.cs" />
+    <Compile Include="Master\LoginUserReportProcessor.cs" />
+    <Compile Include="Transaction\MatchingHistoryReportProcessor.cs" />
+    <Compile Include="Transaction\MatchingIndividualReportProcessor.cs" />
+    <Compile Include="Transaction\MatchingJournalizingCancellationReportProcessor.cs" />
+    <Compile Include="Transaction\MatchingJournalizingReportProcessor.cs" />
+    <Compile Include="Transaction\MatchingSequentialReportProcessor.cs" />
+    <Compile Include="Transaction\ReceiptApportionReportProcessor.cs" />
+    <Compile Include="Transaction\ReceiptImporterReportProcessor.cs" />
+    <Compile Include="Transaction\ReceiptJournalizingReportProcessor.cs" />
+    <Compile Include="Transaction\ReceiptSearchReportProcessor.cs" />
+    <Compile Include="Transaction\ReceiptSectionTransferReportProcessor.cs" />
+    <Compile Include="Transaction\ScheduledPaymentReportProcessor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Master\SectionReportProcessor.cs" />
+    <Compile Include="Master\SectionWithDepartmentReportProcessor.cs" />
+    <Compile Include="Master\SectionWithLoginUserReportProcessor.cs" />
+    <Compile Include="Master\StaffReportProcessor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rac.VOne.AccountTransfer\Rac.VOne.AccountTransfer.csproj">
+      <Project>{ec479aad-3402-418b-a79f-f3a83203e291}</Project>
+      <Name>Rac.VOne.AccountTransfer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Client.Reports.Core\Rac.VOne.Client.Reports.Core.csproj">
+      <Project>{11652f71-0c16-4728-9af1-abaf369313d2}</Project>
+      <Name>Rac.VOne.Client.Reports.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Client.Reports\Rac.VOne.Client.Reports.csproj">
+      <Project>{94f2da13-da5b-431f-b4dc-957736fded4a}</Project>
+      <Name>Rac.VOne.Client.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Common\Rac.VOne.Common.csproj">
+      <Project>{77353c1a-5e87-4348-ad30-0b2283aebc7d}</Project>
+      <Name>Rac.VOne.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Data\Rac.VOne.Data.csproj">
+      <Project>{485d531c-a1e4-4595-af09-ee7064d3c89a}</Project>
+      <Name>Rac.VOne.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Web.Common\Rac.VOne.Web.Common.csproj">
+      <Project>{4e41482b-c45c-4050-a378-34d92f1a287b}</Project>
+      <Name>Rac.VOne.Web.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Web.Models\Rac.VOne.Web.Models.csproj">
+      <Project>{2ff6fa9d-4e62-4c0b-b3c6-25c236eaab1f}</Project>
+      <Name>Rac.VOne.Web.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MsgPack.Cli">
+      <Version>1.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

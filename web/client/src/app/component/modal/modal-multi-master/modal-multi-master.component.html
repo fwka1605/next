@@ -1,0 +1,98 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--large height--800">
+  <h2 class="vModal__heading">マスターの多肢選択 【{{TableName}}】
+    <span class="vModal__close"
+      (click)="close()"></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+      <button 
+        (click)="registry()" 
+        [ngClass]="{'button-disable':  !canRegistry() }" 
+        class="buttonSecondary mr--15">{{ItemNameConst.BTN_SELECT}}</button>
+      <button 
+        (click)="cancel()" 
+        class="buttonMinimum" >{{ItemNameConst.BTN_CANCEL}}</button>
+    </section>
+
+    <section class="contents--x-scrollable">
+      <div class="contents__container">
+        <div class="modalTable">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_100_CODE}}">
+                  <div class="inputStyled">
+                    <input
+                      id="cbxAllSelectCtrl"
+                      class="inputStyled__input"
+                      formControlName="cbxAllSelectCtrl"
+                      name="cbxAllSelectCtrl"
+                      (change)="checkAll()"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxAllSelectCtrl"></label>
+                  </div>
+                </th>
+                <th class="{{TableColumn.COL_250_CODE}}">{{TableName}}コード</th>
+                <th class="{{TableColumn.COL_700_CODE}}">{{TableName}}名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_DEPARTMENT">
+                <tr  
+                  *ngFor="let department of mastersAllResult?.departments; let i = index" 
+                  class="cursor-inherit line-selector">
+                  <th class="{{TableColumn.COL_100_CENTER_NAME}}">
+                    <div class="inputStyled">
+                      <input
+                        id="cbxSelectCtrl{{i}}"
+                        class="inputStyled__input"
+                        formControlName="cbxSelectCtrl{{i}}"
+                        name="cbxSelectCtrl{{i}}"
+                        (click)="select(i)"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="cbxSelectCtrl{{i}}"></label>
+                    </div>
+                  </th>
+                  <td class="{{TableColumn.COL_250_CENTER_NAME}}">{{department.code}}</td>
+                  <td class="{{TableColumn.COL_700_NAME}}">{{department.name}}</td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="TableIndex==TABLE_INDEX.MASTER_SECTION">
+                <tr  
+                  *ngFor="let section of mastersAllResult?.sections; let i = index" 
+                  class="line-selector">
+                  <th class="{{TableColumn.COL_100_CENTER_NAME}}">
+                    <div class="inputStyled">
+                      <input
+                        id="cbxSelectCtrl{{i}}"
+                        class="inputStyled__input"
+                        formControlName="cbxSelectCtrl{{i}}"
+                        name="cbxSelectCtrl{{i}}"
+                        (click)="select(i)"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="cbxSelectCtrl{{i}}"></label>
+                    </div>
+                  </th>
+                  <td class="{{TableColumn.COL_250_CENTER_NAME}}">{{section.code}}</td>
+                  <td class="{{TableColumn.COL_700_NAME}}">{{section.name}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

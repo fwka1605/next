@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2cb13b6f-704a-420b-8f9f-825e92e0f617" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/PeriodicBillingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PeriodicBillingService.xsd" MetadataType="Schema" ID="a9453226-89e4-4197-ba17-ce61d1ccf336" SourceId="1" SourceUrl="http://localhost:3061/PeriodicBillingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PeriodicBillingService1.xsd" MetadataType="Schema" ID="52b4e5ad-74c3-4efa-8091-5f5a1dfba28c" SourceId="1" SourceUrl="http://localhost:3061/PeriodicBillingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="PeriodicBillingService2.xsd" MetadataType="Schema" ID="5de8753d-ec4b-4287-940d-60369d9db425" SourceId="1" SourceUrl="http://localhost:3061/PeriodicBillingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PeriodicBillingService.disco" MetadataType="Disco" ID="ec823fd1-57c7-44c3-95e7-a1f2f02bb770" SourceId="1" SourceUrl="http://localhost:3061/PeriodicBillingService.svc?disco" />
+    <MetadataFile FileName="PeriodicBillingService.wsdl" MetadataType="Wsdl" ID="d0f50e46-9ef3-44cb-abf1-5550ca37cbbb" SourceId="1" SourceUrl="http://localhost:3061/PeriodicBillingService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,183 @@
+/*
+個別消込ぺージ
+*/
+.clearing-contents {
+  @include clearfix;
+  display: flex;
+  margin: 0 20px 20px;
+  position: relative;
+  background-color: $main-background-color;
+  justify-content: stretch;
+}
+
+  .clearingTotal { // ［入金］・［請求］合計
+    $clearingTotal-prop: #{&};
+    &--order-1 {
+      @extend #{$clearingTotal-prop};
+      order: 1;
+      margin-right: $pageContainer-padding;
+      margin-bottom: 0;
+    }
+    &--order-2 {
+      @extend #{$clearingTotal-prop};
+      order: 2;
+      margin-bottom: 0;
+    }
+    &.contents {
+      width: ($contentsWidth - $pageContainer-padding) / 2;
+    }
+    .buttonMinimum {
+      min-height: auto;
+    }
+    &__title {
+      &--color-receive,&--color-invoice {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px $pageContainer-padding;
+        border-bottom: 2px solid $border-color;
+        font-size: $font-size-large;
+        font-weight: bold;
+      }
+      &--color-receive {
+        background-color: #F8D9DD;
+      }
+      &--color-invoice {
+        background-color: #DBE9F9;
+      }
+    }
+    &__titleButton {
+      > .buttonMinimum {
+        margin-right: 8px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    &__breakdown {
+      width: 100%;
+      .definitionForm {
+        &:last-of-type {
+          margin-bottom: inherit;
+        }
+      }
+      .definitionForm__title,.definitionForm__data {
+        min-height: auto;
+        margin-bottom: 12px;
+        line-height: 1;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        &.clearingTotal__breakdownEndprice {
+          margin-bottom: 10px;
+        }
+      }
+      .definitionForm__title {
+        width: 30%;
+      }
+      .definitionForm__data {
+        width: 70%;
+        text-align: right;
+        font-weight: bold;
+        input {
+          min-height: 24px;
+        }
+      }
+    }
+    &__breakdownEndprice {
+      margin-top: 2px;
+      padding: 14px 30px 10px 0;
+      border-top: 2px solid $border-color;
+      font-size: $font-size-large;
+    }
+    &__breakdownUnit {
+      margin-left: 5px;
+    }
+  }
+
+  .clearingInfo { // 入金・請求情報
+    $clearingInfo-prop: #{&};
+    &--order-1 {
+      @extend #{$clearingInfo-prop};
+      order: 1;
+      margin-right: $pageContainer-padding;
+      .clearingInfoVertical & {
+        margin-right: inherit;
+      }
+    }
+    &--order-2 {
+      @extend #{$clearingInfo-prop};
+      order: 2;
+    }
+    .contents {
+      width: (($contentsWidth - $pageContainer-padding) / 2) - $pageContainer-padding / 2; // 1/2幅 - スクロールバー
+      @include mq-large {
+        width: ($contentsWidth - $pageContainer-padding) / 2;
+      }
+      .clearingInfoVertical & {
+        width: 100%;
+        @include mq-large {
+          width: $contentsWidth; // 上下スプリットは最大幅
+        }
+      }
+    }
+    .accordionContent__title {
+      padding: 0;
+    }
+    .searchResult__controlHeightLabel {
+      margin-left: 10px;
+    }
+    .mat-expansion-indicator {
+      left: auto;
+      right: 20px;
+    }
+    .common-inner-table {
+      overflow: auto;
+    }
+    .searchResult__table tbody{
+      overflow-x: hidden;
+    }
+  }
+
+.clearing-invoice,
+.clearing-payment {
+  &-container__infomation {
+    padding: 16px 16px 0 16px;
+    &__title {
+      border-bottom: 2px solid $border-color;
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+    }
+    &__box {
+      display: flex;
+      justify-content: stretch;
+      align-items: stretch;
+      padding: 1px;
+      &__item {
+        overflow: hidden;
+        position: relative;
+        width: calc(100% - 20px);
+        &:last-child {
+          margin-left: 60px;
+        }
+        &__title {
+          clear: both;
+          width: 30%;
+          float: left;
+          padding: 0px 0;
+          margin: 0px 0;
+        }
+        &__detail {
+          width: 70%;
+          float: left;
+          text-align: right;
+          .detail-unit {
+            font-size: 1.3rem;
+            display: inline-block;
+            margin-left: 6px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="Microsoft.Csharp" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Runtime.Serialization" #>
+<#@ assembly name="$(TargetPath)" #>
+<#@ assembly name="$(SolutionDir)\bin\$(ConfigurationName)\Rac.VOne.Web.Models.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="System.Runtime" #>
+<#@ import namespace="System.Runtime.Serialization" #>
+<#@ import namespace="Rac.Util.CodeGen" #>
+<#@ output extension=".ts" #>
+<#
+    var assembly = Assembly.GetAssembly(typeof(Rac.VOne.Web.Models.Company));
+    var types = assembly.GetTypes()
+                .Where(x => x.CustomAttributes.Any(y
+                    => y.AttributeType == typeof(DataContractAttribute)));
+    var converter = new TypeConverter();
+    MultipleFileWriter.WriteFiles(Host.TemplateFile,
+        types,
+        this.GenerationEnvironment,
+        type => {
+#>
+<#= converter.Convert(type) #>
+<#
+        });
+#>

@@ -1,0 +1,123 @@
+// スタイルガイドのカスタマイズ
+
+// コードハイライトのテーマ：<monokai-sublime.css><https://highlightjs.org/>
+  .hljs{display:block;overflow-x:auto;padding:.5em;background:#23241f}.hljs,.hljs-tag,.hljs-subst{color:#f8f8f2}.hljs-strong,.hljs-emphasis{color:#a8a8a2}.hljs-bullet,.hljs-quote,.hljs-number,.hljs-regexp,.hljs-literal,.hljs-link{color:#ae81ff}.hljs-code,.hljs-title,.hljs-section,.hljs-selector-class{color:#a6e22e}.hljs-strong{font-weight:bold}.hljs-emphasis{font-style:italic}.hljs-keyword,.hljs-selector-tag,.hljs-name,.hljs-attr{color:#f92672}.hljs-symbol,.hljs-attribute{color:#66d9ef}.hljs-params,.hljs-class .hljs-title{color:#f8f8f2}.hljs-string,.hljs-type,.hljs-built_in,.hljs-builtin-name,.hljs-selector-id,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-addition,.hljs-variable,.hljs-template-variable{color:#e6db74}.hljs-comment,.hljs-deletion,.hljs-meta{color:#75715e}
+
+
+// <pre>カスタマイズ
+ .hljs {
+   font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+   font-size: 1.5rem;
+ }
+
+
+// ヘッダ、メニュー、wrapper
+  .sg.sg-header .sg-inner,
+  .sg.sg-top-nav-menu,
+  .sg.sg-wrapper {
+    width: 85%;
+    min-width: 1400px;
+    max-width: none;
+  }
+
+
+// タイトル
+  .sg.sg-header .sg-title h1 {
+    font-weight: 800;
+  }
+
+
+// 検索フィールド
+  .sg.sg-header .sg.sg-search-container .sg.sg-search-field {
+    width: 650px;
+    margin-top: 15px;
+  }
+
+
+// DesignerToolは無効にする
+  .sg.sg-design {
+    display: none;
+  }
+
+
+// 大見出し
+  .sg.sg-section.main .sg-section-header h1 .sg-section-source { // ファイル名
+    display: none;
+  }
+
+
+// 中見出し
+  .sg.sg-section-header h1 {
+    .sg-section-source { // ファイル名
+      color: #fff;
+    }
+  }
+
+
+// テキスト、リンク
+  p,a,li{
+    &.sg {
+      font-size: 16px;
+      &.sg-show-section {
+        font-size: 14px;
+      }
+    }
+  }
+  .sg.sg-top-nav-menu {
+    a.sg {
+      font-size: 14px;
+    }
+  }
+
+  a.sg {
+    color: #1695A3;
+  }
+
+
+// リスト
+  ol {
+    list-style-type: decimal;
+  }
+
+// "Styleguide x.x.0"のタイトル（ドロップダウンリストに相当する大見出し）
+  .sg.sg-section.ng-scope:first-child {
+    // display: none;
+  }
+
+
+// Markupエリアのラッパー
+  .wrapperMarkup {
+    padding: 10px;
+    background-color: #f2f4f6;
+  }
+
+
+// Markupエリアの背景色とマージン
+  .wrapperMarkup {
+    .contents__item {
+      @for $width from 1 through 20 {
+        &--w-#{$width*5} {
+          margin-bottom: 10px;
+          padding: 10px;
+          box-sizing: border-box;
+          border-right: 1px solid #fff;
+          background: #ddd;
+          white-space: nowrap;
+          text-align: center;
+        }
+      }
+    }
+    .definitionForm__title,.definitionForm__data {
+      margin-bottom: 15px;
+      border-right: 1px solid #fff;
+      text-align: left;
+    }
+    .definitionForm__title {
+      white-space: nowrap;
+    }
+  }
+
+// 実際の見た目（all-import.css）と合わせる為の指定
+  html {
+    font-size: 62.5%;
+  }

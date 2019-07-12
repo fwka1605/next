@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="48908172-169a-4080-b7b3-7e362b79fbf9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/ImporterSettingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ImporterSettingService.xsd" MetadataType="Schema" ID="91388aad-0301-4461-a627-99ef17feb598" SourceId="1" SourceUrl="http://localhost:3061/ImporterSettingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ImporterSettingService.disco" MetadataType="Disco" ID="96f54a16-dc9d-4a61-8e2e-2e70e14be6a3" SourceId="1" SourceUrl="http://localhost:3061/ImporterSettingService.svc?disco" />
+    <MetadataFile FileName="ImporterSettingService1.xsd" MetadataType="Schema" ID="c6ecf8dd-f32f-49c2-a993-74549fea581f" SourceId="1" SourceUrl="http://localhost:3061/ImporterSettingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ImporterSettingService2.xsd" MetadataType="Schema" ID="f77e8df6-242f-4586-964a-f133d315b6b8" SourceId="1" SourceUrl="http://localhost:3061/ImporterSettingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ImporterSettingService.wsdl" MetadataType="Wsdl" ID="e0588dc3-4cff-40df-9b22-94107eb97210" SourceId="1" SourceUrl="http://localhost:3061/ImporterSettingService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

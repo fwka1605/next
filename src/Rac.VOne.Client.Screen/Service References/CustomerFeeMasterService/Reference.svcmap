@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="970e2ae2-2dec-4a21-b417-6cdb01558ebc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/CustomerFeeMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CustomerFeeMaster.disco" MetadataType="Disco" ID="4c73ca2f-1e52-46cd-8d03-a750ee92a5a5" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerFeeMaster.svc?disco" />
+    <MetadataFile FileName="CustomerFeeMaster.xsd" MetadataType="Schema" ID="e7cf3d9a-7484-40d6-a06a-7b0c5c366ce6" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerFeeMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="CustomerFeeMaster1.xsd" MetadataType="Schema" ID="2ccb3e80-46e1-4b1b-bdf4-12e606492fb0" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerFeeMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="CustomerFeeMaster2.xsd" MetadataType="Schema" ID="7f2eef04-4ce7-4466-98a8-7de49490a413" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerFeeMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="CustomerFeeMaster.wsdl" MetadataType="Wsdl" ID="0975f6fc-ce5b-4db1-80fc-6bece939e7e2" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerFeeMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,190 @@
+
+<html>
+<body>
+
+ <div [formGroup]="myForm" (submit)="show()">
+    <div>
+        <label >require</label><br />
+        <input name="requireCheck" type="text" formControlName="requireCheck" />
+        <span *ngIf="myForm.controls.requireCheck.errors?.required">
+            requireエラー</span>
+    </div>
+    <div>
+        <label >minLength(3)：</label><br />
+        <input name="minLengthCheck" type="text" formControlName="minLengthCheck" />
+        <span *ngIf="myForm.controls.minLengthCheck.errors?.minlength">
+            minLengthエラー</span>
+    </div>
+    <div>
+        <label >maxLength(5)</label><br />
+        <input name="maxLengthCheck" type="text" formControlName="maxLengthCheck" />
+        <span *ngIf="myForm.controls.maxLengthCheck.errors?.maxlength">
+            maxLengthエラー</span>
+    </div>
+    <div>
+        <label >pattern(new RegExp('ab+c'))</label><br />
+        <input name="patternCheck" type="text" formControlName="patternCheck" />
+        <span *ngIf="myForm.controls.patternCheck.errors?.pattern">
+            patternエラー</span>
+    </div>
+    <div>
+        <label >rangeLength([5, 9])</label><br />
+        <input name="rangeLengthCheck" type="text" formControlName="rangeLengthCheck" />
+        <span *ngIf="myForm.controls.rangeLengthCheck.errors?.rangeLength">
+            rangeLengthエラー</span>
+    </div>
+    <div>
+        <label >min(10)</label><br />
+        <input name="minCheck" type="text" formControlName="minCheck" />
+        <span *ngIf="myForm.controls.minCheck.errors?.min">
+            minエラー</span>
+    </div>
+    <div>
+        <label >gt(10)</label><br />
+        <input name="gtCheck" type="text" formControlName="gtCheck" />
+        <span *ngIf="myForm.controls.gtCheck.errors?.gt">
+            gtエラー</span>
+    </div>
+    <div>
+        <label >gte(10)</label><br />
+        <input name="gteCheck" type="text" formControlName="gteCheck" />
+        <span *ngIf="myForm.controls.gteCheck.errors?.gte">
+            gteエラー</span>
+    </div>
+    <div>
+        <label >max(20)</label><br />
+        <input name="maxCheck" type="text" formControlName="maxCheck" />
+        <span *ngIf="myForm.controls.maxCheck.errors?.max">
+            maxエラー</span>
+    </div>
+    <div>
+        <label >lt(20)</label><br />
+        <input name="ltCheck" type="text" formControlName="ltCheck" />
+        <span *ngIf="myForm.controls.ltCheck.errors?.lt">
+            ltエラー</span>
+    </div>
+    <div>
+        <label >lte(20)</label><br />
+        <input name="lteCheck" type="text" formControlName="lteCheck" />
+        <span *ngIf="myForm.controls.lteCheck.errors?.lte">
+            lteエラー</span>
+    </div>
+    <div>
+        <label >range([10, 20])</label><br />
+        <input name="rangeCheck" type="text" formControlName="rangeCheck" />
+        <span *ngIf="myForm.controls.rangeCheck.errors?.range">
+            rangeエラー</span>
+    </div>
+    <div>
+        <label >digits</label><br />
+        <input name="digitsCheck" type="text" formControlName="digitsCheck" />
+        <span *ngIf="myForm.controls.digitsCheck.errors?.digits">
+            digitsエラー</span>
+    </div>
+    <div>
+        <label >number</label><br />
+        <input name="numberCheck" type="text" formControlName="numberCheck" />
+        <span *ngIf="myForm.controls.numberCheck.errors?.number">
+            numberエラー</span>
+    </div>
+    <div>
+        <label >url</label><br />
+        <input name="urlCheck" type="text" formControlName="urlCheck" />
+        <span *ngIf="myForm.controls.urlCheck.errors?.url">
+            urlエラー</span>
+    </div>
+    <div>
+        <label >email</label><br />
+        <input name="emailCheck" type="text" formControlName="emailCheck" />
+        <span *ngIf="myForm.controls.emailCheck.errors?.email">
+            emailエラー</span>
+    </div>
+    <div>
+        <label >date</label><br />
+        <input name="dateCheck" type="text" formControlName="dateCheck" />
+        <span *ngIf="myForm.controls.dateCheck.errors?.date">
+            dateエラー</span>
+    </div>
+    <div>
+        <label >minDate("2016-09-09")</label><br />
+        <input name="minDateCheck" type="text" formControlName="minDateCheck" />
+        <span *ngIf="myForm.controls.minDateCheck.errors?.minDate">
+            minDateエラー</span>
+    </div>
+    <div>
+        <label >maxDate("2016-09-09")</label><br />
+        <input name="maxDateCheck" type="text" formControlName="maxDateCheck" />
+        <span *ngIf="myForm.controls.maxDateCheck.errors?.maxDate">
+            maxDateエラー</span>
+    </div>
+    <div>
+        <label >dateISO</label><br />
+        <input name="dateISOCheck" type="text" formControlName="dateISOCheck" />
+        <span *ngIf="myForm.controls.dateISOCheck.errors?.dateISO">
+            dateISOエラー</span>
+    </div>
+    <div>
+        <label >creditCard</label><br />
+        <input name="creditCardCheck" type="text" formControlName="creditCardCheck" />
+        <span *ngIf="myForm.controls.creditCardCheck.errors?.creditCard">
+            creditCardエラー</span>
+    </div>
+    <div>
+        <label >json</label><br />
+        <input name="jsonCheck" type="text" formControlName="jsonCheck" />
+        <span *ngIf="myForm.controls.jsonCheck.errors?.json">
+            jsonエラー</span>
+    </div>
+    <div>
+        <label >base64</label><br />
+        <input name="base64Check" type="text" formControlName="base64Check" />
+        <span *ngIf="myForm.controls.base64Check.errors?.base64">
+            base64エラー</span>
+    </div>
+    <div>
+        <label >phone("CN")</label><br />
+        <input name="phoneCheck" type="text" formControlName="phoneCheck" />
+        <span *ngIf="myForm.controls.phoneCheck.errors?.phone">
+            phoneエラー</span>
+    </div>
+    <div>
+        <label >uuid("all")</label><br />
+        <input name="uuidCheck" type="text" formControlName="uuidCheck" />
+        <span *ngIf="myForm.controls.uuidCheck.errors?.uuid">
+            uuidエラー</span>
+    </div>
+    <div>
+        <label >equal("aaa")</label><br />
+        <input name="equalCheck" type="text" formControlName="equalCheck" />
+        <span *ngIf="myForm.controls.equalCheck.errors?.equal">
+            equalエラー</span>
+    </div>
+    <div>
+        <label >notEqual("aaa")</label><br />
+        <input name="notEqualCheck" type="text" formControlName="notEqualCheck" />
+        <span *ngIf="myForm.controls.notEqualCheck.errors?.notEqual">
+            notEqualエラー</span>
+    </div>
+    <div>
+        <label >equalTo(email)</label><br />
+        <input name="equalToCheck" type="text" formControlName="equalToCheck" />
+        <span *ngIf="myForm.controls.equalToCheck.errors?.equalTo">
+            equalToエラー</span>
+    </div>
+    <div>
+        <label >notEqualTo(email)</label><br />
+        <input name="notEqualToCheck" type="text" formControlName="notEqualToCheck" />
+        <span *ngIf="myForm.controls.notEqualToCheck.errors?.notEqualTo">
+            notEqualToエラー</span>
+    </div>
+        
+
+
+    <div>
+      <input type="submit" value="送信" 
+        [disabled]="myForm.invalid" />
+    </div>
+</div>   
+
+</body>    
+</html>

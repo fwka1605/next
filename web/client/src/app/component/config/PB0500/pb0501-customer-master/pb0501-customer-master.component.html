@@ -1,0 +1,108 @@
+<div [formGroup]="myFormGroup" class="master-config">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+      <div class="searchField mr--10">
+      <input class="searchField__input input-size--400"
+        name="searchCondCtrl"
+        [formControl]="searchCondCtrl" 
+        matInput 
+        [matAutocomplete]="auto"
+        placeholder="{{PlaceHolderConst.CUSTOMER_NAME_CODE}}">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let customer of customerFilterds[0] | async" [value]="customer.code">{{customer.code}}:{{customer.name}}</mat-option>
+      </mat-autocomplete>
+      <button class="searchField__button buttonPrimary"
+        (click)="buttonAction(BUTTON_ACTION.SEARCH)">{{ItemNameConst.BTN_SEARCH}}</button>
+      </div>
+
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum ">{{ItemNameConst.BTN_CLEAR}}</button>
+
+      <div class="contentsButton__subSection">
+        <ul class="separator">
+          <li class="separator__item">
+            <button
+              (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+              class="buttonPrimary">{{ItemNameConst.BTN_REGISTRY_NEW}}</button>
+          </li>
+          <li class="separator__item">
+            <button 
+              class="buttonPrimary infotip" 
+              (click)="buttonAction(BUTTON_ACTION.SETTING)">
+              {{ItemNameConst.BTN_SETTING_REGISTRY}}
+              <span [innerHtml]="ButtonTipsConst.IMPORT_LAYOUT_SETTING | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+          <li class="separator__item">        
+            <ng-container *ngIf="securityHideShow">
+              <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterImport)">
+                <button class="buttonImport infotip"
+                  (click)="buttonAction(BUTTON_ACTION.IMPORT)">
+                  <span [innerHtml]="ButtonTipsConst.CSV_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+                </button>
+              </ng-container>
+              <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterExport)">
+                <button class="buttonExport infotip"
+                  (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+                  <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+                </button>
+              </ng-container>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 検索結果 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_SEARCH}}</h2>
+      <div class="contents__container">
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}"> 編集 </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 顧客ID </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 得意先名 </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 担当者 </th>
+                <th class="{{TableColumn.COL_400_CODE}}"> 住所  </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 自社担当者 </th>
+              </tr>
+            </thead>
+            <tbody class="height--500">
+              <tr 
+                *ngFor="let customer of searchCustomersResult?.customers index as i" 
+                class="line-selector">
+                <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                  <a class="buttonEdit" (click)="selectLine(i)"></a>
+                </td>              
+                <td class="{{TableColumn.COL_200_CENTER_NAME}}">
+                  <span>{{customer.code}}</span>
+                </td>
+                <td class="{{TableColumn.COL_200_NAME}}">
+                  <span>{{customer.name}}</span>
+                </td>
+                <td class="{{TableColumn.COL_200_NAME}}">
+                  <span>{{customer.customerStaffName}}</span>
+                </td>
+                <td class="{{TableColumn.COL_400_NAME}}">
+                  <span>{{customer.address1}}{{customer.address1}}</span>
+                </td>
+                <td class="{{TableColumn.COL_200_NAME}}">
+                  <span>{{customer.staffName}}</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+</div>

@@ -1,0 +1,1266 @@
+<section class="vModal--large"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup"
+  data-modal-contents="id001">
+  <h2 class="vModal__heading">{{title}}
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 --> 
+        <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+
+        <button 
+          class="buttonSecondary"  
+          [ngClass]="{'button-disable': myFormGroup.invalid}" 
+          (click)="buttonAction(BUTTON_ACTION.REGISTRY)">{{ComponentStatus==COMPONENT_STATUS_TYPE.CREATE?ItemNameConst.BTN_REGISTRY:ItemNameConst.BTN_UPDATE}}</button>
+        <button 
+          class="buttonMinimum" 
+          (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)">{{ItemNameConst.BTN_CLEAR}}</button>
+        <button 
+          class="buttonMinimum" *ngIf="isShowDelete()" 
+          [ngClass]="{'button-disable': isDeleteButton }" 
+          (click)="buttonAction(BUTTON_ACTION.DELETE)">{{ItemNameConst.BTN_DELETE}}</button>
+        <button 
+          (click)="cancel()" 
+          class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+
+        <div class="contentsButton__subSection">
+
+          <button 
+            class="buttonPrimary infotip" 
+            [ngClass]="{'button-disable': isRegistrationFeeButton }" 
+            (click)="openTransferFeeModal()">
+            {{ItemNameConst.BTN_REGISTRY_FEE}}
+            <span [innerHtml]="ButtonTipsConst.FEE_REGISTRY | safeHtml_pipe" class="infotip__frame"></span>
+          </button>
+        </div>
+    </section>
+
+    <!-- 入力フォーム -->
+    <section class="contents">
+      <h3 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_BASE}}</h3>
+      <div class="contents__container--flex">
+        <div class="contents__item--w-50">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title w--25">得意先コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--75">
+              <input 
+                formControlName="customerCodeCtrl" 
+                name="customerCodeCtrl" 
+                (keyup.enter)="setCustomerCode($event.type)"
+                (blur)="setCustomerCode($event.type)"
+                maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                type="text"
+                class="input-size--100 input-uppercase mb--10"><br>
+                    <div class="inputStyled">
+                      <input
+                        id="cbxCustomerIsParentCtrl"
+                        class="inputStyled__input"
+                        formControlName="cbxCustomerIsParentCtrl"
+                        name="cbxCustomerIsParentCtrl"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="cbxCustomerIsParentCtrl">債権代表者</label>
+                    </div>
+                    <div class="inputStyled">
+                      <input
+                        id="cbxUseKanaLearningCtrl"
+                        class="inputStyled__input"
+                        formControlName="cbxUseKanaLearningCtrl"
+                        name="cbxUseKanaLearningCtrl"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="cbxUseKanaLearningCtrl">カナ自動学習</label>
+                    </div><br>
+                      <div class="inputStyled">
+                        <input
+                          id="cbxUseFeeLearningCtrl"
+                          class="inputStyled__input"
+                          formControlName="cbxUseFeeLearningCtrl"
+                          name="cbxUseFeeLearningCtrl"
+                          type="checkbox">
+                        <label
+                          class="inputStyled__checkbox"
+                          for="cbxUseFeeLearningCtrl">手数料自動学習</label>
+                      </div>
+                    <div class="inputStyled">
+                      <input
+                        id="cbxUseFeeToleranceCtrl"
+                        class="inputStyled__input"
+                        formControlName="cbxUseFeeToleranceCtrl"
+                        name="cbxUseFeeToleranceCtrl"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="cbxUseFeeToleranceCtrl">手数料誤差利用</label>
+                    </div><br>
+                    <div class="inputStyled">
+                      <input
+                        id="cbxPrioritizeMatchingIndividuallyCtrl"
+                        class="inputStyled__input"
+                        formControlName="cbxPrioritizeMatchingIndividuallyCtrl"
+                        name="cbxPrioritizeMatchingIndividuallyCtrl"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="cbxPrioritizeMatchingIndividuallyCtrl">一括消込対象外</label>
+                    </div>
+                  <ng-container *ngIf="userInfoService.ApplicationControl?.usePublishInvoice==1">
+                      <div class="inputStyled">
+                        <input
+                          id="cbxExcludeInvoicePublishCtrl"
+                          class="inputStyled__input"
+                          formControlName="cbxExcludeInvoicePublishCtrl"
+                          name="cbxExcludeInvoicePublishCtrl"
+                          type="checkbox">
+                        <label
+                          class="inputStyled__checkbox"
+                          for="cbxExcludeInvoicePublishCtrl">請求書発行対象外</label>
+                      </div>
+                  </ng-container>
+                  <ng-container *ngIf="userInfoService.ApplicationControl?.useReminder==1">
+                      <div class="inputStyled">
+                        <input
+                          id="cbxExcludeReminderPublishCtrl"
+                          class="inputStyled__input"
+                          formControlName="cbxExcludeReminderPublishCtrl"
+                          name="cbxExcludeReminderPublishCtrl"
+                          type="checkbox">
+                        <label
+                          class="inputStyled__checkbox"
+                          for="cbxExcludeReminderPublishCtrl">督促状発行対象外</label>
+                      </div>
+                  </ng-container>
+            </dd>
+          </dl>
+        </div>
+        <div class="contents__item--w-50">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title w--25">得意先名<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--75">
+              <input 
+                formControlName="customerNameCtrl" 
+                name="customerNameCtrl"
+                maxlength="140"
+                (keyup.enter)="setCustomerName($event.type)"
+                (blur)="setCustomerName($event.type)"
+                class="input-size--400">
+            </dd>
+            <dt class="definitionForm__title w--25">得意先名カナ<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--75">
+              <input 
+                formControlName="customerKanaCtrl" 
+                name="customerKanaCtrl"
+                maxlength="140"
+                (keyup.enter)="setCustomerKana($event.type)"
+                (blur)="setCustomerKana($event.type)"
+                class="input-size--400">
+            </dd>
+            <dt class="definitionForm__title w--25">債権代表者</dt>
+            <dd class="definitionForm__data w--75">
+              <input 
+                formControlName="parentCustomerCodeCtrl" 
+                name="parentCustomerCodeCtrl"
+                class="input-size--100 definitionForm__input"
+                type="tel"
+                readonly>
+              <input 
+                formControlName="parentCustomerNameCtrl" 
+                name="parentCustomerNameCtrl"
+                class="input-size--100"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--25">手数料負担区分<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--75">
+              <select 
+                formControlName="cmbShareTransferFeeCtrl"
+                name="cmbShareTransferFeeCtrl"
+                (change)="setShareTransferFee($event.type)"
+                class="select-size--100">
+                <option 
+                  *ngFor="let cmbShareTransferFeeCtrl of shareTransferFeeDictionary index as i" 
+                  [ngValue]="cmbShareTransferFeeCtrl"
+                  value="{{ cmbShareTransferFeeCtrl.id }}">
+                  {{cmbShareTransferFeeCtrl.val}}
+                </option>
+              </select>
+            </dd>
+            <dt class="definitionForm__title w--25">照合番号</dt>
+            <dd class="definitionForm__data w--75">
+              <input 
+                formControlName="collationKeyCtrl" 
+                name="collationKeyCtrl"
+                (keyup.enter)="setCollationKey($event.type)"
+                (blur)="setCollationKey($event.type)"
+                maxlength="48"
+                type="tel"
+                class="input-size--200">
+            </dd>
+            <dt class="definitionForm__title w--25">営業担当者<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--75">
+              <input 
+                formControlName="staffCodeCtrl" 
+                name="staffCodeCtrl" 
+                (keyup.enter)="setStaffCode($event.type)"
+                (blur)="setStaffCode($event.type)"
+                #staffCodeInput
+                [formControl]="staffCodeCtrl" 
+                [matAutocomplete]="autoStaffCode"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                maxlength="{{userInfoService.ApplicationControl?.staffCodeLength}}"
+                type="tel"
+                class="input-size--100 definitionForm__input">
+              <mat-autocomplete 
+                #autoStaffCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option 
+                  *ngFor="let staff of staffFilterds[0] | async" 
+                  [value]="staff.code">{{staff.code}}:{{staff.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_STAFF)"></a>
+              <input 
+                formControlName="staffNameCtrl" 
+                name="staffNameCtrl" 
+                class="input-size--250"
+                readonly>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="contents">
+      <h3 class="contents__title--underline">日付設定</h3>
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--10">締日<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="closingDayCtrl"
+              name="closingDayCtrl"
+              maxlength="2"
+              type="tel"
+              (keyup.enter)="setClosingDay($event.type)"
+              (blur)="setClosingDay($event.type)"
+              class="input-size--40 definitionForm__input">
+            <label class="labelWrap">
+              <div class="inputStyled">
+                <input
+                  id="cbxIssueBillEachTimeCtrl"
+                  class="inputStyled__input"
+                  formControlName="cbxIssueBillEachTimeCtrl"
+                  name="cbxIssueBillEachTimeCtrl"
+                  (change)="setCbxIssueBillEachTime($event.type)"
+                  type="checkbox">
+                <label
+                  class="inputStyled__checkbox"
+                  for="cbxIssueBillEachTimeCtrl">都度請求</label>
+              </div>
+            </label>
+          </dd>
+          <dt class="definitionForm__title w--10">回収予定<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--90">
+            <input
+              formControlName="collectOffsetMonthCtrl"
+              name="collectOffsetMonthCtrl"
+              (keyup.enter)="setCollectOffsetMonth($event.type)"
+              (blur)="setCollectOffsetMonth($event.type)"
+              maxlength="1"
+              type="tel"
+              class="input-size--40 definitionForm__input">{{ collectOffsetMonthLabel1 }}
+            <input 
+              formControlName="collectOffsetDayCtrl"
+              name="collectOffsetDayCtrl"
+              (keyup.enter)="setCollectOffsetDay($event.type)"
+              (blur)="setCollectOffsetDay($event.type)"
+              maxlength="2"
+              type="tel"
+              class="input-size--40 definitionForm__input">
+            <span class="mr--5">{{ collectOffsetDayLabel }}</span>{{ collectOffsetMonthLabel2 }}
+          </dd>
+          <dt class="definitionForm__title w--10">休業日設定</dt>
+          <dd class="definitionForm__data w--90">
+            <select 
+              formControlName="cmbHolidayFlagCtrl" 
+              name="cmbHolidayFlagCtrl" 
+              class="select-size--100">
+              <option value="0">考慮しない</option>
+              <option value="1">休暇日の前</option>
+              <option value="2">休暇日の後</option>
+            </select>
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="contents">
+      <h3 class="contents__title--underline">回収設定</h3>
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--10">回収方法<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="cmbCollectCategoryIdCtrl" 
+              name="cmbCollectCategoryIdCtrl"
+              (change)="setCollectCategoryId()"
+              class="select-size--150">
+              <option 
+                *ngFor="let category of categoryResult.categories index as i" value="{{category.id}}">
+                {{category.code}}:{{category.name}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">回収サイト</dt>
+          <dd class="definitionForm__data w--65">
+           <input 
+              formControlName="sightOfBillCtrl" 
+              name="sightOfBillCtrl" 
+              maxlength="3"
+              type="tel"
+              class="input-size--60">
+          </dd>
+          <dt class="definitionForm__title w--10">約定金額</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="thresholdValueCtrl" 
+              name="thresholdValueCtrl" 
+              (keyup.enter)="setThreshholdValue(thresholdValueCtrl, $event.type)"
+              (blur)="setThreshholdValue(thresholdValueCtrl, $event.type)"
+              maxlength="11"
+              type="tel"
+              class="{{InputText.INPUT_150_KINGAKU}} definitionForm__input">円
+          </dd>
+          <dt class="definitionForm__title w--10">約定金額未満</dt>
+          <dd class="definitionForm__data w--90">
+            <select 
+              formControlName="cmbLessThanCollectCategoryIdCtrl" 
+              name="cmbLessThanCollectCategoryIdCtrl" 
+              class="select-size--150">
+              <option
+                *ngFor="let lessThanCollectCategory of lessThanCollectCategoryResult.categories index as i"
+                value="{{lessThanCollectCategory.id}}">
+                {{lessThanCollectCategory.code}}:{{lessThanCollectCategory.name}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title w--10">約定金額以上 1</dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="cmbGreaterThanCollectCategoryId1Ctrl"
+              name="cmbGreaterThanCollectCategoryId1Ctrl"
+              (change)="setSightOfBillCtrl(cmbGreaterThanCollectCategoryId1Ctrl)"
+              class="select-size--150">
+              <option
+                *ngFor="let greaterThanCollectCategory of greaterThanCollectCategoryResult.categories index as i"
+                value="{{greaterThanCollectCategory.id}}">
+                {{greaterThanCollectCategory.code}}:{{greaterThanCollectCategory.name}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">分割</dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="greaterThanRate1Ctrl" 
+              name="greaterThanRate1Ctrl"
+              (keyup.enter)="setGreaterThanRate1($event.type)"
+              (blur)="setGreaterThanRate1($event.type)"
+              maxlength="6"
+              class="input-size--100 definitionForm__input">％
+          </dd>
+          <dt class="definitionForm__title">端数単位</dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="cmbGreaterThanRoundingMode1Ctrl" 
+              name="cmbGreaterThanRoundingMode1Ctrl" 
+              class="select-size--150">
+              <option
+                *ngFor="let fractionalUnitItem of fractionalUnit index as i"
+                value="{{fractionalUnitItem.id}}">
+                {{fractionalUnitItem.val}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">回収サイト</dt>
+          <dd class="definitionForm__data w--30">
+            <input 
+              formControlName="greaterThanSightOfBill1Ctrl" 
+              name="greaterThanSightOfBill1Ctrl" 
+              maxlength="3"
+              type="tel"
+              class="input-size--50 definitionForm__input">日
+          </dd>
+          <dt class="definitionForm__title w--10">約定金額以上 2</dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="cmbGreaterThanCollectCategoryId2Ctrl"
+              name="cmbGreaterThanCollectCategoryId2Ctrl"
+              (change)="setSightOfBillCtrl(cmbGreaterThanCollectCategoryId2Ctrl)"
+              class="select-size--150">
+              <option
+                *ngFor="let greaterThanCollectCategory of greaterThanCollectCategoryResult.categories index as i"
+                value="{{greaterThanCollectCategory.id}}">
+                {{greaterThanCollectCategory.code}}:{{greaterThanCollectCategory.name}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">分割</dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="greaterThanRate2Ctrl" 
+              name="greaterThanRate2Ctrl"
+              (keyup.enter)="setGreaterThanRate2($event.type)"
+              (blur)="setGreaterThanRate2($event.type)"
+              maxlength="6"
+              class="input-size--100 definitionForm__input">％
+          </dd>
+          <dt class="definitionForm__title">端数単位</dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="cmbGreaterThanRoundingMode2Ctrl" 
+              name="cmbGreaterThanRoundingMode2Ctrl" 
+              class="select-size--150">
+              <option
+                *ngFor="let fractionalUnitItem of fractionalUnit index as i"
+                value="{{fractionalUnitItem.id}}">
+                {{fractionalUnitItem.val}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">回収サイト</dt>
+          <dd class="definitionForm__data w--30">
+            <input 
+              formControlName="greaterThanSightOfBill2Ctrl" 
+              name="greaterThanSightOfBill2Ctrl" 
+              maxlength="3"
+              type="tel"
+              class="input-size--50 definitionForm__input">日
+          </dd>
+          <dt class="definitionForm__title w--10">約定金額以上 3 </dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="cmbGreaterThanCollectCategoryId3Ctrl"
+              name="cmbGreaterThanCollectCategoryId3Ctrl"
+              (change)="setSightOfBillCtrl(cmbGreaterThanCollectCategoryId3Ctrl)"
+              class="select-size--150">
+              <option
+                *ngFor="let greaterThanCollectCategory of greaterThanCollectCategoryResult.categories index as i"
+                value="{{greaterThanCollectCategory.id}}">
+                {{greaterThanCollectCategory.code}}:{{greaterThanCollectCategory.name}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">分割</dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="greaterThanRate3Ctrl" 
+              name="greaterThanRate3Ctrl"
+              (keyup.enter)="setGreaterThanRate3($event.type)"
+              (blur)="setGreaterThanRate3($event.type)"
+              maxlength="6"
+              class="input-size--100 definitionForm__input">％
+          </dd>
+          <dt class="definitionForm__title">端数単位</dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="cmbGreaterThanRoundingMode3Ctrl" 
+              name="cmbGreaterThanRoundingMode3Ctrl" 
+              class="select-size--150">
+              <option
+                *ngFor="let fractionalUnitItem of fractionalUnit index as i"
+                value="{{fractionalUnitItem.id}}">
+                {{fractionalUnitItem.val}}
+              </option>
+            </select>
+          </dd>
+          <dt class="definitionForm__title">回収サイト</dt>
+          <dd class="definitionForm__data w--30">
+            <input 
+              formControlName="greaterThanSightOfBill3Ctrl" 
+              name="greaterThanSightOfBill3Ctrl" 
+              maxlength="3"
+              type="tel"
+              class="input-size--50 definitionForm__input">日
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="contents">
+      <h3 class="contents__title--underline">債権管理</h3>
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--15">電子手形用企業コード</dt>
+          <dd class="definitionForm__data w--85">
+            <input 
+              formControlName="densaiCodeCtrl" 
+              name="densaiCodeCtrl"
+              (keyup.enter)="setDensaiCode($event.type)"
+              (blur)="setDensaiCode($event.type)"
+               type="tel" 
+               maxlength="10"
+               class="input-size--100">
+          </dd>
+          <dt class="definitionForm__title w--15">信用調査用企業コード</dt>
+          <dd class="definitionForm__data w--85">
+            <input 
+              formControlName="creditCodeCtrl" 
+              name="creditCodeCtrl"
+              (keyup.enter)="setCreditCode($event.type)"
+              (blur)="setCreditCode($event.type)"
+              type="tel" 
+              maxlength="15"
+              class="input-size--150">
+          </dd>
+          <dt class="definitionForm__title w--15">与信限度額</dt>
+          <dd class="definitionForm__data w--85">
+            <input 
+              formControlName="creditLimitCtrl" 
+              name="creditLimitCtrl"
+              (keyup.enter)="setCreditLimit($event.type)"
+              (blur)="separateValue(creditLimitCtrl)"
+              type="tel" 
+              maxlength="9"
+              class="{{InputText.INPUT_150_KINGAKU}}">
+          </dd>
+          <dt class="definitionForm__title w--15">与信ランク</dt>
+          <dd class="definitionForm__data w--85">
+            <input 
+              formControlName="creditRankCtrl" 
+              name="creditRankCtrl"
+              (keyup.enter)="setCreditRank($event.type)"
+              (blur)="setCreditRank($event.type)"
+              type="tel" 
+              maxlength="2"
+              class="input-size--40">
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="contents">
+      <h3 class="contents__title--underline">専用入金口座(仮想口座)</h3>
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--10">銀行コード</dt>
+          <dd class="definitionForm__data w--10">
+            <input 
+              formControlName="exclusiveBankCodeCtrl" 
+              name="exclusiveBankCodeCtrl" 
+              (keyup.enter)="setExclusiveBankCode($event.type)"
+              (blur)="setExclusiveBankCode($event.type)"
+              type="tel"
+              maxlength="4"
+              class="input-size--80">
+          </dd>
+          <dt class="definitionForm__title">銀行名</dt>
+          <dd class="definitionForm__data w--70">
+            <input 
+              formControlName="exclusiveBankNameCtrl" 
+              name="exclusiveBankNameCtrl" 
+              (keyup.enter)="setExclusiveBankName($event.type)"
+              (blur)="setExclusiveBankName($event.type)"
+              maxlength="30"
+              class="input-size--400">
+          </dd>
+          <dt class="definitionForm__title w--10">支店コード</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="exclusiveBranchCodeCtrl" 
+              name="exclusiveBranchCodeCtrl" 
+              (keyup.enter)="setExclusiveBranchCode($event.type)"
+              (blur)="setExclusiveBranchCode($event.type)"
+              type="tel"
+              maxlength="3"
+              class="input-size--60">
+          </dd>
+          <dt class="definitionForm__title w--10">仮想支店コード</dt>
+          <dd class="definitionForm__data w--10">
+            <input 
+              formControlName="exclusiveVirtualBranchCodeCtrl" 
+              name="exclusiveVirtualBranchCodeCtrl" 
+              (keyup.enter)="setExclusiveVirtualBranchCode($event.type)"
+              (blur)="setExclusiveVirtualBranchCode($event.type)"
+              type="tel"
+              maxlength="3"
+              class="input-size--60">
+          </dd>
+          <dt class="definitionForm__title">仮想支店</dt>
+          <dd class="definitionForm__data w--70">
+            <input 
+              formControlName="exclusiveVirtualBranchNameCtrl" 
+              name="exclusiveVirtualBranchNameCtrl" 
+              (keyup.enter)="setExclusiveVirtualBranchName($event.type)"
+              (blur)="setExclusiveVirtualBranchName($event.type)"
+              maxlength="30"
+              class="input-size--400">
+          </dd>
+          <dt class="definitionForm__title w--10">口座番号</dt>
+          <dd class="definitionForm__data w--10">
+            <input 
+              formControlName="exclusiveAccountNumberCtrl" 
+              name="exclusiveAccountNumberCtrl" 
+              (keyup.enter)="setExclusiveAccountNumber($event.type)"
+              (blur)="setExclusiveAccountNumber($event.type)"
+              type="tel"
+              maxlength="7"
+              class="input-size--100">
+          </dd>
+          <dt class="definitionForm__title">預金種別</dt>
+          <dd class="definitionForm__data w--70">
+            <select 
+              formControlName="cmbExclusiveAccountTypeIdCtrl"
+              name="cmbExclusiveAccountTypeIdCtrl"
+              class="select-size--100">
+              <option 
+                *ngFor="let exclusiveAccountTypeIdCtrl of exclusiveAccountType index as i" 
+                [ngValue]="exclusiveAccountTypeIdCtrl.id">
+                {{exclusiveAccountTypeIdCtrl.val}}
+              </option>
+            </select>                  
+          </dd>
+        </dl>
+      </div>
+    </section>
+        
+    <section class="contents">
+      <h3 class="contents__title--underline">口座振替用口座</h3>
+      <div class="contents__container">
+       <dl class="definitionForm">
+          <dt class="definitionForm__title w--10">銀行コード</dt>
+          <dd class="definitionForm__data w--10">
+            <input 
+              formControlName="transferBankCodeCtrl" 
+              name="transferBankCodeCtrl" 
+              (keyup.enter)="setTransferBankCode($event.type)"
+              (blur)="setTransferBankCode($event.type)"
+              type="tel"
+              maxlength="4"
+              class="input-size--80">
+          </dd>
+          <dt class="definitionForm__title">銀行名</dt>
+          <dd class="definitionForm__data w--70">
+            <input 
+              formControlName="transferBankNameCtrl" 
+              name="transferBankNameCtrl" 
+              maxlength="30"
+              (keyup.enter)="setTransferBankName($event.type)"
+              (blur)="setTransferBankName($event.type)"
+              class="input-size--400">
+          </dd>
+          <dt class="definitionForm__title w--10">支店コード</dt>
+          <dd class="definitionForm__data w--10">
+            <input 
+              formControlName="transferBrachCodeCtrl" 
+              name="transferBrachCodeCtrl" 
+              (keyup.enter)="setTransferBrachCode($event.type)"
+              (blur)="setTransferBrachCode($event.type)"
+              type="tel"
+              maxlength="3"
+              class="input-size--60">
+          </dd>
+          <dt class="definitionForm__title">支店名</dt>
+          <dd class="definitionForm__data w--70">
+            <input 
+              formControlName="transferBranchNameCtrl" 
+              name="transferBranchNameCtrl" 
+              (keyup.enter)="setTransferBranchName($event.type)"
+              (blur)="setTransferBranchName($event.type)"                      
+              maxlength="30"
+              class="input-size--400">
+          </dd>
+          <dt class="definitionForm__title w--10">口座番号</dt>
+          <dd class="definitionForm__data w--10">
+            <input 
+              formControlName="transferAccountNumberCtrl" 
+              name="transferAccountNumberCtrl" 
+              (keyup.enter)="setTransferAccountNumber($event.type)"
+              (blur)="setTransferAccountNumber($event.type)"                         
+              type="tel"
+              maxlength="7"
+              class="input-size--100">
+          </dd>
+          <dt class="definitionForm__title">預金種別</dt>
+          <dd class="definitionForm__data">
+            <select 
+              formControlName="transferAccountTypeIdCtrl"
+              name="transferAccountTypeIdCtrl"
+              class="select-size--100">
+              <option 
+                *ngFor="let transferAccountTypeCtrl of transferAccountType index as i" 
+                [ngValue]="transferAccountTypeCtrl.id">
+                {{transferAccountTypeCtrl.val}}
+              </option>
+            </select>
+          </dd>                  
+          <dt class="definitionForm__title">新規コード</dt>
+          <dd class="definitionForm__data w--50">
+            <input 
+              formControlName="transferNewCodeCtrl" 
+              name="transferNewCodeCtrl" 
+              (keyup.enter)="setTransferNewCode($event.type)"
+              (blur)="setTransferNewCode($event.type)"
+              type="tel"
+              maxlength="1"
+              class="input-size--40">
+          </dd>
+          <dt class="definitionForm__title w--10">預金者名</dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="transferAccountNameCtrl" 
+              name="transferAccountNameCtrl" 
+              maxlength="30"
+              (keyup.enter)="setTransferAccountName($event.type)"
+              (blur)="setTransferAccountName($event.type)"
+              class="input-size--400">
+          </dd>                    
+          <dt class="definitionForm__title">顧客コード</dt>
+          <dd class="definitionForm__data">
+            <input 
+              formControlName="transferCustomerCodeCtrl" 
+              name="transferCustomerCodeCtrl" 
+              (keyup.enter)="setTransferCustomerCode($event.type)"
+              (blur)="setTransferCustomerCode($event.type)"
+              type="tel"
+              maxlength="20"
+              class="input-size--150">
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="contents">
+      <h3 class="contents__title--underline">住所</h3>
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--10">郵便番号</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="postalCodeCtrl" 
+              name="postalCodeCtrl" 
+              (keyup.enter)="setPostalCode($event.type)"
+              (blur)="setPostalCode($event.type)"
+              [ngClass]="{'input--error': postalCodeCtrl.errors?.pattern}"
+              maxlength="8"
+              type="tel"
+              class="input-size--120">
+              <br>
+              <div
+                class="message-result font__warning"
+                *ngIf="postalCodeCtrl.errors?.pattern">
+                {{ MSG_VAL.PATTERN_POSTAL_CODE }}
+              </div>
+          </dd>
+          <dt class="definitionForm__title w--10">住所</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="address1Ctrl" 
+              name="address1Ctrl" 
+              (keyup.enter)="setAddress1($event.type)"
+              (blur)="setAddress1($event.type)"
+              maxlength="40"
+              class="input-size--400"><br>
+            <input 
+              formControlName="address2Ctrl" 
+              name="address2Ctrl" 
+              (keyup.enter)="setAddress2($event.type)"
+              (blur)="setAddress2($event.type)"
+              maxlength="40"
+              class="input-size--400">                    
+          </dd>
+          <dt class="definitionForm__title w--10">電話番号</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="telCtrl" 
+              name="telCtrl" 
+              (keyup.enter)="setTel($event.type)"
+              (blur)="setTel($event.type)"
+              [ngClass]="{'input--error': telCtrl.errors?.pattern}"
+              maxlength="20"
+              type="tel"
+              class="input-size--180">
+              <br>
+              <div
+                class="message-result font__warning"
+                *ngIf="telCtrl.errors?.pattern">
+                {{ MSG_VAL.PATTERN_TEL }}
+              </div>
+          </dd>
+          <dt class="definitionForm__title w--10">FAX番号</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="faxCtrl" 
+              name="faxCtrl" 
+              (keyup.enter)="setFax($event.type)"
+              (blur)="setFax($event.type)"
+              [ngClass]="{'input--error': faxCtrl.errors?.pattern}"
+              maxlength="20"
+              type="tel"
+              class="input-size--180">
+              <br>
+              <div
+                class="message-result font__warning"
+                *ngIf="faxCtrl.errors?.pattern">
+                {{ MSG_VAL.PATTERN_TEL }}
+              </div>
+          </dd>
+          <dt class="definitionForm__title w--10">相手先部署名</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="destinationDepartmentNameCtrl" 
+              name="destinationDepartmentNameCtrl" 
+              (keyup.enter)="setDestinationDepartmentName($event.type)"
+              (blur)="setDestinationDepartmentName($event.type)"
+              maxlength="40"
+              class="input-size--400"> 
+          </dd>
+          <dt class="definitionForm__title w--10">相手先担当者名</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="customerStaffNameCtrl" 
+              name="customerStaffNameCtrl" 
+              (keyup.enter)="setCustomerStaffName($event.type)"
+              (blur)="setCustomerStaffName($event.type)"
+              maxlength="40"
+              class="input-size--400"> 
+          </dd>
+          <dt class="definitionForm__title w--10">敬称</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="honorificCtrl" 
+              name="honorificCtrl" 
+              (keyup.enter)="setHonorific($event.type)"
+              (blur)="setHonorific($event.type)"
+              maxlength="6"
+              class="input-size--100"> 
+          </dd>
+          <dt class="definitionForm__title w--10">備考</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="noteCtrl" 
+              name="noteCtrl" 
+              maxlength="100"
+              class="input-size--600"> 
+          </dd>
+        </dl>
+      </div>
+    </section>
+   
+    <section class="contents">
+      <h3 class="contents__title--underline">被振込口座設定</h3>
+      <div class="contents__container">
+        <ul class="checkboxList">
+          <li class="checkboxList__item">
+              <div class="inputStyled">
+                <input
+                  id="cbxReceiveAccountId1Ctrl"
+                  class="inputStyled__input"
+                  formControlName="cbxReceiveAccountId1Ctrl"
+                  name="cbxReceiveAccountId1Ctrl"
+                  type="checkbox">
+                <label
+                  class="inputStyled__checkbox"
+                  for="cbxReceiveAccountId1Ctrl"></label>
+              </div>
+            <input 
+              formControlName="bankName1Ctrl"
+              class="input-size--300 mr--10"
+              readonly>
+            <input 
+              formControlName="branchName1Ctrl"
+              class="input-size--300 mr--10"
+              readonly>
+            <input 
+              formControlName="accountType1Ctrl"
+              class="input-size--100 mr--10"
+              readonly>
+            <input 
+              formControlName="accountNumber1Ctrl"
+              class="input-size--100"
+              readonly>
+          </li>
+          <li class="checkboxList__item">
+            <div class="inputStyled">
+              <input
+                id="cbxReceiveAccountId2Ctrl"
+                class="inputStyled__input"
+                formControlName="cbxReceiveAccountId2Ctrl"
+                name="cbxReceiveAccountId2Ctrl"
+                type="checkbox">
+              <label
+                class="inputStyled__checkbox"
+                for="cbxReceiveAccountId2Ctrl"></label>
+            </div>
+            <input 
+              formControlName="bankName2Ctrl"
+              class="input-size--300 mr--10"
+              readonly>
+            <input 
+              formControlName="branchName2Ctrl"
+              class="input-size--300 mr--10"
+              readonly>
+            <input 
+              formControlName="accountType2Ctrl"
+              class="input-size--100 mr--10"
+              readonly>
+            <input 
+              formControlName="accountNumber2Ctrl"
+              class="input-size--100"
+              readonly>
+          </li>
+          <li class="checkboxList__item">
+            <div class="inputStyled">
+              <input
+                id="cbxReceiveAccountId3Ctrl"
+                class="inputStyled__input"
+                formControlName="cbxReceiveAccountId3Ctrl"
+                name="cbxReceiveAccountId3Ctrl"
+                type="checkbox">
+              <label
+                class="inputStyled__checkbox"
+                for="cbxReceiveAccountId3Ctrl"></label>
+            </div>
+            <input 
+              formControlName="bankName3Ctrl"
+              class="input-size--300 mr--10"
+              readonly>
+            <input 
+              formControlName="branchName3Ctrl"
+              class="input-size--300 mr--10"
+              readonly>
+            <input 
+              formControlName="accountType3Ctrl"
+              class="input-size--100 mr--10"
+              readonly>
+            <input 
+              formControlName="accountNumber3Ctrl"
+              class="input-size--100"
+              readonly>
+          </li>
+        </ul>
+      </div>
+    </section>
+   
+    <ng-container *ngIf="userInfoService.ApplicationControl?.useDiscount==1">
+      <section class="contents">
+        <h3 class="contents__title--underline">歩引設定</h3>
+        <div class="contents__container--flex">
+          <div class="contents__item--w-100 mb--20">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title">最低実行金額</dt>
+              <dd class="definitionForm__data">
+                <input
+                  formControlName="minValueCtrl"
+                  name="minValueCtrl"
+                  maxlength="11"
+                  type="tel"
+                  class="input-size--200">
+              </dd>
+            </dl>
+          </div>
+          <div class="contents__item--w-40">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title w--20">歩引率①</dt>
+              <dd class="definitionForm__data w--80 mb--70">
+                <dl class="definitionForm">
+                  <dt class="definitionForm__title w--20">歩引率</dt>
+                  <dd class="definitionForm__data w--80">
+                    <input 
+                      formControlName="rate1Ctrl" 
+                      name="rate1Ctrl" 
+                      maxlength="11"
+                      type="tel"
+                      class="input-size--150 definitionForm__input">%
+                  </dd>
+                  <dt class="definitionForm__title w--20">端数処理</dt>
+                  <dd class="definitionForm__data">
+                    <select
+                      formControlName="cmbRoundingMode1Ctrl"
+                      name="cmbRoundingMode1Ctrl"
+                      class="select-size--100">
+                      <option></option>
+                    </select>
+                  </dd>
+                </dl>
+              </dd>
+              <dt class="definitionForm__title w--20">歩引率②</dt>
+              <dd class="definitionForm__data w--80 mb--70">
+                <dl class="definitionForm">
+                  <dt class="definitionForm__title w--20">歩引率</dt>
+                  <dd class="definitionForm__data w--80">
+                    <input 
+                      formControlName="rate2Ctrl" 
+                      name="rate2Ctrl" 
+                      maxlength="11"
+                      type="tel"
+                      class="input-size--150 definitionForm__input">%
+                  </dd>
+                  <dt class="definitionForm__title w--20">端数処理</dt>
+                  <dd class="definitionForm__data">
+                    <select
+                      formControlName="cmbRoundingMode2Ctrl"
+                      name="cmbRoundingMode2Ctrl"
+                      class="select-size--100">
+                      <option></option>
+                    </select>
+                  </dd>
+                </dl>
+              </dd>
+              <dt class="definitionForm__title w--20">歩引率③</dt>
+              <dd class="definitionForm__data w--80 mb--70">
+                <dl class="definitionForm">
+                  <dt class="definitionForm__title w--20">歩引率</dt>
+                  <dd class="definitionForm__data w--80">
+                    <input 
+                      formControlName="rate3Ctrl" 
+                      name="rate3Ctrl" 
+                      maxlength="11"
+                      type="tel"
+                      class="input-size--150 definitionForm__input">%
+                  </dd>
+                  <dt class="definitionForm__title w--20">端数処理</dt>
+                  <dd class="definitionForm__data">
+                    <select
+                      formControlName="cmbRoundingMode3Ctrl"
+                      name="cmbRoundingMode3Ctrl"
+                      class="select-size--100">
+                      <option></option>
+                    </select>
+                  </dd>
+                </dl>
+              </dd>
+              <dt class="definitionForm__title w--20">歩引率④</dt>
+              <dd class="definitionForm__data w--80 mb--70">
+                <dl class="definitionForm">
+                  <dt class="definitionForm__title w--20">歩引率</dt>
+                  <dd class="definitionForm__data w--80">
+                    <input 
+                      formControlName="rate4Ctrl" 
+                      name="rate4Ctrl" 
+                      maxlength="11"
+                      type="tel"
+                      class="input-size--150 definitionForm__input">%
+                  </dd>
+                  <dt class="definitionForm__title w--20">端数処理</dt>
+                  <dd class="definitionForm__data">
+                    <select
+                      formControlName="cmbRoundingMode4Ctrl"
+                      name="cmbRoundingMode4Ctrl"
+                      class="select-size--100">
+                      <option></option>
+                    </select>
+                  </dd>
+                </dl>
+              </dd>
+              <dt class="definitionForm__title w--20">歩引率⑤</dt>
+              <dd class="definitionForm__data w--80">
+                <dl class="definitionForm">
+                  <dt class="definitionForm__title w--20">歩引率</dt>
+                  <dd class="definitionForm__data w--80">
+                    <input 
+                      formControlName="rate4Ctrl" 
+                      name="rate4Ctrl" 
+                      maxlength="11"
+                      type="tel"
+                      class="input-size--150 definitionForm__input">%
+                  </dd>
+                  <dt class="definitionForm__title w--20">端数処理</dt>
+                  <dd class="definitionForm__data">
+                    <select
+                      formControlName="cmbRoundingMode4Ctrl"
+                      name="cmbRoundingMode4Ctrl"
+                      class="select-size--100">
+                      <option></option>
+                    </select>
+                  </dd>
+                </dl>
+              </dd>
+            </dl>
+          </div>
+          <div class="contents__item--w-60">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title">部門コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="departmentId1Ctrl" 
+                  name="departmentId1Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="departmentName1Ctrl" 
+                  name="departmentName1Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">科目コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="accountTitleName1Ctrl" 
+                  name="accountTitleName1Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="accountTitleName1Ctrl" 
+                  name="accountTitleName1Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">補助コード</dt>
+              <dd class="definitionForm__data w--85 mb--30">
+                <input 
+                  formControlName="subCode1Ctrl" 
+                  name="subCode1Ctrl"
+                  class="input-size--100"
+                  type="tel">
+              </dd>
+              <dt class="definitionForm__title">部門コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="departmentId2Ctrl" 
+                  name="departmentId2Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="departmentName2Ctrl" 
+                  name="departmentName2Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">科目コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="accountTitleName2Ctrl" 
+                  name="accountTitleName2Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="accountTitleName2Ctrl" 
+                  name="accountTitleName2Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">補助コード</dt>
+              <dd class="definitionForm__data w--85 mb--30">
+                <input 
+                  formControlName="subCode2Ctrl" 
+                  name="subCode2Ctrl"
+                  class="input-size--100"
+                  type="tel">
+              </dd>
+              <dt class="definitionForm__title">部門コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="departmentId3Ctrl" 
+                  name="departmentId3Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="departmentName3Ctrl" 
+                  name="departmentName3Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">科目コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="accountTitleName3Ctrl" 
+                  name="accountTitleName3Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="accountTitleName3Ctrl" 
+                  name="accountTitleName3Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">補助コード</dt>
+              <dd class="definitionForm__data w--85 mb--30">
+                <input 
+                  formControlName="subCode3Ctrl" 
+                  name="subCode3Ctrl"
+                  class="input-size--100"
+                  type="tel">
+              </dd>
+              <dt class="definitionForm__title">部門コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="departmentId4Ctrl" 
+                  name="departmentId4Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="departmentName4Ctrl" 
+                  name="departmentName4Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">科目コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="accountTitleName4Ctrl" 
+                  name="accountTitleName4Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="accountTitleName4Ctrl" 
+                  name="accountTitleName4Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">補助コード</dt>
+              <dd class="definitionForm__data w--85 mb--30">
+                <input 
+                  formControlName="subCode4Ctrl" 
+                  name="subCode4Ctrl"
+                  class="input-size--100"
+                  type="tel">
+              </dd>                
+              <dt class="definitionForm__title">部門コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="departmentId4Ctrl" 
+                  name="departmentId4Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="departmentName4Ctrl" 
+                  name="departmentName4Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">科目コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="accountTitleName4Ctrl" 
+                  name="accountTitleName4Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  type="tel">
+                <input 
+                  formControlName="accountTitleName4Ctrl" 
+                  name="accountTitleName4Ctrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title">補助コード</dt>
+              <dd class="definitionForm__data w--85">
+                <input 
+                  formControlName="subCode4Ctrl" 
+                  name="subCode4Ctrl"
+                  class="input-size--100"
+                  type="tel">
+              </dd>                
+            </dl>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

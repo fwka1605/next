@@ -1,0 +1,42 @@
+export class BillingInvoice {
+    public companyId: number;
+    public temporaryBillingInputId: number;
+    public billingInputId: number | null;
+    public checked: number;
+    public invoiceTemplateCode: string | null;
+    public invoiceCode: string | null;
+    public detailsCount: number;
+    public customerId: number;
+    public customerCode: string | null;
+    public customerName: string | null;
+    public customerPostalCode: string | null;
+    public customerAddress1: string | null;
+    public customerAddress2: string | null;
+    public amountSum: number;
+    public remainAmountSum: number;
+    public collectCategoryCodeAndNeme: string | null;
+    public closingAt: string;
+    public billedAt: string;
+    public departmentCode: string | null;
+    public departmentName: string | null;
+    public staffCode: string | null;
+    public staffName: string | null;
+    public invoiceTemplateId: number;
+    public publishAt: string;
+    public publishAt1st: string;
+    public updateAt: string;
+    public destnationCode: string | null;
+    public destnationButton: string | null;
+    public destinationId: number | null;
+    public destinationName: string | null;
+    public destinationPostalCode: string | null;
+    public destinationAddress1: string | null;
+    public destinationAddress2: string | null;
+    public destinationDepartmentName: string | null;
+    public destinationAddressee: string | null;
+    public destinationHonorific: string | null;
+    public customerDestinationDepartmentName: string | null;
+    public customerStaffName: string | null;
+    public customerHonorific: string | null;
+}
+

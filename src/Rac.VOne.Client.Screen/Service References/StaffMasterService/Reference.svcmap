@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d1979aff-eaa4-4b07-a5f1-9d215d5adc74" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/StaffMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="StaffMaster.disco" MetadataType="Disco" ID="4c5e0d7f-7cd0-424c-bdf1-fe63edf351cb" SourceId="1" SourceUrl="http://localhost:3061/Master/StaffMaster.svc?disco" />
+    <MetadataFile FileName="StaffMaster.xsd" MetadataType="Schema" ID="f61cdd6c-5756-4db5-a0d1-878c214421a5" SourceId="1" SourceUrl="http://localhost:3061/Master/StaffMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="StaffMaster1.xsd" MetadataType="Schema" ID="60a062c5-1a7f-4989-93fd-31803da875df" SourceId="1" SourceUrl="http://localhost:3061/Master/StaffMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="StaffMaster2.xsd" MetadataType="Schema" ID="af600d9f-f229-41ec-9221-170b4c15948b" SourceId="1" SourceUrl="http://localhost:3061/Master/StaffMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="StaffMaster3.xsd" MetadataType="Schema" ID="b1265b1e-3905-417f-b3c4-0ba924960409" SourceId="1" SourceUrl="http://localhost:3061/Master/StaffMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="StaffMaster.wsdl" MetadataType="Wsdl" ID="2d618b14-6b5d-42f0-83af-3c5cc7227154" SourceId="1" SourceUrl="http://localhost:3061/Master/StaffMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

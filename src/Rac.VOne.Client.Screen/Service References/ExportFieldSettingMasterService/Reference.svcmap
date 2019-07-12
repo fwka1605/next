@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a10e71fd-2332-4fc1-8b97-71957e271dfb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/ExportFieldSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ExportFieldSettingMaster.xsd" MetadataType="Schema" ID="98e40096-35d8-4cfc-a148-07f0a8f15886" SourceId="1" SourceUrl="http://localhost:3061/Master/ExportFieldSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="ExportFieldSettingMaster1.xsd" MetadataType="Schema" ID="78874e78-cc3e-4630-a399-364d570c2d2c" SourceId="1" SourceUrl="http://localhost:3061/Master/ExportFieldSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="ExportFieldSettingMaster.disco" MetadataType="Disco" ID="3c88db3d-2dff-48e3-a118-0cda47f4670f" SourceId="1" SourceUrl="http://localhost:3061/Master/ExportFieldSettingMaster.svc?disco" />
+    <MetadataFile FileName="ExportFieldSettingMaster.wsdl" MetadataType="Wsdl" ID="7526b01e-6400-458f-93ad-a4d8a5d348c5" SourceId="1" SourceUrl="http://localhost:3061/Master/ExportFieldSettingMaster.svc?wsdl" />
+    <MetadataFile FileName="ExportFieldSettingMaster2.xsd" MetadataType="Schema" ID="5f23c76c-bf34-42c9-9822-0b36d38a76fa" SourceId="1" SourceUrl="http://localhost:3061/Master/ExportFieldSettingMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

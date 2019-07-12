@@ -1,0 +1,67 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--large height--500 ">
+  
+  <h2 class="vModal__heading">銀行・支店の選択
+    <span class="vModal__close"
+      (click)="close()"></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+      <button (click)="search()" class="buttonSecondary">{{ItemNameConst.BTN_SEARCH}}</button>
+      <button (click)="cancel()" class="buttonMinimum" >{{ItemNameConst.BTN_CANCEL}}</button>
+    </section>
+
+    <section class="contents--x-scrollable">
+      <div class="contents__container">
+        <div class="frame mt--20 mb--15">
+          <h4 class="frame__title">検索キー</h4>
+          <dl class="definitionForm">
+            <dt class="definitionForm__title">銀行検索：</dt>
+            <dd class="definitionForm__data w--85">
+              <input
+                formControlName="searchBankKeyCtrl"
+                name="searchBankKeyCtrl"
+                maxlength="100"
+                class="input-size--350">
+            </dd>
+            <dt class="definitionForm__title">支店検索：</dt>
+            <dd class="definitionForm__data w--85">
+              <input
+                formControlName="searchBranchKeyCtrl"
+                name="searchBankKeyCtrl"
+                maxlength="100"
+                class="input-size--350">
+            </dd>
+          </dl>
+        </div>
+        <div class="modalTable">
+          <table>
+            <thead>
+              <tr>
+                <th *ngFor="let item of TableClumn; let i = index">
+                  {{item}}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bankBranch of bankBranchsResult?.bankBranches; let i = index" (click)="select(i)" class="line-selector" >
+                <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                <td class="col-size--100 col-align-center">{{bankBranch.bankCode}}</td>
+                <td class="col-size--150">{{bankBranch.bankKana}}</td>
+                <td class="col-size--150">{{bankBranch.bankName}}</td>
+                <td class="col-size--100 col-align-center">{{bankBranch.branchCode}}</td>
+                <td class="col-size--150">{{bankBranch.branchKana}}</td>
+                <td class="col-size--150">{{bankBranch.branchName}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

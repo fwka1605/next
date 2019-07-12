@@ -1,0 +1,89 @@
+/**
+sassが独立したディレクトリ構造のために
+project内でAngular Materialテーマカスタムができません。
+
+ここではAngular Materialスタイルの一部調整に
+!impoartant使用を許可しています。
+*/
+.mat-expansion-panel {
+  overflow: visible !important;
+  border-radius: 0 !important;
+  box-shadow: inherit !important;
+  background-color: transparent;
+  color: inherit !important;
+}
+
+.mat-expansion-panel-header,
+.mat-expansion-panel-content,
+.mat-option,
+.mat-calendar,
+.mat-button {
+  font-family: 'Noto Sans JP', arial, sans-serif !important;
+}
+
+.mat-expansion-panel-header {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  &-description {
+    align-items: center;
+  }
+  &.mat-expanded {
+    margin-bottom: 5px;
+    >.mat-content {
+      height: 100%;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+}
+
+.mat-expansion-panel-header-title {
+  > .buttonMinimum {
+    align-self: center;
+  }
+}
+
+.mat-expansion-panel-body {
+  padding: 0 !important;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]):hover {
+  background: rgba(53, 150, 180, 0.2) !important;
+}
+
+.mat-expansion-panel-content {
+  font-size: $font-size !important;
+}
+
+.mat-expansion-indicator {
+  position: absolute;
+  left: 1298px;
+  &::after {
+    position: absolute;
+    top: -6px;
+  }
+}
+
+.mat-datepicker-toggle { // カレンダーのトグル
+  > .mat-icon-button {
+    width: 26px !important;
+    height: 26px !important;
+    line-height: 1 !important;
+  }
+}
+
+.mat-icon.iconCalendar { // カレンダーアイコン
+  width: 15px;
+}
+
+.mat-button-focus-overlay,
+.mat-button-ripple.mat-ripple { // リップル効果非表示
+  display: none;
+}
+
+input.mat-input-element {
+  margin-top: inherit;
+}
+
+.mat-option {
+  font-size: $font-size-large;
+}

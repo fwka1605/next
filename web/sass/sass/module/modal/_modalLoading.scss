@@ -1,0 +1,25 @@
+.modalLoading {
+  display: block;
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 400px;
+  height: 300px;
+  margin: auto;
+  border-radius: 4px;
+  background: #fff; 
+  box-shadow: 0 0 4px 1px rgba(0,0,0,.3);
+  user-select: none;
+  &__img {
+    display: block;
+    width: 50px;
+    margin: 100px auto 20px;
+  }
+  &__text {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+}

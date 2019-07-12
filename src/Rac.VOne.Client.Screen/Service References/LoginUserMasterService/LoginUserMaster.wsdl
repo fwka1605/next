@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="LoginUserMaster" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/Master/LoginUserMaster.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/LoginUserMaster.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/LoginUserMaster.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/LoginUserMaster.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ILoginUserMaster_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_ResetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_ResetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_ExitStaff_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExitStaff" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_ExitStaff_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExitStaffResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_GetByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCode" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_GetByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_Import_InputMessage">
+    <wsdl:part name="parameters" element="tns:Import" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_Import_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_GetImportItemsForSection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForSection" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_GetImportItemsForSection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForSectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_GetItemsForGridLoader_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsForGridLoader" />
+  </wsdl:message>
+  <wsdl:message name="ILoginUserMaster_GetItemsForGridLoader_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsForGridLoaderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ILoginUserMaster">
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/Get" message="tns:ILoginUserMaster_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/GetResponse" message="tns:ILoginUserMaster_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/Save" message="tns:ILoginUserMaster_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/SaveResponse" message="tns:ILoginUserMaster_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/GetItems" message="tns:ILoginUserMaster_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/GetItemsResponse" message="tns:ILoginUserMaster_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/ResetPassword" message="tns:ILoginUserMaster_ResetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/ResetPasswordResponse" message="tns:ILoginUserMaster_ResetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExitStaff">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/ExitStaff" message="tns:ILoginUserMaster_ExitStaff_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/ExitStaffResponse" message="tns:ILoginUserMaster_ExitStaff_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/Delete" message="tns:ILoginUserMaster_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/DeleteResponse" message="tns:ILoginUserMaster_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/GetByCode" message="tns:ILoginUserMaster_GetByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/GetByCodeResponse" message="tns:ILoginUserMaster_GetByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/Import" message="tns:ILoginUserMaster_Import_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/ImportResponse" message="tns:ILoginUserMaster_Import_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForSection">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/GetImportItemsForSection" message="tns:ILoginUserMaster_GetImportItemsForSection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/GetImportItemsForSectionResponse" message="tns:ILoginUserMaster_GetImportItemsForSection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsForGridLoader">
+      <wsdl:input wsaw:Action="http://tempuri.org/ILoginUserMaster/GetItemsForGridLoader" message="tns:ILoginUserMaster_GetItemsForGridLoader_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ILoginUserMaster/GetItemsForGridLoaderResponse" message="tns:ILoginUserMaster_GetItemsForGridLoader_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ILoginUserMaster" type="tns:ILoginUserMaster">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/ResetPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExitStaff">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/ExitStaff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/GetByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/Import" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForSection">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/GetImportItemsForSection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemsForGridLoader">
+      <soap:operation soapAction="http://tempuri.org/ILoginUserMaster/GetItemsForGridLoader" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LoginUserMaster">
+    <wsdl:port name="BasicHttpBinding_ILoginUserMaster" binding="tns:BasicHttpBinding_ILoginUserMaster">
+      <soap:address location="http://localhost:3061/Master/LoginUserMaster.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

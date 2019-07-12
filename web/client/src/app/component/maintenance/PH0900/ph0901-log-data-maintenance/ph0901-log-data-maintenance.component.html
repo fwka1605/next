@@ -1,0 +1,176 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+      <button
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_SEARCH_HIDE:ItemNameConst.BTN_SEARCH_ADD}}
+      </button>
+
+
+      <div class="contentsButton__subSection">
+        <button
+          (click)="buttonAction(BUTTON_ACTION.EXPORT)"
+          [ngClass]="{'button-disable': logDatas == undefined || logDatas.length === 0}"
+          class="buttonExport infotip">
+          <span
+            [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe"
+            class="infotip__frame"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 検索条件 -->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+          <h2 class="contents__title--underline">
+            {{ItemNameConst.LBL_SEARCH_CONDITION}}
+          </h2>
+
+          <div class="contents__container--flex">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title w--10">日時</dt>
+              <dd class="definitionForm__data w--90">
+                <input
+                  formControlName="loggedAtFromCtrl"
+                  name="loggedAtFromCtrl"
+                  (keyup.enter)="setLoggedAtFrom($event.type)"
+                  (dateSelect)="setLoggedAtFrom($event.type)"
+                  ngbDatepicker #loggedAtFromDp="ngbDatepicker"
+                  placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                  [ngClass]="{'input--error': loggedAtFromCtrl.errors?.ngbDate}"
+                  maxlength="10"
+                  type="tel"
+                  class="input-size--100">
+                <button class="btn btn-outline-secondary" (click)="loggedAtFromDp.toggle()" type="button"></button>
+                <span class="wavy-line"></span>
+                <input
+                  formControlName="loggedAtToCtrl"
+                  name="loggedAtToCtrl"
+                  (keyup.enter)="setLoggedAtTo($event.type)"
+                  (dateSelect)="setLoggedAtTo($event.type)"
+                  ngbDatepicker #loggedAtToDp="ngbDatepicker"
+                  placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                  [ngClass]="{'input--error': loggedAtToCtrl.errors?.ngbDate}"
+                  maxlength="10"
+                  type="tel"
+                  class="input-size--100">
+                  <button class="btn btn-outline-secondary" (click)="loggedAtToDp.toggle()" type="button"></button>
+                  <br>
+                  <div
+                    class="message-result font__warning"
+                    *ngIf="loggedAtFromCtrl.errors?.ngbDate || loggedAtToCtrl.errors?.ngbDate">
+                    {{ MSG_VAL.DATE_DAY }}
+                  </div>
+              </dd>
+              <dt class="definitionForm__title w--10">実行担当者</dt>
+              <dd class="definitionForm__data w--90">
+                <input
+                  formControlName="loginUserCodeCtrl"
+                  name="loginUserCodeCtrl"
+                  (blur)="setLoginUserCode($event.type)"
+                  (keyup.enter)="setLoginUserCode($event.type)"
+                  #loginUserCodeInput
+                  [formControl]="loginUserCodeCtrl" 
+                  [matAutocomplete]="autoLoginUserCodeFrom"                  
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                  type="tel"
+                  maxlength="{{userInfoService.ApplicationControl?.loginUserCodeLength}}"
+                  class="input-size--110 definitionForm__input">
+                <mat-autocomplete
+                  #autoLoginUserCodeFrom="matAutocomplete"
+                  [panelWidth]="PanelConst.autocompleteWidth300">
+                  <mat-option
+                    *ngFor="let loginUser of loginUserFilterds[0] | async"
+                    [value]="loginUser.code">
+                    {{loginUser.code}}:{{loginUser.name}}
+                  </mat-option>
+                </mat-autocomplete>
+                <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_LOGIN_USER,$event.keyCode)"></a>
+                <input
+                  formControlName="loginUserNameCtrl"
+                  name="loginUserNameCtrl"
+                  class="input-size--250"
+                  readonly>
+              </dd>
+            </dl>
+            <div class="contents__buttonGroup">
+              <button 
+                (click)="buttonAction(BUTTON_ACTION.SEARCH)" 
+                [ngClass]="{'button-disable': myFormGroup.invalid}"
+                class="buttonSecondary">
+                {{ItemNameConst.BTN_SEARCH}}
+              </button>
+              <button 
+                (click)="buttonAction(BUTTON_ACTION.DELETE)"
+                [ngClass]="{'button-disable': isDeletionDisabled}"
+                class="buttonMinimum">
+                {{ItemNameConst.BTN_DELETE}}
+              </button>
+              <button 
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                class="buttonMinimum">
+                {{ItemNameConst.BTN_CLEAR}}
+              </button>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <!-- 操作ログ管理 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_OPERATION_LOG_MANAGEMENT}}</h2>
+      <div class="contents__container">
+      <div class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_50_CODE}}"></th>
+              <th class="{{TableColumn.COL_200_CODE}}">日時</th>
+              <th class="{{TableColumn.COL_150_CODE}}">ユーザーコード</th>
+              <th class="{{TableColumn.COL_300_CODE}}">ユーザー名</th>
+              <th class="{{TableColumn.COL_300_CODE}}">名称</th>
+              <th class="{{TableColumn.COL_200_CODE}}">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let logData of logDatas  | slice:0: TABLE_MAX_DISPLAY_INDEX  let i = index ">
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{ i + 1 }}</td>
+              <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{logData.loggedAt | date:'yyyy/MM/dd HH:mm:ss':TIME_ZONE}}</td>
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{logData.loginUserCode}}</td>
+              <td class="{{TableColumn.COL_300_NAME}}">{{logData.loginUserName}}</td>
+              <td class="{{TableColumn.COL_300_NAME}}">{{logData.menuName}}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{logData.operationName}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </section>
+
+    <!-- ログ情報 -->
+    <section class="contents">
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title">ログ採取</dt>
+          <dd class="definitionForm__data">する</dd>
+          <dt class="definitionForm__title">ログ件数</dt>
+          <dd class="definitionForm__data">
+            <span class="mr--5">{{ LogStartDataMsg }}</span><span class="mr--5">から</span>{{ LogCounterMsg }}
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+  </section>
+
+</div>

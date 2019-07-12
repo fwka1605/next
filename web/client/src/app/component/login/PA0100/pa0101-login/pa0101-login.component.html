@@ -1,0 +1,60 @@
+<div class="login"
+  [formGroup]="myFormGroup">
+  <div class="login__contents">
+    <div class="login__frame">
+      <div class="login__formContainer">
+        <h1 class="login__title">
+          <img class="login__logo" src="/assets/image/logo_full_color_new.png" alt="V-ONE クラウド">ログイン
+        </h1>
+      <div *ngIf="processCustomResult.message == 'LOGIN_PASSWORD_EXPIRED'; else thenBlock">
+        <p class="font__warning mb--30">
+          ログインパスワードが有効期限切れです。<br>パスワードを変更する場合は
+          <span class="anchor"
+            (click)="changePassword()">こちら</span>
+            をクリックしてください
+        </p>
+      </div>
+      <ng-template #thenBlock>
+        <div
+          class="message-result"
+          *ngIf="processCustomResult.message"
+          [ngClass]="{ 'font__success': processCustomResult.result == PROCESS_RESULT_RESULT_TYPE.SUCCESS,
+                      'font__failure': processCustomResult.result != PROCESS_RESULT_RESULT_TYPE.SUCCESS }">
+          {{ processCustomResult?.message }}
+        </div>
+      </ng-template>
+        <dl class="definitionPlain">
+          <dt class="definitionPlain__title">ログイン ID</dt>
+          <dd class="definitionPlain__data">
+        <input 
+          formControlName="userCodeCtrl"
+          name="userCodeCtrl"
+          (keyup.enter)="setUserCode($event.type)"
+          type="tel"
+          placeholder="{{PlaceHolderConst.INPUT_USERCODE}}"
+          class="login__inputField">
+          </dd>
+          <dt class="definitionPlain__title">パスワード</dt>
+          <dd class="definitionPlain__data">
+        <input 
+          formControlName="passwordCtrl"
+          name="passwordCtrl"
+          (keyup.enter)="setPassword($event.type)"
+          type="password"
+          placeholder="{{PlaceHolderConst.INPUT_PASSWORD}}"
+          class="login__inputField">
+          </dd>
+        </dl>
+        <button class="buttonLogin"
+        [ngClass]="{'button-disable':  myFormGroup.invalid}" 
+          (click)="login()">{{ItemNameConst.BTN_LOGIN}}</button>
+      </div><!-- /login__formContainer -->
+      <div class="login__formContainer--footerSection">
+          <span class="anchor" (click)="changePassword()">パスワードを変更するにはこちらへ</span>
+      </div><!-- /login__formContainer--footerSection -->
+    </div><!-- /login__frame -->
+  </div>
+  <div class="login__footer">
+  <app-com0201-footer></app-com0201-footer>
+  </div>
+</div>

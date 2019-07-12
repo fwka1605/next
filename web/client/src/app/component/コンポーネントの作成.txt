@@ -1,0 +1,204 @@
+// 共通部品用コンポーネント
+ng generate component component\common\com0000\com0000-main
+ng generate component component\common\COM0100\com0101-header
+ng generate component component\common\COM0200\com0201-footer
+ng generate component component\common\COM0300\com0301-menu
+ng generate component component\common\COM0400\com0401-error
+ng generate component component\common\COM0400\com0402-site-error
+ng generate component component\common\COM0400\com0404-site-error
+ng generate component component\common\COM0500\com0501-title
+
+ng generate component component\common\COM0600\com0601-top
+
+
+// 画面用コンポーネント
+ng generate component component\login\PA0100\pa0101-login
+ng generate component component\logout\PA0200\pa0201-logout
+
+ng generate component component\config\PB0100\pb0101-company-master
+ng generate component component\config\PB0100\pb0102-import-setting-master
+ng generate component component\config\PB0500\pb0501-customer-master
+ng generate component component\config\PB0300\pb0301-login-user-master
+ng generate component component\config\PB0200\pb0201-department-master
+ng generate component component\config\PB0400\pb0401-staff-master
+ng generate component component\config\PB0600\pb0601-customer-group-master
+ng generate component component\config\PB0800\pb0801-bank-account-master
+ng generate component component\config\PB0700\pb0701-account-title-master
+ng generate component component\config\PB0900\pb0901-category-master
+ng generate component component\config\PB1100\pb1101-section-master
+ng generate component component\config\PB1200\pb1201-section-with-department-master
+ng generate component component\config\PB1300\pb1301-section-with-login-user-master
+ng generate component component\config\PB1400\pb1401-general-setting-master
+ng generate component component\config\PB1000\pb1001-kana-history-master
+ng generate component component\config\PB1500\pb1501-ignore-kana-master
+ng generate component component\config\PB1600\pb1601-calendar-master
+ng generate component component\config\PB1700\pb1701-juridical-personality-master
+ng generate component component\config\PB1800\pb1801-bank-branch-master
+ng generate component component\config\PB1900\pb1901-payment-agency-master
+ng generate component component\config\PB2200\pb2201-destination-master
+ng generate component component\config\PB2300\pb2301-status-master
+
+ng generate component component\invoice\PC0100\pc0101-billing-importer
+ng generate component component\invoice\PC0200\pc0201-billing-input
+ng generate component component\invoice\PC0200\pc0202-billing-memo-input
+ng generate component component\invoice\PC0300\pc0301-billing-search
+ng generate component component\invoice\PC0500\pc0501-billing-due-at-modify
+ng generate component component\invoice\PC0600\pc0601-billing-journalizing
+ng generate component component\invoice\PC0700\pc0701-account-transfer-create
+ng generate component component\invoice\PC0800\pc0801-account-transfer-import
+ng generate component component\invoice\PC1800\pc1801-mf-billing-extract
+ng generate component component\invoice\PC0900\pc0901-payment-schedule-input
+ng generate component component\invoice\PC1000\pc1001-payment-schedule-importer
+
+ng generate component component\receive\PD0100\pd0101-eb-file-importer
+ng generate component component\receive\PD0200\pd0201-receipt-importer
+ng generate component component\receive\PD0300\pd0301-receipt-input
+ng generate component component\receive\PD0400\pd0401-receipt-apportion
+ng generate component component\receive\PD0500\pd0501-receipt-search
+ng generate component component\receive\PD0500\pd0503-select-exclude-category
+ng generate component component\receive\PD0600\pd0601-receipt-advance-received
+ng generate component component\receive\PD0600\pd0602-receipt-advance-received-split
+ng generate component component\receive\PD0700\pd0701-receipt-journalizing
+ng generate component component\receive\PD0800\pd0801-receipt-section-transfer
+
+//PD1301_MF明細連携 データ抽出.xlsx
+ng generate component component\receive\PD1300\pd1301-mf-Aggr-data-extract
+
+ng generate component component\clearing\PE0100\pe0101-matching-sequential
+ng generate component component\clearing\PE0100\pe0102-matching-individual
+ng generate component component\clearing\PE0200\pe0201-matching-journalizing
+ng generate component component\clearing\PE0300\pe0301-matching-history-search
+ng generate component component\clearing\PE0400\pe0401-matching-journalizing-cancellation
+ng generate component component\clearing\PE0500\pe0501-billing-omit
+ng generate component component\clearing\PE0600\pe0601-receipt-omit
+ng generate component component\clearing\PE1000\Pe1001-mf-matching-output
+
+ng generate component component\form\PF0100\pf0101-billing-aging-list
+ng generate component component\form\PF0100\pf0102-billing-aging-list-detail
+
+ng generate component component\form\PF0200\pf0201-credit-aging-list
+ng generate component component\form\PF0300\pf0301-scheduled-payment-list
+ng generate component component\form\PF0400\pf0401-arrearages-list
+ng generate component component\form\PF0500\pf0501-customer-ledger
+ng generate component component\form\PF0600\pf0601-collection-schedule
+
+ng generate component component\maintenance\PH0100\ph0101-setting-ssecurity
+ng generate component component\maintenance\PH0200\ph0201-data-maintenance
+ng generate component component\maintenance\PH0700\ph0701-grid-setting
+ng generate component component\maintenance\PH0800\ph0801-collation-setting
+ng generate component component\maintenance\PH0900\ph0901-log-data-maintenance
+ng generate component component\maintenance\PH1000\ph1001-column-setting
+ng generate component component\maintenance\PH1300\ph1301-eb-data-format-list
+ng generate component component\maintenance\PH1400\ph1401-mf-web-api-setting
+//PH1801_MF明細連携 Web API 連携設定.xlsx
+ng generate component component\maintenance\PH1800\ph1801-mf-aggr-web-api-setting
+ng generate component component\maintenance\PH1800\ph1802-mf-aggr-sub-accounts-setting
+
+//PH2001_MF明細連携 入出金データ検索.xlsx
+ng generate component component\maintenance\PH1800\ph2001_mf-aggr-history-search
+
+
+ng generate component component\user\pj0100\pj0101-user-setting
+ng generate component component\user\pj0200\pj0201-user-password-reissue
+
+ng generate component component\sub\SUB0100\sub0101-manual
+ng generate component component\sub\SUB0200\sub0201-inquiry
+
+// モーダル用コンポーネント
+
+// pa0101 パスワード変更
+ng generate component component\modal\modal-change-password
+
+// pb0501 顧客登録
+ng generate component component\modal\modal-customer-detail
+// 共通　インポート方法の選択
+ng generate component component\modal\modal-import-method-selector
+// 得意先 インポート方法の選択
+ng generate component component\modal\modal-import-method-selector-customer
+// 共通　エクスポート方法の選択
+ng generate component component\modal\modal-export-method-selector
+// 得意先　エクスポート方法の選択
+ng generate component component\modal\modal-export-method-selector-customer
+// 会社マスター => マスターインポート 取込設定
+ng generate component component\modal\modal-import-setting-master
+// 入金・請求インポーター => 取込設定
+ng generate component component\modal\modal-importer-setting
+// 得意先インポーター => 取込設定
+ng generate component component\modal\modal-importer-setting-customer
+// 入金予定インポーター => 取込設定
+ng generate component component\modal\modal-importer-setting-payment-schedule
+
+// pc0501 顧客マスタ
+ng generate component component\modal\modal-transfer-fee
+
+// pc0201 備考（メモ）
+ng generate component component\modal\modal-invoice-memo
+// pd0301 メモ
+ng generate component component\modal\modal-receipt-memo
+
+// 共通 マスタ検索
+ng generate component component\modal\modal-master
+// 共通 確認用
+ng generate component component\modal\modal-confirm
+ng generate component component\modal\modal-warning-file-size
+
+// pd0101 EBデータ取込
+ng generate component component\modal\modal-eb-exclude-accounting-setting
+// pd0101 EBデータ取込、ph1301 EBファイル設定一覧
+ng generate component component\modal\modal-eb-file-setting
+
+// pd0501 入金データ検索
+ng generate component component\modal\modal-master-bank-account
+
+// pe0101 消込
+ng generate component component\modal\modal-matching-recorded-at
+ng generate component component\modal\modal-collate-print-at
+ng generate component component\modal\modal-individual-collate
+ng generate component component\modal\modal-select-parent-customer
+ng generate component component\modal\modal-confirm-matching
+ng generate component component\modal\modal-confirm-matching-advanced-customer
+
+// pe0102 入金・請求メモ
+ng generate component component\modal\modal-individual-memo
+
+
+// pf0101などの帳票 帳票設定
+ng generate component component\modal\modal-form-setting
+
+ng generate component component\modal\modal-master-bank
+
+// pe01101の照合で利用
+ng generate component component\modal\modal-collate-progress
+ng generate component component\modal\modal-router-progress
+
+ng generate component component\modal\modal-multi-master
+
+// pd0501の対象外の全設定
+ng generate component component\modal\modal-receipt-exclude-all
+ng generate component component\modal\modal-receipt-exclude-detail
+
+
+
+// 定数
+ng generate component common\const\const-table-name
+
+// 定数
+ng generate component component\view-child\auto-complete-search
+
+// pe0201 消込仕訳・消込済入金データ出力
+ng generate component component\modal\modal-output-setting
+
+
+
+////////////////////////////////////////////////////////////////////
+// ビューの部品
+////////////////////////////////////////////////////////////////////
+
+ng generate component component\view-parts\parts-company
+
+ng generate component component\view-parts\parts-string-slice
+
+ng generate component component\view-parts\parts-result-message
+
+
+

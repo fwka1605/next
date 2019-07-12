@@ -1,0 +1,31 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--clearing">
+  <h2 class="vModal__heading">債権代表者選択
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <p class="align--center mb--10">債権代表者とする得意先を選択してください。</p>
+      <select
+        formControlName="parentCustomerIdCtrl" 
+        name="parentCustomerIdCtrl" 
+        class="select-size--200 select-pos--center mb--15">
+        <option *ngFor="let customer of customers  index as i" value="{{customer.id}}">
+          {{customer.name}}
+        </option>
+      </select>
+      <hr class="separator">
+      <div class="common-btn mb--20">
+        <button 
+          [ngClass]="{'button-disable':  StringUtil.IsNullOrEmpty(parentCustomerIdCtrl.value) }" 
+          (click)="select()" class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+        <button (click)="cancel()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

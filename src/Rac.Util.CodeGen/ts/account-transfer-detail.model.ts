@@ -1,0 +1,44 @@
+export class AccountTransferDetail {
+    public id: number;
+    public accountTransferLogId: number;
+    public billingId: number;
+    public companyId: number;
+    public customerId: number;
+    public departmentId: number;
+    public staffId: number;
+    public billedAt: string | null;
+    public salesAt: string | null;
+    public closingAt: string | null;
+    public dueAt: string | null;
+    public dueAt2nd: string | null;
+    public billingAmount: number;
+    public invoiceCode: string | null;
+    public note1: string | null;
+    public transferBankCode: string | null;
+    public transferBankName: string | null;
+    public transferBranchCode: string | null;
+    public transferBranchName: string | null;
+    public transferAccountTypeId: number;
+    public transferAccountNumber: string | null;
+    public transferAccountName: string | null;
+    public transferCustomerCode: string | null;
+    public transferNewCode: string | null;
+    public createBy: number;
+    public createAt: string;
+    public billingUpdateAt: string | null;
+    public customerCode: string | null;
+    public customerName: string | null;
+    public departmentCode: string | null;
+    public departmentName: string | null;
+    public staffCode: string | null;
+    public staffName: string | null;
+    public collectCategoryId: number;
+    public paymentAgencyId: number;
+    public collectCategoryCode: string | null;
+    public collectCategoryName: string | null;
+    public paymentAgencyCode: string | null;
+    public paymentAgencyName: string | null;
+    public fileFormatId: number;
+    public newDueAt: string | null;
+}
+

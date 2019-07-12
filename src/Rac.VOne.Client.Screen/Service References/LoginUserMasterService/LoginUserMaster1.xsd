@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3061/Master/LoginUserMaster.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="UsersResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="Users" nillable="true" type="tns:ArrayOfLoginUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UsersResult" nillable="true" type="tns:UsersResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ArrayOfLoginUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="LoginUser" nillable="true" type="tns:LoginUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfLoginUser" nillable="true" type="tns:ArrayOfLoginUser" />
+  <xs:complexType name="LoginUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignedStaffId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CheckFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FunctionLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="InitialPassword" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MenuLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UseClient" type="xs:int" />
+      <xs:element minOccurs="0" name="UseWebViewer" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginUser" nillable="true" type="tns:LoginUser" />
+  <xs:complexType name="UserResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:LoginUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserResult" nillable="true" type="tns:UserResult" />
+  <xs:complexType name="LoginUserSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignedStaffId" nillable="true" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Codes" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FunctionLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="Mail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MenuLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UseClient" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UseCommonSearch" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseWebViewer" type="xs:int" />
+      <xs:element minOccurs="0" name="checkflag" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginUserSearch" nillable="true" type="tns:LoginUserSearch" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="ImportResultLoginUser">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ImportResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LicenseIsOrver" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LoginUserHasNotLoginLicense" type="xs:boolean" />
+          <xs:element minOccurs="0" name="NotExistsLoginUser" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ImportResultLoginUser" nillable="true" type="tns:ImportResultLoginUser" />
+  <xs:complexType name="ImportResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeleteCount" type="xs:int" />
+      <xs:element minOccurs="0" name="InsertCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="UpdateCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportResult" nillable="true" type="tns:ImportResult" />
+</xs:schema>

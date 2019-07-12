@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f1da3960-38e0-42ad-836b-468ebbcae7f2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/CategoryMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CategoryMaster.xsd" MetadataType="Schema" ID="13ee0833-bf67-460a-9f5b-f3a379beda0d" SourceId="1" SourceUrl="http://localhost:3061/Master/CategoryMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="CategoryMaster.disco" MetadataType="Disco" ID="9e13ce12-29e6-4ebb-911a-19881e1b5190" SourceId="1" SourceUrl="http://localhost:3061/Master/CategoryMaster.svc?disco" />
+    <MetadataFile FileName="CategoryMaster1.xsd" MetadataType="Schema" ID="02ea3f02-f417-4c4f-ac3f-066b021bb6a9" SourceId="1" SourceUrl="http://localhost:3061/Master/CategoryMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="CategoryMaster2.xsd" MetadataType="Schema" ID="80250fd1-827b-4610-9c7f-b49fe0549bf4" SourceId="1" SourceUrl="http://localhost:3061/Master/CategoryMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="CategoryMaster3.xsd" MetadataType="Schema" ID="3a23a24e-d52a-4719-9a37-c205dcd21ee0" SourceId="1" SourceUrl="http://localhost:3061/Master/CategoryMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="CategoryMaster.wsdl" MetadataType="Wsdl" ID="3d3d3a8d-a73e-4c8e-a746-8de01bbbe40a" SourceId="1" SourceUrl="http://localhost:3061/Master/CategoryMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

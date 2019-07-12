@@ -1,0 +1,28 @@
+.pageContainer {
+  padding:  0 $pageContainer-padding $pageContainer-padding;
+  // background-color: $main-background-color;
+}
+
+.contentsButton {
+  position: sticky;
+  z-index: 3;
+  top: $header-height;
+  box-sizing: content-box;
+  padding: $pageContainer-padding;
+  background-color: $main-background-color;
+  &__inner {
+    position: relative;
+    width: $contentsWidth;
+    .layout__main--noScroll & {
+      width: 100%;
+      @include mq-large {
+        width: $contentsWidth;
+      }
+    }
+  }
+  &__subSection {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}

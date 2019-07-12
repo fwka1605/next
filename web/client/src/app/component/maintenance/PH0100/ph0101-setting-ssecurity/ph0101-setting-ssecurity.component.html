@@ -1,0 +1,857 @@
+<section class="contentsButton">
+  <div class="contentsButton__inner">
+    <!--- 処理結果の表示 -->
+    <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+    <button
+      (click)="buttonActionInner(BUTTON_ACTION.REGISTRY)"
+      [ngClass]="{'button-disable': myFormGroup.invalid || partsCompany?.checkInvalid()}"
+      class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+    <button
+      (click)="buttonActionInner(BUTTON_ACTION.REDISPLAY)"
+      class="buttonMinimum infotip">
+      {{ItemNameConst.BTN_REDISPLAY}}
+      <span
+        [innerHtml]="ButtonTipsConst.REDISPLAY | safeHtml_pipe"
+        class="infotip__frame"></span>
+    </button>
+  </div>
+</section>
+
+<section class="pageContainer">
+  <!-- 会社設定 -->
+  <section class="contents accordionContent">
+    <mat-expansion-panel
+      (opened)="panelCompanyOpenState=true"
+      (closed)="panelCompanyOpenState=false"
+      [expanded]="true">
+      <mat-expansion-panel-header
+        collapsedHeight="{{PanelConst.collapsedHeight}}"
+        expandedHeight="{{PanelConst.expandedHeight}}">
+        <mat-panel-title>
+          <h2 class="accordionContent__title">{{ItemNameConst.LBL_SETTING_COMPANY}}</h2>
+          <mat-panel-description>
+            <h2 class="accordionContent__title">
+              {{panelCompanyOpenState ? '' : ItemNameConst.LBL_CAN_SET_SETTING_COMPANY }}</h2>
+          </mat-panel-description>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <ng-template matExpansionPanelContent>
+        <div class="accordionContent__body contents__container--flex">
+          <app-parts-company #partsCompany></app-parts-company>
+        </div>
+      </ng-template>
+    </mat-expansion-panel>
+  </section>
+
+  <div [formGroup]="myFormGroup">
+    <!-- 機能設定 -->
+    <section
+      class="contents accordionContent"
+      *ngIf="selectedCompany">
+      <mat-expansion-panel
+        (opened)="panelFunctionOpenState=true"
+        (closed)="panelFunctionOpenState=false">
+        <mat-expansion-panel-header
+          collapsedHeight="{{PanelConst.collapsedHeight}}"
+          expandedHeight="{{PanelConst.expandedHeight}}">
+          <mat-panel-title>
+            <h2 class="accordionContent__title">{{ItemNameConst.LBL_SETTING_FUNCTION}}</h2>
+            <mat-panel-description>
+              <h2 class="accordionContent__title">
+                {{panelFunctionOpenState ? '' : ItemNameConst.LBL_CAN_SET_SETTING_FUNCTION }}</h2>
+            </mat-panel-description>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <div class="accordionContent__body contents__container--flex">
+            <div class="contents__item--w-30 mb--30">
+              <table class="checklistTable">
+                <tr>
+                  <th class="checklistTable__header align--left">入金部門管理</th>
+                  <td class="checklistTable__data">
+                    <label class="labelWrap">
+                      <input
+                        class="labelWrap__input"
+                        formControlName="rdoUseReceiptSectionCtrl"
+                        name="rdoUseReceiptSectionCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input
+                        class="labelWrap__input"
+                        formControlName="rdoUseReceiptSectionCtrl"
+                        name="rdoUseReceiptSectionCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="checklistTable__header align--left">MFクラウド請求書 WebAPI 連携</th>
+                  <td class="checklistTable__data align--center">
+                    <label class="labelWrap">
+                      <input
+                        class="labelWrap__input"
+                        formControlName="rdoUseMFWebApiCtrl"
+                        name="rdoUseMFWebApiCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input
+                        class="labelWrap__input"
+                        formControlName="rdoUseMFWebApiCtrl"
+                        name="rdoUseMFWebApiCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="checklistTable__header align--left">口座振替機能</th>
+                  <td class="checklistTable__data">
+                    <label class="labelWrap">
+                      <input
+                        class="labelWrap__input"
+                        formControlName="rdoUseAccountTransferCtrl"
+                        name="rdoUseAccountTransferCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input
+                        class="labelWrap__input"
+                        formControlName="rdoUseAccountTransferCtrl"
+                        name="rdoUseAccountTransferCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="checklistTable__header align--left">MF明細連携 WebAPI 連携</th>
+                  <td class="checklistTable__data">
+                    <label class="labelWrap">
+                      <input
+                        class="labelWrap__input"
+                        formControlName="rdoUseMfAggregationCtrl"
+                        name="rdoUseMfAggregationCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input
+                        class="labelWrap__input"
+                        formControlName="rdoUseMfAggregationCtrl"
+                        name="rdoUseMfAggregationCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="contents__item--w-30 mb--30">
+              <!-- <table class="checklistTable">
+                <tr>
+                  <th class="checklistTable__header align--left">入金部門管理</th>
+                  <td class="checklistTable__data">
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseReceiptSectionCtrl"
+                        name="rdoUseReceiptSectionCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseReceiptSectionCtrl"
+                        name="rdoUseReceiptSectionCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="checklistTable__header align--left">MFクラウド請求書 WebAPI 連携</th>
+                  <td class="checklistTable__data align--center">
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseMFWebApiCtrl"
+                        name="rdoUseMFWebApiCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseMFWebApiCtrl"
+                        name="rdoUseMFWebApiCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="checklistTable__header align--left">口座振替機能</th>
+                  <td class="checklistTable__data">
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseAccountTransferCtrl"
+                        name="rdoUseAccountTransferCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseAccountTransferCtrl"
+                        name="rdoUseAccountTransferCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useMfAggregation==1">
+                  <tr>
+                    <th class="checklistTable__header align--left">MF明細連携 WebAPI 連携</th>
+                    <td class="checklistTable__data">
+                      <label class="labelWrap">
+                        <input class="labelWrap__input"
+                          formControlName="rdoUseMfAggregationCtrl"
+                          name="rdoUseMfAggregationCtrl"
+                          value="0"
+                          type="radio">しない
+                      </label>
+                      <label class="labelWrap">
+                        <input class="labelWrap__input"
+                          formControlName="rdoUseMfAggregationCtrl"
+                          name="rdoUseMfAggregationCtrl"
+                          value="1"
+                          type="radio">する
+                      </label>
+                    </td>
+                  </tr>
+                </ng-container>
+              </table> -->
+            </div>
+            <div class="contents__item--w-30 mb--30">
+              <!-- <table class="checklistTable">
+                <tr>
+                  <th class="checklistTable__header align--left">入金部門管理</th>
+                  <td class="checklistTable__data">
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseReceiptSectionCtrl"
+                        name="rdoUseReceiptSectionCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseReceiptSectionCtrl"
+                        name="rdoUseReceiptSectionCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="checklistTable__header align--left">MFクラウド請求書 WebAPI 連携</th>
+                  <td class="checklistTable__data align--center">
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseMFWebApiCtrl"
+                        name="rdoUseMFWebApiCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseMFWebApiCtrl"
+                        name="rdoUseMFWebApiCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                <tr>
+                  <th class="checklistTable__header align--left">口座振替機能</th>
+                  <td class="checklistTable__data">
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseAccountTransferCtrl"
+                        name="rdoUseAccountTransferCtrl"
+                        value="0"
+                        type="radio">しない
+                    </label>
+                    <label class="labelWrap">
+                      <input class="labelWrap__input"
+                        formControlName="rdoUseAccountTransferCtrl"
+                        name="rdoUseAccountTransferCtrl"
+                        value="1"
+                        type="radio">する
+                    </label>
+                  </td>
+                </tr>
+                  <tr>
+                    <th class="checklistTable__header align--left">MF明細連携 WebAPI 連携</th>
+                    <td class="checklistTable__data">
+                      <label class="labelWrap">
+                        <input class="labelWrap__input"
+                          formControlName="rdoUseMfAggregationCtrl"
+                          name="rdoUseMfAggregationCtrl"
+                          value="0"
+                          type="radio">しない
+                      </label>
+                      <label class="labelWrap">
+                        <input class="labelWrap__input"
+                          formControlName="rdoUseMfAggregationCtrl"
+                          name="rdoUseMfAggregationCtrl"
+                          value="1"
+                          type="radio">する
+                      </label>
+                    </td>
+                  </tr>
+              </table> -->
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--30">請求部門コード桁数<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data w--70">
+                  <input
+                    formControlName="departmentCodeLengthCtrl"
+                    name="departmentCodeLengthCtrl"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60 definitionForm__input">
+                  <select
+                    formControlName="cmbDepartmentCodeTypeCtrl"
+                    name="cmbDepartmentCodeTypeCtrl"
+                    class="select-size--100">
+                    <option value="0">数字</option>
+                    <option value="1">英数</option>
+                  </select>
+                </dd>
+                <dt class="definitionForm__title w--30">科目コード桁数<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data w--70">
+                  <input
+                    formControlName="accountTitleCodeLengthCtrl"
+                    name="accountTitleCodeLengthCtrl"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60 definitionForm__input">
+                  <select
+                    formControlName="cmbAccountTitleCodeTypeCtrl"
+                    name="cmbAccountTitleCodeTypeCtrl"
+                    class="select-size--100">
+                    <option value="0">数字</option>
+                    <option value="1">英数</option>
+                  </select>
+                </dd>
+                <dt class="definitionForm__title w--30">得意先コード桁数<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data w--70">
+                  <input
+                    formControlName="customerCodeLengthCtrl"
+                    name="customerCodeLengthCtrl"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60 definitionForm__input">
+                  <select
+                    formControlName="cmbCustomerCodeTypeCtrl"
+                    name="cmbCustomerCodeTypeCtrl"
+                    class="select-size--100">
+                    <option value="0">数字</option>
+                    <option value="1">英数</option>
+                  </select>
+                </dd>
+                <dt class="definitionForm__title w--30">ユーザーコード桁数<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data w--70">
+                  <input
+                    formControlName="loginUserCodeLengthCtrl"
+                    name="loginUserCodeLengthCtrl"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60 definitionForm__input">
+                  <select
+                    formControlName="cmbLoginUserCodeTypeCtrl"
+                    name="cmbLoginUserCodeTypeCtrl"
+                    class="select-size--100">
+                    <option value="0">数字</option>
+                    <option value="1">英数</option>
+                  </select>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--30">入金部門コード桁数<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data w--70">
+                  <input
+                    formControlName="sectionCodeLengthCtrl"
+                    name="sectionCodeLengthCtrl"
+                    type="tel"
+                    maxlength="2"
+                    class="definitionForm__input">
+                  <select
+                    formControlName="cmbSectionCodeTypeCtrl"
+                    name="cmbSectionCodeTypeCtrl"
+                    class="select-size--100">
+                    <option value="0">数字</option>
+                    <option value="1">英数</option>
+                  </select>
+                </dd>
+                <dt class="definitionForm__title w--30">営業担当者コード桁数<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data w--70">
+                  <input
+                    formControlName="staffCodeLengthCtrl"
+                    name="staffCodeLengthCtrl"
+                    type="tel"
+                    maxlength="2"
+                    class="definitionForm__input">
+                  <select
+                    formControlName="cmbStaffCodeTypeCtrl"
+                    name="cmbStaffCodeTypeCtrl"
+                    class="select-size--100">
+                    <option value="0">数字</option>
+                    <option value="1">英数</option>
+                  </select>
+                </dd>
+                <dt class="definitionForm__title w--30">ライセンス数</dt>
+                <dd class="definitionForm__data w--70">
+                  <input
+                    formControlName="licenseNumCtrl"
+                    name="licenseNumCtrl"
+                    class="input-size--100 definitionForm__input"
+                    length="2">
+                  <button
+                    (click)="addLicence"
+                    class="buttonMinimum">追加</button>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+    </section>
+
+    <!-- 権限設定 -->
+    <section
+      class="contents accordionContent"
+      *ngIf="selectedCompany">
+      <mat-expansion-panel
+        (opened)="panelPrivilegeOpenState=true"
+        (closed)="panelPrivilegeOpenState=false">
+        <mat-expansion-panel-header
+          collapsedHeight="{{PanelConst.collapsedHeight}}"
+          expandedHeight="{{PanelConst.expandedHeight}}">
+          <mat-panel-title>
+            <h2 class="accordionContent__title">{{ItemNameConst.LBL_SETTING_AUTHORITY}}</h2>
+            <mat-panel-description>
+              <h2 class="accordionContent__title">
+                {{panelPrivilegeOpenState ? '' : ItemNameConst.LBL_CAN_SET_SETTING_AUTHORITY }}</h2>
+            </mat-panel-description>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <div class="accordionContent__body contents__container--flex">
+            <div class="contents__item--w-50">
+              <table class="checklistTable">
+                <caption class="checklistTable__caption">権限レベル</caption>
+                <thead>
+                  <tr>
+                    <th
+                      class="checklistTable__header"
+                      colspan="2">画面表題</th>
+                    <th class="checklistTable__header col-size--80">１</th>
+                    <th class="checklistTable__header">２<br>
+                      <button
+                        class="buttonMinimum--w-auto mr--5"
+                        (click)="setAuthorityAllLevel(2,true)">＋</button>
+                      <button
+                        class="buttonMinimum--w-auto"
+                        (click)="setAuthorityAllLevel(2,false)">－</button>
+                    </th>
+                    <th class="checklistTable__header">３<br>
+                      <button
+                        class="buttonMinimum--w-auto mr--5"
+                        (click)="setAuthorityAllLevel(3,true)">＋</button>
+                      <button
+                        class="buttonMinimum--w-auto"
+                        (click)="setAuthorityAllLevel(3,false)">－</button>
+                    </th>
+                    <th class="checklistTable__header">４<br>
+                      <button
+                        class="buttonMinimum--w-auto mr--5"
+                        (click)="setAuthorityAllLevel(4,true)">＋</button>
+                      <button
+                        class="buttonMinimum--w-auto"
+                        (click)="setAuthorityAllLevel(4,false)">－</button>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let menuItem of currentMenuSet index as tri">
+                    <th class="checklistTable__header align--right">{{tri+1}}</th>
+                    <td class="checklistTable__data">{{getMenuName(menuItem)}}</td>
+                    <td
+                      class="checklistTable__data align--center"
+                      *ngFor="let formControl of cbxMenuAuthorityCtrls[tri] index as tdi">
+                      <div class="inputStyled--inTable">
+                        <input
+                          id="cbxMenuAuthorityCtrl_{{getMenuId(menuItem)}}_{{tdi+1}}"
+                          class="inputStyled__input"
+                          formControlName="cbxMenuAuthorityCtrl_{{getMenuId(menuItem)}}_{{tdi+1}}"
+                          name="cbxMenuAuthorityCtrl_{{getMenuId(menuItem)}}_{{tdi+1}}"
+                          type="checkbox">
+                        <label
+                          class="inputStyled__checkbox"
+                          for="cbxMenuAuthorityCtrl_{{getMenuId(menuItem)}}_{{tdi+1}}"></label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="contents__item--w-50">
+              <table class="checklistTable">
+                <caption class="checklistTable__caption">セキュリティ</caption>
+                <thead>
+                  <tr>
+                    <th
+                      class="checklistTable__header"
+                      colspan="2">画面表題</th>
+                    <th class="checklistTable__header">１</th>
+                    <th class="checklistTable__header">２<br>
+                      <button
+                        class="buttonMinimum--w-auto mr--5"
+                        (click)="setSecurityAllLevel(2,true)">＋</button>
+                      <button
+                        class="buttonMinimum--w-auto"
+                        (click)="setSecurityAllLevel(2,false)">－</button>
+                    </th>
+                    <th class="checklistTable__header">３<br>
+                      <button
+                        class="buttonMinimum--w-auto mr--5"
+                        (click)="setSecurityAllLevel(3,true)">＋</button>
+                      <button
+                        class="buttonMinimum--w-auto"
+                        (click)="setSecurityAllLevel(3,false)">－</button>
+                    </th>
+                    <th class="checklistTable__header">４<br>
+                      <button
+                        class="buttonMinimum--w-auto mr--5"
+                        (click)="setSecurityAllLevel(4,true)">＋</button>
+                      <button
+                        class="buttonMinimum--w-auto"
+                        (click)="setSecurityAllLevel(4,false)">－</button>
+                    </th>
+                    <th class="checklistTable__header">５<br>
+                      <button
+                        class="buttonMinimum--w-auto mr--5"
+                        (click)="setSecurityAllLevel(5,true)">＋</button>
+                      <button
+                        class="buttonMinimum--w-auto"
+                        (click)="setSecurityAllLevel(5,false)">－</button>
+                    </th>
+                    <th class="checklistTable__header">６<br>
+                      <button
+                        class="buttonMinimum--w-auto mr--5"
+                        (click)="setSecurityAllLevel(6,true)">＋</button>
+                      <button
+                        class="buttonMinimum--w-auto"
+                        (click)="setSecurityAllLevel(6,false)">－</button>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let functionType of currentFunctionSet index as tri">
+                    <th class="checklistTable__header align--right">{{tri+1}}</th>
+                    <td class="checklistTable__data">{{getFunctionName(functionType)}}</td>
+                    <td
+                      class="checklistTable__data align--center"
+                      *ngFor="let formControl of cbxSecurityAuthorityCtrls[tri] index as tdi">
+                      <div class="inputStyled--inTable">
+                        <input
+                          id="cbxSecurityAuthorityCtrl_{{functionType}}_{{tdi+1}}"
+                          class="inputStyled__input"
+                          formControlName="cbxSecurityAuthorityCtrl_{{functionType}}_{{tdi+1}}"
+                          name="cbxSecurityAuthorityCtrl_{{functionType}}_{{tdi+1}}"
+                          type="checkbox">
+                        <label
+                          class="inputStyled__checkbox"
+                          for="cbxSecurityAuthorityCtrl_{{functionType}}_{{tdi+1}}"></label>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+    </section>
+
+    <!-- パスワード -->
+    <section
+      class="contents accordionContent"
+      *ngIf="selectedCompany">
+      <mat-expansion-panel
+        (opened)="panelPasswordOpenState=true"
+        (closed)="panelPasswordOpenState=false">
+        <mat-expansion-panel-header
+          collapsedHeight="{{PanelConst.collapsedHeight}}"
+          expandedHeight="{{PanelConst.expandedHeight}}">
+          <mat-panel-title>
+            <h2 class="accordionContent__title">{{ItemNameConst.LBL_SETTING_PASSWORD}}</h2>
+            <mat-panel-description>
+              <h2 class="accordionContent__title">
+                {{panelPasswordOpenState ? '' : ItemNameConst.LBL_CAN_SET_SETTING_PASSWORD }}</h2>
+            </mat-panel-description>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <div class="accordionContent__body contents__container--flex">
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title">パスワード文字数<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data">
+                  <input
+                    formControlName="passwordMinLengthCtrl"
+                    name="passwordMinLengthCtrl"
+                    (keyup.enter)="setPasswordMinLength($event.type)"
+                    (blur)="setPasswordMinLength($event.type)"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60">文字以上
+                  <input
+                    formControlName="passwordMaxLengthCtrl"
+                    name="passwordMaxLengthCtrl"
+                    (keyup.enter)="setPasswordMaxLength($event.type)"
+                    (blur)="setPasswordMaxLength($event.type)"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60 definitionForm__input">文字以下（最大15文字）
+                </dd>
+                <dt class="definitionForm__title w--35">
+                  <label class="labelWrap">
+                    <div class="inputStyled">
+                      <input
+                        id="cbxPasswordMinSameCharacterRepeatCtrl"
+                        class="inputStyled__input"
+                        formControlName="cbxPasswordMinSameCharacterRepeatCtrl"
+                        name="cbxPasswordMinSameCharacterRepeatCtrl"
+                        (change)="setCbxPasswordMinSameCharacterRepeat()"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="cbxPasswordMinSameCharacterRepeatCtrl">同じ文字を連続して使用しない</label>
+                    </div>
+                  </label>
+                </dt>
+                <dd class="definitionForm__data w--65">
+                  <input
+                    formControlName="passwordMinSameCharacterRepeatCtrl"
+                    name="passwordMinSameCharacterRepeatCtrl"
+                    (keyup.enter)="setPasswordMinSameCharacterRepeat()"
+                    (blur)="setPasswordMinSameCharacterRepeat()"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60 definitionForm__input">文字以上
+                </dd>
+                <dt class="definitionForm__title w--35">
+                  <label class="labelWrap">
+                    <div class="inputStyled">
+                      <input
+                        id="cbxPasswordExpirationDaysCtrl"
+                        class="inputStyled__input"
+                        formControlName="cbxPasswordExpirationDaysCtrl"
+                        name="cbxPasswordExpirationDaysCtrl"
+                        (change)="setCbxPasswordExpirationDays()"
+                        type="checkbox">
+                      <label
+                        class="inputStyled__checkbox"
+                        for="cbxPasswordExpirationDaysCtrl">パスワード有効期限</label>
+                    </div>
+                  </label>
+                </dt>
+                <dd class="definitionForm__data w--65">
+                  <input
+                    formControlName="passwordExpirationDaysCtrl"
+                    name="passwordExpirationDaysCtrl"
+                    (keyup.enter)="setPasswordExpirationDays()"
+                    (blur)="setPasswordExpirationDays()"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60 definitionForm__input">日経過したらパスワードを変更する
+                </dd>
+                <dt class="definitionForm__title w--35">
+                  パスワード履歴の保存数
+                </dt>
+                <dd class="definitionForm__data w--65">
+                  <input
+                    formControlName="passwordHistoryCountCtrl"
+                    name="passwordHistoryCountCtrl"
+                    (keyup.enter)="setPasswordHistoryCount()"
+                    (blur)="setPasswordHistoryCount()"
+                    type="tel"
+                    maxlength="2"
+                    class="input-size--60 definitionForm__input">個（最大10個）
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <div class="frame--w-90">
+                  <h3 class="frame__title">パスワード文字種類</h3>
+                  <dl class="definitionForm">
+                    <dt class="definitionForm__title">
+                      <label class="labelWrap">
+                        <div class="inputStyled">
+                          <input
+                            id="cbxPasswordUseAlphabetCtrl"
+                            class="inputStyled__input"
+                            formControlName="cbxPasswordUseAlphabetCtrl"
+                            name="cbxPasswordUseAlphabetCtrl"
+                            (change)="setCbxPasswordUseAlphabet()"
+                            type="checkbox">
+                          <label
+                            class="inputStyled__checkbox"
+                            for="cbxPasswordUseAlphabetCtrl">アルファベット</label>
+                        </div>
+                      </label>
+                    </dt>
+                    <dd class="definitionForm__data w--75">
+                      <input
+                        formControlName="passwordMinAlphabetUseCountCtrl"
+                        name="passwordMinAlphabetUseCountCtrl"
+                        (keyup.enter)="setPasswordMinAlphabetUseCount($event.type)"
+                        (blur)="setPasswordMinAlphabetUseCount($event.type)"
+                        type="tel"
+                        maxlength="2"
+                        class="input-size--60 definitionForm__input">文字以上含む
+                      <label class="labelWrap">
+                        <div class="inputStyled">
+                          <input
+                            id="cbxPasswordCaseSensitiveCtrl"
+                            class="inputStyled__input"
+                            formControlName="cbxPasswordCaseSensitiveCtrl"
+                            name="cbxPasswordCaseSensitiveCtrl"
+                            type="checkbox">
+                          <label
+                            class="inputStyled__checkbox"
+                            for="cbxPasswordCaseSensitiveCtrl">大文字と小文字を区別する</label>
+                        </div>
+                      </label>
+                    </dd>
+                    <dt class="definitionForm__title">
+                      <label class="labelWrap">
+                        <div class="inputStyled">
+                          <input
+                            id="cbxPasswordUseNumberCtrl"
+                            class="inputStyled__input"
+                            formControlName="cbxPasswordUseNumberCtrl"
+                            name="cbxPasswordUseNumberCtrl"
+                            (change)="setCbxPasswordUseNumber()"
+                            type="checkbox">
+                          <label
+                            class="inputStyled__checkbox"
+                            for="cbxPasswordUseNumberCtrl">数字</label>
+                        </div>
+                      </label>
+                    </dt>
+                    <dd class="definitionForm__data w--85">
+                      <input
+                        formControlName="passwordMinNumberUseCountCtrl"
+                        name="passwordMinNumberUseCountCtrl"
+                        (keyup.enter)="setPasswordMinNumberUseCount($event.type)"
+                        (blur)="setPasswordMinNumberUseCount($event.type)"
+                        type="tel"
+                        maxlength="2"
+                        class="input-size--60 definitionForm__input">文字以上含む
+                    </dd>
+                    <dt class="definitionForm__title">
+                      <label class="labelWrap">
+                        <div class="inputStyled">
+                          <input
+                            id="cbxPasswordUseSymbolCtrl"
+                            class="inputStyled__input"
+                            formControlName="cbxPasswordUseSymbolCtrl"
+                            name="cbxPasswordUseSymbolCtrl"
+                            (change)="setCbxPasswordUseSymbol()"
+                            type="checkbox">
+                          <label
+                            class="inputStyled__checkbox"
+                            for="cbxPasswordUseSymbolCtrl">記号</label>
+                        </div>
+                      </label>
+                    </dt>
+                    <dd class="definitionForm__data">
+                      <input
+                        formControlName="passwordMinSymbolUseCountCtrl"
+                        name="passwordMinSymbolUseCountCtrl"
+                        (keyup.enter)="setPasswordMinSymbolUseCount($event.type)"
+                        (blur)="setPasswordMinSymbolUseCount($event.type)"
+                        type="tel"
+                        maxlength="2"
+                        class="input-size--60 definitionForm__input">
+                      <span class="mr--5">文字以上含む</span>
+                      <label class="labelWrap">
+                        <div class="inputStyled">
+                          <input
+                            id="cbxPasswordCheckAllSymbolsCtrl"
+                            class="inputStyled__input"
+                            formControlName="cbxPasswordCheckAllSymbolsCtrl"
+                            name="cbxPasswordCheckAllSymbolsCtrl"
+                            (change)="setCbxPasswordCheckAllSymbols()"
+                            type="checkbox">
+                          <label
+                            class="inputStyled__checkbox"
+                            for="cbxPasswordCheckAllSymbolsCtrl">全ての記号にチェックを入れる。</label>
+                        </div>
+                      </label>
+
+                      <table class="checklistTable mt--10">
+                        <tr *ngFor="let row of passwordSymbolRow index as rn">
+                          <td
+                            *ngFor="let cher of row index as i"
+                            class="checklistTable__data">
+                            <label class="labelWrap">
+                              <div class="inputStyled">
+                                <input
+                                  id="cbxPasswordSymbolCtrl{{i+(symbolColNumber*rn)}}"
+                                  class="inputStyled__input"
+                                  formControlName="cbxPasswordSymbolCtrl{{i+(symbolColNumber*rn)}}"
+                                  name="cbxPasswordSymbolCtrl{{i+(symbolColNumber*rn)}}"
+                                  type="checkbox">
+                                <label
+                                  class="inputStyled__checkbox"
+                                  for="cbxPasswordSymbolCtrl{{i+(symbolColNumber*rn)}}">{{ cher }}</label>
+                              </div>
+                            </label>
+                          </td>
+                        </tr>
+                      </table>
+
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+    </section>
+  </div>
+
+</section>

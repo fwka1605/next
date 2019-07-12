@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ReminderService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:55258/ReminderService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:55258/ReminderService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:55258/ReminderService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+      <xsd:import schemaLocation="http://localhost:55258/ReminderService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IReminderService_Exist_InputMessage">
+    <wsdl:part name="parameters" element="tns:Exist" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_Exist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetSummaryItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryItems" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetSummaryItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetReminderBillingForPrint_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderBillingForPrint" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetReminderBillingForPrint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderBillingForPrintResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetReminderBillingForSummaryPrint_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderBillingForSummaryPrint" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetReminderBillingForSummaryPrint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderBillingForSummaryPrintResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetReminderBillingForReprint_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderBillingForReprint" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetReminderBillingForReprint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderBillingForReprintResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetHistoryItemsByReminderId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHistoryItemsByReminderId" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetHistoryItemsByReminderId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHistoryItemsByReminderIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetSummaryHistoryItemsByReminderSummaryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryHistoryItemsByReminderSummaryId" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetSummaryHistoryItemsByReminderSummaryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSummaryHistoryItemsByReminderSummaryIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_UpdateStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatus" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_UpdateStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_UpdateSummaryStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSummaryStatus" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_UpdateSummaryStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateSummaryStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_UpdateReminderOutputed_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReminderOutputed" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_UpdateReminderOutputed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReminderOutputedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_UpdateReminderSummaryOutputed_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReminderSummaryOutputed" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_UpdateReminderSummaryOutputed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReminderSummaryOutputedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetOutputedItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutputedItems" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetOutputedItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutputedItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetMaxOutputNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxOutputNo" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetMaxOutputNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMaxOutputNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetReminderList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderList" />
+  </wsdl:message>
+  <wsdl:message name="IReminderService_GetReminderList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReminderListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IReminderService">
+    <wsdl:operation name="Exist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/Exist" message="tns:IReminderService_Exist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/ExistResponse" message="tns:IReminderService_Exist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetItems" message="tns:IReminderService_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetItemsResponse" message="tns:IReminderService_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetSummaryItems" message="tns:IReminderService_GetSummaryItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetSummaryItemsResponse" message="tns:IReminderService_GetSummaryItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderBillingForPrint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetReminderBillingForPrint" message="tns:IReminderService_GetReminderBillingForPrint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetReminderBillingForPrintResponse" message="tns:IReminderService_GetReminderBillingForPrint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderBillingForSummaryPrint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetReminderBillingForSummaryPrint" message="tns:IReminderService_GetReminderBillingForSummaryPrint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetReminderBillingForSummaryPrintResponse" message="tns:IReminderService_GetReminderBillingForSummaryPrint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderBillingForReprint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetReminderBillingForReprint" message="tns:IReminderService_GetReminderBillingForReprint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetReminderBillingForReprintResponse" message="tns:IReminderService_GetReminderBillingForReprint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/Create" message="tns:IReminderService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/CreateResponse" message="tns:IReminderService_Create_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryItemsByReminderId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetHistoryItemsByReminderId" message="tns:IReminderService_GetHistoryItemsByReminderId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetHistoryItemsByReminderIdResponse" message="tns:IReminderService_GetHistoryItemsByReminderId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryHistoryItemsByReminderSummaryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetSummaryHistoryItemsByReminderSummaryId" message="tns:IReminderService_GetSummaryHistoryItemsByReminderSummaryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetSummaryHistoryItemsByReminderSummaryIdResponse" message="tns:IReminderService_GetSummaryHistoryItemsByReminderSummaryId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/UpdateStatus" message="tns:IReminderService_UpdateStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/UpdateStatusResponse" message="tns:IReminderService_UpdateStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSummaryStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/UpdateSummaryStatus" message="tns:IReminderService_UpdateSummaryStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/UpdateSummaryStatusResponse" message="tns:IReminderService_UpdateSummaryStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReminderOutputed">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/UpdateReminderOutputed" message="tns:IReminderService_UpdateReminderOutputed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/UpdateReminderOutputedResponse" message="tns:IReminderService_UpdateReminderOutputed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReminderSummaryOutputed">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/UpdateReminderSummaryOutputed" message="tns:IReminderService_UpdateReminderSummaryOutputed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/UpdateReminderSummaryOutputedResponse" message="tns:IReminderService_UpdateReminderSummaryOutputed_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutputedItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetOutputedItems" message="tns:IReminderService_GetOutputedItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetOutputedItemsResponse" message="tns:IReminderService_GetOutputedItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxOutputNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetMaxOutputNo" message="tns:IReminderService_GetMaxOutputNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetMaxOutputNoResponse" message="tns:IReminderService_GetMaxOutputNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReminderService/GetReminderList" message="tns:IReminderService_GetReminderList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReminderService/GetReminderListResponse" message="tns:IReminderService_GetReminderList_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IReminderService" type="tns:IReminderService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Exist">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/Exist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryItems">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetSummaryItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderBillingForPrint">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetReminderBillingForPrint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderBillingForSummaryPrint">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetReminderBillingForSummaryPrint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderBillingForReprint">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetReminderBillingForReprint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistoryItemsByReminderId">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetHistoryItemsByReminderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSummaryHistoryItemsByReminderSummaryId">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetSummaryHistoryItemsByReminderSummaryId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateStatus">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/UpdateStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateSummaryStatus">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/UpdateSummaryStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReminderOutputed">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/UpdateReminderOutputed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReminderSummaryOutputed">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/UpdateReminderSummaryOutputed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutputedItems">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetOutputedItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMaxOutputNo">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetMaxOutputNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReminderList">
+      <soap:operation soapAction="http://tempuri.org/IReminderService/GetReminderList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReminderService">
+    <wsdl:port name="BasicHttpBinding_IReminderService" binding="tns:BasicHttpBinding_IReminderService">
+      <soap:address location="http://localhost:55258/ReminderService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

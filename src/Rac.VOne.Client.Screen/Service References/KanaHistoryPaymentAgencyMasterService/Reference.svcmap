@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ecba8442-66d4-4412-b462-3a4e94d179be" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/KanaHistoryPaymentAgencyMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="KanaHistoryPaymentAgencyMaster.xsd" MetadataType="Schema" ID="7fcad2f6-5905-4e2c-93cf-4e3efd3b142c" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryPaymentAgencyMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="KanaHistoryPaymentAgencyMaster.disco" MetadataType="Disco" ID="cbf0a392-85fc-4cf0-bd23-296779fbab5f" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryPaymentAgencyMaster.svc?disco" />
+    <MetadataFile FileName="KanaHistoryPaymentAgencyMaster.wsdl" MetadataType="Wsdl" ID="b57ee241-53e0-40c1-b8b6-aaeec43cffbc" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryPaymentAgencyMaster.svc?wsdl" />
+    <MetadataFile FileName="KanaHistoryPaymentAgencyMaster1.xsd" MetadataType="Schema" ID="efe90535-1865-48a7-9873-235e79f1f5f6" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryPaymentAgencyMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="KanaHistoryPaymentAgencyMaster2.xsd" MetadataType="Schema" ID="fd0235d9-3d19-479f-8a4d-f54bd2cc734a" SourceId="1" SourceUrl="http://localhost:3061/Master/KanaHistoryPaymentAgencyMaster.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,245 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="back()" 
+        *ngIf="!disableBack()"
+        class="buttonBack">
+        {{ItemNameConst.BTN_BACK}}
+      </button>      
+
+      <button
+        (click)="panelOpenState=!panelOpenState;"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_SEARCH_HIDE:ItemNameConst.BTN_SEARCH_ADD}}
+      </button>
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 検索条件 -->
+    <section *ngIf="panelOpenState" class="contents">
+      <mat-expansion-panel (opened)="panelOpenState=true" (closed)="panelOpenState=false" [expanded]="panelOpenState">
+        <mat-expansion-panel-header collapsedHeight="{{PanelConst.collapsedHeight}}" expandedHeight="{{PanelConst.collapsedHeight}}">
+          <mat-panel-title>
+            <h2 class="accordionContent__title mr--10">{{ItemNameConst.LBL_SEARCH_CONDITION}}</h2>
+            <mat-panel-description>
+              <h2 class="accordionContent__title">{{panelOpenState ? '' : ItemNameConst.LBL_CAN_SET_SEARCH_CONDITION}}</h2>
+            </mat-panel-description>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+  
+        <ng-template matExpansionPanelContent>
+          <div class="accordionContent__body contents__container--flex">
+            <div class="contents__item--w-50">
+              <dl class="definitionForm--lh-narrow">
+                <dt class="definitionForm__title w--17">伝票日付</dt>
+                <dd class="definitionForm__data w--83">
+                  <input 
+                    formControlName="recordedAtFromCtrl" 
+                    name="recordedAtFromCtrl"
+                    (keyup.enter)="setRecordedAtFrom($event.type)" 
+                    (dateSelect)="setRecordedAtFrom($event.type)"
+                    ngbDatepicker #recordedAtFromDp="ngbDatepicker" 
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': recordedAtFromCtrl.errors?.ngbDate}"
+                    maxlength="10" 
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="recordedAtFromDp.toggle()" type="button"></button>
+                  <span class="wavy-line"></span>
+                  <input 
+                    formControlName="recordedAtToCtrl" 
+                    name="recordedAtToCtrl"
+                    (keyup.enter)="setRecordedAtTo($event.type)" 
+                    (dateSelect)="setRecordedAtTo($event.type)" 
+                    ngbDatepicker
+                    #recordedAtToDp="ngbDatepicker" 
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                    [ngClass]="{'input--error': recordedAtToCtrl.errors?.ngbDate}"
+                    maxlength="10" 
+                    type="tel"
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="recordedAtToDp.toggle()" type="button"></button>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="recordedAtFromCtrl.errors?.ngbDate || recordedAtToCtrl.errors?.ngbDate">
+                      {{ MSG_VAL.DATE_DAY }}
+                    </div>
+                </dd>
+                <dt class="definitionForm__title w--17 fuzzy">金融機関名</dt>
+                <dd class="definitionForm__data w--83">
+                  <input 
+                      formControlName="accountNameCtrl" 
+                      name="accountNameCtrl" 
+                      (keyup.enter)="setAccountName($event.type)" 
+                      type="text" 
+                      maxlength="140" 
+                      class="input-size--350">
+                </dd>
+                <dt class="definitionForm__title w--17 fuzzy">支店名</dt>
+                <dd class="definitionForm__data w--83">
+                  <input 
+                      formControlName="subAccountNameCtrl" 
+                      name="subAccountNameCtrl" 
+                      (keyup.enter)="setSubAccountName($event.type)" 
+                      type="text" 
+                      maxlength="140" 
+                      class="input-size--350">
+                </dd>
+                <dt class="definitionForm__title w--17 fuzzy">口座種別</dt>
+                <dd class="definitionForm__data w--83">
+                  <input 
+                      formControlName="accountTypeNameCtrl" 
+                      name="accountTypeNameCtrl" 
+                      (keyup.enter)="setAccountTypeName($event.type)" 
+                      type="text" 
+                      maxlength="140" 
+                      class="input-size--350">
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm--lh-narrow">
+                <dt class="definitionForm__title w--17">銀行コード</dt>
+                <dd class="definitionForm__data w--83">
+                  <input 
+                    formControlName="bankCodeCtrl" 
+                    name="bankCodeCtrl"
+                    (keyup.enter)="setBankCodeCtrl($event.type)" 
+                    maxlength="4" 
+                    type="tel"
+                    class="input-size--100">
+                </dd>
+                <dt class="definitionForm__title w--17">支店コード</dt>
+                <dd class="definitionForm__data w--83">
+                  <input 
+                      formControlName="branchCodeCtrl" 
+                      name="branchCodeCtrl" 
+                      (keyup.enter)="setBranchCodeCtrl($event.type)" 
+                      type="text" 
+                      maxlength="3" 
+                      class="input-size--100">
+                </dd>
+                <dt class="definitionForm__title w--17">口座番号</dt>
+                <dd class="definitionForm__data w--83">
+                  <input 
+                      formControlName="accountNumberCtrl" 
+                      name="accountNumberCtrl" 
+                      (keyup.enter)="setAccountNumber($event.type)" 
+                      type="text" 
+                      maxlength="7" 
+                      class="input-size--100">
+                </dd>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1;else elseCurrencyContent">
+                  <dt class="definitionForm__title w--17">通貨コード</dt>
+                  <dd class="definitionForm__data w--83">
+                    <input 
+                        formControlName="currencyCodeCtrl" 
+                        name="currencyCodeCtrl"
+                        (blur)="setCurrencyCode($event.type)" 
+                        (keyup.enter)="setCurrencyCode($event.type)"
+                        type="text" 
+                        maxlength="3"
+                        placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                        class="input-size--60">
+                        <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY,$event.keyCode)"></a>
+                  </dd>
+                </ng-container>
+              </dl>
+            </div>
+            <div class="contents__buttonGroup">
+              <button
+                (click)="buttonAction(BUTTON_ACTION.SEARCH)"
+                [ngClass]="{'button-disable':  myFormGroup.invalid }"
+                class="buttonSecondary">{{ItemNameConst.BTN_SEARCH}}</button>
+              <button
+                (click)="buttonAction(BUTTON_ACTION.DELETE)"
+                [ngClass]="{'button-disable':  myFormGroup.invalid || deleteButtonDisable }"
+                class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+              <button
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+            </div>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+    </section>
+  
+    <!-- 検索結果 -->
+    <section class="contents searchResult">
+      <h2 class="contents__title--underline-slim">
+        <div class="contents__titleInner">
+          {{ItemNameConst.LBL_RESULT_SEARCH}}
+          件数<input class="searchResult__totalField" value="{{dispSumCount}}件" readonly>
+          入金額合計<input class="searchResult__totalField" value="{{dispSumInAmount|currency_pipe}}" readonly>
+          出金額合計<input class="searchResult__totalField" value="{{dispSumOutAmount|currency_pipe}}" readonly>
+        </div>
+      </h2>
+      <div class="common-inner-table">
+        <table class="searchResult__table--tableData-nowrap">
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_60_CODE}}">削除
+                <div class="inputStyled--inTable">
+                  <input
+                    id="cbxCheckAllCtrl"
+                    class="inputStyled__input"
+                    formControlName="cbxCheckAllCtrl"
+                    name="cbxCheckAllCtrl"
+                    (change)="checkAll()"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxCheckAllCtrl"></label>
+                </div>
+              </th>
+              <th class="{{TableColumn.COL_150_CODE}}">伝票日付</th>
+              <th class="{{TableColumn.COL_200_CODE}}">金融機関名</th>
+              <th class="{{TableColumn.COL_200_CODE}}">支店名</th>
+              <th class="{{TableColumn.COL_150_CODE}}">口座種別</th>
+              <th class="{{TableColumn.COL_150_CODE}}">口座番号</th>
+              <th class="{{TableColumn.COL_CENTER_KINGAKU}}">入金</th>
+              <th class="{{TableColumn.COL_CENTER_KINGAKU}}">出金</th>
+              <th class="{{TableColumn.COL_350_CODE}}">内容</th>
+            </tr>
+          </thead>
+          <tbody class="searchResult__table">
+            <tr *ngFor="let mfAggrTransaction of mfAggrTransactions  | slice:0: TABLE_MAX_DISPLAY_INDEX  let i = index ">
+              <td class="{{TableColumn.COL_60_CODE}}">
+                <div class="inputStyled">
+                  <input
+                    id="cbxDeleteCtrl{{i}}"
+                    class="inputStyled__input"
+                    formControlName="cbxDeleteCtrl{{i}}"
+                    name="cbxDeleteCtrl{{i}}"
+                    (change)="setCbxDelete(i)"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxDeleteCtrl{{i}}"></label>
+                </div>
+              </td>
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{ mfAggrTransaction.recordedAt|date:'yyyy/MM/dd' }}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{ mfAggrTransaction.accountName }}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{ mfAggrTransaction.subAccountName }}</td>
+              <td class="{{TableColumn.COL_150_NAME}}">{{ mfAggrTransaction.accountTypeName }}</td>
+              <td class="{{TableColumn.COL_150_CODE}}">{{ mfAggrTransaction.accountNumber }}</td>
+              <td class="{{TableColumn.COL_CENTER_KINGAKU}}">{{ getDisplayAmount(mfAggrTransaction) }}</td>
+              <td class="{{TableColumn.COL_CENTER_KINGAKU}}">{{ getDisplayAmount(mfAggrTransaction, false) }}</td>
+              <td class="{{TableColumn.COL_350_NAME}}">{{ mfAggrTransaction.content }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </section>
+
+  
+  </div>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d52387ff-5d56-4ec0-a3b7-a1f7258b2da0" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/CompanyMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CompanyMaster.xsd" MetadataType="Schema" ID="bc4b4fa5-10fb-4751-8d49-a6685546081e" SourceId="1" SourceUrl="http://localhost:3061/Master/CompanyMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="CompanyMaster.wsdl" MetadataType="Wsdl" ID="e04b585f-1102-453e-98d1-f9521181d949" SourceId="1" SourceUrl="http://localhost:3061/Master/CompanyMaster.svc?wsdl" />
+    <MetadataFile FileName="CompanyMaster1.xsd" MetadataType="Schema" ID="df100653-7c0f-4497-bf1c-4de686a8887a" SourceId="1" SourceUrl="http://localhost:3061/Master/CompanyMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="CompanyMaster.disco" MetadataType="Disco" ID="b4c85c0b-36db-48ac-92d2-aed2696cff81" SourceId="1" SourceUrl="http://localhost:3061/Master/CompanyMaster.svc?disco" />
+    <MetadataFile FileName="CompanyMaster2.xsd" MetadataType="Schema" ID="86822f0f-8021-44ff-acff-901944ff2fd7" SourceId="1" SourceUrl="http://localhost:3061/Master/CompanyMaster.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

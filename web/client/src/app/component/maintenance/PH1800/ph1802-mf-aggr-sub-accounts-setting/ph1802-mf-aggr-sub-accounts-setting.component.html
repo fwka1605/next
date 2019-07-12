@@ -1,0 +1,206 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="back()" 
+        class="buttonBack">
+        {{ItemNameConst.BTN_BACK}}
+      </button>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.UPDATE)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary">
+        {{ItemNameConst.BTN_UPDATE}}
+      </button>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.REDISPLAY)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonMinimum">
+        {{ItemNameConst.BTN_REDISPLAY}}
+      </button>
+
+    </div>
+  </section>
+  
+  <section class="pageContainer">
+    <section class="contents">
+      <h2 class="contents__title--underline">登録済口座情報</h2>
+      <div class="contents__container">
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}"></th>
+                <th class="{{TableColumn.COL_250_CODE}}">金融機関名</th>
+                <th class="{{TableColumn.COL_250_CODE}}">支店名</th>
+                <th class="{{TableColumn.COL_100_CODE}}">口座種別</th>
+                <th class="{{TableColumn.COL_100_CODE}}">口座番号</th>
+                <th class="{{TableColumn.COL_100_CODE}}">銀行コード</th>
+                <th class="{{TableColumn.COL_100_CODE}}">支店コード</th>
+                <th class="{{TableColumn.COL_150_CODE}}">入金区分</th>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+                    <th class="{{TableColumn.COL_150_CODE}}">入金部門コード</th>
+                  <th class="{{TableColumn.COL_250_CODE}}">入金部門名</th>
+                </ng-container>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let accountDetail of accountDetails; let i = index"
+                (click)="selectLine(i)">
+                <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{ i + 1 }}</td>
+                <td class="{{TableColumn.COL_250_NAME}}">{{accountDetail.AccountName}}</td>
+                <td class="{{TableColumn.COL_250_NAME}}">{{accountDetail.SubAccountName}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{accountDetail.AccountTypeName}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{accountDetail.AccountNumber}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{accountDetail.BankCode}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{accountDetail.BranchCode}}</td>
+                <td class="{{TableColumn.COL_150_NAME}}">{{accountDetail.ReceiptCategoryCode}}:{{accountDetail.ReceiptCategoryName}}</td>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+                    <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{accountDetail.SectionCode}}</td>
+                  <td class="{{TableColumn.COL_250_NAME}}">{{accountDetail.SectionName}}</td>
+                </ng-container>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="contents">
+      <div class="contents__container--flex">
+        <div class="contents__item--w-50">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title w--20">金融機関名</dt>
+            <dd class="definitionForm__data w--80">
+              <input
+                formControlName="accountNameCtrl"
+                name="accountNameCtrl"
+                class="input-size--400"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--20">支店名</dt>
+            <dd class="definitionForm__data w--80">
+              <input
+                formControlName="subAccountNameCtrl"
+                name="subAccountNameCtrl"
+                class="input-size--400"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--20">口座種別</dt>
+            <dd class="definitionForm__data w--80">
+              <input
+                formControlName="accountTypeNameCtrl"
+                name="accountTypeNameCtrl"
+                class="input-size--110"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--20">口座番号</dt>
+            <dd class="definitionForm__data w--80">
+              <input
+                formControlName="accountNumberCtrl"
+                name="accountNumberCtrl"
+                class="input-size--110"
+                readonly>
+            </dd>
+          </dl>
+        </div>
+        <div class="contents__item--w-50">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title w--25">入金区分<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--75">
+              <input
+                formControlName="receiptCategoryCodeCtrl"
+                name="receiptCategoryCodeCtrl"
+                (keyup.enter)="setReceiptCategoryCode($event.type)"
+                (blur)="setReceiptCategoryCode($event.type)"
+                #receiptCategoryCodeInput
+                [formControl]="receiptCategoryCodeCtrl" 
+                [matAutocomplete]="autoReceiptCategoryCode"
+                maxlength="2"
+                type="tel"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                class="input-size--60 definitionForm__input">
+              <mat-autocomplete 
+                #autoReceiptCategoryCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth150">
+                <mat-option 
+                  *ngFor="let category of categoryFilterds[0] | async" 
+                  [value]="category.code">{{category.code}}:{{category.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY_EXCLUDE_USE_LIMIT_DATE)"></a>
+              <input
+                formControlName="receiptCategoryNameCtrl"
+                name="receiptCategoryNameCtrl"
+                class="input-size--300"
+                readonly>
+            </dd>
+            <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+              <dt class="definitionForm__title w--25">入金部門コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--75">
+                <input
+                  formControlName="sectionCodeCtrl"
+                  name="sectionCodeCtrl"
+                  (keyup.enter)="setSectionCode($event.type)"
+                  (blur)="setSectionCode($event.type)"
+                  #sectionCodeInput
+                  [formControl]="sectionCodeCtrl" 
+                  [matAutocomplete]="autosectionCode"
+                  type="tel"
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                  maxlength="{{userInfoService.ApplicationControl?.sectionCodeLength}}"
+                  class="input-size--100 definitionForm__input">
+                <mat-autocomplete 
+                  #autosectionCode="matAutocomplete"
+                  [panelWidth]="PanelConst.autocompleteWidth300">
+                  <mat-option 
+                    *ngFor="let section of sectionFilterds[0] | async" 
+                    [value]="section.code">{{section.code}}:{{section.name}}
+                  </mat-option>
+                </mat-autocomplete>
+                <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION)"></a>
+                <input
+                  formControlName="sectionNameCtrl"
+                  name="sectionNameCtrl"
+                  class="input-size--300"
+                  readonly>
+              </dd>
+            </ng-container>
+            <dt class="definitionForm__title w--25">銀行コード</dt>
+            <dd class="definitionForm__data w--75">
+              <input
+                formControlName="bankCodeCtrl"
+                name="bankCodeCtrl"
+                (keyup.enter)="setBankCode($event.type)"
+                (blur)="setBankCode($event.type)"
+                maxlength="4"
+                type="tel"
+                class="input-size--80">
+            </dd>
+            <dt class="definitionForm__title w--25">支店コード</dt>
+            <dd class="definitionForm__data w--75">
+              <input
+                formControlName="branchCodeCtrl"
+                name="branchCodeCtrl"
+                (keyup.enter)="setBranchCode($event.type)"
+                (blur)="setBranchCode($event.type)"
+                maxlength="3"
+                type="tel"
+                class="input-size--80">
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+  </div>

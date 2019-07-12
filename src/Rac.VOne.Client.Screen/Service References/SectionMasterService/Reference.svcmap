@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f8a87483-6935-40e7-ba24-5e75498b8483" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/SectionMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SectionMaster.xsd" MetadataType="Schema" ID="b8d3d105-d948-442a-ac1a-11fdb14bf526" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="SectionMaster1.xsd" MetadataType="Schema" ID="92be9e6c-76b6-4705-8386-d885366e7948" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="SectionMaster2.xsd" MetadataType="Schema" ID="8e64afac-425b-431a-8481-da239e269fe2" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="SectionMaster3.xsd" MetadataType="Schema" ID="b7934180-ce75-4384-84c0-e9d7f236b848" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="SectionMaster.disco" MetadataType="Disco" ID="019b35d2-f1a0-434e-a6fd-ba07003ffdf7" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionMaster.svc?disco" />
+    <MetadataFile FileName="SectionMaster.wsdl" MetadataType="Wsdl" ID="8c19ad97-fdc6-4b47-9bc6-af43cf1e9817" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfCustomerFee">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerFee" nillable="true" type="tns:CustomerFee" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerFee" nillable="true" type="tns:ArrayOfCustomerFee" />
+  <xs:complexType name="CustomerFee">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyPrecision" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fee" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Fee1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Fee2" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Fee3" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NewFee" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateAt1" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateAt2" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateAt3" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerFee" nillable="true" type="tns:CustomerFee" />
+  <xs:complexType name="CustomerFeeResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerFee" nillable="true" type="tns:ArrayOfCustomerFee" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerFeeResult" nillable="true" type="tns:CustomerFeeResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="CustomerFeesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CustomerFeePrint" nillable="true" type="tns:ArrayOfCustomerFee" />
+      <xs:element minOccurs="0" name="CustomerFees" nillable="true" type="tns:ArrayOfCustomerFee" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerFeesResult" nillable="true" type="tns:CustomerFeesResult" />
+  <xs:complexType name="ImportResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeleteCount" type="xs:int" />
+      <xs:element minOccurs="0" name="InsertCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="UpdateCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportResult" nillable="true" type="tns:ImportResult" />
+</xs:schema>

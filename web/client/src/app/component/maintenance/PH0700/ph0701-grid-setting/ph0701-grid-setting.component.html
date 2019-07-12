@@ -1,0 +1,173 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+      <button
+        (click)="buttonAction(BUTTON_ACTION.RESET)"
+        [ngClass]="{'button-disable': gridSettings == undefined}"
+        class="buttonMinimum">
+        {{ItemNameConst.BTN_INITIALIZE}}
+        <span
+          [innerHtml]="ButtonTipsConst.INITIALIZE | safeHtml_pipe"
+          class="infotip__frame"></span>
+      </button>
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 項目の設定 -->
+    <section class="contents">
+      <h2 class="contents__title">{{ItemNameConst.LBL_SETTING_ITEM}}</h2>
+      <div class="contents__container--flex pt--0">
+        <div class="contents__item--w-50">
+          <div class="frame--w-95 mb--40">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title">画面</dt>
+              <dd class="definitionForm__data">
+            <select
+              formControlName="gridTypeCtrl"
+              name="gridTypeCtrl"
+              (change)="setGridType()"
+              class="select-size--150">
+              <option [value]="1">請求データ検索</option>
+              <option [value]="2">入金データ検索</option>
+              <option [value]="3">個別消込【請求】</option>
+              <option [value]="4">個別消込【入金】</option>
+              <option [value]="6" *ngIf="userInfoService.ApplicationControl.usePublishInvoice==1">請求書発行</option>
+              <option [value]="5" *ngIf="userInfoService.ApplicationControl.useScheduledPayment==1">入金予定入力</option>
+            </select>
+              </dd>
+            </dl>
+          </div>
+          <div class="frame--w-95">
+            <h4 class="frame__title">更新対象書</h4>
+            <label class="labelWrap">
+              <input class="labelWrap__input"
+                type="radio" 
+                formControlName="rdoOperatorTypeCtrl"
+                name="rdoOperatorTypeCtrl"
+                value="0">ログイン担当者
+            </label>
+            <label class="labelWrap">
+              <input class="labelWrap__input"
+                type="radio" 
+                formControlName="rdoOperatorTypeCtrl"
+                name="rdoOperatorTypeCtrl"
+                value="1">全担当者
+            </label>
+          </div>
+        </div>
+        <div class="contents__item--w-50">
+          <div class="common-inner-table">
+            <table cdkDropList (cdkDropListDropped)="onDrop($event)">
+              <thead>
+                <tr>
+                  <th class="{{TableColumn.COL_50_CODE}}"></th>
+                  <th class="{{TableColumn.COL_100_CODE}}">表示順</th>
+                  <th class="{{TableColumn.COL_200_CODE}}">項目名</th>
+                  <th class="{{TableColumn.COL_200_CODE}}">表示幅</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let setting of myFormGroup.get('settingForms')['controls']; let i = index"
+                  cdkDrag="setting"
+                  [cdkDragDisabled]="getGridSettingFormPriority(setting) !== 999">
+                  <ng-container [formGroup]="setting">
+                    <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                      <mat-icon class="material-icons md-18 md-dark darg-drop-item"
+                        [ngClass]="getGridSettingFormPriority(setting) !== 999 ? ' md-inactive' : ' drag-drop-handle'"
+                        cdkDragHandle>drag_handle</mat-icon>
+                    </td>
+                    <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ i + 1 }}</td>
+                    <td class="{{TableColumn.COL_200_NAME}}">{{ setting.get('columnNameJp').value }}</td>
+                    <td class="{{TableColumn.COL_200_CENTER_NAME}}">
+                      <input class=""
+                      type="text"
+                      formControlName="displayWidth"
+                      maxlength="4"
+                      (keyup.enter)="setItemWidth($event.type, i)"
+                      (blur)="setItemWidth($event.type, i)"
+                      >
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 設定プレビュー -->
+    <section class="contents">
+      <h2 class="contents__title">{{ItemNameConst.LBL_SETTING_PREVIEW}}</h2>
+      <div class="contents__container">
+        <div class="common-inner-table">
+            <table class="searchResult__table--tableData-nowrap">
+              <thead>
+                <tr>
+                  <ng-container *ngFor="let setting of gridSettings">
+                    <th *ngIf="setting.displayWidth > 0"
+                      (click)="setSort(setting.columnName)"
+                      class="col-size--{{setting.displayWidth}}" >
+                      {{ setting.columnNameJp }}
+                      <div *ngIf="requireSortButton(setting)" class="common-btn__option sort-box">
+                        <button
+                          *ngIf="requireSortMark(setting)"
+                          class="sort-box__btn"
+                          data-sort-btn>
+                          {{ getSortMark(setting.columnName) }}
+                        </button>
+                      </div>
+                      <input
+                        *ngIf="setting.columnName=='AssignmentFlag'"
+                        type="checkbox">
+                    </th>
+                  </ng-container>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container *ngIf="gridSource.length > 0">
+                  <ng-container *ngFor="let source of gridSource; let i = index;">
+                    <tr>
+                      <ng-container *ngFor="let setting of gridSettings">
+                        <td *ngIf="setting.displayWidth > 0"
+                          class="col-size--{{setting.displayWidth}}"
+                          [ngClass]="isNumber(gridSource[i][setting.columnName]) ? ' col-align-right' : ' col-align-center'" >
+                          <input *ngIf="isBoolean(gridSource[i][setting.columnName])" type="checkbox" [checked]="gridSource[i][setting.columnName]">
+                          <span 
+                            *ngIf="setting.columnName=='AssignmentState' && isString(gridSource[i][setting.columnName])"
+                            [innerHtml]="getAssingmentState(i) | safeHtml_pipe">
+                          </span>
+                          <span *ngIf="setting.columnName!='AssignmentState' && isString(gridSource[i][setting.columnName])">
+                            {{gridSource[i][setting.columnName] }}
+                          </span>
+                          <span *ngIf="isNumber(gridSource[i][setting.columnName])">
+                            {{ gridSource[i][setting.columnName] | number}}
+                          </span>
+                        </td>
+                      </ng-container>
+                    </tr>
+                  </ng-container>
+                </ng-container>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+</div>

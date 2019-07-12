@@ -1,0 +1,35 @@
+/* modal内のtable */
+  .modalTable {
+    $modalTable-prop: #{&};
+    @include xy-scroller-table(auto);
+    table {
+      border-top: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+    }
+    tbody {
+      > tr {
+        cursor: pointer;
+        &:hover {
+          th,td {
+            background-color: inherit;
+          }
+        }
+      }
+    }
+    th {
+      color: $text-color;
+      font-weight: bold;
+      text-align: center;
+      font-weight: bold;
+      color:$text-color;
+    }
+    td:nth-child(2) {
+      text-align: center;
+    }
+    &--noHighlights {
+      @extend #{$modalTable-prop};
+      tr:nth-child(even) td {
+        background: inherit;
+      }
+    }
+  }

@@ -1,0 +1,85 @@
+/* テキストに下線追加 pe0501など*/
+.fuzzy {
+  text-decoration: underline;
+}
+
+// ヘルパークラス：テキスト用
+  .text {
+    &--small {
+      font-size: $font-size-small !important;
+    }
+    &--large {
+      font-size: $font-size-large !important;
+    }
+    &--attention {
+      color: $text-attention !important;
+    }
+    &--404 { // 404ページで使用
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 42px;
+      margin: auto;
+      text-align: center;
+      font-size: $font-size-large;
+    }
+  }
+
+
+// ヘルパークラス：アンカー（<a>以外でアンカーの見た目にする場合）
+  .anchor {
+    color: $text-link !important;
+    cursor: pointer !important;
+    &:hover {
+      opacity: .8 !important;
+      text-decoration: underline !important;
+    }
+  }
+
+
+.font--bold {
+  font-weight: bold !important;
+}
+
+.font {
+  &__mid {
+    font-size: 1.2rem;
+  }
+  &__small {
+    font-size: 1rem;
+  }
+  &__large {
+    font-size: 1.6rem;
+  }
+  &__accent {
+    font-weight: bold;
+    font-size: 2rem;
+    color: $key-color;
+    &__drop {
+      // margin-bottom: 0;
+      font-weight: normal;
+      font-size: 1.5rem;
+      color: $text-warning;
+    }
+  }
+  /* エラーメッセージの仕分け用 */
+  &__success {
+    color: $text-success;
+  }
+  &__failure {
+    color: $text-error;
+  }
+  &__warning {
+    color: $text-warning;
+  }
+}
+
+
+/*
+  エラーメッセージ用 
+*/
+  .message-result {
+    display: inline-block;
+  }

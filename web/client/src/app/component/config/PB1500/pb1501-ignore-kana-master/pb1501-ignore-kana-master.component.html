@@ -1,0 +1,137 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_INPUT_ITEM_HIDDEN:ItemNameConst.BTN_INPUT_ITEM_DISPLAY}}</button>    
+
+      <div class="contentsButton__subSection">
+        <ng-container *ngIf="securityHideShow">
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterImport)">
+            <button class="buttonImport infotip"
+              (click)="buttonAction(BUTTON_ACTION.IMPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterExport)">
+            <button class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+              
+    </div>
+
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+          <div class="contents__container--flex">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title w--13">カナ名</dt>
+              <dd class="definitionForm__data w--87">
+                <input 
+                  formControlName="kanaCtrl"
+                  name="kanaCtrl"
+                  (blur)="setKana($event.type)"
+                  (keyup.enter)="setKana($event.type)"
+                  maxlength="140"
+                  class="input-size--500">
+              </dd>
+              <dt class="definitionForm__title w--13">対象外区分コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--87">
+                  <input
+                    formControlName="excludeCategoryCodeCtrl"
+                    name="excludeCategoryCodeCtrl"
+                    (keyup.enter)="setExcludeCategoryCode($event.type)"
+                    (blur)="setExcludeCategoryCode($event.type)"
+                    #excludeCategoryCodeToInput
+                    [formControl]="excludeCategoryCodeCtrl"
+                    [matAutocomplete]="excludeCategoryCodeTo"
+                    maxlength="2"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="input-size--100 definitionForm__input">
+                  <mat-autocomplete
+                    #excludeCategoryCodeTo="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option
+                      *ngFor="let category of categoryFilterds[0] | async"
+                      [value]="category.code">
+                      {{category.code}}:{{category.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal()"></a>
+                <input 
+                  formControlName="excludeCategoryNameCtrl"
+                  name="excludeCategoryNameCtrl"
+                  class="input-size--400"
+                  readonly>
+              </dd>
+            </dl>
+            <div class="contents__buttonGroup">
+              <button
+                (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+                [ngClass]="{'button-disable': myFormGroup.invalid}"
+                class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+              <button
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+              <button
+                (click)="buttonAction(BUTTON_ACTION.DELETE)"
+                [ngClass]="{'button-disable': DeleteButtonDisableFlag}"
+                class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <!-- 登録済みの除外カナ -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_REGISTER_IGNORE_KANA}}</h2>
+      <div class="contents__container">
+      <div class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_50_CODE}}">編集</th>
+              <th class="{{TableColumn.COL_600_CODE}}">カナ名</th>
+              <th class="{{TableColumn.COL_150_CODE}}">対象外区分コード</th>
+              <th class="{{TableColumn.COL_300_CODE}}">対象外区分名</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ignoreKana of ignoreKanasResult?.ignoreKanas; let i = index"
+              class="line-selector">
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                <a class="buttonEdit" (click)="selectLine(i)"></a>
+              </td>
+              <td class="{{TableColumn.COL_600_NAME}}">{{ignoreKana.kana}}</td>
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{ignoreKana.excludeCategoryCode}}</td>
+              <td class="{{TableColumn.COL_300_NAME}}">{{ignoreKana.excludeCategoryName}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </section>
+
+
+
+  </section>
+
+</div>
+  

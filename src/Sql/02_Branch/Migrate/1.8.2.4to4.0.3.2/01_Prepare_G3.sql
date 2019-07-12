@@ -1,0 +1,996 @@
+﻿--移行元のG3のデータベース名
+--必ずバックアップを取ること！！
+--対象G3 ver1.8.2.4(rev2896)
+--対象G4 ver4.0.3.2(rev2178)
+use G3_Convert 
+GO
+
+--===============================
+--対応表作成
+--===============================
+--画面 対応表
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBLGAMEN_CONVERT]') AND type in (N'U'))
+BEGIN
+CREATE TABLE TBLGAMEN_CONVERT (
+  GAMENID_OLD varchar(6)
+, GAMENID_NEW varchar(6)
+, GAMENMEI    varchar(100)
+)
+END
+
+DELETE TBLGAMEN_CONVERT
+
+INSERT INTO TBLGAMEN_CONVERT
+          SELECT 'PB0101' [GAMENID_OLD], 'PB0101' [GAMENID_NEW], '会社マスター'                 [NAME]
+UNION ALL SELECT 'PB0201' [GAMENID_OLD], 'PB0201' [GAMENID_NEW], '請求部門マスター'             [NAME]
+UNION ALL SELECT 'PB0301' [GAMENID_OLD], 'PB0301' [GAMENID_NEW], 'ログインユーザーマスター'     [NAME]
+UNION ALL SELECT 'PB0301' [GAMENID_OLD], 'PB0401' [GAMENID_NEW], '営業担当者マスター'           [NAME]
+UNION ALL SELECT 'PB0401' [GAMENID_OLD], 'PB0501' [GAMENID_NEW], '得意先マスター'               [NAME]
+UNION ALL SELECT 'PB0501' [GAMENID_OLD], 'PB0601' [GAMENID_NEW], '債権代表者マスター'           [NAME]
+UNION ALL SELECT 'PB0801' [GAMENID_OLD], 'PB0701' [GAMENID_NEW], '科目マスター'                 [NAME]
+UNION ALL SELECT 'PB0701' [GAMENID_OLD], 'PB0801' [GAMENID_NEW], '銀行口座マスター'             [NAME]
+UNION ALL SELECT 'PB1301' [GAMENID_OLD], 'PB0901' [GAMENID_NEW], '区分マスター'                 [NAME]
+UNION ALL SELECT 'PB1101' [GAMENID_OLD], 'PB1001' [GAMENID_NEW], '学習履歴データ管理'           [NAME]
+UNION ALL SELECT 'PB1701' [GAMENID_OLD], 'PB1101' [GAMENID_NEW], '入金部門マスター'             [NAME]
+UNION ALL SELECT 'PB1601' [GAMENID_OLD], 'PB1201' [GAMENID_NEW], '入金・請求部門対応マスター'   [NAME]
+UNION ALL SELECT 'PB1801' [GAMENID_OLD], 'PB1301' [GAMENID_NEW], '入金部門・担当者対応マスター' [NAME]
+UNION ALL SELECT 'PB1001' [GAMENID_OLD], 'PB1401' [GAMENID_NEW], '管理マスター'                 [NAME]
+UNION ALL SELECT 'PB2101' [GAMENID_OLD], 'PB1501' [GAMENID_NEW], '除外カナマスター'             [NAME]
+UNION ALL SELECT 'PB2201' [GAMENID_OLD], 'PB1601' [GAMENID_NEW], 'カレンダーマスター'           [NAME]
+UNION ALL SELECT 'PB2401' [GAMENID_OLD], 'PB1701' [GAMENID_NEW], '法人格マスター'               [NAME]
+UNION ALL SELECT 'PB2501' [GAMENID_OLD], 'PB1801' [GAMENID_NEW], '銀行・支店マスター'           [NAME]
+UNION ALL SELECT 'PB2001' [GAMENID_OLD], 'PB1901' [GAMENID_NEW], '決済代行会社マスター'         [NAME]
+--UNION ALL SELECT 'PB1901' [GAMENID_OLD], 'PB2001' [GAMENID_NEW], '長期前受契約マスター'         [NAME]
+UNION ALL SELECT 'PB2301' [GAMENID_OLD], 'PB2101' [GAMENID_NEW], '通貨マスター'                 [NAME]
+UNION ALL SELECT 'PB2601' [GAMENID_OLD], 'PB2201' [GAMENID_NEW], '送付先マスター'               [NAME]
+UNION ALL SELECT 'PC0101' [GAMENID_OLD], 'PC0101' [GAMENID_NEW], '請求フリーインポーター'       [NAME]
+UNION ALL SELECT 'PC0201' [GAMENID_OLD], 'PC0201' [GAMENID_NEW], '請求データ入力'               [NAME]
+UNION ALL SELECT 'PC0301' [GAMENID_OLD], 'PC0301' [GAMENID_NEW], '請求データ検索'               [NAME]
+--UNION ALL SELECT 'PC0601' [GAMENID_OLD], 'PC0401' [GAMENID_NEW], '簡易請求書発行処理'           [NAME]
+UNION ALL SELECT 'PC0801' [GAMENID_OLD], 'PC0501' [GAMENID_NEW], '入金予定日変更'               [NAME]
+UNION ALL SELECT 'PC0501' [GAMENID_OLD], 'PC0601' [GAMENID_NEW], '請求仕訳出力'                 [NAME]
+UNION ALL SELECT 'PC1601' [GAMENID_OLD], 'PC0701' [GAMENID_NEW], '口座振替依頼データ作成'       [NAME]
+UNION ALL SELECT 'PC1701' [GAMENID_OLD], 'PC0801' [GAMENID_NEW], '口座振替結果データ取込'       [NAME]
+UNION ALL SELECT 'PC1101' [GAMENID_OLD], 'PC0901' [GAMENID_NEW], '入金予定入力'                 [NAME]
+UNION ALL SELECT 'PC1201' [GAMENID_OLD], 'PC1001' [GAMENID_NEW], '入金予定フリーインポーター'   [NAME]
+--UNION ALL SELECT 'PC1401' [GAMENID_OLD], 'PC1101' [GAMENID_NEW], '長期前受データ検索'           [NAME]
+--UNION ALL SELECT 'PC1501' [GAMENID_OLD], 'PC1201' [GAMENID_NEW], '長期前受データ仕訳出力'       [NAME]
+UNION ALL SELECT 'PD0101' [GAMENID_OLD], 'PD0101' [GAMENID_NEW], '入金EBデータ取込'             [NAME]
+UNION ALL SELECT 'PD1201' [GAMENID_OLD], 'PD0201' [GAMENID_NEW], '入金フリーインポーター'       [NAME]
+UNION ALL SELECT 'PD0301' [GAMENID_OLD], 'PD0301' [GAMENID_NEW], '入金データ入力'               [NAME]
+UNION ALL SELECT 'PD0601' [GAMENID_OLD], 'PD0401' [GAMENID_NEW], '入金データ振分'               [NAME]
+UNION ALL SELECT 'PD1101' [GAMENID_OLD], 'PD0501' [GAMENID_NEW], '入金データ検索'               [NAME]
+UNION ALL SELECT 'PE0901' [GAMENID_OLD], 'PD0601' [GAMENID_NEW], '前受一括振替処理'             [NAME]
+UNION ALL SELECT 'PD0701' [GAMENID_OLD], 'PD0701' [GAMENID_NEW], '入金仕訳出力'                 [NAME]
+UNION ALL SELECT 'PD1301' [GAMENID_OLD], 'PD0801' [GAMENID_NEW], '入金部門振替処理'             [NAME]
+--UNION ALL SELECT 'PD1401' [GAMENID_OLD], 'PD0901' [GAMENID_NEW], '電子債権データ取込'           [NAME]
+--UNION ALL SELECT 'PD1501' [GAMENID_OLD], 'PD1001' [GAMENID_NEW], '電子債権データ振分'           [NAME]
+--UNION ALL SELECT 'PD1701' [GAMENID_OLD], 'PD1101' [GAMENID_NEW], '外貨データ取込'               [NAME]
+UNION ALL SELECT 'PE0111' [GAMENID_OLD], 'PE0101' [GAMENID_NEW], '一括消込'                     [NAME]
+UNION ALL SELECT 'PE0301' [GAMENID_OLD], 'PE0201' [GAMENID_NEW], '消込仕訳出力'                 [NAME]
+UNION ALL SELECT 'PE0421' [GAMENID_OLD], 'PE0301' [GAMENID_NEW], '消込履歴データ検索'           [NAME]
+UNION ALL SELECT 'PE0701' [GAMENID_OLD], 'PE0401' [GAMENID_NEW], '消込仕訳出力取消'             [NAME]
+UNION ALL SELECT 'PE0211' [GAMENID_OLD], 'PE0501' [GAMENID_NEW], '未消込請求データ削除'         [NAME]
+UNION ALL SELECT 'PE0221' [GAMENID_OLD], 'PE0601' [GAMENID_NEW], '未消込入金データ削除'         [NAME]
+UNION ALL SELECT 'PE1301' [GAMENID_OLD], 'PE0701' [GAMENID_NEW], '消込データ承認'               [NAME]
+UNION ALL SELECT 'PF0101' [GAMENID_OLD], 'PF0101' [GAMENID_NEW], '請求残高年齢表'               [NAME]
+UNION ALL SELECT 'PG0101' [GAMENID_OLD], 'PF0201' [GAMENID_NEW], '債権総額管理表'               [NAME]
+UNION ALL SELECT 'PC1001' [GAMENID_OLD], 'PF0301' [GAMENID_NEW], '入金予定明細表'               [NAME]
+UNION ALL SELECT 'PE0601' [GAMENID_OLD], 'PF0401' [GAMENID_NEW], '滞留明細一覧表'               [NAME]
+UNION ALL SELECT 'PF0201' [GAMENID_OLD], 'PF0501' [GAMENID_NEW], '得意先別消込台帳'             [NAME]
+UNION ALL SELECT 'PF0301' [GAMENID_OLD], 'PF0601' [GAMENID_NEW], '回収予定表'                   [NAME]
+--UNION ALL SELECT 'PF0401' [GAMENID_OLD], 'PF0701' [GAMENID_NEW], '長期前受管理台帳'             [NAME]
+UNION ALL SELECT 'PE0501' [GAMENID_OLD], 'PG0101' [GAMENID_NEW], '回収通知メール配信'           [NAME]
+UNION ALL SELECT 'PG0301' [GAMENID_OLD], 'PG0201' [GAMENID_NEW], '回収遅延通知メール配信'       [NAME]
+UNION ALL SELECT 'PG0501' [GAMENID_OLD], 'PG0301' [GAMENID_NEW], 'メール設定'                   [NAME]
+UNION ALL SELECT 'PE0801' [GAMENID_OLD], 'PG0401' [GAMENID_NEW], 'WebViewer公開処理'            [NAME]
+UNION ALL SELECT 'PH9000' [GAMENID_OLD], 'PH0101' [GAMENID_NEW], '各種設定＆セキュリティ'       [NAME]
+UNION ALL SELECT 'PB1201' [GAMENID_OLD], 'PH0201' [GAMENID_NEW], '不要データ削除＆バックアップ' [NAME]
+UNION ALL SELECT 'PG0401' [GAMENID_OLD], 'PH0301' [GAMENID_NEW], '残高メンテナンス処理'         [NAME]
+UNION ALL SELECT 'PH9100' [GAMENID_OLD], 'PH0401' [GAMENID_NEW], 'データトランスファー'         [NAME]
+UNION ALL SELECT 'PH9200' [GAMENID_OLD], 'PH0501' [GAMENID_NEW], 'タイムスケジューラー'         [NAME]
+UNION ALL SELECT 'PH9300' [GAMENID_OLD], 'PH0601' [GAMENID_NEW], '色マスター'                   [NAME]
+UNION ALL SELECT 'PH9500' [GAMENID_OLD], 'PH0701' [GAMENID_NEW], 'グリッド表示設定'             [NAME]
+UNION ALL SELECT 'PH9401' [GAMENID_OLD], 'PH0801' [GAMENID_NEW], '照合ロジック設定'             [NAME]
+UNION ALL SELECT 'PH9700' [GAMENID_OLD], 'PH0901' [GAMENID_NEW], '操作ログ管理'                 [NAME]
+UNION ALL SELECT 'PH9800' [GAMENID_OLD], 'PH1001' [GAMENID_NEW], '項目名称設定'                 [NAME]
+
+
+--出力設定 対応表
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBLEXPORT_SETTING_CONVERT]') AND type in (N'U'))
+BEGIN
+CREATE TABLE TBLEXPORT_SETTING_CONVERT (
+  COLUMN_NAME_OLD varchar(50)
+, COLUMN_NAME_NEW varchar(50)
+)
+END
+
+DELETE TBLEXPORT_SETTING_CONVERT
+INSERT INTO TBLEXPORT_SETTING_CONVERT
+          SELECT 'DEN_NO'           [OLD], 'SlipNumber'                    [NEW]
+UNION ALL SELECT 'TOKUCD'           [OLD], 'CustomerCode'                  [NEW]
+UNION ALL SELECT 'TOKUMEI'          [OLD], 'CustomerName'                  [NEW]
+UNION ALL SELECT 'SEIKYUNO'         [OLD], 'InvoiceCode'                   [NEW]
+UNION ALL SELECT 'SEIKYUBI'         [OLD], 'BilledAt'                      [NEW]
+UNION ALL SELECT 'NYU_KBN'          [OLD], 'ReceiptCategoryCode'           [NEW]
+UNION ALL SELECT 'NYU_KBNNM'        [OLD], 'ReceiptCategoryName'           [NEW]
+UNION ALL SELECT 'NYUKINBI'         [OLD], 'RecordedAt'                    [NEW]
+UNION ALL SELECT 'KIJITU'           [OLD], 'DueAt'                         [NEW]
+UNION ALL SELECT 'KINGAKU'          [OLD], 'Amount'                        [NEW]
+UNION ALL SELECT 'URI_BUMON'        [OLD], 'DepartmentCode'                [NEW]
+UNION ALL SELECT 'BUMONMEI'         [OLD], 'DepartmentName'                [NEW]
+UNION ALL SELECT 'CCY'              [OLD], 'CurrencyCode'                  [NEW]
+UNION ALL SELECT 'NYUKINGAKU'       [OLD], 'ReceiptAmount'                 [NEW]
+UNION ALL SELECT 'SEQNO'            [OLD], 'ReceiptId'                     [NEW]
+UNION ALL SELECT 'S_BIKO'           [OLD], 'BillingNote1'                  [NEW]
+UNION ALL SELECT 'S_BIKO2'          [OLD], 'BillingNote2'                  [NEW]
+UNION ALL SELECT 'S_BIKO3'          [OLD], 'BillingNote3'                  [NEW]
+UNION ALL SELECT 'S_BIKO4'          [OLD], 'BillingNote4'                  [NEW]
+UNION ALL SELECT 'TEKIYO'           [OLD], 'ReceiptNote1'                  [NEW]
+UNION ALL SELECT 'N_BIKO2'          [OLD], 'ReceiptNote2'                  [NEW]
+UNION ALL SELECT 'N_BIKO3'          [OLD], 'ReceiptNote3'                  [NEW]
+UNION ALL SELECT 'N_BIKO4'          [OLD], 'ReceiptNote4'                  [NEW]
+UNION ALL SELECT 'TEGATA_NO'        [OLD], 'BillNumber'                    [NEW]
+UNION ALL SELECT 'TEGATA_GINKOCD'   [OLD], 'BillBankCode'                  [NEW]
+UNION ALL SELECT 'TEGATA_SHITENCD'  [OLD], 'BillBranchCode'                [NEW]
+UNION ALL SELECT 'FURIDASHIBI'      [OLD], 'BillDrawAt'                    [NEW]
+UNION ALL SELECT 'FURIDASHININ'     [OLD], 'BillDrawer'                    [NEW]
+UNION ALL SELECT 'SEIKYU_MEMO'      [OLD], 'BillingMemo'                   [NEW]
+UNION ALL SELECT 'NYUKIN_MEMO'      [OLD], 'ReceiptMemo'                   [NEW]
+UNION ALL SELECT 'KESHI_MEMO'       [OLD], 'MatchingMemo'                  [NEW]
+UNION ALL SELECT 'GINKOCD'          [OLD], 'BankCode'                      [NEW]
+UNION ALL SELECT 'GINKOMEI'         [OLD], 'BankName'                      [NEW]
+UNION ALL SELECT 'SHITENCD'         [OLD], 'BranchCode'                    [NEW]
+UNION ALL SELECT 'SHITENMEI'        [OLD], 'BranchName'                    [NEW]
+UNION ALL SELECT 'KOUZANO'          [OLD], 'AccountNumber'                 [NEW]
+UNION ALL SELECT 'SHIMU_GINKO'      [OLD], 'SourceBankName'                [NEW]
+UNION ALL SELECT 'SHIMU_SHITEN'     [OLD], 'SourceBranchName'              [NEW]
+UNION ALL SELECT 'IRAI_SHITEN'      [OLD], 'VirtualBranchCode'             [NEW]
+UNION ALL SELECT 'IRAI_KOUZANO'     [OLD], 'VirtualAccountNumber'          [NEW]
+UNION ALL SELECT 'NYUKINBUMONCD'    [OLD], 'SectionCode'                   [NEW]
+UNION ALL SELECT 'NYUKINBUMONMEI'   [OLD], 'SectionName'                   [NEW]
+UNION ALL SELECT 'KAISYACD'         [OLD], 'CompanyCode'                   [NEW]
+UNION ALL SELECT 'EXTERNALCD'       [OLD], 'ReceiptCategoryExternalCode'   [NEW]
+UNION ALL SELECT 'SEQNO_BK'         [OLD], 'OriginalReceiptId'             [NEW]
+UNION ALL SELECT 'SHIWAKE_KUBUN'    [OLD], 'JounalizingCategory'           [NEW]
+
+
+--消込順序設定 対応表
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBLKESHIKOMI_ORDER_CONVERT]') AND type in (N'U'))
+BEGIN
+CREATE TABLE TBLKESHIKOMI_ORDER_CONVERT (
+  SYUBETU         int
+, PARAM_NAME_OLD varchar(50)
+, PARAM_NAME_NEW varchar(50)
+)
+END
+
+DELETE TBLKESHIKOMI_ORDER_CONVERT
+INSERT INTO TBLKESHIKOMI_ORDER_CONVERT
+          SELECT 1 [SYUBETU], 'SEIKYU_KUBUN'   [OLD], 'BillingCategory'      [NEW]
+UNION ALL SELECT 1 [SYUBETU], 'SEIKYUBI'       [OLD], 'BilledAt'             [NEW]
+UNION ALL SELECT 1 [SYUBETU], 'SEIKYUZAN'      [OLD], 'BillingRemainAmount'  [NEW]
+UNION ALL SELECT 1 [SYUBETU], 'SEIKYUZAN_SIGN' [OLD], 'BillingRemainSign'    [NEW]
+UNION ALL SELECT 1 [SYUBETU], 'TOKU_CD'        [OLD], 'CustomerCode'         [NEW]
+UNION ALL SELECT 1 [SYUBETU], 'YOTEIBI'        [OLD], 'DueAt'                [NEW]
+UNION ALL SELECT 1 [SYUBETU], 'KIJITSU_FLG'    [OLD], 'CashOnDueDatesFlag'   [NEW]
+UNION ALL SELECT 2 [SYUBETU], 'IRAIMEI'        [OLD], 'PayerName'            [NEW]
+UNION ALL SELECT 2 [SYUBETU], 'NYUKIN_KUBUN'   [OLD], 'ReceiptCategory'      [NEW]
+UNION ALL SELECT 2 [SYUBETU], 'NYUKINBI'       [OLD], 'RecordedAt'           [NEW]
+UNION ALL SELECT 2 [SYUBETU], 'NYUKINZAN'      [OLD], 'ReceiptRemainAmount'  [NEW]
+UNION ALL SELECT 2 [SYUBETU], 'NYUKINZAN_SIGN' [OLD], 'ReceiptRemainSign'    [NEW]
+UNION ALL SELECT 2 [SYUBETU], 'SHIMU_GINKO'    [OLD], 'SourceBankName'       [NEW]
+UNION ALL SELECT 2 [SYUBETU], 'SHIMU_SHITEN'   [OLD], 'SourceBranchName'     [NEW]
+UNION ALL SELECT 2 [SYUBETU], 'SOUSAI_DATA'    [OLD], 'NettingFlag'          [NEW]
+
+
+--===============================
+--ID 列の追加
+--===============================
+--取込設定
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TBLPATTERN_B_CONVERT]') AND type in (N'U'))
+BEGIN
+CREATE TABLE TBLPATTERN_B_CONVERT (
+  PATTERN_KBN_OLD varchar(2)
+, GYO_NO_OLD int
+, ITEM_MEI_OLD varchar(50)
+, PATTERN_KBN_NEW int
+, GYO_NO_NEW int
+, ITEM_MEI_NEW varchar(50)
+)
+END
+
+DELETE TBLPATTERN_B_CONVERT
+INSERT INTO TBLPATTERN_B_CONVERT
+          SELECT '01', 1,  '会社コード',           1, 1,  '会社コード'
+UNION ALL SELECT '01', 2,  '得意先コード',         1, 2,  '得意先コード'
+UNION ALL SELECT '01', 3,  '請求日',               1, 3,  '請求日'
+UNION ALL SELECT '01', 4,  '請求金額',             1, 4,  '請求金額'
+UNION ALL SELECT '01', 5,  '消費税',               1, 5,  '消費税'
+UNION ALL SELECT '01', 6,  '入金予定日',           1, 6,  '入金予定日'
+UNION ALL SELECT '01', 7,  '請求部門',             1, 7,  '請求部門'
+UNION ALL SELECT '01', 8,  '債権科目',             1, 8,  '債権科目'
+UNION ALL SELECT '01', 10, '売上日',               1, 9,  '売上日'
+UNION ALL SELECT '01', 11, '請求書番号',           1, 10, '請求書番号'
+UNION ALL SELECT '01', 12, '請求締日',             1, 11, '請求締日'
+UNION ALL SELECT '01', 13, '担当者',               1, 12, '担当者'
+UNION ALL SELECT '01', 14, '備考',                 1, 13, '備考'
+UNION ALL SELECT '01', 15, '請求区分',             1, 14, '請求区分'
+UNION ALL SELECT '01', 16, '回収区分',             1, 15, '回収区分'
+UNION ALL SELECT '01', 17, '数量',                 1, 16, '数量'
+UNION ALL SELECT '01', 18, '単位',                 1, 17, '単位'
+UNION ALL SELECT '01', 19, '単価',                 1, 18, '単価'
+UNION ALL SELECT '01', 20, '契約番号',             1, 19, '契約番号'
+UNION ALL SELECT '01', 21, '金額（抜）',           1, 20, '金額（抜）'
+UNION ALL SELECT '01', 22, '税区',                 1, 21, '税区'
+UNION ALL SELECT '01', 23, '備考2',                1, 22, '備考2'
+UNION ALL SELECT '01', 24, '備考3',                1, 23, '備考3'
+UNION ALL SELECT '01', 25, '備考4',                1, 24, '備考4'
+UNION ALL SELECT '01', 26, '得意先名称',           1, 25, '得意先名称'
+UNION ALL SELECT '01', 27, '得意先カナ',           1, 26, '得意先カナ'
+UNION ALL SELECT '01', 28, '歩引利用',             1, 28, '歩引利用'
+UNION ALL SELECT '01', 29, '通貨コード',           1, 29, '通貨コード'
+UNION ALL SELECT '01', 30, '銀行コード',           1, 30, '銀行コード'
+UNION ALL SELECT '01', 31, '支店コード',           1, 31, '支店コード'
+UNION ALL SELECT '01', 32, '仮想支店コード',       1, 32, '仮想支店コード'
+UNION ALL SELECT '01', 33, '仮想口座番号',         1, 33, '仮想口座番号'
+UNION ALL SELECT '01', 34, '照合番号',             1, 27, '照合番号'
+UNION ALL SELECT '02', 1, '得意先コード',          2, 1,  '得意先コード'
+UNION ALL SELECT '02', 2, '入金日',                2, 2,  '入金日'
+UNION ALL SELECT '02', 3, '入金区分',              2, 3,  '入金区分'
+UNION ALL SELECT '02', 4, '入金額',                2, 4,  '入金額'
+UNION ALL SELECT '02', 5, '期日',                  2, 5,  '期日'
+UNION ALL SELECT '02', 6, '備考',                  2, 6,  '備考'
+UNION ALL SELECT '02', 7, '入金部門コード',        2, 7,  '入金部門コード'
+UNION ALL SELECT '02', 8, '通貨コード',            2, 8,  '通貨コード'
+UNION ALL SELECT '02', 9, '備考2',                 2, 9,  '備考2'
+UNION ALL SELECT '02', 10, '備考3',                2, 10, '備考3'
+UNION ALL SELECT '02', 11, '備考4',                2, 11, '備考4'
+UNION ALL SELECT '02', 12, '振込依頼人名',         2, 12, '振込依頼人名'
+UNION ALL SELECT '02', 17, '仕向銀行',             2, 13, '仕向銀行'
+UNION ALL SELECT '02', 18, '仕向支店',             2, 14, '仕向支店'
+UNION ALL SELECT '02', 19, '手形番号',             2, 15, '手形番号'
+UNION ALL SELECT '02', 20, '券面銀行コード',       2, 16, '券面銀行コード'
+UNION ALL SELECT '02', 21, '券面支店コード',       2, 17, '券面支店コード'
+UNION ALL SELECT '02', 22, '振出日',               2, 18, '振出日'
+UNION ALL SELECT '02', 23, '振出人',               2, 19, '振出人'
+UNION ALL SELECT '03', 1, '入金予定額',            3, 1,  '入金予定額'
+UNION ALL SELECT '03', 2, '会社コード',            3, 2,  '会社コード'
+UNION ALL SELECT '03', 3, '債権代表者コード',      3, 3,  '債権代表者コード'
+UNION ALL SELECT '03', 4, '得意先コード',          3, 4,  '得意先コード'
+UNION ALL SELECT '03', 5, '請求日',                3, 5,  '請求日'
+UNION ALL SELECT '03', 6, '請求金額',              3, 6,  '請求金額'
+UNION ALL SELECT '03', 7, '消費税',                3, 7,  '消費税'
+UNION ALL SELECT '03', 8, '入金予定日',            3, 8,  '入金予定日'
+UNION ALL SELECT '03', 9, '請求部門',              3, 9,  '請求部門'
+UNION ALL SELECT '03', 10, '債権科目',             3, 10, '債権科目'
+UNION ALL SELECT '03', 12, '売上日',               3, 11, '売上日'
+UNION ALL SELECT '03', 13, '請求書番号',           3, 12, '請求書番号'
+UNION ALL SELECT '03', 14, '請求締日',             3, 13, '請求締日'
+UNION ALL SELECT '03', 15, '担当者',               3, 14, '担当者'
+UNION ALL SELECT '03', 16, '備考',                 3, 15, '備考'
+UNION ALL SELECT '03', 17, '請求区分',             3, 16, '請求区分'
+UNION ALL SELECT '03', 18, '備考2',                3, 17, '備考2'
+UNION ALL SELECT '03', 19, '備考3',                3, 18, '備考3'
+UNION ALL SELECT '03', 20, '備考4',                3, 19, '備考4'
+UNION ALL SELECT '03', 21, '通貨コード',           3, 20, '通貨コード'
+UNION ALL SELECT '03', 22, '入金予定キー',         3, 21, '入金予定キー'
+UNION ALL SELECT '50', 1, '会社コード',            4, 1,  '会社コード'
+UNION ALL SELECT '50', 2, '得意先コード',          4, 2,  '得意先コード'
+UNION ALL SELECT '50', 3, '得意先名',              4, 3,  '得意先名'
+UNION ALL SELECT '50', 4, '得意先名カナ',          4, 4,  '得意先名カナ'
+UNION ALL SELECT '50', 5, '専用銀行コード',        4, 5,  '専用銀行コード'
+UNION ALL SELECT '50', 6, '専用銀行名',            4, 6,  '専用銀行名'
+UNION ALL SELECT '50', 7, '専用支店コード',        4, 7,  '専用支店コード'
+UNION ALL SELECT '50', 8, '仮想支店名',            4, 8,  '仮想支店名'
+UNION ALL SELECT '50', 9, '専用入金口座番号',      4, 9,  '専用入金口座番号'
+UNION ALL SELECT '50', 10, '預金種別',             4, 10, '預金種別'
+UNION ALL SELECT '50', 11, '手数料負担区分',       4, 11, '手数料負担区分'
+UNION ALL SELECT '50', 12, '与信限度額',           4, 12, '与信限度額'
+UNION ALL SELECT '50', 13, '締日',                 4, 13, '締日'
+UNION ALL SELECT '50', 14, '回収方法',             4, 14, '回収方法'
+UNION ALL SELECT '50', 15, '回収予定',             4, 15, '回収予定（月）'
+UNION ALL SELECT '50', 16, '回収予定（都度請求）', 4, 17, '回収予定（都度請求）'
+UNION ALL SELECT '50', 17, '営業担当者',           4, 18, '営業担当者'
+UNION ALL SELECT '50', 18, '債権代表者フラグ',     4, 19, '債権代表者フラグ'
+UNION ALL SELECT '50', 19, '郵便番号',             4, 20, '郵便番号'
+UNION ALL SELECT '50', 20, '住所1',                4, 21, '住所1'
+UNION ALL SELECT '50', 21, '住所2',                4, 22, '住所2'
+UNION ALL SELECT '50', 22, 'TEL番号',              4, 23, 'TEL番号'
+UNION ALL SELECT '50', 23, 'FAX番号',              4, 24, 'FAX番号'
+UNION ALL SELECT '50', 24, '相手先担当者名',       4, 25, '相手先担当者名'
+UNION ALL SELECT '50', 25, '備考',                 4, 26, '備考'
+UNION ALL SELECT '50', 26, '手数料自動学習',       4, 27, '手数料自動学習'
+UNION ALL SELECT '50', 27, '回収サイト',           4, 28, '回収サイト'
+UNION ALL SELECT '50', 28, '電子手形用企業コード', 4, 29, '電子手形用企業コード'
+UNION ALL SELECT '50', 29, '信用調査用企業コード', 4, 30, '信用調査用企業コード'
+UNION ALL SELECT '50', 30, '与信ランク',           4, 31, '与信ランク'
+UNION ALL SELECT '50', 31, '口座振替用銀行コード', 4, 32, '口座振替用銀行コード'
+UNION ALL SELECT '50', 32, '口座振替用銀行名',     4, 33, '口座振替用銀行名'
+UNION ALL SELECT '50', 33, '口座振替用支店コード', 4, 34, '口座振替用支店コード'
+UNION ALL SELECT '50', 34, '口座振替用支店名',     4, 35, '口座振替用支店名'
+UNION ALL SELECT '50', 35, '口座振替用口座番号',   4, 36, '口座振替用口座番号'
+UNION ALL SELECT '50', 36, '口座振替用預金種目',   4, 37, '口座振替用預金種目'
+UNION ALL SELECT '50', 37, '新規コード',           4, 39, '口座振替用新規コード'
+UNION ALL SELECT '50', 38, '預金者名',             4, 40, '口座振替用預金者名'
+UNION ALL SELECT '50', 39, '顧客コード',           4, 38, '口座振替用顧客コード'
+UNION ALL SELECT '50', 40, '約定金額',             4, 41, '約定金額'
+UNION ALL SELECT '50', 41, '約定金額未満',         4, 42, '約定金額未満'
+UNION ALL SELECT '50', 42, '約定金額以上1',        4, 43, '約定金額以上1'
+UNION ALL SELECT '50', 43, '分割1',                4, 44, '分割1'
+UNION ALL SELECT '50', 44, '端数1',                4, 45, '端数1'
+UNION ALL SELECT '50', 45, '回収サイト1',          4, 46, '回収サイト1'
+UNION ALL SELECT '50', 46, '約定金額以上2',        4, 47, '約定金額以上2'
+UNION ALL SELECT '50', 47, '分割2',                4, 48, '分割2'
+UNION ALL SELECT '50', 48, '端数2',                4, 49, '端数2'
+UNION ALL SELECT '50', 49, '回収サイト2',          4, 50, '回収サイト2'
+UNION ALL SELECT '50', 50, '約定金額以上3',        4, 51, '約定金額以上3'
+UNION ALL SELECT '50', 51, '分割3',                4, 52, '分割3'
+UNION ALL SELECT '50', 52, '端数3',                4, 53, '端数3'
+UNION ALL SELECT '50', 53, '回収サイト3',          4, 54, '回収サイト3'
+UNION ALL SELECT '50', 54, 'カナ自動学習',         4, 55, 'カナ自動学習'
+UNION ALL SELECT '50', 55, '休業日の設定',         4, 56, '休業日の設定'
+UNION ALL SELECT '50', 56, '手数料誤差利用',       4, 57, '手数料誤差利用'
+UNION ALL SELECT '50', 57, '一括消込対象外',       4, 58, '一括消込対象外'
+UNION ALL SELECT '50', 58, '照合番号',             4, 59, '照合番号'
+
+
+
+--TBLKAISYA
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLKAISYA'))
+ALTER TABLE TBLKAISYA ADD ID INT
+GO
+
+UPDATE k
+SET k.ID = id.ID
+FROM TBLKAISYA k
+INNER JOIN (
+SELECT
+  KAISYACD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD) ID
+FROM TBLKAISYA
+) id
+ON k.KAISYACD = id.KAISYACD
+
+
+--TBLBUMON
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLBUMON'))
+ALTER TABLE TBLBUMON ADD ID INT
+GO
+
+UPDATE bm SET bm.ID = id.ID
+FROM TBLBUMON bm
+INNER JOIN (
+SELECT
+  KAISYACD
+, BUMONCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, BUMONCD) ID
+FROM TBLBUMON
+) id
+ON bm.KAISYACD = id.KAISYACD
+AND bm.BUMONCD = id.BUMONCD
+
+
+--TBLTANTO (Staff)
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'StaffID' AND object_id = OBJECT_ID(N'TBLTANTO'))
+ALTER TABLE TBLTANTO ADD StaffID INT
+GO
+
+UPDATE tn SET tn.StaffID = id.ID
+FROM TBLTANTO tn
+INNER JOIN (
+SELECT 
+  KAISYACD
+, TANTOCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, TANTOCD) ID
+FROM TBLTANTO
+WHERE KAISYU = 1
+) id
+ON tn.KAISYACD = id.KAISYACD
+AND tn.TANTOCD = id.TANTOCD
+GO
+
+
+--TBLTANTO (LoginUser)
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'LoginUserID' AND object_id = OBJECT_ID(N'TBLTANTO'))
+ALTER TABLE TBLTANTO ADD LoginUserID INT
+GO
+
+UPDATE tn SET tn.LoginUserID = id.ID
+FROM TBLTANTO tn
+INNER JOIN (
+SELECT 
+  KAISYACD
+, TANTOCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, TANTOCD) ID
+FROM TBLTANTO
+WHERE RIYO = 1
+) id
+ON tn.KAISYACD = id.KAISYACD
+AND tn.TANTOCD = id.TANTOCD
+GO
+
+
+--TBLNYUKINBUMON
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLNYUKINBUMON'))
+ALTER TABLE TBLNYUKINBUMON ADD ID INT
+GO
+
+UPDATE nb SET nb.ID = id.ID
+FROM TBLNYUKINBUMON nb
+INNER JOIN (
+SELECT
+  KAISYACD
+, NYUKINBUMONCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, NYUKINBUMONCD) ID
+FROM TBLNYUKINBUMON
+) id
+ON nb.KAISYACD = id.KAISYACD
+AND nb.NYUKINBUMONCD = id.NYUKINBUMONCD
+
+
+--TBLKANRI
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLKANRI'))
+ALTER TABLE TBLKANRI ADD ID INT
+GO
+
+UPDATE kn SET kn.ID = id.ID
+FROM TBLKANRI kn
+INNER JOIN (
+SELECT 
+  KAISYACD
+, KANRICD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, KANRICD) ID
+FROM TBLKANRI
+) id
+ON kn.KAISYACD = id.KAISYACD
+AND kn.KANRICD = id.KANRICD
+
+
+--TBLKESSAI_DAIKOU
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLKESSAI_DAIKOU'))
+ALTER TABLE TBLKESSAI_DAIKOU ADD ID INT
+GO
+
+UPDATE kd SET kd.ID = id.ID
+FROM TBLKESSAI_DAIKOU kd
+INNER JOIN (
+SELECT
+  KAISYACD
+, KESSAI_DAIKOUCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, KESSAI_DAIKOUCD) ID
+FROM TBLKESSAI_DAIKOU
+) id
+ON kd.KAISYACD = id.KAISYACD
+AND kd.KESSAI_DAIKOUCD = id.KESSAI_DAIKOUCD
+
+
+--TBLKAMOKU
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLKAMOKU'))
+ALTER TABLE TBLKAMOKU ADD ID INT
+GO
+
+UPDATE km SET km.ID = id.ID
+FROM TBLKAMOKU km
+INNER JOIN (
+SELECT 
+  KAISYACD
+, KAMOKUCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, KAMOKUCD) ID
+FROM TBLKAMOKU
+) id
+ON km.KAISYACD = id.KAISYACD
+AND km.KAMOKUCD = id.KAMOKUCD
+
+
+--TBLKUBUN
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLKUBUN'))
+ALTER TABLE TBLKUBUN ADD ID INT
+GO
+
+UPDATE kb SET kb.ID = id.ID
+FROM TBLKUBUN kb
+INNER JOIN (
+SELECT
+  KAISYACD
+, SIKIBETU
+, KUBUNCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, SIKIBETU, KUBUNCD) ID
+FROM (
+SELECT
+  KAISYACD
+, SIKIBETU
+, KUBUNCD
+FROM TBLKUBUN
+UNION ALL
+SELECT
+  KAISYACD
+, '4'
+, KUBUNCD
+FROM TBLTAIGAI
+) t
+) id
+ON kb.KAISYACD = id.KAISYACD
+AND kb.SIKIBETU = id.SIKIBETU
+AND kb.KUBUNCD = id.KUBUNCD
+
+
+--TBLTAIGAI
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLTAIGAI'))
+ALTER TABLE TBLTAIGAI ADD ID INT
+GO
+
+UPDATE tg SET tg.ID = id.ID
+FROM TBLTAIGAI tg
+INNER JOIN (
+SELECT
+  KAISYACD
+, SIKIBETU
+, KUBUNCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, SIKIBETU, KUBUNCD) ID
+FROM (
+SELECT
+  KAISYACD
+, SIKIBETU
+, KUBUNCD
+FROM TBLKUBUN
+UNION ALL
+SELECT
+  KAISYACD
+, '4'
+, KUBUNCD
+FROM TBLTAIGAI
+) t
+) id
+ON tg.KAISYACD = id.KAISYACD
+AND tg.KUBUNCD = id.KUBUNCD
+AND id.SIKIBETU = '4'
+
+
+--TBLCURRENCY
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLCURRENCY'))
+ALTER TABLE TBLCURRENCY ADD ID INT
+GO
+
+UPDATE cc SET cc.ID = id.ID
+FROM TBLCURRENCY cc
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, CCY) ID
+FROM TBLCURRENCY
+) id
+ON cc.KAISYACD = id.KAISYACD
+AND cc.CCY = id.CCY
+
+
+--TBLBANK
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLBANK'))
+ALTER TABLE TBLBANK ADD ID INT
+GO
+
+UPDATE bk SET bk.ID = id.ID
+FROM TBLBANK bk
+INNER JOIN (
+SELECT 
+  KAISYACD
+, GINKOCD
+, SHITENCD
+, YOKINSYU
+, KOUZANO
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, GINKOCD, SHITENCD, YOKINSYU, KOUZANO) ID
+FROM TBLBANK
+) id
+ON bk.KAISYACD = id.KAISYACD
+AND bk.GINKOCD = id.GINKOCD
+AND bk.SHITENCD = id.SHITENCD
+AND bk.YOKINSYU = id.YOKINSYU
+AND bk.KOUZANO = id.KOUZANO
+
+
+--TBLTOKUI
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLTOKUI'))
+ALTER TABLE TBLTOKUI ADD ID INT
+GO
+
+UPDATE tk SET tk.ID = id.ID
+FROM TBLTOKUI tk
+INNER JOIN (
+SELECT 
+  KAISYACD
+, TOKUCD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, TOKUCD) ID
+FROM TBLTOKUI
+) id
+ON tk.KAISYACD = id.KAISYACD
+AND tk.TOKUCD = id.TOKUCD
+
+
+--TBLPATTERN_M
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLPATTERN_M'))
+ALTER TABLE TBLPATTERN_M ADD ID INT
+GO
+
+UPDATE pm SET pm.ID = id.ID
+FROM TBLPATTERN_M pm
+INNER JOIN (
+SELECT 
+  KAISYACD
+, PATTERN_KBN
+, PATTERN_NO
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, PATTERN_KBN, PATTERN_NO) ID
+FROM TBLPATTERN_M
+WHERE PATTERN_KBN IN ('01', '02', '03')
+OR (PATTERN_KBN = '50' AND PATTERN_NO = '01')
+) id
+ON pm.KAISYACD = id.KAISYACD
+AND pm.PATTERN_KBN = id.PATTERN_KBN
+AND pm.PATTERN_NO = id.PATTERN_NO
+
+
+--TBLSCHEDULE
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLSCHEDULE'))
+ALTER TABLE TBLSCHEDULE ADD ID INT
+GO
+
+UPDATE sc SET sc.ID = id.ID
+FROM TBLSCHEDULE sc
+INNER JOIN (
+SELECT 
+  KAISYACD
+, IMPORT_TYPE
+, IMPORT_PATTERN
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, IMPORT_TYPE, IMPORT_PATTERN) ID
+FROM TBLSCHEDULE
+) id
+ON sc.KAISYACD = id.KAISYACD
+AND sc.IMPORT_TYPE = id.IMPORT_TYPE
+AND sc.IMPORT_PATTERN = id.IMPORT_PATTERN
+
+
+--TBLMAILTHUCHI
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLMAILTHUCHI'))
+ALTER TABLE TBLMAILTHUCHI ADD ID INT
+GO
+
+UPDATE mt SET mt.ID = id.ID
+FROM TBLMAILTHUCHI mt
+INNER JOIN (
+SELECT 
+  KAISYACD
+, MAIL_KBN
+, TEMP_NO
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, MAIL_KBN, TEMP_NO) ID
+FROM TBLMAILTHUCHI
+) id
+ON mt.KAISYACD = id.KAISYACD
+AND mt.MAIL_KBN = id.MAIL_KBN
+AND mt.TEMP_NO = id.TEMP_NO
+
+
+--TBLSEIKYU (InputID)
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'InputID' AND object_id = OBJECT_ID(N'TBLSEIKYU'))
+ALTER TABLE TBLSEIKYU ADD InputID BIGINT
+GO
+
+UPDATE s SET s.InputID = id.InputID
+FROM TBLSEIKYU s
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, SEQNO
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, CCY, SEQNO) InputID
+FROM TBLSEIKYU
+WHERE DATAKBN = '2'
+GROUP BY KAISYACD, CCY, SEQNO
+) id
+ON s.KAISYACD = id.KAISYACD
+AND s.CCY = id.CCY
+AND s.SEQNO = id.SEQNO
+
+
+--TBLSEIKYU (ID)
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLSEIKYU'))
+ALTER TABLE TBLSEIKYU ADD ID BIGINT
+GO
+
+UPDATE s SET s.ID = id.ID
+FROM TBLSEIKYU s
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, SEQNO
+, GYONO
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, CCY, SEQNO, GYONO) ID
+FROM TBLSEIKYU
+) id
+ON s.KAISYACD = id.KAISYACD
+AND s.CCY = id.CCY
+AND s.SEQNO = id.SEQNO
+AND s.GYONO = id.GYONO
+
+
+--TBLEBFILE_RIREKI
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLEBFILE_RIREKI'))
+ALTER TABLE TBLEBFILE_RIREKI ADD ID INT
+GO
+
+INSERT INTO TBLEBFILE_RIREKI
+(KAISYACD, TORIKOMI_SEQ, [FILE_NAME], FILE_SIZE, KENSU, KINGAKU, R_ID, R_YMD, ID)
+SELECT
+  r.KAISYACD
+, ROW_NUMBER() OVER (PARTITION BY r.KAISYACD ORDER BY r.KAISYACD, r.R_YMD) + f.MAX_TORIKOMI_SEQ
+, ''
+, '0 B'
+, 0
+, 0
+, r.R_ID
+, GETDATE()
+, NULL
+FROM TBLEBRIREKI r
+INNER JOIN (
+SELECT
+  k.KAISYACD
+, COALESCE(MAX(TORIKOMI_SEQ), 0) MAX_TORIKOMI_SEQ
+FROM TBLKAISYA k
+LEFT JOIN TBLEBFILE_RIREKI f2
+ON k.KAISYACD = f2.KAISYACD
+GROUP BY k.KAISYACD
+) f
+ON r.KAISYACD = f.KAISYACD
+AND r.FILE_TORIKOMI_SEQ IS NULL
+
+UPDATE fr SET fr.ID = id.ID
+FROM TBLEBFILE_RIREKI fr
+INNER JOIN (
+SELECT 
+  KAISYACD
+, TORIKOMI_SEQ
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, TORIKOMI_SEQ) ID
+FROM TBLEBFILE_RIREKI
+) id
+ON fr.KAISYACD = id.KAISYACD
+AND fr.TORIKOMI_SEQ = id.TORIKOMI_SEQ
+
+
+--TBLEBRIREKI
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLEBRIREKI'))
+ALTER TABLE TBLEBRIREKI ADD ID BIGINT
+GO
+
+UPDATE eb SET eb.FILE_TORIKOMI_SEQ = seq.SEQ
+FROM TBLEBRIREKI eb
+INNER JOIN(
+SELECT 
+  eb2.KAISYACD
+, eb2.SAKUSEIBI
+, eb2.GINKOCD
+, eb2.SHITENCD
+, eb2.YOKINSYU
+, eb2.KOUZANO
+, eb2.R_YMD
+, ROW_NUMBER() OVER (PARTITION BY eb2.KAISYACD ORDER BY eb2.KAISYACD, eb2.R_YMD) + f.MAX_TORIKOMI_SEQ SEQ
+FROM TBLEBRIREKI eb2
+INNER JOIN (
+SELECT
+  k.KAISYACD
+, COALESCE(MAX(TORIKOMI_SEQ), 0) MAX_TORIKOMI_SEQ
+FROM TBLKAISYA k
+LEFT JOIN TBLEBFILE_RIREKI f2
+ON k.KAISYACD = f2.KAISYACD
+AND f2.[FILE_NAME] <> ''
+GROUP BY k.KAISYACD
+) f
+ON eb2.KAISYACD = f.KAISYACD
+) seq
+ON eb.KAISYACD = seq.KAISYACD
+AND eb.SAKUSEIBI = seq.SAKUSEIBI
+AND eb.GINKOCD = seq.GINKOCD
+AND eb.SHITENCD = seq.SHITENCD
+AND eb.YOKINSYU = seq.YOKINSYU
+AND eb.KOUZANO = seq.KOUZANO
+AND eb.R_YMD = seq.R_YMD
+AND eb.FILE_TORIKOMI_SEQ IS NULL
+
+UPDATE eb SET eb.ID = id.ID
+FROM TBLEBRIREKI eb
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, SAKUSEIBI
+, GINKOCD
+, SHITENCD
+, YOKINSYU
+, KOUZANO
+, R_YMD
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, R_YMD) ID
+FROM TBLEBRIREKI
+) id
+ON eb.KAISYACD = id.KAISYACD
+AND eb.CCY = id.CCY
+AND eb.SAKUSEIBI = id.SAKUSEIBI
+AND eb.GINKOCD = id.GINKOCD
+AND eb.SHITENCD = id.SHITENCD
+AND eb.YOKINSYU = id.YOKINSYU
+AND eb.KOUZANO = id.KOUZANO
+AND eb.R_YMD = id.R_YMD
+
+
+--TBLNYUKIN
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLNYUKIN'))
+ALTER TABLE TBLNYUKIN ADD ID BIGINT
+GO
+
+UPDATE n SET n.ID = id.ID
+FROM TBLNYUKIN n
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, SEQNO
+, GYONO
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, CCY, SEQNO, GYONO) ID
+FROM TBLNYUKIN
+) id
+ON n.KAISYACD = id.KAISYACD
+AND n.CCY = id.CCY
+AND n.SEQNO = id.SEQNO
+AND n.GYONO = id.GYONO
+
+
+--TBLNYUKIN_TAISYOGAI
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLNYUKIN_TAISYOGAI'))
+ALTER TABLE TBLNYUKIN_TAISYOGAI ADD ID BIGINT
+GO
+
+UPDATE tg SET tg.ID = id.ID
+FROM TBLNYUKIN_TAISYOGAI tg
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, SEQNO
+, GYONO
+, TAIGAI_SEQ
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, CCY, SEQNO, GYONO, TAIGAI_SEQ) ID
+FROM TBLNYUKIN_TAISYOGAI
+) id
+ON tg.KAISYACD = id.KAISYACD
+AND tg.CCY = id.CCY
+AND tg.SEQNO = id.SEQNO
+AND tg.GYONO = id.GYONO
+AND tg.TAIGAI_SEQ = id.TAIGAI_SEQ
+
+
+--TBLNYUKINYOTEI_SOUSAI
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLNYUKINYOTEI_SOUSAI'))
+ALTER TABLE TBLNYUKINYOTEI_SOUSAI ADD ID BIGINT
+GO
+
+UPDATE nt SET nt.ID = id.ID
+FROM TBLNYUKINYOTEI_SOUSAI nt
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, SEQNO
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, CCY, SEQNO) ID
+FROM TBLNYUKINYOTEI_SOUSAI
+) id
+ON nt.KAISYACD = id.KAISYACD
+AND nt.CCY = id.CCY
+AND nt.SEQNO = id.SEQNO
+
+
+--TBLMAEUKE_BACKUP
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLMAEUKE_BACKUP'))
+ALTER TABLE TBLMAEUKE_BACKUP ADD ID BIGINT
+GO
+
+UPDATE bk SET bk.ID = id.ID
+FROM TBLMAEUKE_BACKUP bk
+INNER JOIN (
+SELECT
+  KAISYACD
+, CCY
+, SEQNO
+, GYONO
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, CCY, SEQNO, GYONO) ID
+FROM TBLMAEUKE_BACKUP
+) id
+ON bk.KAISYACD = id.KAISYACD
+AND bk.CCY = id.CCY
+AND bk.SEQNO = id.SEQNO
+AND bk.GYONO = id.GYONO
+
+
+--TBLKESHI (MatchingHeader)
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLKESHI'))
+ALTER TABLE TBLKESHI ADD MatchingHeaderID BIGINT
+GO
+
+UPDATE k SET k.MatchingHeaderID = id.ID
+FROM TBLKESHI k
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, SEQNO_NYUKIN
+, GYO_NYUKIN
+, KAISU
+, SEQNO_SEIKYU
+, GYO_SEIKYU
+, KESHIKOMIKEY
+, DENSE_RANK() OVER (ORDER BY KAISYACD, CCY, KESHIKOMIKEY) ID
+FROM TBLKESHI
+) id
+ON k.KAISYACD = id.KAISYACD
+AND k.CCY = id.CCY
+AND k.SEQNO_NYUKIN = id.SEQNO_NYUKIN
+AND k.GYO_NYUKIN = id.GYO_NYUKIN
+AND k.KAISU = id.KAISU
+AND k.SEQNO_SEIKYU = id.SEQNO_SEIKYU
+AND k.GYO_SEIKYU = id.GYO_SEIKYU
+
+
+--TBLKESHI (Matching)
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLKESHI'))
+ALTER TABLE TBLKESHI ADD ID BIGINT
+GO
+
+UPDATE k SET k.ID = id.ID
+FROM TBLKESHI k
+INNER JOIN (
+SELECT 
+  KAISYACD
+, CCY
+, SEQNO_NYUKIN
+, GYO_NYUKIN
+, KAISU
+, SEQNO_SEIKYU
+, GYO_SEIKYU
+, ROW_NUMBER() OVER (ORDER BY KAISYACD, CCY, SEQNO_NYUKIN, GYO_NYUKIN, KAISU, SEQNO_SEIKYU, GYO_SEIKYU) ID
+FROM TBLKESHI
+) id
+ON k.KAISYACD = id.KAISYACD
+AND k.CCY = id.CCY
+AND k.SEQNO_NYUKIN = id.SEQNO_NYUKIN
+AND k.GYO_NYUKIN = id.GYO_NYUKIN
+AND k.KAISU = id.KAISU
+AND k.SEQNO_SEIKYU = id.SEQNO_SEIKYU
+AND k.GYO_SEIKYU = id.GYO_SEIKYU
+GO
+
+--TBLADDRESS (Destination)
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE name = N'ID' AND object_id = OBJECT_ID(N'TBLADDRESS'))
+ALTER TABLE TBLADDRESS ADD ID INT
+GO
+
+UPDATE a SET a.ID = id.ID
+FROM TBLADDRESS a
+INNER JOIN (
+SELECT
+ KAISYACD
+,TOKUCD
+,ADDRESSCD
+,ROW_NUMBER() OVER (ORDER BY KAISYACD, TOKUCD, ADDRESSCD) ID
+FROM TBLADDRESS
+) id
+ ON a.KAISYACD  = id.KAISYACD
+AND a.TOKUCD    = id.TOKUCD
+AND a.ADDRESSCD = id.ADDRESSCD
+GO
+
+DELETE FROM TBLKESSAI_DAIKOU
+WHERE [FORMAT] NOT BETWEEN 0 AND 7
+GO
+
+DELETE FROM TBLKUBUN
+WHERE SIKIBETU = 4
+
+DELETE FROM TBLCOLUMN_NAME
+WHERE TABLE_NAME = 'TBLTORIHIKI'

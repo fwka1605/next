@@ -1,0 +1,51 @@
+// .accordionContent：アコーディオン
+//
+// sg-wrapper:
+// <div class="wrapperMarkup">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.2.0
+
+// アコーディオンコンテンツ
+// 
+// ※実際の挙動は開発環境にて、確認してください。
+// 
+// Markup:
+// <section class="accordionContent">
+//   <mat-expansion-panel
+//     (opened)="panelOpenState=true"
+//     (closed)="panelOpenState=false"
+//     [expanded]="panelOpenState">
+//     <mat-expansion-panel-header collapsedHeight="{{PanelConst.collapsedHeight}}" expandedHeight="{{PanelConst.expandedHeight}}">
+//       <mat-panel-title>
+//         <h2 class="accordionContent__title">タイトル</h2>
+//         <mat-panel-description>
+//           <h2 class="accordionContent__title">{{panelOpenState ? '' : '●●を入力できます。'}}</h2>
+//         </mat-panel-description>
+//       </mat-panel-title>
+//     </mat-expansion-panel-header>
+//     <ng-template matExpansionPanelContent>
+//       <div class="accordionContent__body">コンテンツ</div>
+//     </ng-template>
+//   </mat-expansion-panel>
+// </section>
+//
+// Styleguide 2.2.1
+
+  .accordionContent {
+    @include clearfix;
+    &__title {
+      align-self: center;
+      padding: 0 8px;
+      font-size: 1.3rem;
+      line-height: normal;
+      user-select: none;
+    }
+    &__titleText {
+      margin-right: 15px;
+    }
+    &__body {
+      padding: 16px;
+    }
+  }

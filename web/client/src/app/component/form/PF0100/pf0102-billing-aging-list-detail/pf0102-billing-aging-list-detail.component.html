@@ -1,0 +1,147 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="back()" 
+        class="buttonBack">
+        {{ItemNameConst.BTN_BACK}}
+      </button>
+
+      <div class="contentsButton__subSection">
+        <button 
+          [ngClass]="{'button-disable': false}"
+          class="buttonExport infotip"
+          (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+          <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+        </button>        
+      </div>
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <section class="contents">
+      <div class="contents__container">
+          <div class="contents__item--w-50">
+              <dl class="definitionForm">
+
+                  <dt class="definitionForm__title w--20">請求部門コード</dt>
+                  <dd class="definitionForm__data w--80">
+                    <input
+                      formControlName="departmentCodeFromCtrl"
+                      name="departmentCodeFromCtrl"
+                      class="input-size--110 mr--10"
+                      readonly>
+                    <input
+                      formControlName="departmentNameFromCtrl"
+                      name="departmentNameFromCtrl"
+                      class="input-size--450"
+                      readonly>
+                  </dd>
+
+                  <dt class="definitionForm__title w--17"></dt>
+                  <dd class="definitionForm__data w--80">
+                    <span class="wavy-line"></span>
+                    <input
+                      formControlName="departmentCodeToCtrl"
+                      name="departmentCodeToCtrl"
+                      class="input-size--110 mr--10"
+                      readonly>
+                    <input
+                      formControlName="departmentNameToCtrl"
+                      name="departmentNameToCtrl"
+                      class="input-size--450"
+                      readonly>
+                  </dd>
+
+                  <dt class="definitionForm__title w--20">担当者コード</dt>
+                  <dd class="definitionForm__data w--80">
+                    <input
+                      formControlName="staffCodeFromCtrl"
+                      name="staffCodeFromCtrl"
+                      class="input-size--110 mr--10"
+                      readonly>
+                    <input
+                      formControlName="staffNameFromCtrl"
+                      name="staffNameFromCtrl"
+                      class="input-size--450"
+                      readonly>
+                  </dd>
+
+                  <dt class="definitionForm__title w--17"></dt>
+                  <dd class="definitionForm__data w--80">
+                    <span class="wavy-line"></span>
+                    <input
+                      formControlName="staffCodeToCtrl"
+                      name="staffCodeToCtrl"
+                      class="input-size--110 mr--10"
+                      readonly>
+                    <input
+                      formControlName="staffNameToCtrl"
+                      name="staffNameToCtrl"
+                      class="input-size--450"
+                      readonly>
+                  </dd>
+
+              </dl>
+          </div>
+
+      </div>
+
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+        <div class="common-inner-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}"></th>
+                <th class="{{TableColumn.COL_150_CODE}}">得意先コード</th>
+                <th class="{{TableColumn.COL_200_CODE}}">得意先名</th>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1">
+                  <th class="{{TableColumn.COL_150_CODE}}">通貨コード</th>
+                </ng-container>
+                <th class="{{TableColumn.COL_100_CODE}}">請求日</th>
+                <th class="{{TableColumn.COL_100_CODE}}">入金予定日</th>
+                <th class="{{TableColumn.COL_100_CODE}}">売上日</th>
+                <th class="{{TableColumn.COL_200_CODE}}">請求金額</th>
+                <th class="{{TableColumn.COL_200_CODE}}">請求残</th>
+                <th class="{{TableColumn.COL_150_CODE}}">担当者コード</th>
+                <th class="{{TableColumn.COL_150_CODE}}">担当者名</th>
+                <th class="{{TableColumn.COL_150_CODE}}">請求書番号</th>
+                <th class="{{TableColumn.COL_250_CODE}}">{{getColumnAlias('Note1')}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+              *ngFor="let billingAgingListDetail of billingAgingListDetails; let i = index">
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{ i + 1 }}</td>
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{ billingAgingListDetail.customerCode }}</td>
+              <td class="{{TableColumn.COL_200_NAME}}">{{ billingAgingListDetail.customerName }}</td>
+              <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1">
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{ billingAgingListDetail.currencyCode }}</td>
+              </ng-container>
+              <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ billingAgingListDetail.billedAt|date:'yyyy/MM/dd' }}</td>
+              <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ billingAgingListDetail.dueAt|date:'yyyy/MM/dd' }}</td>
+              <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ billingAgingListDetail.salesAt|date:'yyyy/MM/dd' }}</td>
+              <td class="{{TableColumn.COL_KINGAKU}}">{{ billingAgingListDetail.billingAmount|currency_pipe }}</td>
+              <td class="{{TableColumn.COL_KINGAKU}}">{{ billingAgingListDetail.remainAmount|currency_pipe }}</td>
+              <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{ billingAgingListDetail.staffCode }}</td>
+              <td class="{{TableColumn.COL_150_NAME}}">{{ billingAgingListDetail.staffName }}</td>
+              <td class="{{TableColumn.COL_150_NAME}}">{{ billingAgingListDetail.invoiceCode }}</td>
+              <td class="{{TableColumn.COL_250_NAME}}">{{ billingAgingListDetail.note }}</td>
+
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+</div>

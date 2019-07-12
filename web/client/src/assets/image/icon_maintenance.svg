@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>91CDB196-A77B-420F-B915-41724B14268C</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M15.7904635,13.0776467 L9.18216907,6.42929305 C9.83573665,4.74893993 9.47264355,2.77635147 8.09288977,1.38823367 C6.64051738,-0.0729429612 4.46195879,-0.365178288 2.71911192,0.43846886 L5.84171256,3.57999862 L3.66315397,5.77176357 L0.467934704,2.63023381 C-0.403488732,4.38364577 -0.0403956334,6.57541072 1.41197676,8.03658735 C2.79173053,9.42470515 4.75243327,9.78999931 6.42266152,9.13246983 L13.0309559,15.7808235 C13.3214304,16.0730588 13.7571421,16.0730588 14.0476166,15.7808235 L15.7178448,14.1004704 C16.0809379,13.8082351 16.0809379,13.2968232 15.7904635,13.0776467 Z" id="path-1"></path>
+    </defs>
+    <g id="page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ホーム" transform="translate(-24.000000, -366.000000)">
+            <g id="Common/sidebar_Close">
+                <g id="Group-3" transform="translate(0.000000, 48.000000)">
+                    <g id="メンテナンス" transform="translate(0.000000, 309.000000)">
+                        <g id="Icon/SideMenu" transform="translate(24.000000, 9.600000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Path" fill-rule="nonzero"></g>
+                            <g id="Color" mask="url(#mask-2)" fill="#FFFFFF">
+                                <rect id="Base" x="0" y="0" width="16" height="16"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

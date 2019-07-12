@@ -1,0 +1,163 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.SEARCH)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary">{{ItemNameConst.BTN_SEARCH}}</button>
+      <button
+        (click)="buttonAction(BUTTON_ACTION.DELETE)"
+        [ngClass]="{'button-disable': UpdateButtonDisableFlag}"
+        class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+
+      <div class="contentsButton__subSection">
+        <ng-container *ngIf="securityHideShow">
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterImport)">
+            <button class="buttonImport infotip"
+              (click)="buttonAction(BUTTON_ACTION.IMPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterExport)">
+            <button class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <section class="contents">
+      <div class="contents__container">
+        <div class="contents__item">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title">対象期間<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data">
+              <!-- form dataPicker -->
+              <input
+                formControlName="fromHolidayCtrl"
+                name="fromHolidayCtrl"
+                (keyup.enter)="setFromHoliday($event.type)"
+                placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                [ngClass]="{'input--error': fromHolidayCtrl.errors?.ngbDate}"
+                ngbDatepicker
+                #fromDp="ngbDatepicker"
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+                <button
+                  class="btn btn-outline-secondary"
+                  (click)="fromDp.toggle()"
+                  type="button">
+                </button>
+              <span class="wavy-line"></span>
+              <!-- to dataPicker -->
+              <input
+                formControlName="toHolidayCtrl"
+                name="toHolidayCtrl"
+                (keyup.enter)="setToHoliday($event.type)"
+                placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                [ngClass]="{'input--error': toHolidayCtrl.errors?.ngbDate}"
+                ngbDatepicker
+                #toDp="ngbDatepicker"
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+                <button
+                  class="btn btn-outline-secondary"
+                  (click)="toDp.toggle()"
+                  type="button">
+                </button>
+                <br>
+                <div
+                  class="message-result font__warning"
+                  *ngIf="fromHolidayCtrl.errors?.ngbDate || toHolidayCtrl.errors?.ngbDate">
+                  {{ MSG_VAL.DATE_DAY }}
+                </div>
+            </dd>
+            <dd class="definitionForm__data">
+              <!-- add dataPicker -->
+              <input
+                formControlName="setHolidayCtrl"
+                name="setHolidayCtrl"
+                placeholder="{{PlaceHolderConst.INPUT_DAY}}"
+                [ngClass]="{'input--error': setHolidayCtrl.errors?.ngbDate}"
+                ngbDatepicker
+                #addDp="ngbDatepicker"
+                maxlength="10"
+                type="tel"
+                class="input-size--100">
+                <button
+                  class="btn btn-outline-secondary definitionForm__input"
+                  (click)="addDp.toggle()"
+                  type="button">
+                </button>
+              <button
+                (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+                [ngClass]="{'button-disable': StringUtil.IsNullOrEmpty(setHolidayCtrl.value)}"
+                class="buttonMinimum">追加</button>
+                <br>
+                <div
+                  class="message-result font__warning" *ngIf="setHolidayCtrl.errors?.ngbDate">
+                  &nbsp;{{ MSG_VAL.DATE_DAY }}
+                </div>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- 登録済み休業日 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_REGISTER_HOLIDAY}}</h2>
+      <div class="contents__container">
+      <div class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_100_CODE}}"></th>
+              <th class="{{TableColumn.COL_100_CODE}}">削除</th>
+              <th class="{{TableColumn.COL_200_CODE}}">休業日</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let holidayCalendar of holidayCalendarsResult?.holidayCalendars; let i = index">
+              <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ i + 1 }}</td>
+              <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                <div class="inputStyled--inTable">
+                  <input
+                    id="cbxDetailDelFlagCtrl{{i}}"
+                    class="inputStyled__input"
+                    formControlName="cbxDetailDelFlagCtrl{{i}}"
+                    name="cbxDetailDelFlagCtrl{{i}}"
+                    (click)="onChecked(i)"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="cbxDetailDelFlagCtrl{{i}}"></label>
+                </div>
+              </td>
+              <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{ holidayCalendar.holiday }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </section>
+
+  </section>
+
+
+</div>

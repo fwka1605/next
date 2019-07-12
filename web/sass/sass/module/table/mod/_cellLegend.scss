@@ -1,0 +1,25 @@
+/* セルの凡例：更新前、更新後 */
+  .cellLegend {
+    display: inline-flex;
+    position: absolute;
+    right: 10px;
+    &__item {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    &__cell--beforeUpdate,
+    &__cell--afterUpdate {
+      display: inline-block;
+      width: 40px;
+      height: 16px;
+      margin-right: 6px;
+      border: 1px solid #ccc;
+    }
+    &__cell--afterUpdate {
+      background-color: #fff0a6;
+    }
+  }

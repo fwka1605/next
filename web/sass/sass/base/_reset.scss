@@ -1,0 +1,131 @@
+// リセット
+// 
+// normalize.cssやbootstrapのスタイルの上書き指定を記述 
+// 
+// Styleguide 0.4.0 
+
+
+/*
+  reset指定
+  normalizeのスタイルを上書き
+*/
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    background-color: $main-background-color;
+    font-size: $font-size;
+    font-family: 'Noto Sans JP', arial, sans-serif;
+    color: $text-color;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+  }
+
+  h1 {
+    margin: 0; 
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+  }
+
+  input::placeholder {
+    color: #aaa;
+  }
+
+  [type="date"] {
+    &::-webkit-inner-spin-button,
+    &::-webkit-clear-button,
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+    }
+  }
+
+  input,textarea,select {
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+
+  input {
+    min-height: $input-height;
+    padding: 2px 4px;
+  }
+
+  textarea {
+    padding: 10px;
+  }
+
+  ul,ol {
+    list-style: none;
+  }
+
+  p {
+    line-height: 1.4;
+  }
+  
+  a {
+    cursor: pointer;
+    &:link,
+    &:visited {
+      color: $text-color;
+      transition: .3s;
+    }
+    &:hover {
+      text-decoration: underline;
+      opacity: 0.8;
+    }
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
+
+/*
+  user agent stylesheetのスタイルを上書き
+*/
+  th {
+    font-weight: normal;
+  }
+
+  dt{
+    font-weight:normal;
+  }
+
+
+/*
+  bootstrapのスタイルを上書き
+*/
+  body {
+    line-height: inherit;
+  }
+  h1,h2,h3,h4,h5,h6,
+  p,
+  ol, ul, dl {
+    margin-bottom: 0;
+  }
+  button:focus {
+    outline: none;
+  }
+  .btn-outline-secondary:focus {
+    box-shadow: inherit !important;
+  }
+
+  label {
+    margin-bottom: inherit;
+  }

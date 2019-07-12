@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7b939753-a25a-4c4b-b55b-ff6f0b36d4b1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/ImportSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ImportSettingMaster.xsd" MetadataType="Schema" ID="875cd066-31a8-437b-a7a7-dfaa7dc9909e" SourceId="1" SourceUrl="http://localhost:3061/Master/ImportSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="ImportSettingMaster1.xsd" MetadataType="Schema" ID="cf73aa6d-f41d-4011-a2a4-92cbcf61fa13" SourceId="1" SourceUrl="http://localhost:3061/Master/ImportSettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="ImportSettingMaster.disco" MetadataType="Disco" ID="43b01df1-1f0c-4b89-9bdc-2da5f70bad83" SourceId="1" SourceUrl="http://localhost:3061/Master/ImportSettingMaster.svc?disco" />
+    <MetadataFile FileName="ImportSettingMaster2.xsd" MetadataType="Schema" ID="7feb8922-6f75-475d-a273-b367e7bc70ee" SourceId="1" SourceUrl="http://localhost:3061/Master/ImportSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="ImportSettingMaster.wsdl" MetadataType="Wsdl" ID="31deb80f-800d-4792-83cd-0a261c66c123" SourceId="1" SourceUrl="http://localhost:3061/Master/ImportSettingMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

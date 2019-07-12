@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="242cc71d-dfe2-48cc-8ee7-5c79cf6673d8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/EBExcludeAccountSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EBExcludeAccountSettingMaster.wsdl" MetadataType="Wsdl" ID="5bb46135-b0ee-406f-8cd6-5675c21c9296" SourceId="1" SourceUrl="http://localhost:3061/Master/EBExcludeAccountSettingMaster.svc?wsdl" />
+    <MetadataFile FileName="EBExcludeAccountSettingMaster.xsd" MetadataType="Schema" ID="e015af30-d4fb-4d59-8cad-42fb41ef7835" SourceId="1" SourceUrl="http://localhost:3061/Master/EBExcludeAccountSettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="EBExcludeAccountSettingMaster1.xsd" MetadataType="Schema" ID="90b6b2e6-6b21-42c3-bf17-f6aecac1e597" SourceId="1" SourceUrl="http://localhost:3061/Master/EBExcludeAccountSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="EBExcludeAccountSettingMaster2.xsd" MetadataType="Schema" ID="62454905-8957-4ed9-8148-d1a281d66317" SourceId="1" SourceUrl="http://localhost:3061/Master/EBExcludeAccountSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="EBExcludeAccountSettingMaster.disco" MetadataType="Disco" ID="d2c0c480-9604-408c-9f73-9745a86b8166" SourceId="1" SourceUrl="http://localhost:3061/Master/EBExcludeAccountSettingMaster.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,29 @@
+<section
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--small">
+  <h2 class="vModal__heading">{{ getTitleLabelName(true) }}
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <dl class="definitionForm mb--10">
+        <dt class="definitionForm__title">{{ getTitleLabelName(false) }}</dt>
+        <dd class="definitionForm__data">
+          <input
+            formControlName="MemoCtrl"
+            maxlength="100"
+            class="input-size--350">
+        </dd>
+      </dl>
+      <hr class="separator">
+      <div class="common-btn mb--20">
+        <button (click)="registry()" class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+        <button (click)="cancel()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

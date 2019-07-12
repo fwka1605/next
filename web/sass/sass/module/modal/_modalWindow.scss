@@ -1,0 +1,127 @@
+/*
+ モーダル
+*/
+.vModal { // モーダルサイズ中
+  $vModalSetting: #{&};
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 800px;
+  height: 65%;
+  margin: auto;
+  .contents__container--flex {
+    width: auto;
+  }
+  .common-inner-table {
+    overflow-x: auto;
+  }
+  &--dialogMinimum { // ダイアログ最小サイズ
+    @extend #{$vModalSetting};
+    width: 300px;
+    height: 155px;
+  }
+  &--dialog { // ダイアログ標準サイズ
+    @extend #{$vModalSetting};
+    width: 340px;
+    height: 155px;
+  }
+  &--clearing { // 個別消込用（処理中ローディングと同サイズ）
+    @extend #{$vModalSetting};
+    width: 400px;
+    height: 300px;
+  }
+  &--small { // モーダルサイズ小
+    @extend #{$vModalSetting};
+    width: 500px;
+    height: 300px;
+  }
+  &--large { // モーダルサイズ大
+    @extend #{$vModalSetting};
+    width: 1250px;
+    height: 85%;
+  }
+  &__heading {
+    position: relative;
+    padding: 15px;
+    border: 1px solid $border-color;
+    border-bottom-width: 2px;
+    border-radius: 4px 4px 0 0;
+    background-color: #F1F3F5;
+    color: $text-color;
+    font-size: $font-size-large;
+    font-weight: bold;
+    text-align: center;
+  }
+  &__close {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: $pageContainer-padding;
+    width: 14px;
+    height: 14px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: #C5D0DE;
+    cursor: pointer;
+    &:after,&:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;  
+      left: 0;
+      right: 0;
+      width: 2px;
+      height: 8px;
+      margin: auto;
+      border-radius: 4px;
+      background-color: #fff;
+      content: '';
+    }
+    &:before {
+      transform: rotate(-45deg);
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+  }
+  &__contents {
+    overflow: auto;
+    height: calc(100% - 35px);
+    padding: 0 $pageContainer-padding $pageContainer-padding;
+    border: 1px solid $border-color;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    background-color: #F7F9FB;
+    .common-btn {
+      display: block;
+      text-align: center;
+      &.contents__header {
+        text-align: inherit;
+      }
+    }
+    .separator {
+      height: 2px;
+      width:400px;
+      background-color: #E0E6EF;
+    }
+    .contentsButton {
+      top: 0;
+      padding: $pageContainer-padding 0;
+    }
+    .contentsButton__subSection {
+      bottom: $pageContainer-padding; 
+    }
+    &--dialog {
+      overflow: auto;
+      border-radius: 0 0 4px 4px;
+      background-color: #fff;
+      .common-btn {
+        display: block;
+        margin-top: 15px;
+        text-align: center;
+      }
+    }
+  }
+}

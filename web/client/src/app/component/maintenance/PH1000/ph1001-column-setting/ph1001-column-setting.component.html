@@ -1,0 +1,101 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+      <button
+        (click)="panelOpenState=!panelOpenState;"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_INPUT_ITEM_HIDDEN:ItemNameConst.BTN_INPUT_ITEM_DISPLAY}}
+      </button>
+    </div>
+  </section> 
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <section
+      *ngIf="panelOpenState"
+      class="contents">
+      <div class="contents__container--flex">
+        <div class="contents__item--w-30">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title w--15">種別</dt>
+            <dd class="definitionForm__data w--85">
+              <input
+                formControlName="tableNameCtrl"
+                name="tableNameCtrl"
+                type="tel"
+                class="input-size--200"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--15">項目名</dt>
+            <dd class="definitionForm__data w--85">
+              <input
+                formControlName="originalNameCtrl"
+                name="originalNameCtrl"
+                type="tel"
+                class="input-size--200"
+                readonly>
+            </dd>
+          </dl>
+        </div>
+        <div class="contents__item--w-70">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title">変更後名称</dt>
+            <dd class="definitionForm__data">
+              <input
+                formControlName="aliasCtrl"
+                name="aliasCtrl"
+                maxlength="10"
+                class="input-size--200">
+            </dd>
+          </dl>
+        </div>
+        <div class="contents__buttonGroup">
+          <button
+            (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+            [ngClass]="{'button-disable': isInvalidButton}"
+            class="buttonSecondary">
+            {{ComponentStatus==COMPONENT_STATUS_TYPE.CREATE?ItemNameConst.BTN_REGISTRY:ItemNameConst.BTN_UPDATE}}</button>
+          <button
+            (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+            class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 登録済みの項目 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_REGISTER_ITEM}}</h2>
+      <div class="contents__container">
+      <div class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_50_CODE}}">編集</th>
+              <th class="{{TableColumn.COL_100_CODE}}">種別</th>
+              <th class="{{TableColumn.COL_400_CODE}}">項目名</th>
+              <th class="{{TableColumn.COL_400_CODE}}">変更後名称</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let columnNameSetting of columnNameSettingsResult?.columnNames; let i = index" >
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                <a class="buttonEdit" (click)="selectLine(i)"></a>
+              </td>
+              <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{columnNameSetting.tableName}}</td>
+              <td class="{{TableColumn.COL_400_NAME}}">{{columnNameSetting.originalName}}</td>
+              <td class="{{TableColumn.COL_400_NAME}}">{{columnNameSetting.alias}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </section>
+
+  </section>
+
+  </div>
+  

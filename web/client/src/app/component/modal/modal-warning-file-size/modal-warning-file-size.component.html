@@ -1,0 +1,21 @@
+<section 
+  [style.z-index]="zIndex"
+  class="vModal--dialog">
+  <h2 class="vModal__heading">警告 【ファイルサイズ超過】
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <p *ngIf="!StringUtil.IsNullOrEmpty(prefixDetail)">{{prefixDetail}}</p>
+      <p>{{mainDetail}}のため処理を継続できません。</p>
+      <p *ngIf="!StringUtil.IsNullOrEmpty(sufixDetail)">{{sufixDetail}}</p>
+      <hr class="separator mt--20">
+      <div class="common-btn mb--20">
+        <button (click)="close()" class="buttonMinimum">{{ItemNameConst.BTN_CLOSE}}</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

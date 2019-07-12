@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bb1e19d6-4b5a-4d61-9779-aebba231d3a5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/ClosingSettingMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ClosingSettingMaster.xsd" MetadataType="Schema" ID="60dbb0e5-68a8-47b3-aaef-44283e32f2c0" SourceId="1" SourceUrl="http://localhost:3061/Master/ClosingSettingMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="ClosingSettingMaster.disco" MetadataType="Disco" ID="917e3150-791b-4275-9ed0-a319e5a41c12" SourceId="1" SourceUrl="http://localhost:3061/Master/ClosingSettingMaster.svc?disco" />
+    <MetadataFile FileName="ClosingSettingMaster1.xsd" MetadataType="Schema" ID="64456902-65fe-4526-83de-41a3fc2e0d5c" SourceId="1" SourceUrl="http://localhost:3061/Master/ClosingSettingMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="ClosingSettingMaster2.xsd" MetadataType="Schema" ID="7ff750cf-2a7b-4972-9330-9c2a1276068b" SourceId="1" SourceUrl="http://localhost:3061/Master/ClosingSettingMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="ClosingSettingMaster.wsdl" MetadataType="Wsdl" ID="3559d4b6-8bcf-410b-9bd9-541aa692a08f" SourceId="1" SourceUrl="http://localhost:3061/Master/ClosingSettingMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

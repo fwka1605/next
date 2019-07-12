@@ -1,0 +1,153 @@
+
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="back()" 
+        *ngIf="!disableBack()"
+        class="buttonBack">
+        {{ItemNameConst.BTN_BACK}}
+      </button>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_REGISTRY}}
+        <span
+          [innerHtml]="ButtonTipsConst.MF_STATEMENT_COOPERATION_SETTING | safeHtml_pipe"
+          class="infotip__frame"></span>
+      </button>
+      <button
+        (click)="navigateUrl()"
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_REGISTRY_NEW}}
+        <span
+          [innerHtml]="ButtonTipsConst.MF_STATEMENT_GET_NEWID | safeHtml_pipe"
+          class="infotip__frame"></span>
+      </button>
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+
+      <div class="contentsButton__subSection">
+        <button
+          (click)="navigateAccountDetails()"
+          [ngClass]="{'button-disable': isDisableAccountDetailsButton()}"
+          class="buttonPrimary infotip">
+          {{ItemNameConst.BTN_ACCOUNT_DETAILS}}
+          <span
+            [innerHtml]="ButtonTipsConst.MF_STATEMENT_SUBACCOUNT_SETTING | safeHtml_pipe"
+            class="infotip__frame"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+  
+  <section class="pageContainer">
+    
+    <!-- 基本設定 -->
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_BASE}}</h2>
+      <div class="contents__container">
+        <div class="contents__item--w-50">
+          <dl class="definitionForm--lh-narrow">
+            <dt class="definitionForm__title w--20">連携状態</dt>
+            <dd class="definitionForm__data w--80">
+              <input
+                formControlName="connectionStatusCtrl"
+                name="connectionStatusCtrl"
+                class="input-size--100"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--20">入金区分<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--80">
+              <input 
+                formControlName="receiptCategoryCodeCtrl" 
+                name="receiptCategoryCodeCtrl"
+                (blur)="setReceiptCategoryCode($event.type)" 
+                (keyup.enter)="setReceiptCategoryCode($event.type)"
+                #receiptCategoryCodeInput
+                [formControl]="receiptCategoryCodeCtrl" 
+                [matAutocomplete]="autoReceiptCategoryCode"
+                type="tel"
+                maxlength="2" 
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                class="input-size--60">
+              <mat-autocomplete 
+                #autoReceiptCategoryCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth150">
+                <mat-option 
+                  *ngFor="let category of categoryFilterds[0] | async" 
+                  [value]="category.code">{{category.code}}:{{category.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY_EXCLUDE_USE_LIMIT_DATE)"></a>
+              <input formControlName="receiptCategoryNameCtrl" name="receiptCategoryNameCtrl"
+                class="input-size--180" readonly>
+            </dd>
+
+            <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+              <dt class="definitionForm__title w--20">入金部門コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+              <dd class="definitionForm__data w--80">
+                <input formControlName="sectionCodeCtrl" 
+                  name="sectionCodeCtrl"
+                  (blur)="setSectionCode($event.type)" 
+                  (keyup.enter)="setSectionCode($event.type)"
+                  #sectionCodeInput
+                  [formControl]="sectionCodeCtrl" 
+                  [matAutocomplete]="autoSectionCode"
+                  type="tel" 
+                  maxlength="{{userInfoService.ApplicationControl?.sectionCodeLength}}"
+                  placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                  class="input-size--110">
+                <mat-autocomplete 
+                  #autoSectionCode="matAutocomplete"
+                  [panelWidth]="PanelConst.autocompleteWidth300">
+                  <mat-option 
+                    *ngFor="let section of sectionFilterds[0] | async" 
+                    [value]="section.code">{{section.code}}:{{section.name}}
+                  </mat-option>
+                </mat-autocomplete>
+                <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION)"></a>
+                <input formControlName="sectionNameCtrl" class="input-size--250" readonly>
+              </dd>
+            </ng-container>
+
+            <dt class="definitionForm__title w--20">認証コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+            <dd class="definitionForm__data w--80">
+              <input 
+                formControlName="authorizationCodeCtrl" 
+                name="authorizationCodeCtrl" 
+                placeholder="リダイレクト先のURLを貼り付けてください。(例 https://www.r-ac.co.jp/?code=XXX...)"
+                class="input-size--550 mr--5">
+                <button
+                (click)="navigateAuthUrl()"
+                class="buttonMinimum">認証コード取得</button>  
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- テスト接続結果 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_TEST_CONNECTION_RESULT}}</h2>
+      <div class="contents__container">
+        <div class="common-inner-table">
+          <textarea
+            class="font__mid"
+            formControlName="testConnectionResultCtrl"
+            name="testConnectionResultCtrl"
+            placeholder="入金データ自動連携 WebAPI 連携設定で 認証に成功した場合、口座情報などを表示します。MFID未登録の場合、新規登録より、MFIDを登録してください。"
+            cols=200 rows=15
+            readonly></textarea>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5155fa26-3b38-4075-9823-494225ea0450" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/DataMaintenanceService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DataMaintenanceService.xsd" MetadataType="Schema" ID="c41945a0-512e-4aa9-a06f-268f5533cc4e" SourceId="1" SourceUrl="http://localhost:3061/DataMaintenanceService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DataMaintenanceService1.xsd" MetadataType="Schema" ID="57d5fc1d-74c9-4cfd-a46e-3811401c19c1" SourceId="1" SourceUrl="http://localhost:3061/DataMaintenanceService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DataMaintenanceService2.xsd" MetadataType="Schema" ID="227646b6-9fc6-4515-a435-18d388b843dc" SourceId="1" SourceUrl="http://localhost:3061/DataMaintenanceService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DataMaintenanceService.disco" MetadataType="Disco" ID="c1dcf5e8-eb6b-46eb-810a-0285865af868" SourceId="1" SourceUrl="http://localhost:3061/DataMaintenanceService.svc?disco" />
+    <MetadataFile FileName="DataMaintenanceService.wsdl" MetadataType="Wsdl" ID="33654f20-fc0a-42e2-b959-411032ae4b40" SourceId="1" SourceUrl="http://localhost:3061/DataMaintenanceService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

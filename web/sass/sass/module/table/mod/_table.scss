@@ -1,0 +1,55 @@
+/*
+table各種
+*/
+/* チェックボックスが含まれるtable（[権限設定]などで使用） */
+.checklistTable {
+  $borderProperty: 1px solid #ccc;
+  border-left: $borderProperty;
+  border-top: $borderProperty;
+  .buttonMinimum--w-auto {
+    padding: 4px 6px;
+  }
+  &__caption {
+    padding-top: 0;
+    caption-side: top;
+    color: #333;
+  }
+  &__header,&__data {
+    padding: 5px 10px;
+  }
+  &__header {
+    background-color: #F6F8FA;
+    color: #354052;
+    font-weight: bold;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+  }
+  &__data {
+    border-right: $borderProperty;
+    border-bottom: $borderProperty;
+  }
+}
+
+/* ボーダーなしのtable */
+  .borderlessTable {
+    &__header,&__data {
+      padding: 2px 5px;
+    }
+  }
+
+
+/* 入金データ振分 */
+  .apportion {
+    &__tableRow {
+      &--color-done {
+        background: #fff0a6;
+        > td {
+          background: inherit !important;
+        }
+      }
+      &--color-notYet {
+        background: #fff;
+      }
+    }    
+  }

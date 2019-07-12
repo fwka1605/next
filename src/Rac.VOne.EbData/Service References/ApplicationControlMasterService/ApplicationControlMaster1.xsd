@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ApplicationControlResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationControl" nillable="true" type="tns:ApplicationControl" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationControlResult" nillable="true" type="tns:ApplicationControlResult" />
+  <xs:complexType name="ApplicationControl">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountTitleCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="AccountTitleCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="ApplicationEdition" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="GeneralSettingValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LimitAccessFolder" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginUserCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginUserCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="RegisterContractInAdvance" type="xs:int" />
+      <xs:element minOccurs="0" name="RootPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SectionCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="SectionCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UseAccountTransfer" type="xs:int" />
+      <xs:element minOccurs="0" name="UseAuthorization" type="xs:int" />
+      <xs:element minOccurs="0" name="UseBillingFilter" type="xs:int" />
+      <xs:element minOccurs="0" name="UseCashOnDueDates" type="xs:int" />
+      <xs:element minOccurs="0" name="UseClosing" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDeclaredAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDepartment" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDiscount" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDistribution" type="xs:int" />
+      <xs:element minOccurs="0" name="UseFactoring" type="xs:int" />
+      <xs:element minOccurs="0" name="UseForeignCurrency" type="xs:int" />
+      <xs:element minOccurs="0" name="UseHatarakuDBWebApi" type="xs:int" />
+      <xs:element minOccurs="0" name="UseLongTermAdvanceReceived" type="xs:int" />
+      <xs:element minOccurs="0" name="UseMFWebApi" type="xs:int" />
+      <xs:element minOccurs="0" name="UseOperationLogging" type="xs:int" />
+      <xs:element minOccurs="0" name="UsePCADXWebApi" type="xs:int" />
+      <xs:element minOccurs="0" name="UsePublishInvoice" type="xs:int" />
+      <xs:element minOccurs="0" name="UseReceiptSection" type="xs:int" />
+      <xs:element minOccurs="0" name="UseReminder" type="xs:int" />
+      <xs:element minOccurs="0" name="UseScheduledPayment" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationControl" nillable="true" type="tns:ApplicationControl" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+</xs:schema>

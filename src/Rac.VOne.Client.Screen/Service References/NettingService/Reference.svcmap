@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fa8a9606-61ab-4eec-bf76-5ff2d69faee3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/NettingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NettingService.disco" MetadataType="Disco" ID="1909aa2d-8629-43de-8918-a114b8d34f4f" SourceId="1" SourceUrl="http://localhost:3061/NettingService.svc?disco" />
+    <MetadataFile FileName="NettingService.xsd" MetadataType="Schema" ID="be31d4a7-c62d-40de-a91b-b47798d07311" SourceId="1" SourceUrl="http://localhost:3061/NettingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="NettingService1.xsd" MetadataType="Schema" ID="f6d30071-3a4c-4710-94e8-1bd48f54f375" SourceId="1" SourceUrl="http://localhost:3061/NettingService.svc?xsd=xsd3" />
+    <MetadataFile FileName="NettingService2.xsd" MetadataType="Schema" ID="ba3f4844-e2c8-42df-bec8-f6e8e10a227a" SourceId="1" SourceUrl="http://localhost:3061/NettingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NettingService3.xsd" MetadataType="Schema" ID="4e50465e-68d3-4566-bdf5-54fe22ce51df" SourceId="1" SourceUrl="http://localhost:3061/NettingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="NettingService.wsdl" MetadataType="Wsdl" ID="d65abc5b-6cc5-4844-9fb2-e4580dd57a56" SourceId="1" SourceUrl="http://localhost:3061/NettingService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

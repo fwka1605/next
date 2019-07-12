@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CollectionScheduleSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayDepartment" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DisplayParent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsPrint" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NewPagePerDepartment" type="xs:boolean" />
+      <xs:element minOccurs="0" name="NewPagePerStaff" type="xs:boolean" />
+      <xs:element minOccurs="0" name="StaffCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UnitPrice" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UseMasterStaff" type="xs:boolean" />
+      <xs:element minOccurs="0" name="YearMonth" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CollectionScheduleSearch" nillable="true" type="tns:CollectionScheduleSearch" />
+  <xs:complexType name="CollectionSchedulesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CollectionSchedules" nillable="true" type="tns:ArrayOfCollectionSchedule" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CollectionSchedulesResult" nillable="true" type="tns:CollectionSchedulesResult" />
+  <xs:complexType name="ArrayOfCollectionSchedule">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CollectionSchedule" nillable="true" type="tns:CollectionSchedule" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCollectionSchedule" nillable="true" type="tns:ArrayOfCollectionSchedule" />
+  <xs:complexType name="CollectionSchedule">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ClosingDay" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CollectCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollectCategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordType" type="xs:int" />
+      <xs:element minOccurs="0" name="RowId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UncollectedAmount0" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UncollectedAmount1" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UncollectedAmount2" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UncollectedAmount3" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UncollectedAmountLast" nillable="true" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CollectionSchedule" nillable="true" type="tns:CollectionSchedule" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+</xs:schema>

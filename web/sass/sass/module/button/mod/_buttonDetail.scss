@@ -1,0 +1,69 @@
+// 正方形ボタン
+// 
+// Markup:
+//  <button class="buttonDetail"></button>
+//  <button class="buttonDetail" disabled></button><!-- disableの場合 -->
+//  <button class="buttonEdit"></button>
+//  <button class="buttonImport"></button>
+//  <button class="buttonExport"></button>
+//
+// Styleguide 3.2.4
+
+  @mixin buttonSquare {
+    $bgColor: #192E79;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: $pageContainer-padding;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: $bgColor;
+    cursor: pointer;
+    transition: .3s;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:hover {
+      background-color: lighten($bgColor,32%);
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.1);
+    }
+    &:disabled {
+      opacity: .3;
+      cursor: inherit;
+    }
+  }
+
+  .buttonDetail,.buttonImport,.buttonExport,.buttonEdit,.buttonDots,.buttonVertical,.buttonHorizon {
+    @include buttonSquare();
+  }
+  
+  .buttonDetail {
+    background-image: url(#{$imagePath}icon_dots.svg);
+  }
+
+  .buttonImport,.buttonExport,.buttonVertical,.buttonHorizon {
+    background-size: 12px 12px;
+  }
+
+  .buttonImport {
+    background-image: url(#{$imagePath}icon_upwardArrow.svg);
+  }
+  
+  .buttonExport {
+    background-image: url(#{$imagePath}icon_downwardArrow.svg);
+  }
+
+  .buttonEdit {
+    background-image: url(#{$imagePath}icon_edit.svg);
+    background-size: 10px;
+  }
+  
+  .buttonVertical {
+    background-image: url(#{$imagePath}icon_vertical.svg);
+  }
+
+  .buttonHorizon {
+    background-image: url(#{$imagePath}icon_horizon.svg);
+  }

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ArrayOfCompanyLogo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CompanyLogo" nillable="true" type="tns:CompanyLogo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompanyLogo" nillable="true" type="tns:ArrayOfCompanyLogo" />
+  <xs:complexType name="CompanyLogo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="Logo" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="LogoType" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyLogo" nillable="true" type="tns:CompanyLogo" />
+  <xs:complexType name="CompanyResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Company" nillable="true" type="tns:Company" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyResult" nillable="true" type="tns:CompanyResult" />
+  <xs:complexType name="Company">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountNumber1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountNumber2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountNumber3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountType1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountType2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountType3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AutoCloseProgressDialog" type="xs:int" />
+      <xs:element minOccurs="0" name="BankAccountKana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankAccountName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BranchName1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BranchName2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BranchName3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClosingDay" type="xs:int" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="Fax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Kana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PresetCodeSearchDialog" type="xs:int" />
+      <xs:element minOccurs="0" name="ProductKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShowConfirmDialog" type="xs:int" />
+      <xs:element minOccurs="0" name="ShowWarningDialog" type="xs:int" />
+      <xs:element minOccurs="0" name="Tel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransferAggregate" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Company" nillable="true" type="tns:Company" />
+  <xs:complexType name="CompanyLogoResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyLogo" nillable="true" type="tns:CompanyLogo" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyLogoResult" nillable="true" type="tns:CompanyLogoResult" />
+  <xs:complexType name="CompanyLogosResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyLogos" nillable="true" type="tns:ArrayOfCompanyLogo" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanyLogosResult" nillable="true" type="tns:CompanyLogosResult" />
+  <xs:complexType name="CompaniesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Companies" nillable="true" type="tns:ArrayOfCompany" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompaniesResult" nillable="true" type="tns:CompaniesResult" />
+  <xs:complexType name="ArrayOfCompany">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Company" nillable="true" type="tns:Company" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCompany" nillable="true" type="tns:ArrayOfCompany" />
+  <xs:complexType name="CompanySource">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicationControl" nillable="true" type="tns:ApplicationControl" />
+      <xs:element minOccurs="0" name="Company" nillable="true" type="tns:Company" />
+      <xs:element minOccurs="0" name="DeleteCompanyLogos" nillable="true" type="tns:ArrayOfCompanyLogo" />
+      <xs:element minOccurs="0" name="FunctionAuthorities" nillable="true" type="tns:ArrayOfFunctionAuthority" />
+      <xs:element minOccurs="0" name="LoginUserLicense" nillable="true" type="tns:LoginUserLicense" />
+      <xs:element minOccurs="0" name="MenuAuthorities" nillable="true" type="tns:ArrayOfMenuAuthority" />
+      <xs:element minOccurs="0" name="PasswordPolicy" nillable="true" type="tns:PasswordPolicy" />
+      <xs:element minOccurs="0" name="SaveCompanyLogos" nillable="true" type="tns:ArrayOfCompanyLogo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompanySource" nillable="true" type="tns:CompanySource" />
+  <xs:complexType name="ApplicationControl">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountTitleCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="AccountTitleCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="ApplicationEdition" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="GeneralSettingValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LimitAccessFolder" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginUserCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginUserCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="RegisterContractInAdvance" type="xs:int" />
+      <xs:element minOccurs="0" name="RootPath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SectionCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="SectionCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffCodeLength" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffCodeType" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UseAuthorization" type="xs:int" />
+      <xs:element minOccurs="0" name="UseBillingFilter" type="xs:int" />
+      <xs:element minOccurs="0" name="UseCashOnDueDates" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDeclaredAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDepartment" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDiscount" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDistribution" type="xs:int" />
+      <xs:element minOccurs="0" name="UseForeignCurrency" type="xs:int" />
+      <xs:element minOccurs="0" name="UseHatarakuDBWebApi" type="xs:int" />
+      <xs:element minOccurs="0" name="UseLongTermAdvanceReceived" type="xs:int" />
+      <xs:element minOccurs="0" name="UseOperationLogging" type="xs:int" />
+      <xs:element minOccurs="0" name="UsePCADXWebApi" type="xs:int" />
+      <xs:element minOccurs="0" name="UsePublishInvoice" type="xs:int" />
+      <xs:element minOccurs="0" name="UseReceiptSection" type="xs:int" />
+      <xs:element minOccurs="0" name="UseReminder" type="xs:int" />
+      <xs:element minOccurs="0" name="UseScheduledPayment" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationControl" nillable="true" type="tns:ApplicationControl" />
+  <xs:complexType name="ArrayOfFunctionAuthority">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FunctionAuthority" nillable="true" type="tns:FunctionAuthority" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFunctionAuthority" nillable="true" type="tns:ArrayOfFunctionAuthority" />
+  <xs:complexType name="FunctionAuthority">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthorityLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="Available" type="xs:boolean" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="FunctionType" type="tns:FunctionType" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FunctionAuthority" nillable="true" type="tns:FunctionAuthority" />
+  <xs:simpleType name="FunctionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MasterImport" />
+      <xs:enumeration value="MasterExport" />
+      <xs:enumeration value="ModifyBilling" />
+      <xs:enumeration value="RecoverBilling" />
+      <xs:enumeration value="ModifyReceipt" />
+      <xs:enumeration value="RecoverReceipt" />
+      <xs:enumeration value="CancelMatching" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FunctionType" nillable="true" type="tns:FunctionType" />
+  <xs:complexType name="LoginUserLicense">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="LicenseKey" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginUserLicense" nillable="true" type="tns:LoginUserLicense" />
+  <xs:complexType name="ArrayOfMenuAuthority">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MenuAuthority" nillable="true" type="tns:MenuAuthority" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMenuAuthority" nillable="true" type="tns:ArrayOfMenuAuthority" />
+  <xs:complexType name="MenuAuthority">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthorityLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="Available" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="MenuCategory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MenuId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MenuName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MenuAuthority" nillable="true" type="tns:MenuAuthority" />
+  <xs:complexType name="PasswordPolicy">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CaseSensitive" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="ExpirationDays" type="xs:int" />
+      <xs:element minOccurs="0" name="HistoryCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MaxLength" type="xs:int" />
+      <xs:element minOccurs="0" name="MinAlphabetUseCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MinLength" type="xs:int" />
+      <xs:element minOccurs="0" name="MinNumberUseCount" type="xs:int" />
+      <xs:element minOccurs="0" name="MinSameCharacterRepeat" type="xs:int" />
+      <xs:element minOccurs="0" name="MinSymbolUseCount" type="xs:int" />
+      <xs:element minOccurs="0" name="SymbolType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UseAlphabet" type="xs:int" />
+      <xs:element minOccurs="0" name="UseNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="UseSymbol" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PasswordPolicy" nillable="true" type="tns:PasswordPolicy" />
+</xs:schema>

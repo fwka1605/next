@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9929cdc9-3bfe-4528-bde8-91b348662302" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/EBFormatMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EBFormatMaster.wsdl" MetadataType="Wsdl" ID="abb58b09-0bb9-4d87-b8a3-deae6ef92a74" SourceId="1" SourceUrl="http://localhost:3061/Master/EBFormatMaster.svc?wsdl" />
+    <MetadataFile FileName="EBFormatMaster.xsd" MetadataType="Schema" ID="4191ca03-341f-4bc1-a33d-38af7b5864f0" SourceId="1" SourceUrl="http://localhost:3061/Master/EBFormatMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="EBFormatMaster1.xsd" MetadataType="Schema" ID="737f58d5-bdc7-4077-ba6c-e3f679aa5421" SourceId="1" SourceUrl="http://localhost:3061/Master/EBFormatMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="EBFormatMaster.disco" MetadataType="Disco" ID="1be7b7d1-1bd0-4936-9738-8bf6cf94c65e" SourceId="1" SourceUrl="http://localhost:3061/Master/EBFormatMaster.svc?disco" />
+    <MetadataFile FileName="EBFormatMaster2.xsd" MetadataType="Schema" ID="0a6c4de0-a82f-4f54-a402-4113d1040bbf" SourceId="1" SourceUrl="http://localhost:3061/Master/EBFormatMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

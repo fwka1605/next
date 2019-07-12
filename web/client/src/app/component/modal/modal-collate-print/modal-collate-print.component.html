@@ -1,0 +1,63 @@
+<section class="vModal--dialog"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup">
+  <h2 class="vModal__heading">出力内容の選択
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <p class="align--center mb--20 mt--20">出力内容を選択してください。</p>
+      <label class="labelWrap">
+        <div class="inputStyled">
+          <input
+            id="rdoPrintDataCtrl_01"
+            class="inputStyled__input"
+            formControlName="rdoPrintDataCtrl"
+            name="rdoPrintDataCtrl"
+            type="radio"
+            value="1">
+          <label
+            class="inputStyled__radio"
+            for="rdoPrintDataCtrl_01">チェックのみ</label>
+        </div>
+      </label>
+      <label class="labelWrap">
+        <div class="inputStyled">
+          <input
+            id="rdoPrintDataCtrl_02"
+            class="inputStyled__input"
+            formControlName="rdoPrintDataCtrl"
+            name="rdoPrintDataCtrl"
+            type="radio"
+            value="2">
+          <label
+            class="inputStyled__radio"
+            for="rdoPrintDataCtrl_02">チェックなしのみ</label>
+        </div>
+      </label>
+      <label class="labelWrap">
+        <div class="inputStyled">
+          <input
+            id="rdoPrintDataCtrl_03"
+            class="inputStyled__input"
+            formControlName="rdoPrintDataCtrl"
+            name="rdoPrintDataCtrl"
+            type="radio"
+            value="0">
+          <label
+            class="inputStyled__radio"
+            for="rdoPrintDataCtrl_03">全件</label>
+        </div>
+      </label>
+      <hr class="separator mt--20">
+      <div class="common-btn mb--20">
+        <button (click)="ok()" class="buttonSecondary">{{ItemNameConst.BTN_DOWNLOAD}}</button>
+        <button (click)="cancel()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

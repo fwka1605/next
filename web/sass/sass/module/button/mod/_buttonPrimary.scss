@@ -1,0 +1,32 @@
+// 何らかの処理のボタン
+// 
+// Markup:
+//  <button class="buttonPrimary">ログアウト</button>
+//  <button class="buttonSecondary">検索</button>
+//
+// Styleguide 3.2.2
+
+  .buttonPrimary,.buttonSecondary {
+    color: #fff;
+  }
+
+  .buttonPrimary {
+    @include buttonBasic(#192E79);
+  }
+  
+
+  .buttonSecondary,.buttonLogin {
+    @include buttonBasic(#F85359,#DC151D);
+  }
+
+  .buttonSecondary {
+    min-width: 122px;
+    margin-right: $pageContainer-padding;
+  }
+  
+  .buttonLogin {
+    width: 280px;
+    height: 32px;
+    color: #fff;
+    font-size: $font-size-large;
+  }

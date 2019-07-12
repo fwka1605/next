@@ -1,0 +1,50 @@
+/*
+  login page 
+*/
+.login {
+  position: relative;
+  &__contents {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  &__footer {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  &__frame {
+    z-index: 1;
+    margin: 22vh auto;
+    border: 1px solid $border-color;	border-radius: 3px;
+    background-color: #fff;
+  }
+  &__formContainer {
+    padding: 50px 60px;
+    border-bottom: 2px solid $border-color;
+    &--footerSection {
+      padding: 18px;
+      text-align: center;
+    }
+    > .definitionPlain {
+      margin: $pageContainer-padding auto 25px;
+    }
+  }
+  &__title {
+    margin-bottom: $pageContainer-padding;
+    font-size: $font-size-large;
+    font-weight: bold;
+    text-align: center;
+  }
+  &__logo {
+    display: block;
+    width: 188px;
+    margin: 0 auto 14px;
+  }
+  &__inputField {
+    width: 280px;
+    height: 32px;
+  }
+}

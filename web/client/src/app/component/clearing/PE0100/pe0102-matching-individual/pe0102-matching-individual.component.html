@@ -1,0 +1,391 @@
+<div class="individualClearing"
+  [formGroup]="myFormGroup">
+    <section class="contentsButton">
+      <div class="contentsButton__inner">
+          <!--- 処理結果の表示 -->
+          <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+        <button (click)="back()" class="buttonBack">
+          {{ItemNameConst.BTN_BACK}}
+        </button>
+
+        <button class="buttonSecondary infotip"
+          (click)="buttonAction(BUTTON_ACTION.MATCHING)" 
+          [ngClass]="{'button-disable': loadingData }" 
+          *ngIf="!IsMatched">{{ItemNameConst.BTN_MATCHING}}
+          <span [innerHtml]="ButtonTipsConst.MATCHING | safeHtml_pipe" class="infotip__frame"></span>
+        </button>
+        <div class="contentsButton__subSection">
+          <ul class="separator">
+            <li class="separator__item">
+              <button class="buttonPrev infotip" 
+                (click)="buttonAction(BUTTON_ACTION.PREV)" 
+                [ngClass]="{'button-disable': loadingData || this.matchingService.collationInfo.individualIndexNo==0}">{{ItemNameConst.BTN_PREV}}
+                <span [innerHtml]="ButtonTipsConst.PREV_CUSTOMER | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+              <button class="buttonNext infotip"
+                (click)="buttonAction(BUTTON_ACTION.NEXT)" 
+                [ngClass]="{'button-disable': loadingData || this.matchingService.collationInfo.individualIndexNo==(this.matchingService.collationInfo.collations.length-1)}">{{ItemNameConst.BTN_NEXT}}
+                <span [innerHtml]="ButtonTipsConst.NEXT_CUSTOMER | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+            </li>
+            <li class="separator__item">
+              <button class="buttonMinimum infotip"
+                (click)="buttonAction(BUTTON_ACTION.REGISTRY_RECEIPT)"
+                *ngIf="!IsMatched && IsNotAgency">{{ItemNameConst.BTN_REGISTRY_RECEIPT}}
+               <span [innerHtml]="ButtonTipsConst.RECEIPT_INPUT_FOR_CLEARING | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+            </li>
+            <li class="separator__item">
+              <button class="buttonPrimary infotip"
+                (click)="buttonAction(BUTTON_ACTION.SEARCH_BILLING)"
+                *ngIf="!IsMatched">{{ItemNameConst.BTN_SEARCH_BILLING}}
+                <span [innerHtml]="ButtonTipsConst.BILLING_SEARCH_FOR_CLEARING | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+              <button class="buttonPrimary infotip"
+                (click)="buttonAction(BUTTON_ACTION.SEARCH_RECEIPT)"
+                *ngIf="!IsMatched">{{ItemNameConst.BTN_SEARCH_RECEIPT}}
+                 <span [innerHtml]="ButtonTipsConst.RECEIPT_SEARCH_FOR_CLEARING | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+            </li>
+            <li class="separator__item">
+              <button class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)" 
+                [ngClass]="{'button-disable': loadingData }">
+                <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+              <button
+                [ngClass]="!matchingService.collationInfo.displayTypeVertical ? 'buttonVertical' : 'buttonHorizon'"
+                (click)="changeDisplayType()"></button>
+              <button 
+                *ngIf="userInfoService.ApplicationControl.useScheduledPayment && !userInfoService.ApplicationControl.useDeclaredAmount"
+                (click)="setAdvanceReceived()" class="common-btn__item">{{advanceReceived}}
+              </button> 
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="pageContainer">
+
+      <section class="individualClearing__fixed">
+        <!-- ［請求］合計 -->
+        <div class="contents"
+          [ngClass]="collationSetting.billingReceiptDisplayOrder!=1 ? 'clearingTotal--order-1' : 'clearingTotal--order-2'">
+          <h3 class="clearingTotal__title--color-invoice">請求　合計
+            <div class="clearingTotal__titleButton">
+            <button (click)="clearBilling()" *ngIf="!IsMatched" class="buttonMinimum">クリア</button>
+            </div>
+          </h3>
+          <div class="clearingTotal__breakdown contents__container--flex">
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title">件数</dt>
+                <dd class="definitionForm__data">{{billingCount}}<span class="clearingTotal__breakdownUnit">件</span></dd>
+                <dt class="definitionForm__title">請求額計</dt>
+                <dd class="definitionForm__data">{{billingAmountTotal|currency_pipe}}<span class="clearingTotal__breakdownUnit">円</span></dd>
+                <dt class="definitionForm__title">消費税誤差</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    formControlName="billingTaxDifferenceCtrl"
+                    name="billingTaxDifferenceCtrl"
+                    (keyup.enter)="setBillingTaxDifference($event.type)"
+                    (input)="inputBillingTaxDifference()"
+                    (blur)="setCurrencyForBillingTaxDifference()"
+                    (focus)="initCurrencyForBillingTaxDifference()"                      
+                    type="tel"
+                    maxlength="16"
+                    class="{{InputText.INPUT_100_KINGAKU}}">
+                  <span class="clearingTotal__breakdownUnit">円</span>
+                </dd>
+                <dt *ngIf="userInfoService.ApplicationControl.useDiscount==1" class="definitionForm__title">△歩引き額</dt>
+                <dd *ngIf="userInfoService.ApplicationControl.useDiscount==1" class="definitionForm__data">
+                  <input 
+                    formControlName="discountCtrl"
+                    name="discountCtrl"
+                    (keyup.enter)="setDiscount($event.type)"
+                    (input)="inputDiscount()"
+                    (blur)="setCurrencyForDiscount()"
+                    (focus)="initCurrencyForDiscount()"                      
+                    type="tel"
+                    maxlength="16"
+                    class="{{InputText.INPUT_100_KINGAKU}}">
+                  <span class="clearingTotal__breakdownUnit mr--10">円</span>
+                  <button class="buttonMinimum">調整</button>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title">消込対象額</dt>
+                <dd class="definitionForm__data">{{billingTargetAmount|currency_pipe}}<span class="clearingTotal__breakdownUnit">円</span></dd>
+                <dt class="definitionForm__title">△消込予定額</dt>
+                <dd class="definitionForm__data">{{billingMatchingAmount|currency_pipe}}<span class="clearingTotal__breakdownUnit">円</span></dd>
+                <dt class="definitionForm__title clearingTotal__breakdownEndprice">消込差額</dt>
+                <dd class="definitionForm__data clearingTotal__breakdownEndprice">
+                  {{billingMatchingRemain|currency_pipe}}<span class="clearingTotal__breakdownUnit">円</span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <!-- ［入金］合計 -->
+        <div class="contents"
+          [ngClass]="collationSetting.billingReceiptDisplayOrder!=1 ? 'clearingTotal--order-2' : 'clearingTotal--order-1'">
+          <h3 class="clearingTotal__title--color-receive">入金　合計
+            <div class="clearingTotal__titleButton">
+              <button (click)="clearReceipt()" *ngIf="!IsMatched" class="buttonMinimum">クリア</button>
+              <button (click)="simulation()" *ngIf="!IsMatched" class="buttonMinimum">シミュレーション</button>
+            </div>
+          </h3>
+          <div class="clearingTotal__breakdown contents__container--flex">
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title">件数</dt>
+                <dd class="definitionForm__data">{{receiptCount}}<span class="clearingTotal__breakdownUnit">件</span></dd>
+                <dt class="definitionForm__title">入金額計</dt>
+                <dd class="definitionForm__data">{{receiptAmountTotal|currency_pipe}}<span class="clearingTotal__breakdownUnit">円</span></dd>
+                <dt class="definitionForm__title">消費税誤差</dt>
+                <dd class="definitionForm__data mb--5">
+                  <input 
+                    formControlName="receiptTaxDifferenceCtrl"
+                    name="receiptTaxDifferenceCtrl"
+                    (keyup.enter)="setReceiptTaxDifference($event.type)"
+                    (input)="inputReceiptTaxDifference()"
+                    (blur)="setCurrencyForReceiptTaxDifference()"
+                    (focus)="initCurrencyForReceiptTaxDifference()"
+                    type="tel"
+                    maxlength="16"                      
+                    class="{{InputText.INPUT_100_KINGAKU}}">
+                  <span class="clearingTotal__breakdownUnit">円</span>
+                </dd>
+                <dt class="definitionForm__title">手数料</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    formControlName="transferFeeCtrl"
+                    name="transferFeeCtrl"
+                    (keyup.enter)="setTransferFee($event.type)"
+                    (input)="inputTransferFee()"
+                    (blur)="setCurrencyForTransferFee()"
+                    (focus)="initCurrencyForTransferFee()"                      
+                    type="tel"
+                    maxlength="16"                      
+                    class="{{InputText.INPUT_100_KINGAKU}}">
+                  <span class="clearingTotal__breakdownUnit">円</span>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title">消込対象額</dt>
+                <dd class="definitionForm__data">{{receiptTargetAmount|currency_pipe}}<span class="clearingTotal__breakdownUnit">円</span></dd>
+                <dt class="definitionForm__title">△消込予定額</dt>
+                <dd class="definitionForm__data">{{receiptMatchingAmount|currency_pipe}}<span class="clearingTotal__breakdownUnit">円</span></dd>
+                <dt class="definitionForm__title clearingTotal__breakdownEndprice">消込差額</dt>
+                <dd class="definitionForm__data clearingTotal__breakdownEndprice">
+                  {{receiptMatchingRemain|currency_pipe}}<span class="clearingTotal__breakdownUnit">円</span>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section><!-- /individualClearing__fixed -->
+
+      <section [ngClass]="{
+        'individualClearing__scrollable': StringUtil.IsNullOrEmpty(processCustomResult?.message),
+        'individualClearing__scrollable--errorDisplayed': !StringUtil.IsNullOrEmpty(processCustomResult?.message),
+        'clearingInfoVertical': matchingService.collationInfo.displayTypeVertical,
+        'clearingInfoHorizon': !matchingService.collationInfo.displayTypeVertical
+      }">
+        <!-- 請求情報 -->
+        <div
+          [ngClass]="collationSetting.billingReceiptDisplayOrder!=1 ? 'clearingInfo--order-1' : 'clearingInfo--order-2'">
+          <h2 class="heading">請求情報
+            <div class="heading__subText">入金予定日
+              <input class="heading__inputField input-size--130" type="text" readonly
+                value="{{BillingDueAtTo}}">
+            </div>
+            <div class="heading__subText">代表得意先名
+              <input class="heading__inputField input-size--130 mr--10" type="text" readonly
+                value="{{customerName}}">様
+            </div>
+          </h2>
+          <section class="contents">
+            <div class="common-inner-table">
+              <table 
+                [ngClass]="{
+                  'searchResult__table': billingNowrapCtrl.value,
+                  'searchResult__table--tableData-nowrap':!billingNowrapCtrl.value
+                }">
+                <thead>
+                  <tr class="searchResult__tableCell--color-invoice">
+                    <ng-container *ngFor="let billingGridSetting of billingGridSettings index as i">
+                      <th class="col-size--{{billingGridSetting.displayWidth}} col-align-center">
+                        <span 
+                          *ngIf="billingGridSetting.columnName!='AssignmentFlag'"
+                          class="cursor-pointer"
+                          (click)="setSort(CategoryType.Billing,billingGridSetting.columnName)">{{billingGridSetting.columnNameJp}}
+                          <span 
+                            *ngIf="!StringUtil.IsNullOrEmpty(getSortRow(CategoryType.Billing,billingGridSetting.columnName))" 
+                            class="buttonSort" 
+                            data-sort-btn>
+                            {{getSortRow(CategoryType.Billing,billingGridSetting.columnName)}}
+                          </span>
+                        </span>
+                        <div class="inputStyled--inTable">
+                          <input 
+                            id="cbxInvoiceCheckAllCtrl"
+                            class="inputStyled__input"
+                            formControlName="cbxInvoiceCheckAllCtrl" 
+                            name="cbxInvoiceCheckAllCtrl" 
+                            (change)="checkInvoicesAll()"
+                            type="checkbox">
+                          <label 
+                            *ngIf="billingGridSetting.columnName=='AssignmentFlag'"
+                            class="inputStyled__checkbox" for="cbxInvoiceCheckAllCtrl"></label>
+                        </div>
+                      </th>
+                    </ng-container>
+                  </tr>
+                </thead>
+                <tbody class="searchResult__tableHeight--9999">
+                  <tr class="searchResult__tableData--color-invoice"
+                    *ngFor="let billing of billings index as i">
+                    <ng-container *ngFor="let billingGridSetting of billingGridSettings">
+                      <td
+                        *ngIf="billingGridSetting.columnName=='AssignmentFlag'"
+                        class="col-size--{{billingGridSetting.displayWidth}} col-align-center">
+                        <div class="inputStyled--inTable">
+                          <input class="inputStyled__input"
+                            id="cbxDetailBillingCtrl{{i}}" 
+                            formControlName="cbxDetailBillingCtrl{{i}}" 
+                            name="cbxDetailBillingCtrl{{i}}" 
+                            (change)="setCbxDetailBilling(i)"
+                            checked={{getCbxDetailBilling(i)}}
+                            type="checkbox">
+                          <label class="inputStyled__checkbox" for="cbxDetailBillingCtrl{{i}}"></label>
+                        </div>
+                      </td>
+                      <td 
+                        *ngIf="billingGridSetting.columnName=='TargetAmount'"
+                        class="col-size--{{billingGridSetting.displayWidth}} col-align-center">
+                        <input 
+                          formControlName="detailTargetAmountCtrl{{i}}"
+                          name="detailTargetAmountCtrl{{i}}"
+                          (keyup.enter)="setDetailTargetAmount($event.type,i)"
+                          (input)="inputDetailTargetAmount(i)"
+                          (blur)="setCurrencyForDetailTargetAmount(i)"
+                          (focus)="initCurrencyForDetailTargetAmount(i)"
+                          class="input-size--100 col-align-right">
+                      </td>
+                      <td
+                        *ngIf="billingGridSetting.columnName=='CustomerCode' || billingGridSetting.columnName=='CustomerName' "
+                        class="col-size--{{ billingGridSetting.displayWidth }} {{ gridSettingHelper.getAlign(billingGridSetting) }}"
+                        (click)="onDoubleClickBillingDetail(i, billingGridSetting)">
+                        <span class="anchor">
+                            {{ getBillingValue(billing, billingGridSetting) }}
+                        </span>
+                      </td>
+                      <td
+                        *ngIf="billingGridSetting.columnName=='Memo'"
+                        class="col-size--{{ billingGridSetting.displayWidth }} {{ gridSettingHelper.getAlign(billingGridSetting) }} infotip"
+                        (dblclick)="onDoubleClickBillingDetail(i, billingGridSetting)">
+                        {{ getBillingValue(billing, billingGridSetting) }}
+                        <span [innerHtml]="HtmlTipsConst.INVOICE_MEMO | safeHtml_pipe" class="infotip__frame"></span>
+                      </td>
+                      <td 
+                        *ngIf="isFreeBillingColumn(billingGridSetting)"
+                        class="col-size--{{ billingGridSetting.displayWidth }} {{ gridSettingHelper.getAlign(billingGridSetting) }}" >
+                        {{ getBillingValue(billing, billingGridSetting) }}
+                      </td>
+                    </ng-container>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+        <!-- 入金情報 -->
+        <div
+          [ngClass]="collationSetting.billingReceiptDisplayOrder!=1 ? 'clearingInfo--order-2' : 'clearingInfo--order-1'">
+          <h2 class="heading">入金情報
+            <div class="heading__subText">入金日
+              <input class="heading__inputField input-size--130" type="text" readonly
+                value="{{ReceiptRecordedAtTo}}">
+            </div>
+          </h2>
+          <section class="contents">
+            <div class="common-inner-table">
+              <table 
+                [ngClass]="{
+                  'searchResult__table': receiptNowrapCtrl.value,
+                  'searchResult__table--tableData-nowrap':!receiptNowrapCtrl.value
+                }">
+                <thead>
+                  <tr class="searchResult__tableCell--color-receive">
+                    <ng-container *ngFor="let receiptGridSetting of receiptGridSettings index as i">
+                      <th class="col-size--{{receiptGridSetting.displayWidth}}">
+                        <span 
+                          *ngIf="receiptGridSetting.columnName!='AssignmentFlag'"
+                          class="cursor-pointer"
+                          (click)="setSort(CategoryType.Receipt,receiptGridSetting.columnName)">
+                          {{receiptGridSetting.columnNameJp}}
+                          <!-- <span 
+                            *ngIf="!StringUtil.IsNullOrEmpty(getSortRow(CategoryType.Receipt,receiptGridSetting.columnName))" 
+                            class="buttonSort" 
+                            data-sort-btn> -->
+                          <div class="buttonSort" data-sort-btn>
+                            <!-- {{getSortRow(CategoryType.Receipt,receiptGridSetting.columnName)}} -->
+                            <span class="buttonSort__upward"></span>
+                            <span class="buttonSort__downward"></span>
+                          </div>                                
+                        </span>
+                        <div class="inputStyled--inTable"
+                          *ngIf="receiptGridSetting.columnName=='AssignmentFlag'">
+                          <input 
+                            id="cbxReceiptCheckAllCtrl"
+                            class="inputStyled__input"
+                            formControlName="cbxReceiptCheckAllCtrl" 
+                            name="cbxReceiptCheckAllCtrl" 
+                            (change)="checkReceiptsAll()"
+                            type="checkbox">
+                          <label class="inputStyled__checkbox" 
+                            for="cbxReceiptCheckAllCtrl"></label>
+                        </div>
+                      </th>
+                    </ng-container>
+                  </tr>
+                </thead>
+                <tbody class="searchResult__tableHeight--9999">
+                  <tr class="searchResult__tableData--color-receive"
+                    *ngFor="let receipt of receipts index as i">
+                    <ng-container *ngFor="let receiptGridSetting of receiptGridSettings">
+                      <td
+                        *ngIf="receiptGridSetting.columnName=='AssignmentFlag'"
+                        class="col-size--{{receiptGridSetting.displayWidth}} col-align-center">
+                        <div class="inputStyled--inTable">
+                          <input class="inputStyled__input"
+                            id="cbxDetailReceiptCtrl{{i}}" 
+                            formControlName="cbxDetailReceiptCtrl{{i}}" 
+                            name="cbxDetailReceiptCtrl{{i}}" 
+                            (change)="setCbxDetailReceipt(i)"
+                            checked={{getCbxDetailReceipt(i)}}
+                            type="checkbox">
+                          <label class="inputStyled__checkbox" for="cbxDetailReceiptCtrl{{i}}"></label>
+                        </div>
+                      </td>
+                      <td *ngIf="isFreeReceiptColumn(receiptGridSetting)"
+                        class="col-size--{{ receiptGridSetting.displayWidth }} {{ gridSettingHelper.getAlign(receiptGridSetting) }}">
+                        {{ getReceiptValue(receipt, receiptGridSetting) }}
+                      </td>
+                    </ng-container>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section><!-- /individualClearing__scrollable -->
+    </section><!-- /pageContainer -->
+</div>

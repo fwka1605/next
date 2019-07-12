@@ -1,0 +1,518 @@
+<div *ngIf="collationSetting" [formGroup]="myFormGroup" class="company-master">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+    <!--- 処理結果の表示 -->
+    <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+    <button
+      (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+      [ngClass]="{'button-disable': myFormGroup.invalid}"
+      class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+    <button
+      (click)="buttonAction(BUTTON_ACTION.SEARCH)"
+      class="buttonMinimum infotip">
+      {{ItemNameConst.BTN_REDISPLAY}}
+      <span
+        [innerHtml]="ButtonTipsConst.REDISPLAY | safeHtml_pipe"
+        class="infotip__frame"></span>
+    </button>
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 設定１ -->
+    <section class="contents">
+      <h3 class="contents__title">{{ItemNameConst.LBL_SETTING_ONE}}</h3>
+      <div class="contents__container--flex mt--20">
+        <div class="contents__item--w-50">
+          <div class="frame--w-95 mb--40">
+            <h3 class="frame__title">一括消込画面設定</h3>
+            <ul class="checkboxList">
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="reloadCollationData"
+                      class="inputStyled__input"
+                      formControlName="reloadCollationData"
+                      name="reloadCollationData"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="reloadCollationData">自動更新（リロード）を許可する</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="autoMatching"
+                      class="inputStyled__input"
+                      formControlName="autoMatching"
+                      name="autoMatching"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="autoMatching">一括消込チェックONのデータを消込実行させておく</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="autoSortMatchingEnabledData"
+                      class="inputStyled__input"
+                      formControlName="autoSortMatchingEnabledData"
+                      name="autoSortMatchingEnabledData"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="autoSortMatchingEnabledData">一括消込チェックONのソートをあらかじめ実行しておく</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="useFromToNarrowing"
+                      class="inputStyled__input"
+                      formControlName="useFromToNarrowing"
+                      name="useFromToNarrowing"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="useFromToNarrowing">入金日・入金予定日の絞込開始日を指定する</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="setSystemDateToCreateAtFilter"
+                      class="inputStyled__input"
+                      formControlName="setSystemDateToCreateAtFilter"
+                      name="setSystemDateToCreateAtFilter"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="setSystemDateToCreateAtFilter">消込完了データを表示時、消込日時にシステム日時を設定</label>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="frame--w-95 mb--40">
+            <h3 class="frame__title">一括消込対象除外設定</h3>
+            <ul class="checkboxList">
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="prioritizeMatchingIndividuallyMultipleReceipts"
+                      class="inputStyled__input"
+                      formControlName="prioritizeMatchingIndividuallyMultipleReceipts"
+                      name="prioritizeMatchingIndividuallyMultipleReceipts"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="prioritizeMatchingIndividuallyMultipleReceipts">入金が複数件の場合は一括消込対象から外す</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="forceShareTransferFee"
+                      class="inputStyled__input"
+                      formControlName="forceShareTransferFee"
+                      name="forceShareTransferFee"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="forceShareTransferFee">金額一致していても手数料自社負担の場合には、一括消込対象から外す</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="prioritizeMatchingIndividuallyTaxTolerance"
+                      class="inputStyled__input"
+                      formControlName="prioritizeMatchingIndividuallyTaxTolerance"
+                      name="prioritizeMatchingIndividuallyTaxTolerance"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="prioritizeMatchingIndividuallyTaxTolerance">差額が消費税誤差の範囲内でも一括消込対象外から外す</label>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="frame--w-95 mb--40">
+            <h3 class="frame__title">EBデータ取込時照合設定</h3>
+            <ul class="checkboxList">
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="useApportionMenu"
+                      class="inputStyled__input"
+                      formControlName="useApportionMenu"
+                      name="useApportionMenu"
+                      (change)="setCbxUseApportionMenu()"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="useApportionMenu">入金データ振分画面を使用する</label>
+                  </div>
+                </label>
+                <ul class="checkboxList">
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="requiredCustomer"
+                      class="inputStyled__input"
+                      formControlName="requiredCustomer"
+                      name="requiredCustomer"
+                      (change)="setCbxCustomer($event.type)"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="requiredCustomer">入金振分画面での得意先コードセットを{{ItemNameConst.LBL_REQUIRED}}にする</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="autoAssignCustomer"
+                      class="inputStyled__input"
+                      formControlName="autoAssignCustomer"
+                      name="autoAssignCustomer"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="autoAssignCustomer">取込時に得意先コードを自動でセットする</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="learnKanaHistory"
+                      class="inputStyled__input"
+                      formControlName="learnKanaHistory"
+                      name="learnKanaHistory"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="learnKanaHistory">学習履歴機能を利用する</label>
+                  </div>
+                </label>
+              </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="frame--w-95">
+            <h3 class="frame__title">入金データ修正設定</h3>
+            <ul class="checkboxList">
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="learnSpecifiedCustomerKana"
+                      class="inputStyled__input"
+                      formControlName="learnSpecifiedCustomerKana"
+                      name="learnSpecifiedCustomerKana"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="learnSpecifiedCustomerKana">入金データ修正時に得意先を付与した場合、学習履歴に登録する</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <p>※この設定は修正画面で個別に変更することも可能です<br>その際、規定値はこの設定が反映されます</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="contents__item--w-50">
+            <div class="frame--w-95 mb--40">
+              <h3 class="frame__title">照合ロジック順序設定</h3>
+                <div class="common-inner-table">
+                  <table cdkDropList (cdkDropListDropped)="onDropCollationOrder($event)">
+                    <thead>
+                      <tr>
+                        <th class="{{TableColumn.COL_80_CODE}}">順序</th>
+                        <th class="{{TableColumn.COL_50_CODE}}">使用</th>
+                        <th class="{{TableColumn.COL_200_CODE}}">ロジック名</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        *ngFor="let collationOrder of myFormGroup.get('collationOrderForms')['controls']; let i = index"
+                        cdkDrag="collationOrder">
+                        <ng-container [formGroup]="collationOrder">
+                          <td class="{{TableColumn.COL_80_CENTER_NAME}}">{{ collationSetting.collationOrders[i].executionOrder }}</td>
+                          <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                            <div class="inputStyled--inTable">
+                              <input
+                                id="available"
+                                class="inputStyled__input"
+                                formControlName="available"
+                                name="available"
+                                type="checkbox">
+                              <label
+                                class="inputStyled__checkbox"
+                                for="available"></label>
+                            </div>
+                          </td>
+                          <td class="{{TableColumn.COL_200_NAME}}">{{ collationSetting.collationOrders[i].collationTypeName }}</td>
+                        </ng-container>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <div class="frame--w-95 mb--40">
+              <h3 class="frame__title">個別消込画面設定</h3>
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="useAdvanceReceived"
+                    class="inputStyled__input"
+                    formControlName="useAdvanceReceived"
+                    name="useAdvanceReceived"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="useAdvanceReceived">前受振替を使用する</label>
+                </div>
+              </label>
+            </div>
+            <div class="frame--w-95 mb--40">
+              <h3 class="frame__title">前受伝票日付設定方法</h3>
+                <select
+                  type="select"
+                  formControlName="advanceReceivedRecordedDateType"
+                  name="advanceReceivedRecordedDateType">
+                  <option *ngFor="let item of receiptRecordedAtItems" value="{{item.id}}">
+                    {{item.itemName}}
+                  </option>
+                </select>
+            </div>
+            <div class="frame--w-95 mb--40">
+              <h3 class="frame__title">入金データ取込設定</h3>
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="removeSpaceFromPayerName"
+                    class="inputStyled__input"
+                    formControlName="removeSpaceFromPayerName"
+                    name="removeSpaceFromPayerName"
+                    type="checkbox">
+                  <label
+                    class="inputStyled__checkbox"
+                    for="removeSpaceFromPayerName">入金ﾃﾞｰﾀ取込時、振込依頼人名のｽﾍﾟｰｽ除去</label>
+                </div>
+              </label>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 設定２ -->
+    <section class="contents">
+      <h3 class="contents__title">{{ItemNameConst.LBL_SETTING_TWO}}</h3>
+      <div class="contents__container--flex mt--20">
+        <div class="contents__item--w-50 mb--40">
+          <div class="frame--w-95">
+            <h3 class="frame__title">請求情報</h3>
+              <div class="common-inner-table">
+                <table cdkDropList (cdkDropListDropped)="onDropBillingOrder($event)">
+                  <thead>
+                    <tr>
+                      <th class="{{TableColumn.COL_80_CODE}}">順序</th>
+                      <th class="{{TableColumn.COL_50_CODE}}">使用</th>
+                      <th class="{{TableColumn.COL_250_CODE}}">項目名</th>
+                      <th class="{{TableColumn.COL_80_CODE}}">ソート</th>
+                    </tr>
+                  </thead>
+                  <tbody class="height--300">
+                    <tr
+                      *ngFor="let order of myFormGroup.get('billingOrderForms')['controls']; let i = index"
+                      cdkDrag="order">
+                      <ng-container [formGroup]="order">
+                        <td class="{{TableColumn.COL_80_CENTER_NAME}}">{{ collationSetting.billingMatchingOrders[i].executionOrder}}</td>
+                        <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                          <div class="inputStyled">
+                            <input
+                              id="available"
+                              class="inputStyled__input"
+                              formControlName="available"
+                              name="available"
+                              type="checkbox">
+                            <label
+                              class="inputStyled__checkbox"
+                              for="available"></label>
+                          </div>
+                        </td>
+                        <td class="{{TableColumn.COL_250_NAME}}">{{ collationSetting.billingMatchingOrders[i].itemNameJp }}</td>
+                        <td class="{{TableColumn.COL_80_CENTER_NAME}}">
+                          <select type="select"
+                            formControlName="sortOrder">
+                            <option *ngFor="let sortOrder of sortOrders" value="{{sortOrder.id}}">
+                              {{sortOrder.orderName}}
+                            </option>
+                          </select>
+                        </td>
+                      </ng-container>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+        <div class="contents__item--w-50">
+          <div class="frame--w-95">
+            <h3 class="frame__title">入金情報</h3>
+              <div class="common-inner-table">
+                <table cdkDropList (cdkDropListDropped)="onDropReceiptOrder($event)">
+                  <thead>
+                    <tr>
+                      <th class="{{TableColumn.COL_80_CODE}}">順序</th>
+                      <th class="{{TableColumn.COL_50_CODE}}">使用</th>
+                      <th class="{{TableColumn.COL_250_CODE}}">項目名</th>
+                      <th class="{{TableColumn.COL_80_CODE}}">ソート</th>
+                    </tr>
+                  </thead>
+                  <tbody class="height--300">
+                    <tr
+                      *ngFor="let order of myFormGroup.get('receiptOrderForms')['controls']; let i = index"
+                      cdkDrag="order">
+                      <ng-container [formGroup]="order">
+                        <td class="{{TableColumn.COL_80_CENTER_NAME}}">{{collationSetting.receiptMatchingOrders[i].executionOrder}}</td>
+                        <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                          <div class="inputStyled--inTable">
+                            <input
+                              id="available"
+                              class="inputStyled__input"
+                              formControlName="available"
+                              name="available"
+                              type="checkbox">
+                            <label
+                              class="inputStyled__checkbox"
+                              for="available"></label>
+                          </div>
+                        </td>
+                        <td class="{{TableColumn.COL_250_NAME}}">{{collationSetting.receiptMatchingOrders[i].itemNameJp}}</td>
+                        <td class="{{TableColumn.COL_80_CENTER_NAME}}">
+                          <select type="select"
+                            formControlName="sortOrder">
+                            <option *ngFor="let sortOrder of sortOrders" value="{{sortOrder.id}}">
+                              {{sortOrder.orderName}}
+                            </option>
+                          </select>
+                        </td>
+                      </ng-container>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          
+          </div>
+        
+          <div class="contents__item--w-50">
+            <div class="frame--w-95">
+              <h4 class="frame__title">消込時の請求情報・入金情報表示設定</h4>
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="billingReceiptDisplayOrder_01"
+                    class="inputStyled__input"
+                    formControlName="billingReceiptDisplayOrder"
+                    name="billingReceiptDisplayOrder"
+                    type="radio"
+                    value="0">
+                  <label
+                    class="inputStyled__radio"
+                    for="billingReceiptDisplayOrder_01">請求情報、入金情報順に表示する</label>
+                </div>
+              </label>
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="billingReceiptDisplayOrder_02"
+                    class="inputStyled__input"
+                    formControlName="billingReceiptDisplayOrder"
+                    name="billingReceiptDisplayOrder"
+                    type="radio"
+                    value="1">
+                  <label
+                    class="inputStyled__radio"
+                    for="billingReceiptDisplayOrder_02">入金情報、請求情報順に表示する</label>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!---
+        
+        <div class="contents__item--w-50">
+          <div class="frame--w-95">
+            <h4 class="frame__title">個別消込時の消込順序</h4>
+            <label class="labelWrap">
+            <input 
+              formControlName="matchingSilentSortedData"
+              name="matchingSilentSortedData"
+              type="radio"
+              class="labelWrap__input"
+              value="0">個別の表示順に従う
+            </label>
+            <label class="labelWrap">
+            <input 
+              formControlName="matchingSilentSortedData"
+              name="matchingSilentSortedData"
+              type="radio"
+              class="labelWrap__input"
+              value="1">消込順序設定に従う
+            </label>
+          </div>
+        </div>
+          --->
+
+
+        <div class="contents__item--w-50">
+            <div class="frame--w-95">
+              <h4 class="frame__title">一括消込 入金情報表示順設定</h4>
+                <select class="mr--10"
+                  formControlName="sortOrderColumn"
+                  name="sortOrderColumn">
+                    <option value="0">0:振込依頼人名</option>
+                    <option value="1">1:入金日</option>
+                    <option value="2">2:入金ID</option>
+                  </select>
+                  <select formControlName="sortOrder" name="sortOrder">
+                    <option value="0">0:昇順</option>
+                    <option value="1">1:降順</option>
+                  </select>
+            </div>
+          </div>      
+      </div>
+    </section>  
+
+  </section>  
+
+</div>

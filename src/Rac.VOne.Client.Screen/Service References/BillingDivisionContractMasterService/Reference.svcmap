@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6217ac2a-8140-4b5d-9c4e-8db9f15d6b45" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/BillingDivisionContractMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BillingDivisionContractMaster.disco" MetadataType="Disco" ID="b7b99909-c480-4e26-b696-fdf54da49122" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionContractMaster.svc?disco" />
+    <MetadataFile FileName="BillingDivisionContractMaster.wsdl" MetadataType="Wsdl" ID="032c960f-d4fd-4608-a93b-5842c0e2232f" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionContractMaster.svc?wsdl" />
+    <MetadataFile FileName="BillingDivisionContractMaster1.xsd" MetadataType="Schema" ID="b68afa25-9245-4710-b0b2-290c02ca5553" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionContractMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="BillingDivisionContractMaster2.xsd" MetadataType="Schema" ID="6f329d7b-8975-40cc-b486-f92209f3b9d3" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionContractMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="BillingDivisionContractMaster3.xsd" MetadataType="Schema" ID="3a69e87e-7367-47e4-a815-347e542751f8" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionContractMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="BillingDivisionContractMaster.xsd" MetadataType="Schema" ID="e7d83530-7fde-43fd-b131-72350ea1ff39" SourceId="1" SourceUrl="http://localhost:3061/Master/BillingDivisionContractMaster.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

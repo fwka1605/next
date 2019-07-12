@@ -1,0 +1,358 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+      
+      <button
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+        {{panelOpenState?ItemNameConst.BTN_INPUT_ITEM_HIDDEN:ItemNameConst.BTN_INPUT_ITEM_DISPLAY}}</button> 
+
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+          <div class="contents__container--flex">
+            <div class="contents__item--w-55">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--17">区分コード<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span>
+                </dt>
+                <dd class="definitionForm__data w--83">
+                  <input
+                    formControlName="categoryCodeCtrl"
+                    name="categoryCodeCtrl"
+                    (keyup.enter)="setCategoryCode($event.type)"
+                    (blur)="setCategoryCode($event.type)"
+                    maxlength="2"
+                    type="tel"
+                    class="input-size--50">
+                </dd>
+                <dt class="definitionForm__title w--17">科目コード</dt>
+                <dd class="definitionForm__data w--83">
+                  <input
+                    formControlName="accountTitleCodeCtrl"
+                    name="accountTitleCodeCtrl"
+                    (keyup.enter)="setAccountTitleCode($event.type)"
+                    (blur)="setAccountTitleCode($event.type)"
+                    #accountTitleCodeInput
+                    [formControl]="accountTitleCodeCtrl"
+                    [matAutocomplete]="autoAccountTitleCode"
+                    maxlength="{{userInfoService.ApplicationControl?.accountTitleCodeLength}}"
+                    type="tel"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="input-size--100 definitionForm__input">
+                  <mat-autocomplete
+                    #autoAccountTitleCode="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option
+                      *ngFor="let accountTitle of accountTitleFilterds[0] | async"
+                      [value]="accountTitle.code">
+                      {{accountTitle.code}}:{{accountTitle.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a
+                    class="buttonMasterSearch"
+                    (click)="openMasterModal(TABLE_INDEX.MASTER_ACCOUNT_TITLE)"></a>
+                  <input
+                    formControlName="accountTitleNameCtrl"
+                    name="accountTitleNameCtrl"
+                    class="input-size--390"
+                    readonly>
+                </dd>
+                <dt class="definitionForm__title w--17">補助コード</dt>
+                <dd class="definitionForm__data w--83">
+                  <input
+                    formControlName="categorySubCodeCtrl"
+                    name="categorySubCodeCtrl"
+                    (keyup.enter)="setCategorySubCode($event.type)"
+                    (blur)="setCategorySubCode($event.type)"
+                    maxlength="10"
+                    type="tel"
+                    class="input-size--100 input-uppercase">
+                </dd>
+                <dt class="definitionForm__title w--17">外部コード</dt>
+                <dd class="definitionForm__data w--83">
+                  <input
+                    formControlName="externalCodeCtrl"
+                    name="externalCodeCtrl"
+                    (keyup.enter)="setExternalCode($event.type)"
+                    maxlength="20"
+                    type="tel"
+                    class="input-size--200"><br>
+                  <div
+                    class="inputStyled"
+                    *ngIf="isUseLongTermAdvanceReceivedDisplay">
+                    <input
+                      class="inputStyled__input"
+                      id="cbxUseLongTermAdvanceReceivedCtrl_01"
+                      formControlName="cbxUseLongTermAdvanceReceivedCtrl"
+                      name="cbxUseLongTermAdvanceReceivedCtrl"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxUseLongTermAdvanceReceivedCtrl_01">長前管理を行う</label>
+                  </div>
+                  <div
+                    class="inputStyled"
+                    *ngIf="isUseDiscountDisplay">
+                    <input
+                      class="inputStyled__input"
+                      id="cbxUseDiscountCtrl_01"
+                      formControlName="cbxUseDiscountCtrl"
+                      name="cbxUseDiscountCtrl"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxUseDiscountCtrl_01">歩引き計算を行う</label>
+                  </div>
+                  <div
+                    class="inputStyled"
+                    *ngIf="isForeceMatchingIndividuallyDisplay">
+                    <input
+                      class="inputStyled__input"
+                      id="cbxForeceMatchingIndividuallyCtrl_01"
+                      formControlName="cbxForeceMatchingIndividuallyCtrl"
+                      name="cbxForeceMatchingIndividuallyCtrl"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxForeceMatchingIndividuallyCtrl_01">一括消込対象外</label>
+                  </div>
+                  <div
+                    class="inputStyled"
+                    *ngIf="isUseLimitDate">
+                    <input
+                      class="inputStyled__input"
+                      id="cbxUseLimitDate_01"
+                      formControlName="cbxUseLimitDate"
+                      name="cbxUseLimitDate"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxUseLimitDate_01">期日入力を行う</label>
+                  </div>
+                  <div
+                    class="inputStyled"
+                    *ngIf="isUseCashOnDueDates">
+                    <input
+                      class="inputStyled__input"
+                      id="cbxUseCashOnDueDates_01"
+                      formControlName="cbxUseCashOnDueDates"
+                      name="cbxUseCashOnDueDates"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxUseCashOnDueDates_01">期日入金管理を行う</label>
+                  </div>
+                  <div
+                    class="inputStyled"
+                    *ngIf="isUseAccountTransfer">
+                    <input
+                      class="inputStyled__input"
+                      id="cbxUseAccountTransfer_01"
+                      formControlName="cbxUseAccountTransfer"
+                      name="cbxUseAccountTransfer"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxUseAccountTransfer_01">口座振替を行う</label>
+                  </div>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-45">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--21">区分名<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span>
+                </dt>
+                <dd class="definitionForm__data w--79">
+                  <input
+                    formControlName="categoryNameCtrl"
+                    name="categoryNameCtrl"
+                    (keyup.enter)="setCategoryName($event.type)"
+                    maxlength="20"
+                    class="input-size--400"><br>
+                  <div
+                    class="inputStyled"
+                    *ngIf="isUseInputDisplay">
+                    <input
+                      class="inputStyled__input"
+                      id="cbxUseInputCtrl_01"
+                      formControlName="cbxUseInputCtrl"
+                      name="cbxUseInputCtrl"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxUseInputCtrl_01">入力時に使用する</label>
+                  </div>
+                </dd>
+              </dl>
+              <dl
+                class="definitionForm"
+                *ngIf="isTaxClassNameDisplay">
+                <dt class="definitionForm__title w--21">消費税属性<span
+                    class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span>
+                </dt>
+                <dd class="definitionForm__data w--79">
+                  <select
+                    formControlName="cmbTaxClassNameCtrl"
+                    name="cmbTaxClassNameCtrl"
+                    (change)="setCmbTaxClassName($event.type)"
+                    class="select-size--100">
+                    <option
+                      *ngFor="let cmbTaxClassNameCtrl of taxClassTypeDictionary index as i"
+                      [ngValue]="cmbTaxClassNameCtrl.id">
+                      {{cmbTaxClassNameCtrl.val}}
+                    </option>
+                  </select>
+                </dd>
+                <dt
+                  class="definitionForm__title w--21"
+                  *ngIf="isMatchingOrderDisplay">消込順序<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span>
+                </dt>
+                <dd
+                  class="definitionForm__data w--79"
+                  *ngIf="isMatchingOrderDisplay">
+                  <input
+                    formControlName="matchingOrderCtrl"
+                    name="matchingOrderCtrl"
+                    (keyup.enter)="setMatchingOrder($event.type)"
+                    maxlength="2"
+                    type="tel"
+                    class="input-size--50">
+                </dd>
+              </dl>
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--21">備考</dt>
+                <dd class="definitionForm__data w--79">
+                  <input
+                    formControlName="noteCtrl"
+                    name="noteCtrl"
+                    (keyup.enter)="setNote($event.type)"
+                    maxlength="60"
+                    class="input-size--400">
+                </dd>
+                <dt
+                  class="definitionForm__title w--21"
+                  *ngIf="isPaymentAgencyDisplay">決済代行会社</dt>
+                <dd
+                  class="definitionForm__data w--79 pr--0"
+                  *ngIf="isPaymentAgencyDisplay">
+                  <input
+                    formControlName="paymentAgencyCodeCtrl"
+                    name="paymentAgencyCodeCtrl"
+                    (keyup.enter)="setPaymentAgencyCode($event.type)"
+                    (blur)="setPaymentAgencyCode($event.type)"
+                    #paymentAgencyCodeInput
+                    [formControl]="paymentAgencyCodeCtrl"
+                    [matAutocomplete]="autoPaymentAgencyCode"
+                    type="tel"
+                    maxlength="2"
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="input-size--60 definitionForm__input">
+                  <mat-autocomplete
+                    #autoPaymentAgencyCode="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option
+                      *ngFor="let paymentAgency of paymentAgencyFilterds[0] | async"
+                      [value]="paymentAgency.code">
+                      {{paymentAgency.code}}:{{paymentAgency.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a
+                    class="buttonMasterSearch"
+                    (click)="openMasterModal(TABLE_INDEX.MASTER_PAYMENT_AGENCY)"></a>
+                  <input
+                    formControlName="paymentAgencyNameCtrl"
+                    name="paymentAgencyNameCtrl"
+                    maxlength="40"
+                    (keyup.enter)="setPaymentAgencyName($event.type)"
+                    class="input-size--370"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__buttonGroup">
+              <button
+                (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+                [ngClass]="{'button-disable': myFormGroup.invalid}"
+                class="buttonSecondary">
+                {{ComponentStatus==COMPONENT_STATUS_TYPE.CREATE?ItemNameConst.BTN_REGISTRY:ItemNameConst.BTN_UPDATE}}</button>
+              <button
+                (click)="buttonAction(BUTTON_ACTION.DELETE)"
+                [ngClass]="{'button-disable': DeleteButtonDisableFlag}"
+                class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+              <button
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+            </div>
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+    <!-- 登録済みの区分 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_REGISTER_CATEGORY}}</h2>
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--9">区分識別<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+        <select
+          formControlName="categoryTypeCtrl"
+          name="categoryTypeCtrl"
+          (change)="setCategoryType()"
+          class="select-size--100">
+          <option
+            *ngFor="let categoryTypeCtrl of categoryTypeDictionary index as i"
+            [ngValue]="categoryTypeCtrl">
+            {{categoryTypeCtrl.id}}：{{categoryTypeCtrl.val}}
+          </option>
+        </select>
+          </dd>
+        </dl>
+      </div>
+    
+      <div class="contents__container">
+      <div *ngIf="show; then thenBlock"></div>
+      <ng-template #primaryBilling>
+        <app-category-billing
+          [categoriesResult]="categoriesResult"
+          (event)="onReceiveEventFromChild($event)">
+        </app-category-billing>
+      </ng-template>
+      <ng-template #primaryReceipt>
+      <app-category-receipt
+        [categoriesResult]="categoriesResult"
+        (event)="onReceiveEventFromChild($event)">
+        </app-category-receipt>
+      </ng-template>
+      <ng-template #primaryCollection>
+        <app-category-collection
+          [categoriesResult]="categoriesResult"
+          (event)="onReceiveEventFromChild($event)">
+        </app-category-collection>
+      </ng-template>
+      <ng-template #primaryExclude>
+        <app-category-exclude
+          [categoriesResult]="categoriesResult"
+          (event)="onReceiveEventFromChild($event)">
+        </app-category-exclude>
+      </ng-template>
+      </div>
+    </section>
+
+
+
+  </section>
+
+</div>

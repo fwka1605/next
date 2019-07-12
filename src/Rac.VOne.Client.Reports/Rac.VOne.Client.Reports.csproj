@@ -1,0 +1,556 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{94F2DA13-DA5B-431F-B4DC-957736FDED4A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rac.VOne.Client.Reports</RootNamespace>
+    <AssemblyName>Rac.VOne.Client.Reports</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Rac.VOne.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Rac.VOne.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="GrapeCity.ActiveReports.Chart.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Diagnostics.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.Document.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Export.Pdf.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="GrapeCity.ActiveReports.Extensibility.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff" />
+    <Reference Include="GrapeCity.ActiveReports.v9, Version=9.3.6979.1, Culture=neutral, PublicKeyToken=cc4967777c49a3ff, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ArrearagesCustomerListReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ArrearagesCustomerListReport.Designer.cs">
+      <DependentUpon>ArrearagesCustomerListReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingAgingListDetailSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingAgingListDetailSectionReport.Designer.cs">
+      <DependentUpon>BillingAgingListDetailSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingAgingListSectionReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingAgingListSectionReport1.Designer.cs">
+      <DependentUpon>BillingAgingListSectionReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingAgingListSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingAgingListSectionReport.Designer.cs">
+      <DependentUpon>BillingAgingListSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingImporterNewCustomerSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingImporterNewCustomerSectionReport.Designer.cs">
+      <DependentUpon>BillingImporterNewCustomerSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingInvoiceReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingInvoiceReport.Designer.cs">
+      <DependentUpon>BillingInvoiceReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingJournalizingSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingJournalizingSectionReport.Designer.cs">
+      <DependentUpon>BillingJournalizingSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingOmitSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingOmitSectionReport.Designer.cs">
+      <DependentUpon>BillingOmitSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingImporterSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingImporterSectionReport.designer.cs">
+      <DependentUpon>BillingImporterSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrearagesListReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ArrearagesListReport.Designer.cs">
+      <DependentUpon>ArrearagesListReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionScheduleSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CollectionScheduleSectionReport.Designer.cs">
+      <DependentUpon>CollectionScheduleSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreditAgingListReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CreditAgingListReport.Designer.cs">
+      <DependentUpon>CreditAgingListReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IMasterSectionReportOfT.cs" />
+    <Compile Include="ReminderListByReminderReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReminderListByReminderReport.Designer.cs">
+      <DependentUpon>ReminderListByReminderReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReminderReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReminderReport.Designer.cs">
+      <DependentUpon>ReminderReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerLedgerSearchConditionSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomerLedgerSearchConditionSectionReport.Designer.cs">
+      <DependentUpon>CustomerLedgerSearchConditionSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerLedgerSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomerLedgerSectionReport.Designer.cs">
+      <DependentUpon>CustomerLedgerSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingIndividualReceiptBillingSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchingIndividualReceiptBillingSectionReport.Designer.cs">
+      <DependentUpon>MatchingIndividualReceiptBillingSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingJournalizingCancellationReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchingJournalizingCancellationReport.Designer.cs">
+      <DependentUpon>MatchingJournalizingCancellationReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JuridicalPersonalityReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="JuridicalPersonalityReport.designer.cs">
+      <DependentUpon>JuridicalPersonalityReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AccountTransferImportReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AccountTransferImportReport.designer.cs">
+      <DependentUpon>AccountTransferImportReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingJournalizingReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchingJournalizingReport.designer.cs">
+      <DependentUpon>MatchingJournalizingReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingSequentialReceiptBillingSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchingSequentialReceiptBillingSectionReport.Designer.cs">
+      <DependentUpon>MatchingSequentialReceiptBillingSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReminderListByCustomerReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReminderListByCustomerReport.Designer.cs">
+      <DependentUpon>ReminderListByCustomerReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptImporterSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReceiptImporterSectionReport.Designer.cs">
+      <DependentUpon>ReceiptImporterSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptJounalizingSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReceiptJounalizingSectionReport.Designer.cs">
+      <DependentUpon>ReceiptJounalizingSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptSearchConditionSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReceiptSearchConditionSectionReport.designer.cs">
+      <DependentUpon>ReceiptSearchConditionSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptOmitSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReceiptOmitSectionReport.Designer.cs">
+      <DependentUpon>ReceiptOmitSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptSectionTransferSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReceiptSectionTransferSectionReport.Designer.cs">
+      <DependentUpon>ReceiptSectionTransferSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduledPaymentCustomerListSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScheduledPaymentCustomerListSectionReport.Designer.cs">
+      <DependentUpon>ScheduledPaymentCustomerListSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScheduledPaymentListSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ScheduledPaymentListSectionReport.Designer.cs">
+      <DependentUpon>ScheduledPaymentListSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchConditionSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SearchConditionSectionReport.Designer.cs">
+      <DependentUpon>SearchConditionSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingSequentialSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchingSequentialSectionReport.Designer.cs">
+      <DependentUpon>MatchingSequentialSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BillingServiceSearchSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BillingServiceSearchSectionReport.Designer.cs">
+      <DependentUpon>BillingServiceSearchSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerAccountSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomerAccountSectionReport.designer.cs">
+      <DependentUpon>CustomerAccountSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerFeeSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomerFeeSectionReport.designer.cs">
+      <DependentUpon>CustomerFeeSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerGroupSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomerGroupSectionReport.Designer.cs">
+      <DependentUpon>CustomerGroupSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomerSectionReport.designer.cs">
+      <DependentUpon>CustomerSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DepartmentReport.Designer.cs">
+      <DependentUpon>DepartmentReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralSettingSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GeneralSettingSectionReport.Designer.cs">
+      <DependentUpon>GeneralSettingSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingIndividualSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchingIndividualSectionReport.Designer.cs">
+      <DependentUpon>MatchingIndividualSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginUserSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LoginUserSectionReport.Designer.cs">
+      <DependentUpon>LoginUserSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatchingHistorySectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MatchingHistorySectionReport.Designer.cs">
+      <DependentUpon>MatchingHistorySectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentScheduleInputSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PaymentScheduleInputSectionReport.Designer.cs">
+      <DependentUpon>PaymentScheduleInputSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptApportionSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReceiptApportionSectionReport.Designer.cs">
+      <DependentUpon>ReceiptApportionSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReceiptSearchSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReceiptSearchSectionReport.Designer.cs">
+      <DependentUpon>ReceiptSearchSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentScheduleImporterSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PaymentScheduleImporterSectionReport.Designer.cs">
+      <DependentUpon>PaymentScheduleImporterSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaleRegisterSectionReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SaleRegisterSectionReport.Designer.cs">
+      <DependentUpon>SaleRegisterSectionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchData.cs" />
+    <Compile Include="SectionMasterReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SectionMasterReport.Designer.cs">
+      <DependentUpon>SectionMasterReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SectionWithDepartmentReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SectionWithDepartmentReport.Designer.cs">
+      <DependentUpon>SectionWithDepartmentReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SectionWithLoginUserReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SectionWithLoginUserReport.Designer.cs">
+      <DependentUpon>SectionWithLoginUserReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rac.VOne.Client.Reports.Core\Rac.VOne.Client.Reports.Core.csproj">
+      <Project>{11652f71-0c16-4728-9af1-abaf369313d2}</Project>
+      <Name>Rac.VOne.Client.Reports.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Common\Rac.VOne.Common.csproj">
+      <Project>{1432373b-cdef-46be-8949-84a3d8735053}</Project>
+      <Name>Rac.VOne.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rac.VOne.Web.Models\Rac.VOne.Web.Models.csproj">
+      <Project>{8f35634e-57d6-4677-be0d-c4fc3e4c0773}</Project>
+      <Name>Rac.VOne.Web.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ArrearagesCustomerListReport.resx">
+      <DependentUpon>ArrearagesCustomerListReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingAgingListDetailSectionReport.resx">
+      <DependentUpon>BillingAgingListDetailSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingAgingListSectionReport1.resx">
+      <DependentUpon>BillingAgingListSectionReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingAgingListSectionReport.resx">
+      <DependentUpon>BillingAgingListSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingImporterNewCustomerSectionReport.resx">
+      <DependentUpon>BillingImporterNewCustomerSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingInvoiceReport.resx">
+      <DependentUpon>BillingInvoiceReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingJournalizingSectionReport.resx">
+      <DependentUpon>BillingJournalizingSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingOmitSectionReport.resx">
+      <DependentUpon>BillingOmitSectionReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingImporterSectionReport.resx">
+      <DependentUpon>BillingImporterSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ArrearagesListReport.resx">
+      <DependentUpon>ArrearagesListReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollectionScheduleSectionReport.resx">
+      <DependentUpon>CollectionScheduleSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreditAgingListReport.resx">
+      <DependentUpon>CreditAgingListReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReminderListByReminderReport.resx">
+      <DependentUpon>ReminderListByReminderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReminderReport.resx">
+      <DependentUpon>ReminderReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerLedgerSearchConditionSectionReport.resx">
+      <DependentUpon>CustomerLedgerSearchConditionSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerLedgerSectionReport.resx">
+      <DependentUpon>CustomerLedgerSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchingIndividualReceiptBillingSectionReport.resx">
+      <DependentUpon>MatchingIndividualReceiptBillingSectionReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchingJournalizingCancellationReport.resx">
+      <DependentUpon>MatchingJournalizingCancellationReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JuridicalPersonalityReport.resx">
+      <DependentUpon>JuridicalPersonalityReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AccountTransferImportReport.resx">
+      <DependentUpon>AccountTransferImportReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchingJournalizingReport.resx">
+      <DependentUpon>MatchingJournalizingReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchingSequentialReceiptBillingSectionReport.resx">
+      <DependentUpon>MatchingSequentialReceiptBillingSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ReceiptImporterSectionReport.resx">
+      <DependentUpon>ReceiptImporterSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptJounalizingSectionReport.resx">
+      <DependentUpon>ReceiptJounalizingSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptSearchConditionSectionReport.resx">
+      <DependentUpon>ReceiptSearchConditionSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptOmitSectionReport.resx">
+      <DependentUpon>ReceiptOmitSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptSectionTransferSectionReport.resx">
+      <DependentUpon>ReceiptSectionTransferSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReminderListByCustomerReport.resx">
+      <DependentUpon>ReminderListByCustomerReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScheduledPaymentCustomerListSectionReport.resx">
+      <DependentUpon>ScheduledPaymentCustomerListSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScheduledPaymentListSectionReport.resx">
+      <DependentUpon>ScheduledPaymentListSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchConditionSectionReport.resx">
+      <DependentUpon>SearchConditionSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchingSequentialSectionReport.resx">
+      <DependentUpon>MatchingSequentialSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BillingServiceSearchSectionReport.resx">
+      <DependentUpon>BillingServiceSearchSectionReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerAccountSectionReport.resx">
+      <DependentUpon>CustomerAccountSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerFeeSectionReport.resx">
+      <DependentUpon>CustomerFeeSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerGroupSectionReport.resx">
+      <DependentUpon>CustomerGroupSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerSectionReport.resx">
+      <DependentUpon>CustomerSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentReport.resx">
+      <DependentUpon>DepartmentReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GeneralSettingSectionReport.resx">
+      <DependentUpon>GeneralSettingSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchingIndividualSectionReport.resx">
+      <DependentUpon>MatchingIndividualSectionReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginUserSectionReport.resx">
+      <DependentUpon>LoginUserSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MatchingHistorySectionReport.resx">
+      <DependentUpon>MatchingHistorySectionReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentScheduleInputSectionReport.resx">
+      <DependentUpon>PaymentScheduleInputSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptApportionSectionReport.resx">
+      <DependentUpon>ReceiptApportionSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiptSearchSectionReport.resx">
+      <DependentUpon>ReceiptSearchSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentScheduleImporterSectionReport.resx">
+      <DependentUpon>PaymentScheduleImporterSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SaleRegisterSectionReport.resx">
+      <DependentUpon>SaleRegisterSectionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SectionMasterReport.resx">
+      <DependentUpon>SectionMasterReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SectionWithDepartmentReport.resx">
+      <DependentUpon>SectionWithDepartmentReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SectionWithLoginUserReport.resx">
+      <DependentUpon>SectionWithLoginUserReport.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

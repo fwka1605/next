@@ -1,0 +1,33 @@
+// Backボタン
+// 
+// Markup:
+//  <button class="buttonBack"></button>
+//
+// Styleguide 3.2.7
+
+  .buttonBack {
+    width: 16px;
+    height: 16px;
+    margin-right: $pageContainer-padding;
+    border-top: 2px solid #AAB3BF;
+    border-left: 2px solid #AAB3BF;
+    border-radius: 2px;
+    background-color: transparent;
+    transform: rotate(-45deg);
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    &::before {
+      position: absolute;
+      top: 4px;
+      bottom: 0;
+      left: -4px;
+      margin: auto;
+      width: 26px;
+      height: 2px;
+      border-radius: 2px;
+      background-color: #AAB3BF;
+      transform: rotate(45deg);
+      content: '';
+    }
+  }

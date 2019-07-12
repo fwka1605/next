@@ -1,0 +1,46 @@
+.contents__header {
+  &__search {
+    display: flex;
+    &__button {
+      width: 80px;
+      height: 36px;
+      overflow: hidden;
+      background-color: $key-color;
+      color: #fff;
+      box-shadow: inset 0 0 1px 0 rgba(0, 0, 0, 0.4);
+      border-radius: 0 3px 3px 0;
+      letter-spacing: 0.1em;
+      font-size: 1.5rem;
+      &:hover {
+        opacity: 0.8;
+      }
+      &:active {
+        opacity: 1;
+      }
+    }
+  }
+  &__options {
+    position: relative;
+    margin-left: 16px;
+  }
+}
+
+/*
+検索結果 table header
+*/
+
+
+.master-config {
+  @include stickyHeaderTable(300px);
+}
+
+
+/*
+pb 1020 会社マスタ　取込設定
+*/
+
+.import-setting-master {
+  &__table {
+    @include xy-scroller-table;
+  }
+}

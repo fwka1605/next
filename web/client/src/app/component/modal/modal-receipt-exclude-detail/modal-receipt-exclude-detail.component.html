@@ -1,0 +1,92 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal height--550">
+  <h2 class="vModal__heading">入金データ検索【対象外金額の詳細設定】
+    <span class="vModal__close"
+      (click)="close()"></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+
+      <button (click)="registry()" class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button (click)="delete()" class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+      <button 
+        (click)="cancel()" 
+        class="buttonMinimum" >{{ItemNameConst.BTN_CANCEL}}</button>
+
+    </section>
+
+    <section class="contents">
+      <h2 class="contents__title">
+        入金ID　{{selectReceipt.id}}
+        <!--- 通貨コード-->
+      </h2>
+      <div class="contents__container">
+       <div class="modalTable--noHighlights">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_180_CODE}}">
+                対象外金額
+              </th>
+              <th class="{{TableColumn.COL_180_CODE}}">
+                対象外区分
+              </th>
+              <th class="{{TableColumn.COL_180_CODE}}">
+                仕訳日
+              </th>
+              <th class="{{TableColumn.COL_170_CODE}}">
+                クリア
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="cursor-inherit"
+              *ngFor="let tmp of excludeAmountCtrls index as i">
+              <td class="{{TableColumn.COL_180_CENTER_NAME}}">
+                <input
+                  formControlName="excludeAmountCtrl{{i}}"
+                  name="excludeAmountCtrl{{i}}"
+                  (keyup.enter)="setExcludeAmount($event.type,i)"
+                  (input)="inputExcludeAmount()"
+                  (blur)="setCurrencyForExcludeAmount(i)"
+                  (focus)="initCurrencyForExcludeAmount(i)"
+                  type="tel"
+                  maxlength="16"
+                  class="input-size--150 col-align-right">
+              </td>
+              <td class="{{TableColumn.COL_180_CENTER_NAME}}">
+                <select
+                  formControlName="excludeCategoryIdCtrl{{i}}"
+                  name="excludeCategoryIdCtrl{{i}}"
+                  class="select-size--140">
+                  <option *ngFor="let category of excludeCategoriesResult?.categories" 
+                    value="{{category.id}}">
+                    {{category.name}}
+                  </option>
+                </select>
+              </td>
+              <td class="{{TableColumn.COL_180_CODE}}">
+                <input
+                  formControlName="outputAtCtrl{{i}}"
+                  name="outputAtCtrl{{i}}"
+                  class="input-size--150 col-align-center"
+                  readonly>
+              </td>
+              <td class="{{TableColumn.COL_170_CENTER_NAME}}">
+                <div class="common-btn">
+                  <button (click)="detailClear(i);processResultService.clearProcessCustomMsg(processCustomResult)" class="buttonMinimum">クリア</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>      
+        </table>
+      </div>
+    </div>
+  </section>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

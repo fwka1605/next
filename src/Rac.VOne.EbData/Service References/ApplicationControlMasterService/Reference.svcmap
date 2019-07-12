@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="81730deb-1b8e-40ab-9d48-cec615bab055" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/ApplicationControlMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ApplicationControlMaster.xsd" MetadataType="Schema" ID="d55a77a3-edd8-43af-9da6-845def1efb9b" SourceId="1" SourceUrl="http://localhost:3061/Master/ApplicationControlMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="ApplicationControlMaster1.xsd" MetadataType="Schema" ID="16e4dfd5-5aba-4e9a-b2ca-8fc418bbf3cb" SourceId="1" SourceUrl="http://localhost:3061/Master/ApplicationControlMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="ApplicationControlMaster.disco" MetadataType="Disco" ID="b86c60e7-3bdb-420d-97f1-bd881eb977eb" SourceId="1" SourceUrl="http://localhost:3061/Master/ApplicationControlMaster.svc?disco" />
+    <MetadataFile FileName="ApplicationControlMaster2.xsd" MetadataType="Schema" ID="d856419f-3abc-4e38-b2b6-86d35d9e4a74" SourceId="1" SourceUrl="http://localhost:3061/Master/ApplicationControlMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="ApplicationControlMaster.wsdl" MetadataType="Wsdl" ID="3ee7657b-8855-411f-a6d9-cd74abe3d540" SourceId="1" SourceUrl="http://localhost:3061/Master/ApplicationControlMaster.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

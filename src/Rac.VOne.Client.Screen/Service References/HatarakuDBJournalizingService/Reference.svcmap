@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4da9e32a-e441-48e2-867a-e52df2a09b48" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/HatarakuDBJournalizingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HatarakuDBJournalizingService.xsd" MetadataType="Schema" ID="18e889b3-455b-40da-9bae-7f1c7706f393" SourceId="1" SourceUrl="http://localhost:3061/HatarakuDBJournalizingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="HatarakuDBJournalizingService.disco" MetadataType="Disco" ID="2a3f6c2d-0322-4269-adc5-242b1369491a" SourceId="1" SourceUrl="http://localhost:3061/HatarakuDBJournalizingService.svc?disco" />
+    <MetadataFile FileName="HatarakuDBJournalizingService1.xsd" MetadataType="Schema" ID="9b457122-dca0-45bb-924e-092d6c0acbc6" SourceId="1" SourceUrl="http://localhost:3061/HatarakuDBJournalizingService.svc?xsd=xsd3" />
+    <MetadataFile FileName="HatarakuDBJournalizingService2.xsd" MetadataType="Schema" ID="c5df0837-27d8-41c5-a8dd-3bfc7ddf9fa4" SourceId="1" SourceUrl="http://localhost:3061/HatarakuDBJournalizingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="HatarakuDBJournalizingService3.xsd" MetadataType="Schema" ID="299fe25f-32a6-4fb6-ad73-74072fceda78" SourceId="1" SourceUrl="http://localhost:3061/HatarakuDBJournalizingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="HatarakuDBJournalizingService.wsdl" MetadataType="Wsdl" ID="8d77a44c-59e5-4eed-a236-5339fd071b34" SourceId="1" SourceUrl="http://localhost:3061/HatarakuDBJournalizingService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

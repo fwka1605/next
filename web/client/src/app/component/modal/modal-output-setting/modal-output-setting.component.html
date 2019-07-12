@@ -1,0 +1,97 @@
+<section 
+  *ngIf="exportFieldSettings"
+  [formGroup]="MyFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal">
+  <h2 class="vModal__heading">{{ getTitle() }}
+    <span class="vModal__close" (click)="close()" data-modal-close></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+
+      <button (click)="buttonAction(BUTTON_ACTION.REGISTRY)" class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button (click)="buttonAction(BUTTON_ACTION.REDISPLAY)" class="buttonMinimum">{{ItemNameConst.BTN_REDISPLAY}}</button>
+      <button 
+        (click)="cancel()" 
+        class="buttonMinimum" >{{ItemNameConst.BTN_CANCEL}}</button>
+
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--13">日付の書式</dt>
+          <dd class="definitionForm__data w--87">
+            <select class="input-size--200 mr--15"
+              type="select"
+              formControlName="dateFormatType"
+              name="dateFormatType">
+              <option *ngFor="let item of dateFormatItems" value="{{item.id}}">
+                  {{item.id}} ： {{item.itemName}}
+              </option>
+            </select>
+            <label class="labelWrap">
+              <div class="inputStyled">
+                <input
+                  id="requireHeader"
+                  class="inputStyled__input"
+                  formControlName="requireHeader"
+                  name="requireHeader"
+                  type="checkbox">
+                <label
+                  class="inputStyled__checkbox"
+                  for="requireHeader">項目名を出力する</label>
+              </div>
+            </label>            
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+          <div class="modalTable">
+            <table cdkDropList (cdkDropListDropped)="onDropExportField($event)">
+              <thead>
+                <tr>
+                  <th class="{{TableColumn.COL_100_CODE}}">順序</th>
+                  <th class="{{TableColumn.COL_100_CODE}}">出力</th>
+                  <th class="{{TableColumn.COL_250_CODE}}">項目名</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let exportFieldSetting of myFormGroup.get('exportFieldSettingForms')['controls']; let i = index"
+                  cdkDrag="exportFieldSetting">
+                  <ng-container [formGroup]="exportFieldSetting">
+                    <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                      {{ i + 1 }}</td>
+                    <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                      <div class="inputStyled">
+                        <input
+                          id="allowExport"
+                          class="inputStyled__input"
+                          formControlName="allowExport"
+                          name="allowExport"
+                          type="checkbox">
+                        <label
+                          class="inputStyled__checkbox"
+                          for="allowExport"></label>
+                      </div>
+                    </td>
+                    <td class="{{TableColumn.COL_250_NAME}}">{{ exportFieldSettings[i].caption }}
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+
+    </section>
+
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

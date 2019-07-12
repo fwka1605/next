@@ -1,0 +1,77 @@
+@mixin stickyHeaderTable($height: 70%) {
+  .sticky-head-table {
+    border-top: 1px solid $border-color;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    font-size: 0;
+    $scrollBar-width: 17px;
+    &__header {
+      padding-right: $scrollBar-width;
+      background-color: rgba(100, 100, 100, 0.1);
+      border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+    }
+    &__body {
+      overflow-y: scroll;
+      height: $height;
+    }
+    &__header,
+    &__body {
+      width: 100%;
+      &__inner {
+        border-collapse: collapse;
+        width: 100%;
+        display: block;
+        thead,
+        tbody {
+          display: block;
+        }
+        tr {
+          display: flex;
+          justify-content: stretch;
+          align-items: stretch;
+          width: 100%;
+          &:nth-child(2n) td {
+            background-color: rgba(120, 120, 120, 0.1);
+          }
+        }
+        th {
+          white-space: nowrap;
+          margin: 4px 0;
+          border-left: 1px solid rgba(0, 0, 0, 0.3);
+          &:first-child {
+            border-left-color: transparent;
+          }
+          &:last-child {
+            padding-right: 1%;
+          }
+        }
+        td {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+          border-left: 1px solid rgba(0, 0, 0, 0.15);
+          overflow: hidden;
+          &:first-child {
+            border-left-color: transparent;
+          }
+          &.cell-selected {
+            box-shadow: inset 0 0 0 50px #def;
+          }
+          &.line-selector {
+            cursor: pointer;
+            &:hover {
+              box-shadow: inset 0 0 0 3px rgba(100, 100, 100, 0.2);
+            }
+          }
+        }
+        th,
+        td {
+          display: flex;
+          align-items: center;
+          font-size: 1.3rem;
+          padding: 4px 8px;
+        }
+      }
+    }
+  }
+}

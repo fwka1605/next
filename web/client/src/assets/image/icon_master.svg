@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>C9B6EA76-86F4-411C-A9D3-08318A20F809</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M2,3 L0,3 L0,14.375 C0,15.26875 0.73125,16 1.625,16 L13,16 L13,14 L2,14 L2,3 Z M14.375,0 L4.625,0 C3.73125,0 3,0.73125 3,1.625 L3,11.375 C3,12.26875 3.73125,13 4.625,13 L14.375,13 C15.26875,13 16,12.26875 16,11.375 L16,1.625 C16,0.73125 15.26875,0 14.375,0 Z M14,7 L6,7 L6,5 L14,5 L14,7 Z M11,11 L6,11 L6,9 L11,9 L11,11 Z M14,4 L6,4 L6,2 L14,2 L14,4 Z" id="path-1"></path>
+    </defs>
+    <g id="page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="メニュー-&gt;-サブメニュー" transform="translate(-374.000000, -635.000000)">
+            <g id="icon" transform="translate(347.000000, 87.000000)">
+                <g id="Lv1/Icon/Menu_Master" transform="translate(27.000000, 548.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Shape" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

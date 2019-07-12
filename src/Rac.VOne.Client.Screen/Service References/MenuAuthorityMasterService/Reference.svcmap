@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5bab4b44-49b3-41c8-a40a-cd05bf2bde1e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/MenuAuthorityMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MenuAuthorityMaster.wsdl" MetadataType="Wsdl" ID="49c99760-82fa-42fc-8eba-6560de2bdd61" SourceId="1" SourceUrl="http://localhost:3061/Master/MenuAuthorityMaster.svc?wsdl" />
+    <MetadataFile FileName="MenuAuthorityMaster.xsd" MetadataType="Schema" ID="e75d9277-470d-4fcc-bdd6-d0b22692ef86" SourceId="1" SourceUrl="http://localhost:3061/Master/MenuAuthorityMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="MenuAuthorityMaster1.xsd" MetadataType="Schema" ID="4e800e2f-b960-4dd9-8957-e487732031bd" SourceId="1" SourceUrl="http://localhost:3061/Master/MenuAuthorityMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="MenuAuthorityMaster2.xsd" MetadataType="Schema" ID="351353cb-f46b-4353-818f-912e3a346caf" SourceId="1" SourceUrl="http://localhost:3061/Master/MenuAuthorityMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="MenuAuthorityMaster.disco" MetadataType="Disco" ID="262f8a02-c466-4ab2-ac4e-094c31145f8e" SourceId="1" SourceUrl="http://localhost:3061/Master/MenuAuthorityMaster.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

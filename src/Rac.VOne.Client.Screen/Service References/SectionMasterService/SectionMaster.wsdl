@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SectionMaster" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/Master/SectionMaster.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/SectionMaster.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/SectionMaster.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+      <xsd:import schemaLocation="http://localhost:3061/Master/SectionMaster.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISectionMaster_GetByLoginUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByLoginUserId" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetByLoginUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByLoginUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCode" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetByCustomerId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCustomerId" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetByCustomerId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByCustomerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_Import_InputMessage">
+    <wsdl:part name="parameters" element="tns:Import" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_Import_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForBankAccount_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForBankAccount" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForBankAccount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForBankAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForSectionWithDepartment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForSectionWithDepartment" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForSectionWithDepartment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForSectionWithDepartmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForSectionWithLoginUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForSectionWithLoginUser" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForSectionWithLoginUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForSectionWithLoginUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForReceipt" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForNetting_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForNetting" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForNetting_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForNettingResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForSection_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForSection" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_GetImportItemsForSection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetImportItemsForSectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="ISectionMaster_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISectionMaster">
+    <wsdl:operation name="GetByLoginUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetByLoginUserId" message="tns:ISectionMaster_GetByLoginUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetByLoginUserIdResponse" message="tns:ISectionMaster_GetByLoginUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetByCode" message="tns:ISectionMaster_GetByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetByCodeResponse" message="tns:ISectionMaster_GetByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/Save" message="tns:ISectionMaster_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/SaveResponse" message="tns:ISectionMaster_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/Delete" message="tns:ISectionMaster_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/DeleteResponse" message="tns:ISectionMaster_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetItems" message="tns:ISectionMaster_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetItemsResponse" message="tns:ISectionMaster_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByCustomerId">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetByCustomerId" message="tns:ISectionMaster_GetByCustomerId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetByCustomerIdResponse" message="tns:ISectionMaster_GetByCustomerId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/Import" message="tns:ISectionMaster_Import_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/ImportResponse" message="tns:ISectionMaster_Import_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForBankAccount">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForBankAccount" message="tns:ISectionMaster_GetImportItemsForBankAccount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForBankAccountResponse" message="tns:ISectionMaster_GetImportItemsForBankAccount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForSectionWithDepartment">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForSectionWithDepartment" message="tns:ISectionMaster_GetImportItemsForSectionWithDepartment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForSectionWithDepartmentResponse" message="tns:ISectionMaster_GetImportItemsForSectionWithDepartment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForSectionWithLoginUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForSectionWithLoginUser" message="tns:ISectionMaster_GetImportItemsForSectionWithLoginUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForSectionWithLoginUserResponse" message="tns:ISectionMaster_GetImportItemsForSectionWithLoginUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForReceipt" message="tns:ISectionMaster_GetImportItemsForReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForReceiptResponse" message="tns:ISectionMaster_GetImportItemsForReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForNetting">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForNetting" message="tns:ISectionMaster_GetImportItemsForNetting_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForNettingResponse" message="tns:ISectionMaster_GetImportItemsForNetting_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForSection">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForSection" message="tns:ISectionMaster_GetImportItemsForSection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetImportItemsForSectionResponse" message="tns:ISectionMaster_GetImportItemsForSection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISectionMaster/Get" message="tns:ISectionMaster_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISectionMaster/GetResponse" message="tns:ISectionMaster_Get_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISectionMaster" type="tns:ISectionMaster">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetByLoginUserId">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetByLoginUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCode">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetByCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByCustomerId">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetByCustomerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/Import" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForBankAccount">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetImportItemsForBankAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForSectionWithDepartment">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetImportItemsForSectionWithDepartment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForSectionWithLoginUser">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetImportItemsForSectionWithLoginUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForReceipt">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetImportItemsForReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForNetting">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetImportItemsForNetting" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetImportItemsForSection">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/GetImportItemsForSection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/ISectionMaster/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SectionMaster">
+    <wsdl:port name="BasicHttpBinding_ISectionMaster" binding="tns:BasicHttpBinding_ISectionMaster">
+      <soap:address location="http://localhost:3061/Master/SectionMaster.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

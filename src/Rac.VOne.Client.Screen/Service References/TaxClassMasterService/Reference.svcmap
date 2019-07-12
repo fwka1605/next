@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4f2fe030-1a26-42c5-9999-b9f1098af4e9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/TaxClassMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TaxClassMaster.xsd" MetadataType="Schema" ID="cbe2570f-91ac-414b-9d9a-9e6e50f150fd" SourceId="1" SourceUrl="http://localhost:3061/Master/TaxClassMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="TaxClassMaster.disco" MetadataType="Disco" ID="88ba55c5-7b8f-440b-85b2-7db6e2e0b479" SourceId="1" SourceUrl="http://localhost:3061/Master/TaxClassMaster.svc?disco" />
+    <MetadataFile FileName="TaxClassMaster1.xsd" MetadataType="Schema" ID="68c5e6a3-f313-4bee-abf7-0aa4083bd8a5" SourceId="1" SourceUrl="http://localhost:3061/Master/TaxClassMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="TaxClassMaster.wsdl" MetadataType="Wsdl" ID="075ee0e1-88bb-46cc-bcb0-c952a3d06209" SourceId="1" SourceUrl="http://localhost:3061/Master/TaxClassMaster.svc?wsdl" />
+    <MetadataFile FileName="TaxClassMaster2.xsd" MetadataType="Schema" ID="0cdf0b2e-5c04-4bb0-83e5-8ca8c9209589" SourceId="1" SourceUrl="http://localhost:3061/Master/TaxClassMaster.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

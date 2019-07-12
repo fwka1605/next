@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ReminderCommonSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="ReminderCommonSetting" nillable="true" type="tns:ReminderCommonSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderCommonSettingResult" nillable="true" type="tns:ReminderCommonSettingResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ReminderCommonSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountingStaffName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ArrearsInterestRate" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CalculateBaseDate" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentSummaryMode" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayArrearsInterest" type="xs:int" />
+      <xs:element minOccurs="0" name="IncludeOnTheDay" type="xs:int" />
+      <xs:element minOccurs="0" name="OutputDetail" type="xs:int" />
+      <xs:element minOccurs="0" name="OwnDepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderCommonSetting" nillable="true" type="tns:ReminderCommonSetting" />
+  <xs:complexType name="ReminderTemplateSettingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="ReminderTemplateSettings" nillable="true" type="tns:ArrayOfReminderTemplateSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderTemplateSettingsResult" nillable="true" type="tns:ReminderTemplateSettingsResult" />
+  <xs:complexType name="ArrayOfReminderTemplateSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReminderTemplateSetting" nillable="true" type="tns:ReminderTemplateSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReminderTemplateSetting" nillable="true" type="tns:ArrayOfReminderTemplateSetting" />
+  <xs:complexType name="ReminderTemplateSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="Conclusion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="Greeting" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MainText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderTemplateSetting" nillable="true" type="tns:ReminderTemplateSetting" />
+  <xs:complexType name="ReminderTemplateSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="ReminderTemplateSetting" nillable="true" type="tns:ReminderTemplateSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderTemplateSettingResult" nillable="true" type="tns:ReminderTemplateSettingResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="ExistResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExistResult" nillable="true" type="tns:ExistResult" />
+  <xs:complexType name="ReminderLevelSettingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="ReminderLevelSettings" nillable="true" type="tns:ArrayOfReminderLevelSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderLevelSettingsResult" nillable="true" type="tns:ReminderLevelSettingsResult" />
+  <xs:complexType name="ArrayOfReminderLevelSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReminderLevelSetting" nillable="true" type="tns:ReminderLevelSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReminderLevelSetting" nillable="true" type="tns:ArrayOfReminderLevelSetting" />
+  <xs:complexType name="ReminderLevelSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ArrearDays" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ReminderLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="ReminderTemplateCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReminderTemplateId" type="xs:int" />
+      <xs:element minOccurs="0" name="ReminderTemplateName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderLevelSetting" nillable="true" type="tns:ReminderLevelSetting" />
+  <xs:complexType name="ReminderLevelSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaxReminderLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="ReminderLevelSetting" nillable="true" type="tns:ReminderLevelSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderLevelSettingResult" nillable="true" type="tns:ReminderLevelSettingResult" />
+  <xs:complexType name="MaxReminderLevelResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MaxReminderLevel" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MaxReminderLevelResult" nillable="true" type="tns:MaxReminderLevelResult" />
+  <xs:complexType name="ReminderSummarySettingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="ReminderSummarySettings" nillable="true" type="tns:ArrayOfReminderSummarySetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderSummarySettingsResult" nillable="true" type="tns:ReminderSummarySettingsResult" />
+  <xs:complexType name="ArrayOfReminderSummarySetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReminderSummarySetting" nillable="true" type="tns:ReminderSummarySetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReminderSummarySetting" nillable="true" type="tns:ArrayOfReminderSummarySetting" />
+  <xs:complexType name="ReminderSummarySetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Available" type="xs:int" />
+      <xs:element minOccurs="0" name="ColumnName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ColumnNameJp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReminderSummarySetting" nillable="true" type="tns:ReminderSummarySetting" />
+</xs:schema>

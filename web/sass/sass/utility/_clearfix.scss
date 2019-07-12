@@ -1,0 +1,13 @@
+// mixin: clearfix
+// 
+// clearfixの指定
+// 
+// Styleguide 1.1.0 
+
+  @mixin clearfix {
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+  }

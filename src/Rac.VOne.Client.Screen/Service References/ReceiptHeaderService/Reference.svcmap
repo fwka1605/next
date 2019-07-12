@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="012911a4-e6c2-4be9-beb2-e4c31eb53b9e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/ReceiptHeaderService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReceiptHeaderService.xsd" MetadataType="Schema" ID="8e50e1c6-45b8-4dd8-a35e-b3f2417f6f67" SourceId="1" SourceUrl="http://localhost:3061/ReceiptHeaderService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ReceiptHeaderService.disco" MetadataType="Disco" ID="a3726aea-0f46-4a00-97af-1301b6eb8110" SourceId="1" SourceUrl="http://localhost:3061/ReceiptHeaderService.svc?disco" />
+    <MetadataFile FileName="ReceiptHeaderService.wsdl" MetadataType="Wsdl" ID="cba8901b-722c-4380-a2dc-d89ba2db5add" SourceId="1" SourceUrl="http://localhost:3061/ReceiptHeaderService.svc?wsdl" />
+    <MetadataFile FileName="ReceiptHeaderService1.xsd" MetadataType="Schema" ID="da749d2b-cbf0-469f-91aa-2132ceba9226" SourceId="1" SourceUrl="http://localhost:3061/ReceiptHeaderService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReceiptHeaderService2.xsd" MetadataType="Schema" ID="9c7b2d1f-c705-47bb-acc6-b3fdbf71f0eb" SourceId="1" SourceUrl="http://localhost:3061/ReceiptHeaderService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReceiptHeaderService3.xsd" MetadataType="Schema" ID="70de4e09-05dc-4533-a555-eef7ab9fd35d" SourceId="1" SourceUrl="http://localhost:3061/ReceiptHeaderService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

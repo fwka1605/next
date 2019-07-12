@@ -1,0 +1,69 @@
+<section class="vModal height--500"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup">
+  <h2 class="vModal__heading">{{ItemNameConst.LBL_SETTING_REPORT}}
+    <span class="vModal__close"
+      (click)="close()"></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+        class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REDISPLAY)" 
+        class="buttonMinimum">{{ItemNameConst.BTN_REDISPLAY}}</button>
+
+      <button 
+        (click)="cancel();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+        <div class="modalTable">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_320_CODE}}"> 設定名 </th>
+                <th class="{{TableColumn.COL_320_CODE}}"> 設定値 </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="cursor-inherit line-selector"
+                *ngFor="let reportSetting of this.reportSettingsResult?.reportSettings; let reportSettingIndex = index">
+                <td class="{{TableColumn.COL_320_NAME}}">
+                  {{reportSetting.caption}}
+                </td>
+                <td class="{{TableColumn.COL_320_NAME}}" *ngIf="reportSetting.isText==0">
+                  <select 
+                    formControlName="reportSettingCtrl{{reportSettingIndex}}"
+                    name="reportSettingCtrl{{reportSettingIndex}}">
+                    <option
+                      *ngFor="let setting of this.reportSetting?.settingList; let settingIndex = index"
+                      value="{{setting.itemKey}}">
+                      {{setting.itemValue}}
+                    </option>
+                  </select>
+                </td>
+                <td class="{{TableColumn.COL_320_NAME}}" *ngIf="reportSetting.isText==1">
+                  <input 
+                    formControlName="reportSettingCtrl{{reportSettingIndex}}"
+                    name="reportSettingCtrl{{reportSettingIndex}}"
+                    class="input--size-100">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

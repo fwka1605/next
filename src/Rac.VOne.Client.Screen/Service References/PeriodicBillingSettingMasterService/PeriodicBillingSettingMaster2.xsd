@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3061/Master/PeriodicBillingSettingMaster.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="PeriodicBillingSettingSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BaseDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Ids" nillable="true" type="q1:ArrayOflong" />
+      <xs:element minOccurs="0" name="IsReConfirm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PeriodicBillingSettingSearch" nillable="true" type="tns:PeriodicBillingSettingSearch" />
+  <xs:complexType name="PeriodicBillingSettingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PeriodicBillingSettings" nillable="true" type="tns:ArrayOfPeriodicBillingSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PeriodicBillingSettingsResult" nillable="true" type="tns:PeriodicBillingSettingsResult" />
+  <xs:complexType name="ArrayOfPeriodicBillingSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PeriodicBillingSetting" nillable="true" type="tns:PeriodicBillingSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPeriodicBillingSetting" nillable="true" type="tns:ArrayOfPeriodicBillingSetting" />
+  <xs:complexType name="PeriodicBillingSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Addressee" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BaseDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BilledAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BilledCycle" type="xs:int" />
+      <xs:element minOccurs="0" name="BilledDay" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingAmountTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CollectCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CollectCategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DestinationCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DestinationId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DestinationName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="tns:ArrayOfPeriodicBillingSettingDetail" />
+      <xs:element minOccurs="0" name="EndMonth" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsReConfirm" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastUpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastUpdatedBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SetBillingNote1" type="xs:int" />
+      <xs:element minOccurs="0" name="SetBillingNote2" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffId" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartMonth" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PeriodicBillingSetting" nillable="true" type="tns:PeriodicBillingSetting" />
+  <xs:complexType name="ArrayOfPeriodicBillingSettingDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PeriodicBillingSettingDetail" nillable="true" type="tns:PeriodicBillingSettingDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPeriodicBillingSettingDetail" nillable="true" type="tns:ArrayOfPeriodicBillingSettingDetail" />
+  <xs:complexType name="PeriodicBillingSettingDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BilledDay" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BillingCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CollectCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="DebitAccountTitleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="DestinationId" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PeriodicBillingSettingId" type="xs:long" />
+      <xs:element minOccurs="0" name="Price" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Quantity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="StaffId" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxClassId" type="xs:int" />
+      <xs:element minOccurs="0" name="UnitPrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UnitSymbol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PeriodicBillingSettingDetail" nillable="true" type="tns:PeriodicBillingSettingDetail" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="PeriodicBillingSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PeriodicBillingSetting" nillable="true" type="tns:PeriodicBillingSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PeriodicBillingSettingResult" nillable="true" type="tns:PeriodicBillingSettingResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+</xs:schema>

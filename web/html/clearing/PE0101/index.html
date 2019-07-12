@@ -1,0 +1,1497 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="clearing-page">
+        <div id="breadcrumb-outer">
+          <h1>04 消込 - 01 一括消込(PE0101)</h1>
+        </div>
+
+
+        <section class="contents">
+          <div class="contents__header">
+            <div class="controller-btns">
+              <button class="controller-btns__item" data-modal="shogo-progress">照合</button>
+              <button class="controller-btns__item">クリア</button>
+              <button class="controller-btns__item">一括消込</button>
+            </div>
+            <div class="contents__header__options">
+              <button class="contents__header__options__item contents__header__options__other-btn" data-tip-menu="btn">その他</button>
+              <ul class="contents__header__options__other" data-tip-menu="body">
+                <li class="contents__header__options__other__item"><a>印刷</a></li>
+                <li class="contents__header__options__other__item"><a>ダウンロード</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="contents accordion-content">
+          <div class="clearing-header">
+            <h2 class="accordion-content__title">
+              <span class="accordion-content__title__text" data-accordion-trigger="clearing-all">
+                照合条件
+                <i class="accordion-content__title__icon">
+                  <img src="/assets/image/icon_spread.png" alt="">
+                </i>
+              </span>
+            </h2>
+
+            <div class="accordion-content__body" data-accordion-body="clearing-all">
+
+              <div class="clearing-controller">
+                <dl class="clearing-controller__mass-clearing">
+                  <dt class="clearing-controller__mass-clearing__title">入金日</dt>
+                  <dd class="clearing-controller__mass-clearing__control">
+                    <input type="date" class="clearing-controller__mass-clearing__control__date" max="2018-11-30" value="2018-11-01">
+                    <span class="clearing-controller__mass-clearing__control__wavy-line"></span>
+                  </dd>
+                  <dt class="clearing-controller__mass-clearing__title">入金予定日</dt>
+                  <dd class="clearing-controller__mass-clearing__control">
+                    <input type="date" class="clearing-controller__mass-clearing__control__date">
+                    <span class="clearing-controller__mass-clearing__control__wavy-line"></span>
+                  </dd>
+                </dl>
+                <dl class="clearing-controller__mass-clearing">
+                  <dt class="clearing-controller__mass-clearing__title">請求部門</dt>
+                  <dd class="clearing-controller__mass-clearing__control">
+                    <span class="clearing-controller__mass-clearing__control__selected">請求部門絞込有</span>
+                    <button class="clearing-controller__mass-clearing__control__select-trigger" data-modal="seikyu-bumon">選択</button>
+                    <button class="clearing-controller__mass-clearing__control__btn">初期化</button>
+                  </dd>
+                  <dt class="clearing-controller__mass-clearing__title">表示金額</dt>
+                  <dd class="clearing-controller__mass-clearing__control">
+                    <div class="clearing-controller__mass-clearing__control__input-box">
+                      <label for="01" class="clearing-controller__mass-clearing__control__input-box__item"><input type="radio"
+                          id="01" name="example" checked>消込対象</label>
+                      <label for="02" class="clearing-controller__mass-clearing__control__input-box__item"> <input type="radio"
+                          id="02" name="example"> 請求額 </label>
+                    </div>
+                  </dd>
+                  <dt class="clearing-controller__mass-clearing__title">
+                    <div class="clearing-controller__mass-clearing__control__input-box">
+                      <label class="clearing-controller__mass-clearing__control__input-box__item"><input type="checkbox"
+                          name="example">
+                        消込完了データを表示する
+                      </label>
+                    </div>
+                  </dt>
+                </dl>
+              </div>
+
+              <div class="clearing-current-status">
+                <h3 class="clearing-current-status__title">現在の消込順序設定</h3>
+                <div class="clearing-current-status__horizontal-box">
+                  <div class="clearing-current-status__container">
+                    <h4 class="clearing-current-status__container__title">請求情報</h4>
+                    <ul class="clearing-current-status__container__lists">
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">1</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">請求残の正負</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">2</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">期日入金予定フラグ</span>
+                        <span class="clearing-current-status__container__lists__item__status">降順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">3</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">入金予定日</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">4</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">得意先コード</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">5</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">請求日</span>
+                        <span class="clearing-current-status__container__lists__item__status">降順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">6</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">請求残(入金予定額)の絶対値</span>
+                        <span class="clearing-current-status__container__lists__item__status">降順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">7</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">請求区分</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="clearing-current-status__container">
+                    <h4 class="clearing-current-status__container__title">入金情報</h4>
+                    <ul class="clearing-current-status__container__lists">
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">1</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">相殺データ</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">2</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">入金残の正負</span>
+                        <span class="clearing-current-status__container__lists__item__status">降順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">3</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">入金日</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">4</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">振込依頼人名</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">5</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">仕向銀行</span>
+                        <span class="clearing-current-status__container__lists__item__status">降順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">6</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">仕向支店</span>
+                        <span class="clearing-current-status__container__lists__item__status">降順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">7</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">入金残の絶対値</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                      <li class="clearing-current-status__container__lists__item">
+                        <span class="clearing-current-status__container__lists__item__line">8</span>
+                        <span class="clearing-current-status__container__lists__item__subtitle">入金区分</span>
+                        <span class="clearing-current-status__container__lists__item__status">昇順</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section class="contents mass-clearing-contents">
+          <div class="mass-clearing-contents__header">
+            <h2 class="mass-clearing-contents__title">照合結果</h2>
+            <dl class="mass-clearing-contents__header__options">
+              <dt class="mass-clearing-contents__header__options__title">検索</dt>
+              <dd class="mass-clearing-contents__header__options__detail">
+                <input type="text" class="mass-clearing-contents__header__options__detail__input">
+              </dd>
+              <dt class="mass-clearing-contents__header__options__title">ソート</dt>
+              <dd class="mass-clearing-contents__header__options__detail">
+                <input type="text" class="mass-clearing-contents__header__options__detail__input-box">
+                <input type="text" class="mass-clearing-contents__header__options__detail__input-box">
+              </dd>
+            </dl>
+          </div>
+          <div class="controller-btns mass-clearing-contents__controller">
+            <button class="controller-btns__item">全選択</button>
+            <button class="controller-btns__item">全解除</button>
+          </div>
+
+          <div class="clearing-result-container">
+            <div class="clearing-result-table sticky-head-table">
+              <div class="sticky-head-table__header">
+                <table class="sticky-head-table__header__inner">
+                  <tr class="colspan-title">
+                    <th></th>
+                    <th>
+                      <div class="sort-box">
+                        <button class="sort-box__btn" data-sort-btn></button>
+                        <ul class="sort-box__lists">
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">ソート</button></li>
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">ソート解除</button></li>
+                        </ul>
+                      </div>
+                    </th>
+                    <th colspan="5">請求情報</th>
+                    <th colspan="3">入金情報</th>
+                    <th>
+                      <div class="sort-box">
+                        <button class="sort-box__btn" data-sort-btn></button>
+                        <ul class="sort-box__lists">
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">昇順にソート</button></li>
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">降順にソート</button></li>
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">ソート解除</button></li>
+                        </ul>
+                      </div>
+                    </th>
+                  </tr>
+                  <tr class="no-margin-head">
+                    <th></th>
+                    <th>一括</th>
+                    <th>個別</th>
+                    <th>得意先コード</th>
+                    <th>得意先名(代表者)</th>
+                    <th>件数</th>
+                    <th>金額</th>
+                    <th>振込依頼人名</th>
+                    <th>件数</th>
+                    <th>金額</th>
+                    <th>手数料</th>
+                    <th>差額</th>
+                    <th>前受</th>
+                  </tr>
+                </table>
+              </div>
+              <div class="sticky-head-table__body">
+                <table class="sticky-head-table__body__inner">
+                  <tr>
+                    <td class="line-selecter">1</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td>
+                      <a data-modal="id001"><span data-length-control="10">SN3W9GLLTC</span></a>
+                    </td>
+                    <td>郵便番号7桁ハイフンあり</td>
+                    <td>1</td>
+                    <td>1,080</td>
+                    <td class="cell-color-red">DUMMY</td>
+                    <td class="cell-color-red">3</td>
+                    <td class="cell-color-red">8,000</td>
+                    <td>相</td>
+                    <td>6,920</td>
+                    <td>○</td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">2</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td>
+                      <a data-modal="id001"><span data-length-control="10">SN3W9GLLTC</span></a>
+                    </td>
+                    <td>郵便番号7桁ハイフンあり</td>
+                    <td>1</td>
+                    <td>1,080</td>
+                    <td class="cell-color-red">DUMMY</td>
+                    <td class="cell-color-red">3</td>
+                    <td class="cell-color-red">8,000</td>
+                    <td>相</td>
+                    <td>6,920</td>
+                    <td>○</td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">3</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td>
+                      <a data-modal="id001"><span data-length-control="10">SN3W9GLLTC</span></a>
+                    </td>
+                    <td>郵便番号7桁ハイフンあり</td>
+                    <td>1</td>
+                    <td>1,080</td>
+                    <td class="cell-color-red">DUMMY</td>
+                    <td class="cell-color-red">3</td>
+                    <td class="cell-color-red">8,000</td>
+                    <td>相</td>
+                    <td>6,920</td>
+                    <td>○</td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">4</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td>
+                      <a data-modal="id001"><span data-length-control="10">SN3W9GLLTC</span></a>
+                    </td>
+                    <td>郵便番号7桁ハイフンあり</td>
+                    <td>1</td>
+                    <td>1,080</td>
+                    <td class="cell-color-red">DUMMY</td>
+                    <td class="cell-color-red">3</td>
+                    <td class="cell-color-red">8,000</td>
+                    <td>相</td>
+                    <td>6,920</td>
+                    <td>○</td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">5</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td>
+                      <a data-modal="id001"><span data-length-control="10">5RKESPPHXC</span></a>
+                    </td>
+                    <td>株式会社アール・アンド・エー・シー</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td>ｶﾌﾞｼｷｶﾞｲｼｬﾃｽﾄﾃｽﾄﾃｽﾄ</td>
+                    <td>
+                      100
+                    </td>
+                    <td>
+                      1,000,000
+                    </td>
+                    <td>相</td>
+                    <td>
+                      <span class="negative-number">-123,456,789</span>
+                    </td>
+                    <td>○</td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">6</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>自</td>
+                    <td>1,000,000</td>
+                    <td>○</td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">7</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>自</td>
+                    <td>1,000,000</td>
+                    <td>○</td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">8</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>自</td>
+                    <td>1,000,000</td>
+                    <td>○</td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">9</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">10</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">11</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">12</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">13</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">14</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">15</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">16</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">17</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">18</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">19</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="line-selecter">20</span></td>
+                    <td>
+                      <input type="checkbox">
+                    </td>
+                    <td>
+                      <a class="detail-link" href="./individual.html">・・・</a>
+                    </td>
+                    <td><a data-modal="id001"><span data-length-control="10">1234567890</span></a></td>
+                    <td>青森市漁業組合</td>
+                    <td>
+                      5
+                    </td>
+                    <td>
+                      123,456,789
+                    </td>
+                    <td></td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+
+                </table>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+      </div>
+      <div id="footer-outer">
+      </div>
+    </div>
+  </div>
+
+
+  <div id="modal-body" class="full-modal-box">
+    <span class="full-modal-box__close" data-modal-close></span>
+    <div class="full-modal-box__contents multi-modal" data-modal-contents="shogo-progress">
+      <div class="full-modal-box__contents__inner">
+        <h2 class="full-modal-box__contents__title">一括消込照合</h2>
+        <div class="full-modal-box__contents__item-container">
+          <section class="contents progress-container">
+            <div class="progress-container__box">
+              <div class="progress-container__box__title">
+                <span class="progress-container__box__title__icon">
+                  <span class="loader"></span>
+                </span>
+                <p class="progress-container__box__title__text">
+                  専用入金講座照合　処理中(ダミー)
+                </p>
+              </div>
+              <div class="progress-container__box__bottom">
+                <div class="progress-container__box__bottom__status" data-accordion-body="progress-status">
+                  <h4 class="progress-container__box__bottom__status__date">開始時刻 2018/11/01 13:00:00</h4>
+                  <div class="progress-container__box__bottom__status__table">
+                    <table>
+                      <tr>
+                        <td>
+                          <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                        </td>
+                        <td>請求・入金データの取得　完了</td>
+                        <td>終了時刻　2018/11/01　13:29:18</td>
+                      </tr>
+                      </tr>
+                      <td>
+                        <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                      </td>
+                      <td>専用入金口座照合　完了</td>
+                      <td>終了時刻　2018/11/01　13:29:18</td>
+                      </tr>
+                      </tr>
+                      <td>
+                        <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                      </td>
+                      <td>得意先コード照合　完了</td>
+                      <td>終了時刻　2018/11/01　13:29:18</td>
+                      </tr>
+                      </tr>
+                      <td>
+                        <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                      </td>
+                      <td>学習履歴照合　完了</td>
+                      <td>終了時刻　2018/11/01　13:29:18</td>
+                      </tr>
+                      </tr>
+                      <td>
+                        <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                      </td>
+                      <td>マスターカナ照合　完了</td>
+                      <td>終了時刻　2018/11/01　13:29:18</td>
+                      </tr>
+                      </tr>
+                      <td>
+                        <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                      </td>
+                      <td>番号照合　完了</td>
+                      <td>終了時刻　2018/11/01　13:29:18</td>
+                      </tr>
+                      </tr>
+                      <td>
+                        <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                      </td>
+                      <td>未照合データの取得　完了</td>
+                      <td>終了時刻　2018/11/01　13:29:18</td>
+                      </tr>
+                      </tr>
+                      <td>
+                        <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                      </td>
+                      <td>照合結果の取得　完了</td>
+                      <td>終了時刻　2018/11/01　13:29:18</td>
+                      </tr>
+                      </tr>
+                      <td>
+                        <p class="progress-container__box__bottom__status__table__success-icon"><img src="/assets/image/icon_completed.png"></p>
+                      </td>
+                      <td>画面の更新　完了</td>
+                      <td>終了時刻　2018/11/01　13:29:18</td>
+                    </table>
+
+                  </div>
+                </div>
+                <div class="progress-container__box__bottom__result">
+                  <p class="progress-container__box__bottom__result__time">00:00:00</p>
+                  <span class="progress-container__box__bottom__result__percent">33</span>
+                  <span class="progress-container__box__bottom__result__unit">% 完了</span>
+                </div>
+                <div class="progress-container__box__bottom__bar">
+                  <span class="progress-container__box__bottom__bar__inner"></span>
+                </div>
+                <div class="controller-btns progress-container__box__bottom__controller">
+                  <button class="controller-btns__item" data-accordion-trigger="progress-status">詳細表示</button>
+                  <button class="controller-btns__item">OK</button>
+                </div>
+
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="full-modal-box__contents multi-modal master-config" data-modal-contents="id001">
+      <div class="full-modal-box__contents__inner">
+        <h2 class="full-modal-box__contents__title">得意先の編集</h2>
+        <div class="full-modal-box__contents__item-container">
+          <div class="general-setting">
+            <section class="contents">
+              <div class="general-setting__controller">
+                <button class="invoice-controller__btn">登録</button>
+                <button class="invoice-controller__btn">クリア</button>
+                <button class="invoice-controller__btn">印刷指示</button>
+                <button class="invoice-controller__btn">インポート</button>
+                <button class="invoice-controller__btn">ダウンロード</button>
+                <button class="invoice-controller__btn">取込設定</button>
+              </div>
+            </section>
+            <section class="contents">
+              <h3 class="general-setting__title">基本設定</h3>
+              <div class="general-setting__container">
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title">得意先コード</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text" class="general-setting__container__config-options__detail__before">
+                    <button class="general-setting__container__config-options__detail__search-btn">検索</button>
+                    <input type="text" class="general-setting__container__config-options__detail__after">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">オプション</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__checks">
+                      <label for="001">
+                        <input type="checkbox" id="001" name="keshikomikubun">
+                        債権代表者
+                      </label>
+                      <label for="002">
+                        <input type="checkbox" id="002" name="keshikomikubun">
+                        カナ自動学習
+                      </label>
+                      <label for="003">
+                        <input type="checkbox" id="003" name="keshikomikubun">
+                        手数料自動学習
+                      </label>
+                      <label for="004">
+                        <input type="checkbox" id="004" name="keshikomikubun">
+                        手数料誤差利用
+                      </label>
+                      <label for="005">
+                        <input type="checkbox" id="005" name="keshikomikubun">
+                        一括消込対象外
+                      </label>
+                    </div>
+                  </dd>
+                  </dd>
+                </dl>
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title">得意先名</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text" class="general-setting__container__config-options__detail__liner">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">得意先名カナ</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text" class="general-setting__container__config-options__detail__liner">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">債権代表者</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text" class="general-setting__container__config-options__detail__before">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text" class="general-setting__container__config-options__detail__after">
+
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">手数料区分</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <select name="" id="" class="general-setting__container__config-options__detail__before">
+                      <option value="01">区分</option>
+                    </select>
+                    <button class="general-setting__container__config-options__detail__search-btn">検索</button>
+                    <input type="text" class="general-setting__container__config-options__detail__after">
+
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">営業担当者</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text" class="general-setting__container__config-options__detail__before">
+                    <button class="general-setting__container__config-options__detail__search-btn">検索</button>
+                    <input type="text" class="general-setting__container__config-options__detail__after">
+                  </dd>
+                </dl>
+              </div>
+
+            </section>
+            <section class="contents">
+              <h3 class="general-setting__title">日付設定</h3>
+              <div class="general-setting__container">
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title">締日</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text" class="general-setting__container__config-options__detail__box-input">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <label for="tsudo"><input id="tsudo" type="checkbox">都度請求</label>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">回収予定</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text" class="general-setting__container__config-options__detail__box-input">
+                    <span class="general-setting__container__config-options__spacer">ヶ月後の</span>
+                    <input type="text" class="general-setting__container__config-options__detail__box-input">
+                    <span class="general-setting__container__config-options__spacer">日</span>
+                    <span class="general-setting__container__config-options__spacer">※末尾(28日以降)=99</span>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">休業日設定</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <select name="" id="" class="general-setting__container__config-options__detail__before">
+                      <option value="01">30</option>
+                    </select>
+                  </dd>
+
+              </div>
+
+            </section>
+
+            <section class="contents">
+              <h3 class="general-setting__title">回収設定</h3>
+              <div class="general-setting__container">
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title">回収方法</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <select name="" id="" class="general-setting__container__config-options__detail__before">
+                      <option value=""></option>
+                    </select>
+                    <div class="general-setting__container__config-options__detail__items">
+                      <span class="general-setting__container__config-options__spacer">回収サイト</span>
+                      <input type="text" class="general-setting__container__config-options__detail__box-input">
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">約定金額</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__before">
+                    <span class="general-setting__container__config-options__spacer">円</span>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">約定金額未満</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <select name="" id="" class="general-setting__container__config-options__detail__before">
+                      <option value=""></option>
+                    </select>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">約定金額以上 1 </dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <select name="" id="" class="general-setting__container__config-options__detail__before">
+                      <option value=""></option>
+                    </select>
+                    <div class="general-setting__container__config-options__detail__items">
+                      <span class="general-setting__container__config-options__spacer">分割</span>
+                      <input type="text" class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__spacer unit">％</span>
+                      <span class="general-setting__container__config-options__spacer">端数単位</span>
+                      <select type="text" class="general-setting__container__config-options__detail__box-input">
+                        <option value="en">円</option>
+                      </select>
+                      <span class="general-setting__container__config-options__spacer">回収サイト</span>
+                      <input type="text" class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__spacer unit">日</span>
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">約定金額以上 2 </dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <select name="" id="" class="general-setting__container__config-options__detail__before">
+                      <option value=""></option>
+                    </select>
+                    <div class="general-setting__container__config-options__detail__items">
+                      <span class="general-setting__container__config-options__spacer">分割</span>
+                      <input type="text" class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__spacer unit">％</span>
+                      <span class="general-setting__container__config-options__spacer">端数単位</span>
+                      <select type="text" class="general-setting__container__config-options__detail__box-input">
+                        <option value="en">円</option>
+                      </select>
+                      <span class="general-setting__container__config-options__spacer">回収サイト</span>
+                      <input type="text" class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__spacer unit">日</span>
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">約定金額以上 3 </dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <select name="" id="" class="general-setting__container__config-options__detail__before">
+                      <option value=""></option>
+                    </select>
+                    <div class="general-setting__container__config-options__detail__items">
+                      <span class="general-setting__container__config-options__spacer">分割</span>
+                      <input type="text" class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__spacer unit">％</span>
+                      <span class="general-setting__container__config-options__spacer">端数単位</span>
+                      <select type="text" class="general-setting__container__config-options__detail__box-input">
+                        <option value="en">円</option>
+                      </select>
+                      <span class="general-setting__container__config-options__spacer">回収サイト</span>
+                      <input type="text" class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__spacer unit">日</span>
+                    </div>
+                  </dd>
+
+              </div>
+
+            </section>
+            <section class="contents">
+              <h3 class="general-setting__title">債権管理</h3>
+              <div class="general-setting__container">
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title">電子手形用企業コード</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__before">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">信用調査用企業コード</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__before">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">与信限度額</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__before">
+                    <span class="general-setting__container__config-options__spacer">万円</span>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">与信ランク</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__box-input">
+                  </dd>
+                </dl>
+              </div>
+            </section>
+
+            <section class="contents">
+              <h3 class="general-setting__title">専用入金講座(仮想講座)</h3>
+              <div class="general-setting__container">
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title">銀行コード</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__items-line">
+                      <input class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__detail__second-title">銀行名</span>
+                      <input class="general-setting__container__config-options__detail__after">
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">支店コード</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__box-input">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">仮想支店コード</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__items-line">
+                      <input class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__detail__second-title">仮想支店</span>
+                      <input class="general-setting__container__config-options__detail__after">
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">口座番号</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__items-line">
+                      <input class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__detail__second-title">預金種別</span>
+                      <select class="general-setting__container__config-options__detail__after">
+                        <option value="ftsu">普通</option>
+                      </select>
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </section>
+            <section class="contents">
+              <h3 class="general-setting__title">口座振替用口座</h3>
+              <div class="general-setting__container">
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title">銀行コード</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__items-line">
+                      <input class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__detail__second-title">銀行名</span>
+                      <input class="general-setting__container__config-options__detail__after">
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">支店コード</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__items-line">
+                      <input class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__detail__second-title">支店名</span>
+                      <input class="general-setting__container__config-options__detail__after">
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">口座番号</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__items-line">
+                      <input class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__detail__second-title">預金種別</span>
+                      <select class="general-setting__container__config-options__detail__box-select">
+                        <option value="ftsu">普通</option>
+                      </select>
+                      <span class="general-setting__container__config-options__detail__spacer">新規コード</span>
+                      <input class="general-setting__container__config-options__detail__box-input">
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">預金者名</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__items-line">
+                      <input class="general-setting__container__config-options__detail__box-input">
+                      <span class="general-setting__container__config-options__detail__second-title">顧客コード</span>
+                      <input class="general-setting__container__config-options__detail__after">
+                    </div>
+                  </dd>
+                </dl>
+
+              </div>
+            </section>
+            <section class="contents">
+              <h3 class="general-setting__title">住所</h3>
+              <div class="general-setting__container">
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title">郵便番号</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">住所</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__after">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">電話番号</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">FAX番号</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">相手先部署</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__after">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">相手先部署名</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__after">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">敬称</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <div class="general-setting__container__config-options__detail__items-line">
+                      <select class="general-setting__container__config-options__detail__box-select">
+                        <option value="sama">様</option>
+                      </select>
+                    </div>
+                  </dd>
+                  <dt class="general-setting__container__config-options__title">備考</dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input class="general-setting__container__config-options__detail__after">
+                  </dd>
+                </dl>
+              </div>
+            </section>
+            <section class="contents">
+              <h3 class="general-setting__title">被振込口座設定</h3>
+              <div class="general-setting__container">
+                <dl class="general-setting__container__config-options">
+                  <dt class="general-setting__container__config-options__title general-setting__container__config-options__title--checks">
+                    <input type="checkbox" checked>
+                  </dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title general-setting__container__config-options__title--checks">
+                    <input type="checkbox" checked>
+                  </dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                  </dd>
+                  <dt class="general-setting__container__config-options__title general-setting__container__config-options__title--checks">
+                    <input type="checkbox" checked>
+                  </dt>
+                  <dd class="general-setting__container__config-options__detail">
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                    <span class="general-setting__container__config-options__spacer"></span>
+                    <input type="text">
+                  </dd>
+                </dl>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="full-modal-box__contents multi-modal" data-modal-contents="seikyu-bumon">
+      <div class="full-modal-box__contents__inner">
+        <div class="full-modal-box__contents__title">
+          <h2 class="full-modal-box__contents__title__text">請求部門絞込</h2>
+          <div class="controller-btns">
+            <button class="controller-btns__item">検索</button>
+            <button class="controller-btns__item">クリア</button>
+            <button class="controller-btns__item">確定</button>
+            <button class="controller-btns__item">全選択</button>
+            <button class="controller-btns__item">全解除</button>
+          </div>
+        </div>
+        <div class="full-modal-box__contents__item-container clearing-modal">
+          <section class="contents clearing-modal__content">
+            <div class="clearing-modal__content__header">
+              <dl class="clearing-modal__content__header__options">
+                <dt class="clearing-modal__content__header__options__title">検索キー</dt>
+                <dd class="clearing-modal__content__header__options__detail">
+                  <input type="text" class="clearing-modal__content__header__options__detail__input">
+                </dd>
+              </dl>
+            </div>
+            <div class="clearing-modal__content__table sticky-head-table">
+              <div class="sticky-head-table__header">
+                <table class="sticky-head-table__header__inner">
+                  <tr>
+                    <th></th>
+                    <th>選択</th>
+                    <th>
+                      <div class="sort-box">
+                        請求部門コード
+                        <button class="sort-box__btn" data-sort-btn></button>
+                        <ul class="sort-box__lists">
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">昇順に並び替え</button></li>
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">降順に並び替え</button></li>
+                        </ul>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="sort-box">
+                        請求部門名
+                        <button class="sort-box__btn" data-sort-btn></button>
+                        <ul class="sort-box__lists">
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">昇順に並び替え</button></li>
+                          <li class="sort-box__lists__item"><button class="sort-box__lists__item__btn">降順に並び替え</button></li>
+                        </ul>
+                      </div>
+                    </th>
+                  </tr>
+                </table>
+              </div>
+              <div class="sticky-head-table__body">
+                <table class="sticky-head-table__body__inner">
+                  <tr>
+                    <td>1</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0001</td>
+                    <td>テスト0000001</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0002</td>
+                    <td>テスト0000002</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0003</td>
+                    <td>テスト0000003</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0004</td>
+                    <td>テスト0000004</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0005</td>
+                    <td>テスト0000005</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0006</td>
+                    <td>テスト0000006</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0007</td>
+                    <td>テスト0000007</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0008</td>
+                    <td>テスト0000008</td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-modal-box__contents multi-modal" data-modal-contents="nyukin-bumon">
+      <div class="full-modal-box__contents__inner">
+        <div class="full-modal-box__contents__title">
+          <h2 class="full-modal-box__contents__title__text">入金部門絞込</h2>
+          <div class="controller-btns">
+            <button class="controller-btns__item">検索</button>
+            <button class="controller-btns__item">クリア</button>
+            <button class="controller-btns__item">確定</button>
+            <button class="controller-btns__item">全選択</button>
+            <button class="controller-btns__item">全解除</button>
+          </div>
+        </div>
+        <div class="full-modal-box__contents__item-container clearing-modal">
+          <section class="contents clearing-modal__content">
+            <div class="clearing-modal__content__header">
+              <dl class="clearing-modal__content__header__options">
+                <dt class="clearing-modal__content__header__options__title">検索キー</dt>
+                <dd class="clearing-modal__content__header__options__detail">
+                  <input type="text" class="clearing-modal__content__header__options__detail__input">
+                </dd>
+              </dl>
+            </div>
+            <div class="clearing-modal__content__table sticky-head-table">
+              <div class="sticky-head-table__header">
+                <table class="sticky-head-table__header__inner">
+                  <tr>
+                    <th></th>
+                    <th>選択</th>
+                    <th>
+                      <div class="sort-box">
+                        請求部門コード
+                        <button class="sort-box__btn"></button>
+                        <ul class="sort-box__lists">
+                          <li class="sort-box__lists"><button>昇順に並び替え</button></li>
+                          <li class="sort-box__lists"><button>降順に並び替え</button></li>
+                        </ul>
+                      </div>
+                    </th>
+                    <th>
+                      <div class="sort-box">
+                        請求部門名
+                        <button class="sort-box__btn"></button>
+                      </div>
+                    </th>
+                  </tr>
+                </table>
+              </div>
+              <div class="sticky-head-table__body">
+                <table class="sticky-head-table__body__inner">
+                  <tr>
+                    <td>1</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0001</td>
+                    <td>テスト0000001</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0002</td>
+                    <td>テスト0000002</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0003</td>
+                    <td>テスト0000003</td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0004</td>
+                    <td>テスト0000004</td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0005</td>
+                    <td>テスト0000005</td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0006</td>
+                    <td>テスト0000006</td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0007</td>
+                    <td>テスト0000007</td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td><input type="checkbox"></td>
+                    <td>D0008</td>
+                    <td>テスト0000008</td>
+                  </tr>
+                </table>
+              </div>
+
+            </div>
+
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>

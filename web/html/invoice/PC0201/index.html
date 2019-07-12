@@ -1,0 +1,545 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="invoice">
+        <div id="breadcrumb-outer">
+          <h1>02 請求 - 02 請求データ入力(PC0201)</h1>
+        </div>
+        <section class="contents invoice-data-add">
+          <h2 class="invoice-data-add__title">請求データ入力 新規</h2>
+          <div class="invoice-data-add__container">
+            <dl class="invoice-data-add__container__settings">
+              <dt class="invoice-data-add__container__settings__title">請求入力ID</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="invoice-data-add__container__settings__title">請求日</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="invoice-data-add__container__settings__title">請求締日</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="invoice-data-add__container__settings__title">請求書番号</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+            </dl>
+            <dl class="invoice-data-add__container__settings">
+              <dt class="invoice-data-add__container__settings__title">&nbsp;</dt>
+              <dd class="invoice-data-add__container__settings__detail">&nbsp;</dd>
+              <dt class="invoice-data-add__container__settings__title">売上日</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="invoice-data-add__container__settings__title">予定日</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="invoice-data-add__container__settings__title">回収区分</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+            </dl>
+            <dl class="invoice-data-add__container__settings">
+              <dt class="invoice-data-add__container__settings__title">得意先コード</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__main-input">
+                <button class="invoice-data-add__container__settings__detail__search-btn">検索</button>
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="invoice-data-add__container__settings__title">請求部門コード</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__main-input">
+                <button class="invoice-data-add__container__settings__detail__search-btn">検索</button>
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="invoice-data-add__container__settings__title">担当者コード</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__main-input">
+                <button class="invoice-data-add__container__settings__detail__search-btn">検索</button>
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+              <dt class="invoice-data-add__container__settings__title">送付先コード</dt>
+              <dd class="invoice-data-add__container__settings__detail">
+                <input type="text" class="invoice-data-add__container__settings__detail__main-input">
+                <button class="invoice-data-add__container__settings__detail__search-btn">検索</button>
+                <input type="text" class="invoice-data-add__container__settings__detail__option">
+              </dd>
+            </dl>
+          </div>
+        </section>
+        <section class="contents">
+          <div class="invoice-controller">
+            <button class="invoice-controller__btn">登録</button>
+            <button class="invoice-controller__btn">クリア</button>
+            <button class="invoice-controller__btn">入力設定</button>
+            <button class="invoice-controller__btn">参照新規</button>
+            <button class="invoice-controller__btn">行コピー</button>
+          </div>
+        </section>
+
+        <section class="contents">
+          <div class="invoice-data-add-result">
+            <div class="invoice-data-add-result-table sticky-head-table">
+              <div class="sticky-head-table__header">
+                <table class="sticky-head-table__header__inner">
+                  <tr class="top_line">
+                    <th>売上日</th>
+                    <th>請求区分</th>
+                    <th>税区</th>
+                    <th>債権科目</th>
+                    <th class="remarks_name" colspan="4">備考の名前</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <tr class="bottom_line">
+                    <th>請求ID</th>
+                    <th>契約番号</th>
+                    <th>数量</th>
+                    <th>単位</th>
+                    <th>単価</th>
+                    <th>金額(抜)</th>
+                    <th>消費税</th>
+                    <th>請求額</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </table>
+              </div>
+              <div class="sticky-head-table__body">
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+                <table class="sticky-head-table__body__inner">
+                  <tr class="top_line">
+                    <td>2018/10/10</td>
+                    <td>(請求区分)</td>
+                    <td>(税区)</td>
+                    <td>(債権科目)</td>
+                    <td class="remarks_name" colspan="4">(備考の名前)</td>
+                    <td>○</td>
+                    <td>
+                      <button class="remarks_config_btn" data-modal>備考</button>
+                    </td>
+                  </tr>
+                  <tr class="bottom_line">
+                    <td>(請求ID)</td>
+                    <td>(契約番号)</td>
+                    <td>(数量)</td>
+                    <td>(単位)</td>
+                    <td>(単価)</td>
+                    <td>(金額)(抜)</td>
+                    <td>(消費税)</td>
+                    <td>(請求額)</td>
+                    <td></td>
+                    <td>
+                      <button class="remarks_config_btn remarks_config_btn--config_clear">クリア</button>
+                    </td>
+                  </tr>
+
+                </table>
+              </div>
+
+            </div>
+            <div class="invoice-data-add-result__footer">
+              <div class="invoice-data-add-result__footer__options">
+                <h4 class="invoice-data-add-result__footer__options__title">金額計算</h4>
+                <label for="01" class="invoice-data-add-result__footer__options__item">
+                  <input type="radio" id="01" name="example">
+                  自動
+                </label>
+                <label for="02" class="invoice-data-add-result__footer__options__item">
+                  <input type="radio" id="02" name="example">
+                  手入力
+                </label>
+
+              </div>
+              <div class="invoice-data-add-result__footer__total-viewer">
+                <h4 class="invoice-data-add-result__footer__total-viewer__title">合計</h4>
+                <div class="invoice-data-add-result__footer__total-viewer__amount">
+                  <ul class="invoice-data-add-result__footer__total-viewer__lists">
+                    <li class="invoice-data-add-result__footer__total-viewer__amount__item">金額(抜)</li>
+                    <li class="invoice-data-add-result__footer__total-viewer__amount__item">消費税</li>
+                    <li class="invoice-data-add-result__footer__total-viewer__amount__item">請求額</li>
+                  </ul>
+                  <ul class="invoice-data-add-result__footer__total-viewer__lists">
+                    <li class="invoice-data-add-result__footer__total-viewer__lists__item">10,000</li>
+                    <li class="invoice-data-add-result__footer__total-viewer__lists__item">10,000</li>
+                    <li class="invoice-data-add-result__footer__total-viewer__lists__item">10,000</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+      <div id="footer-outer">
+      </div>
+    </div>
+  </div>
+  <div id="modal-body" class="modal-box invoice ">
+    <span class="modal-box__close" data-modal-close></span>
+    <div class="modal-box__contents">
+      <div class="modal-box__contents__inner">
+        <h2 class="modal-box__contents__title">請求メモ / 備考入力</h2>
+        <div class="modal-box__contents__item-container">
+          <div class="invoice-remarks">
+            <section class="contents">
+              <div class="invoice-remarks__container">
+                <dl class="invoice-remarks__container__items">
+                  <dt class="invoice-remarks__container__items__title">請求メモ</dt>
+                  <dd class="invoice-remarks__container__items__detail">
+                    <input type="text" class="invoice-remarks__container__items__detail__input-liner">
+                  </dd>
+                  <dt class="invoice-remarks__container__items__title">備考2</dt>
+                  <dd class="invoice-remarks__container__items__detail">
+                    <input type="text" class="invoice-remarks__container__items__detail__input-liner">
+                  </dd>
+                  <dt class="invoice-remarks__container__items__title">備考3</dt>
+                  <dd class="invoice-remarks__container__items__detail">
+                    <input type="text" class="invoice-remarks__container__items__detail__input-liner">
+                  </dd>
+                  <dt class="invoice-remarks__container__items__title">備考4</dt>
+                  <dd class="invoice-remarks__container__items__detail">
+                    <input type="text" class="invoice-remarks__container__items__detail__input-liner">
+                  </dd>
+                  <dt class="invoice-remarks__container__items__title">備考5</dt>
+                  <dd class="invoice-remarks__container__items__detail">
+                    <input type="text" class="invoice-remarks__container__items__detail__input-liner">
+                  </dd>
+                  <dt class="invoice-remarks__container__items__title">備考6</dt>
+                  <dd class="invoice-remarks__container__items__detail">
+                    <input type="text" class="invoice-remarks__container__items__detail__input-liner">
+                  </dd>
+                  <dt class="invoice-remarks__container__items__title">備考7</dt>
+                  <dd class="invoice-remarks__container__items__detail">
+                    <input type="text" class="invoice-remarks__container__items__detail__input-liner">
+                  </dd>
+                  <dt class="invoice-remarks__container__items__title">備考8</dt>
+                  <dd class="invoice-remarks__container__items__detail">
+                    <input type="text" class="invoice-remarks__container__items__detail__input-liner">
+                  </dd>
+                </dl>
+              </div>
+              <div class="invoice-remarks__controller">
+                <button class="invoice-controller__btn">確定</button>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>

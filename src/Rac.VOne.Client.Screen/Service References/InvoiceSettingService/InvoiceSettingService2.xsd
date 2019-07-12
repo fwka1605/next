@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="InvoiceCommonSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InvoiceCommonSetting" nillable="true" type="tns:InvoiceCommonSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceCommonSettingResult" nillable="true" type="tns:InvoiceCommonSettingResult" />
+  <xs:complexType name="InvoiceCommonSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ExcludeAmountZero" type="xs:int" />
+      <xs:element minOccurs="0" name="ExcludeMatchedData" type="xs:int" />
+      <xs:element minOccurs="0" name="ExcludeMinusAmount" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceCommonSetting" nillable="true" type="tns:InvoiceCommonSetting" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="ArrayOfCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCategory" nillable="true" type="tns:ArrayOfCategory" />
+  <xs:complexType name="Category">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountTitleCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountTitleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AccountTitleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CategoryCompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CategoryType" type="xs:int" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ExcludeInvoicePublish" type="xs:int" />
+      <xs:element minOccurs="0" name="ExternalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ForceMatchingIndividually" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IntValue1" type="xs:int" />
+      <xs:element minOccurs="0" name="IntValue2" type="xs:int" />
+      <xs:element minOccurs="0" name="IntValue3" type="xs:int" />
+      <xs:element minOccurs="0" name="IntValue4" type="xs:int" />
+      <xs:element minOccurs="0" name="IntValue5" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchingOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumericValue1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NumericValue2" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NumericValue3" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NumericValue4" type="xs:decimal" />
+      <xs:element minOccurs="0" name="NumericValue5" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PaymentAgencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentAgencyId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="PaymentAgencyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StringValue5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SubCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxClassId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxClassName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UseAccountTransfer" type="xs:int" />
+      <xs:element minOccurs="0" name="UseAdvanceReceived" type="xs:int" />
+      <xs:element minOccurs="0" name="UseCashOnDueDates" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDiscount" type="xs:int" />
+      <xs:element minOccurs="0" name="UseInput" type="xs:int" />
+      <xs:element minOccurs="0" name="UseLimitDate" type="xs:int" />
+      <xs:element minOccurs="0" name="UseLongTermAdvanceReceived" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Category" nillable="true" type="tns:Category" />
+  <xs:complexType name="CategoriesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Categories" nillable="true" type="tns:ArrayOfCategory" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CategoriesResult" nillable="true" type="tns:CategoriesResult" />
+  <xs:complexType name="InvoiceNumberHistoriesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InvoiceNumberHistories" nillable="true" type="tns:ArrayOfInvoiceNumberHistory" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceNumberHistoriesResult" nillable="true" type="tns:InvoiceNumberHistoriesResult" />
+  <xs:complexType name="ArrayOfInvoiceNumberHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InvoiceNumberHistory" nillable="true" type="tns:InvoiceNumberHistory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInvoiceNumberHistory" nillable="true" type="tns:ArrayOfInvoiceNumberHistory" />
+  <xs:complexType name="InvoiceNumberHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="FixedString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LastNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="NumberingMonth" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberingYear" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceNumberHistory" nillable="true" type="tns:InvoiceNumberHistory" />
+  <xs:complexType name="InvoiceNumberHistoryResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InvoiceNumberHistory" nillable="true" type="tns:InvoiceNumberHistory" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceNumberHistoryResult" nillable="true" type="tns:InvoiceNumberHistoryResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="InvoiceNumberSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InvoiceNumberSetting" nillable="true" type="tns:InvoiceNumberSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceNumberSettingResult" nillable="true" type="tns:InvoiceNumberSettingResult" />
+  <xs:complexType name="InvoiceNumberSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DateFormat" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DateType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Delimiter" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisplayFormat" type="xs:int" />
+      <xs:element minOccurs="0" name="FixedString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FixedStringType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FormatType" type="xs:int" />
+      <xs:element minOccurs="0" name="Length" type="xs:int" />
+      <xs:element minOccurs="0" name="ResetMonth" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ResetType" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UseNumbering" type="xs:int" />
+      <xs:element minOccurs="0" name="ZeroPadding" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceNumberSetting" nillable="true" type="tns:InvoiceNumberSetting" />
+  <xs:complexType name="ExistResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExistResult" nillable="true" type="tns:ExistResult" />
+  <xs:complexType name="InvoiceTemplateSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InvoiceTemplateSetting" nillable="true" type="tns:InvoiceTemplateSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceTemplateSettingResult" nillable="true" type="tns:InvoiceTemplateSettingResult" />
+  <xs:complexType name="InvoiceTemplateSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollectCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DisplayStaff" type="xs:int" />
+      <xs:element minOccurs="0" name="DueDateComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueDateFormat" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FixedString" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Greeting" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TransferFeeComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceTemplateSetting" nillable="true" type="tns:InvoiceTemplateSetting" />
+  <xs:complexType name="InvoiceTemplateSettingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="InvoiceTemplateSettings" nillable="true" type="tns:ArrayOfInvoiceTemplateSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvoiceTemplateSettingsResult" nillable="true" type="tns:InvoiceTemplateSettingsResult" />
+  <xs:complexType name="ArrayOfInvoiceTemplateSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="InvoiceTemplateSetting" nillable="true" type="tns:InvoiceTemplateSetting" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfInvoiceTemplateSetting" nillable="true" type="tns:ArrayOfInvoiceTemplateSetting" />
+</xs:schema>

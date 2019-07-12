@@ -1,0 +1,105 @@
+<div [formGroup]="myFormGroup" class="department-master">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+      <button
+        (click)="back()"
+        *ngIf="enableBack()"
+        class="buttonBack">{{ItemNameConst.BTN_BACK}}</button>
+
+        <button
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button
+        (click)="buttonAction(BUTTON_ACTION.DELETE)"
+        [ngClass]="{'button-disable': webApiSetting == undefined }"
+        class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <section class="contents">
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--10">Client ID<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="clientIdCtrl" 
+              name="clientIdCtrl" 
+              (keyup.enter)="setClientId($event.type)"
+              maxlength="100"
+              class="input-size--650">
+          </dd>
+          <dt class="definitionForm__title w--10">Client Secret<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="clientSecretCtrl" 
+              name="clientSecretCtrl" 
+              (keyup.enter)="setClientSecret($event.type)"
+              maxlength="100"
+              class="input-size--650">
+          </dd>
+          <dt class="definitionForm__title w--10">Scope</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="scopeDescriptionCtrl" 
+              name="scopeDescriptionCtrl" 
+              (keyup.enter)="setScopeDescription($event.type)"
+              maxlength="100"
+              class="input-size--650"
+              readonly>
+          </dd>
+        
+          <dt class="definitionForm__title w--10">Callback URL</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="callbackURLDescriptionCtrl" 
+              name="callbackURLDescriptionCtrl" 
+              (keyup.enter)="setCallbackURLDescription($event.type)"
+              maxlength="100"
+              class="input-size--650"
+              readonly>
+          </dd>
+          <dt class="definitionForm__title w--10">認証コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="authorizationCodeCtrl" 
+              name="authorizationCodeCtrl" 
+              placeholder="{{PlaceHolderConst.AUTHENTICATION_CODE}}"
+              (keyup.enter)="setAuthorizationCode($event.type)"
+              class="input-size--650">
+          </dd>
+          <dt class="definitionForm__title w--10">連携状態</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="connectionStatusDescriptionCtrl" 
+              name="connectionStatusDescriptionCtrl" 
+              (keyup.enter)="setConnectionStatusDescription($event.type)"
+              class="input-size--650"
+              readonly>
+          </dd>
+        </dl>
+      </div>
+    </section>  
+
+    <!-- テスト接続結果 -->
+    <section class="contents">
+      <h2 class="contents__title">{{ItemNameConst.LBL_RESULT_TEST_CONNECTION_RESULT}}</h2>
+      <div class="contents__container">
+        <textarea
+          class="font__mid"
+          formControlName="connectionResultDescriptionCtrl"
+          name="connectionResultDescriptionCtrl"
+          placeholder="{{PlaceHolderConst.AUTHENTICATION_RESULT}}"
+          cols=200 rows=15
+          readonly></textarea>
+      </div>
+    </section>
+
+  </section>
+
+</div>

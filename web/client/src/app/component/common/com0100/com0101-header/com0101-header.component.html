@@ -1,0 +1,24 @@
+<div id="header" class="pageHeader"
+(dragover)="onDragOver($event)" (drop)="onDrop($event)">
+    <app-com0501-pagetitle></app-com0501-pagetitle>
+    <!--
+    <a class="infomation_menu__link" routerLink="/heros"><img src="/assets/image/icon_support.png" alt="お問合せ"></a>
+    -->
+    <div class="pageHeader__nameSection">
+      <span class="pageHeader__companyName">{{userInfoService.Company.name}}</span><br>
+      <span class="pageHeader__userName">{{userInfoService.LoginUser.name}}</span>
+      <a class="pageHeader__triggerMenu"
+        (click)="openOption=!openOption"></a>
+      <ul class="menutip"
+        [ngClass]="{ 'is-open': openOption }">
+        <li class="menutip__item">
+          <a class="menutip__anchor"
+            (click)="openOption=!openOption;logout()">ログアウト</a>
+        </li>
+        <li class="menutip__item">
+          <a class="menutip__anchor" 
+            (click)="openOption=!openOption;manual()" title="マニュアルについて">マニュアル</a>
+        </li>
+      </ul>
+    </div>
+</div>

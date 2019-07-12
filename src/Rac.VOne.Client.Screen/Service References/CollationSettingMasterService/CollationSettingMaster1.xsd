@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CollationSettingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CollationSetting" nillable="true" type="tns:CollationSetting" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CollationSettingResult" nillable="true" type="tns:CollationSettingResult" />
+  <xs:complexType name="CollationSetting">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdvanceReceivedRecordedDateType" type="xs:int" />
+      <xs:element minOccurs="0" name="AutoAssignCustomer" type="xs:int" />
+      <xs:element minOccurs="0" name="AutoMatching" type="xs:int" />
+      <xs:element minOccurs="0" name="AutoSortMatchingEnabledData" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingReceiptDisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="CalculateTaxByInputId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="ForceShareTransferFee" type="xs:int" />
+      <xs:element minOccurs="0" name="JournalizingPattern" type="xs:int" />
+      <xs:element minOccurs="0" name="LearnKanaHistory" type="xs:int" />
+      <xs:element minOccurs="0" name="LearnSpecifiedCustomerKana" type="xs:int" />
+      <xs:element minOccurs="0" name="MatchingSilentSortedData" type="xs:int" />
+      <xs:element minOccurs="0" name="PrioritizeMatchingIndividuallyMultipleReceipts" type="xs:int" />
+      <xs:element minOccurs="0" name="PrioritizeMatchingIndividuallyTaxTolerance" type="xs:int" />
+      <xs:element minOccurs="0" name="ReloadCollationData" type="xs:int" />
+      <xs:element minOccurs="0" name="RemoveSpaceFromPayerName" type="xs:int" />
+      <xs:element minOccurs="0" name="RequiredCustomer" type="xs:int" />
+      <xs:element minOccurs="0" name="UseAdvanceReceived" type="xs:int" />
+      <xs:element minOccurs="0" name="UseApportionMenu" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CollationSetting" nillable="true" type="tns:CollationSetting" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="CollationOrdersResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CollationOrders" nillable="true" type="tns:ArrayOfCollationOrder" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CollationOrdersResult" nillable="true" type="tns:CollationOrdersResult" />
+  <xs:complexType name="ArrayOfCollationOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CollationOrder" nillable="true" type="tns:CollationOrder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCollationOrder" nillable="true" type="tns:ArrayOfCollationOrder" />
+  <xs:complexType name="CollationOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Available" type="xs:int" />
+      <xs:element minOccurs="0" name="CollationTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ExecutionOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CollationOrder" nillable="true" type="tns:CollationOrder" />
+  <xs:complexType name="MatchingOrdersResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="MatchingOrders" nillable="true" type="tns:ArrayOfMatchingOrder" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MatchingOrdersResult" nillable="true" type="tns:MatchingOrdersResult" />
+  <xs:complexType name="ArrayOfMatchingOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MatchingOrder" nillable="true" type="tns:MatchingOrder" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMatchingOrder" nillable="true" type="tns:ArrayOfMatchingOrder" />
+  <xs:complexType name="MatchingOrder">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Available" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="ExecutionOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SortOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="TransactionCategory" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MatchingOrder" nillable="true" type="tns:MatchingOrder" />
+</xs:schema>

@@ -1,0 +1,159 @@
+// helper: width
+// 
+// widthプロパティを1～100%で指定可能（1%単位）
+// 
+// Markup:
+// <!-- <div>に指定した例 --> 
+// <div class="w--10"></div><!-- width: 10%; -->
+// <div class="w--50"></div><!-- width: 50%; -->
+// <div class="w--75"></div><!-- width: 75%; -->
+//
+// Styleguide 1.3.0
+
+  @for $length from 1 through 100 {
+    .w--#{$length} {
+      width: #{$length}% !important;
+    }
+  }
+
+
+// helper: height
+// 
+// heigtプロパティを200px～2000pxで指定可能（50px単位）
+// 
+// Markup:
+// <!-- <span>に指定した例 --> 
+// <span class="height--500"></span><!-- height: 500px; -->
+// <span class="height--750"></span><!-- height: 750px; -->
+// <span class="height--1250"></span><!-- height: 1250px; -->
+//
+// Styleguide 1.4.0
+
+  @for $length from 4 through 40 {
+    .height--#{$length*50} {
+      height: $length * 50px !important;
+    }
+  }
+
+
+// helper: margin
+// 
+// marginプロパティを0px～100pxで指定可能（5px単位）
+// 
+// Markup:
+// <!-- <span>に指定した例 -->
+// <span class="m--0"></span><!-- margin: 0; -->
+// <span class="ml--5"></span><!-- margin-left: 5px; -->
+// <span class="ml--15"></span><!-- margin-left: 15px; -->
+// <span class="mr--5"></span><!-- margin-right: 5px; -->
+// <span class="mr--15"></span><!-- margin-right: 15px; -->
+// <span class="mt--10"></span><!-- margin-top: 10px; -->
+// <span class="mt--25"></span><!-- margin-top: 25px; -->
+// <span class="mb--30"></span><!-- margin-bottom: 30px; -->
+// <span class="mb--100"></span><!-- margin-bottom: 100px; -->
+//
+// Styleguide 1.5.0
+
+  .m--0 {
+    margin: 0 !important;
+  }
+  @for $margin from 0 through 20 {
+    .ml--#{$margin * 5} {
+      margin-left: $margin * 5px !important;
+    }
+    .mr--#{$margin * 5} {
+      margin-right: $margin * 5px !important;
+    }
+    .mt--#{$margin * 5} {
+      margin-top: $margin * 5px !important;
+    }
+    .mb--#{$margin * 5} {
+      margin-bottom: $margin * 5px !important;
+    }
+  }
+
+
+// helper: padding
+// 
+// paddingプロパティの0指定
+// 
+// Markup:
+// <!-- <span>に指定した例 -->
+// <span class="p--0"></span><!-- padding: 0; -->
+// <span class="pl--0"></span><!-- padding-left: 0; -->
+// <span class="pr--0"></span><!-- padding-right: 0; -->
+// <span class="pt--0"></span><!-- padding-top: 0; -->
+// <span class="pb--0"></span><!-- padding-bottom: 0; -->
+//
+// Styleguide 1.6.0
+
+  .p--0 {
+    padding: 0 !important;
+  }
+  .pl--0 {
+    padding-left: 0 !important;
+  }
+  .pr--0 {
+    padding-right: 0 !important;
+  }
+  .pt--0 {
+    padding-top: 0 !important;
+  }
+  .pb--0 {
+    padding-bottom: 0 !important;
+  }
+
+
+// helper: text-align
+// 
+// text-alignプロパティの指定
+// 
+// Markup:
+// <!-- <s>に指定した例 -->
+// <p class="align--left">左揃え</p><!-- text-align: left; -->
+// <p class="align--center">中央揃え</p><!-- text-align: center; -->
+// <p class="align--right">右揃え</p><!-- text-align: right; -->
+// <span class="vAlign--center">インライン要素の天地中央揃え</span>
+//
+// Styleguide 1.7.0
+
+  .align {
+    &--left {
+      text-align: left !important;
+    }
+    &--center {
+      text-align: center !important;
+    }
+    &--right {
+      text-align: right !important;
+    }
+  }
+
+  .vAlign {
+    &--center {
+      display: inline-flex !important;
+      align-items: center !important;
+    }
+  }
+
+
+// helper: cursor
+// 
+// cursorプロパティの指定
+// 
+// Markup:
+// <!-- <span>に指定した例 -->
+// <span class="cursor-pointer">&lt;ポインタ&gt;</span><!-- cursor: pointer; -->
+// <span class="cursor-inherit">&lt;デフォルト&gt;</span><!-- cursor: inherit; -->
+//
+// Styleguide 1.8.0
+
+  .cursor {
+    &-pointer {
+      cursor: pointer !important;
+      user-select: none !important;
+    }
+    &-inherit {
+      cursor: inherit !important;
+    }
+  }

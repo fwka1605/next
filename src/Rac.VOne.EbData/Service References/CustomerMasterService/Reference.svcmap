@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dacf541f-b46b-4167-b1bb-09338a620562" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/CustomerMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CustomerMaster.xsd" MetadataType="Schema" ID="422a551a-d3fa-4dbe-a8c3-63a71c52cb47" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="CustomerMaster1.xsd" MetadataType="Schema" ID="4a463834-a694-4cc9-b1b3-23de1641b21a" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="CustomerMaster.disco" MetadataType="Disco" ID="974185b8-b291-4427-91ab-2db07375b39f" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerMaster.svc?disco" />
+    <MetadataFile FileName="CustomerMaster2.xsd" MetadataType="Schema" ID="ff6d4f95-c351-426d-8072-270041a7a92c" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="CustomerMaster.wsdl" MetadataType="Wsdl" ID="14dc5cbc-36cc-4edd-aa04-827bc15f2b15" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerMaster.svc?wsdl" />
+    <MetadataFile FileName="CustomerMaster3.xsd" MetadataType="Schema" ID="e9787fbf-8295-4a84-97f3-748392524816" SourceId="1" SourceUrl="http://localhost:3061/Master/CustomerMaster.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

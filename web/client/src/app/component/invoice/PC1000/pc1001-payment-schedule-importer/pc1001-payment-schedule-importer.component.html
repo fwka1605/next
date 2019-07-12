@@ -1,0 +1,276 @@
+<div [formGroup]="myFormGroup" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+  <section class="contentsButton">
+    <!--- 処理結果の表示 -->
+    <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+    <button 
+      (click)="buttonAction(BUTTON_ACTION.READ)" 
+      [ngClass]="{'button-disable':  myFormGroup.invalid}" 
+      class="common-btn__item infotip">
+      {{ItemNameConst.BTN_READ}}
+      <span [innerHtml]="ButtonTipsConst.READ | safeHtml_pipe" class="infotip__frame"></span>
+    </button>
+    <button 
+      (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+      class="common-btn__item">
+      {{ItemNameConst.BTN_CLEAR}}
+    </button>
+    <button 
+      (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+      [ngClass]="{'button-disable':  myFormGroup.invalid || !(validCount>0 && invalidCount==0)}" 
+      class="common-btn__item">
+      {{ItemNameConst.BTN_REGISTRY}}
+    </button>
+    <button 
+      (click)="buttonAction(BUTTON_ACTION.OPEN_MODAL)" 
+      [ngClass]="{'button-disable':  !StringUtil.IsNullOrEmpty(patternNameCtrl.value)}" 
+      class="common-btn__item infotip">
+      {{ItemNameConst.BTN_SETTING_REGISTRY}}
+      <span [innerHtml]="ButtonTipsConst.IMPORT_LAYOUT_SETTING | safeHtml_pipe" class="infotip__frame"></span>
+    </button>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 取込条件 --->
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_IMPORT}}</h2>
+      <div class="contents__container--flex">
+        <dl class="definitionForm mb--40">
+          <dt class="definitionForm__title w-15">パターンNo.<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--85">
+            <input 
+              formControlName="patternNoCtrl" 
+              name="patternNoCtrl"
+              (blur)="setPatternNo($event.type)"
+              (keyup.enter)="setPatternNo($event.type)" 
+              #patternNoInput
+              [formControl]="patternNoCtrl" 
+              [matAutocomplete]="autoPatternNo"
+              [matAutocompleteDisabled]="!autoPatternNo"
+              maxlength="2"
+              type="tel"
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              class="input-size--60 definitionForm__input">
+            <mat-autocomplete 
+              #autoPatternNo="matAutocomplete"
+              [panelWidth]="PanelConst.autocompleteWidth300">
+              <mat-option 
+                *ngFor="let importerSetting of importerSettingFilterds[0] | async" 
+                [value]="importerSetting.code">{{importerSetting.code}}:{{importerSetting.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <a class="buttonMasterSearch" (click)="openMasterModal()"></a>
+            
+            <input 
+                formControlName="patternNameCtrl" 
+                name="patternNameCtrl" 
+                class="input-size--300"
+                readonly>
+          </dd>
+          <dt class="definitionForm__title w-15">取込ファイル名<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w-85">
+            <input #importFileCtrl
+              formControlName="importFileCtrl" 
+              name="importFileCtrl"
+              (change)="fileSelect($event)"
+              type="file" 
+              style="display:none"
+              class="input-size--500">
+              <button class="buttonMinimum definitionForm__input"
+                name="importFileButtonCtrl"
+                (click)="importFileCtrl.click()">
+                ファイルを選択
+              </button>
+            <input 
+              formControlName="importFileNameCtrl" 
+              name="importFileNameCtrl" 
+              placeholder="{{PlaceHolderConst.SELECT_FILE}}"
+              class="input-size--500"
+              readonly>
+          </dd>
+        </dl>
+        <div class="contents__item--w-50">
+          <div class="frame--w-95">
+          <h3 class="frame__title">処理対象請求データ</h3>
+          <ul class="checkboxList">
+          <li class="checkboxList__item">
+              <label class="labelWrap">
+                <div class="inputStyled">
+                  <input
+                    id="rdoProcessBillingDataCtrl_01"
+                    class="inputStyled__input"
+                    formControlName="rdoProcessBillingDataCtrl"
+                    name="rdoProcessBillingDataCtrl"
+                    type="radio"
+                    value="0">
+                  <label
+                    class="inputStyled__radio"
+                    for="rdoProcessBillingDataCtrl_01">未消込のみ</label>
+                </div>
+              </label>
+            </li>
+            <li class="checkboxList__item">
+              <label class="labelWrap">
+                <input
+                  id="rdoProcessBillingDataCtrl_02"
+                  class="inputStyled__input"
+                  formControlName="rdoProcessBillingDataCtrl"
+                  name="rdoProcessBillingDataCtrl"
+                  type="radio"
+                  value="1">
+                <label
+                  class="inputStyled__radio"
+                  for="rdoProcessBillingDataCtrl_02">全て</label>
+              </label>
+            </li>
+          </ul>
+        </div>
+        </div>
+        <div class="contents__item--w-50">
+          <div class="frame--w-95">
+            <h3 class="frame__title">処理方法</h3>
+            <ul class="checkboxList">
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="rdoProcessMethodCtrl_01"
+                      class="inputStyled__input"
+                      formControlName="rdoProcessMethodCtrl"
+                      name="rdoProcessMethodCtrl"
+                      type="radio"
+                      value="0">
+                    <label
+                      class="inputStyled__radio"
+                      for="rdoProcessMethodCtrl_01">
+                      更新 ： 請求データの元の入金予定額を上書きします。
+                    </label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="rdoProcessMethodCtrl_02"
+                      class="inputStyled__input"
+                      formControlName="rdoProcessMethodCtrl"
+                      name="rdoProcessMethodCtrl"
+                      type="radio"
+                      value="1">
+                    <label
+                      class="inputStyled__radio"
+                      for="rdoProcessMethodCtrl_02">
+                      加算 ： 請求データの元の入金予定額に加算します。
+                    </label>
+                  </div>
+                  </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+          
+        <div class="contents__item--w-50 mt--40">
+          <div class="frame--w-95">
+            <h3 class="frame__title">同一得意先(債権代表者) 請求データ</h3>
+            <ul class="checkboxList">
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="rdoCustomerBillingMethodCtrl_01"
+                      class="inputStyled__input"
+                      formControlName="rdoCustomerBillingMethodCtrl"
+                      name="rdoCustomerBillingMethodCtrl"
+                      type="radio"
+                      value="0">
+                    <label
+                      class="inputStyled__radio"
+                      for="rdoCustomerBillingMethodCtrl_01">無視 ： 指定条件に一致するデータのみ更新します。</label>
+                  </div>
+                </label>
+              </li>
+              <li class="checkboxList__item">
+                <label class="labelWrap">
+                  <div class="inputStyled">
+                    <input
+                      id="rdoCustomerBillingMethodCtrl_02"
+                      class="inputStyled__input"
+                      formControlName="rdoCustomerBillingMethodCtrl"
+                      name="rdoCustomerBillingMethodCtrl"
+                      type="radio"
+                      value="1">
+                    <label
+                      class="inputStyled__radio"
+                      for="rdoCustomerBillingMethodCtrl_02">すべて更新 ： 得意先(債権代表者)が同一のデータも同時に更新します。</label>
+                  </div>
+                </label>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="searchConfig mt--20">
+          <div class="searchConfig__result contents__container--flex">
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">読込件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{readCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">取込可能件数</dt>
+                <dd class="definitionForm__data">
+                  <input
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{validCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">取込不可能件数</dt>
+                <dd class="definitionForm__data">
+                  <input
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{invalidCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">取込件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{saveCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">取込金額</dt>
+                <dd class="definitionForm__data pr--0">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{saveAmount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+</div>

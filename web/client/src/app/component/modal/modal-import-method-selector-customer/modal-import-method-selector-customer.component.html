@@ -1,0 +1,102 @@
+<section 
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup"
+  class="vModal height--250"
+  data-modal-contents="id001">
+  <h2 class="vModal__heading">{{ItemNameConst.LBL_SELECT_IMPORT_CONTENTS}}
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+
+      <button
+        [ngClass]="{'button-disable': myFormGroup.invalid }"
+        (click)="openImportMethodSelector()" 
+        class="buttonSecondary">{{ItemNameConst.BTN_IMPORT}}</button>
+        
+      <button 
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+
+      <button 
+        (click)="cancel();processResultService.clearProcessCustomMsg(processCustomResult)" 
+        class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+
+    </section>
+
+    <section class="contents">
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title w--17">出力対象</dt>
+          <dd class="definitionForm__data w--83">
+            <label class="labelWrap">
+              <div class="inputStyled">
+                <input
+                  id="rdoOutputTargetCtrl_01"
+                  class="inputStyled__input"
+                  formControlName="rdoOutputTargetCtrl"
+                  name="rdoOutputTargetCtrl"
+                  (change)="selectOutputType()"
+                  type="radio"
+                  value="1">
+                <label
+                  class="inputStyled__radio"
+                  for="rdoOutputTargetCtrl_01">得意先マスター一覧</label>
+              </div>
+            </label>
+            <label class="labelWrap">
+              <div class="inputStyled">
+                <input
+                  id="rdoOutputTargetCtrl_02"
+                  class="inputStyled__input"
+                  formControlName="rdoOutputTargetCtrl"
+                  name="rdoOutputTargetCtrl"
+                  (change)="selectOutputType()"
+                  type="radio"
+                  value="2">
+                <label
+                  class="inputStyled__radio"
+                  for="rdoOutputTargetCtrl_02">登録手数料一覧</label>
+              </div>
+            </label>
+          </dd>
+          <dt class="definitionForm__title w--17">パターンNo.<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data w--83">
+            <input
+              formControlName="patternNumberCtrl"
+              name="patternNumberCtrl"
+              (blur)="setPatternNumber($event.type)"
+              (keyup.enter)="setPatternNumber($event.type)" 
+              #patternNoInput
+              [formControl]="patternNumberCtrl" 
+              [matAutocomplete]="autoPatternNo"
+              [matAutocompleteDisabled]="!autoPatternNo"  
+              maxlength="2"
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              class="input-size--50 definitionForm__input">
+            <mat-autocomplete
+              #autoPatternNo="matAutocomplete"
+              [panelWidth]="PanelConst.autocompleteWidth300">
+              <mat-option
+                *ngFor="let importerSetting of importerSettingFilterds[0] | async"
+                [value]="importerSetting.code">
+                {{importerSetting.code}}:{{importerSetting.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <a class="buttonMasterSearch" (click)="openMasterModal()"></a>
+            <input
+              formControlName="patternNameCtrl"
+              name="patternNameCtrl"
+              class="input-size--300"
+              readonly>
+          </dd>
+        </dl>
+      </div>
+    </section>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

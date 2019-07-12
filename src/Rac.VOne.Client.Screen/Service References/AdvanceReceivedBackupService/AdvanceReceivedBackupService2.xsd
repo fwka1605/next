@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="AdvanceReceivedBackupResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdvanceReceivedBackup" nillable="true" type="tns:AdvanceReceivedBackup" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdvanceReceivedBackupResult" nillable="true" type="tns:AdvanceReceivedBackupResult" />
+  <xs:complexType name="AdvanceReceivedBackup">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Apportioned" type="xs:int" />
+      <xs:element minOccurs="0" name="Approved" type="xs:int" />
+      <xs:element minOccurs="0" name="AssignmentAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AssignmentFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="BillBankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillDrawAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillDrawer" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DeleteAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DensaiRegisterAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExcludeAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ExcludeCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ExcludeFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="InputType" type="xs:int" />
+      <xs:element minOccurs="0" name="MailedAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginalReceiptId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="OriginalRecordedAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutputAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PayerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerNameRaw" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PrivateBankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiptAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ReceiptCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="ReceiptHeaderId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="RecordNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecordedAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReferenceNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RemainAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SectionId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SourceBankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceBranchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TransferOutputAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Workday" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdvanceReceivedBackup" nillable="true" type="tns:AdvanceReceivedBackup" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="AdvanceReceivedBackupsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdvanceReceivedBackups" nillable="true" type="tns:ArrayOfAdvanceReceivedBackup" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdvanceReceivedBackupsResult" nillable="true" type="tns:AdvanceReceivedBackupsResult" />
+  <xs:complexType name="ArrayOfAdvanceReceivedBackup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdvanceReceivedBackup" nillable="true" type="tns:AdvanceReceivedBackup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAdvanceReceivedBackup" nillable="true" type="tns:ArrayOfAdvanceReceivedBackup" />
+</xs:schema>

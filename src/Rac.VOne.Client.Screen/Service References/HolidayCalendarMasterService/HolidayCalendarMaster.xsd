@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="HolidayCalendar">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="Holiday" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HolidayCalendar" nillable="true" type="tns:HolidayCalendar" />
+  <xs:complexType name="HolidayCalendarResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HolidayCalendar" nillable="true" type="tns:HolidayCalendar" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HolidayCalendarResult" nillable="true" type="tns:HolidayCalendarResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="HolidayCalendarSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="FromHoliday" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Holiday" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ToHoliday" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HolidayCalendarSearch" nillable="true" type="tns:HolidayCalendarSearch" />
+  <xs:complexType name="HolidayCalendarsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HolidayCalendars" nillable="true" type="tns:ArrayOfHolidayCalendar" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HolidayCalendarsResult" nillable="true" type="tns:HolidayCalendarsResult" />
+  <xs:complexType name="ArrayOfHolidayCalendar">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HolidayCalendar" nillable="true" type="tns:HolidayCalendar" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHolidayCalendar" nillable="true" type="tns:ArrayOfHolidayCalendar" />
+  <xs:complexType name="ImportResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeleteCount" type="xs:int" />
+      <xs:element minOccurs="0" name="InsertCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="UpdateCount" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImportResult" nillable="true" type="tns:ImportResult" />
+</xs:schema>

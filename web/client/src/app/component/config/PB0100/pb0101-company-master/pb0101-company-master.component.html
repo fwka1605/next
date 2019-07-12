@@ -1,0 +1,25 @@
+<section class="contentsButton">
+  <div class="contentsButton__inner">
+    <!--- 処理結果の表示 -->
+    <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+    <button
+      (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+      [ngClass]="{'button-disable': partsCompany.checkInvalid() }"
+      class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+    <button
+      (click)="buttonAction(BUTTON_ACTION.REDISPLAY)"
+      class="buttonMinimum infotip">{{ItemNameConst.BTN_REDISPLAY}}
+      <span
+        [innerHtml]="ButtonTipsConst.REDISPLAY | safeHtml_pipe"
+        class="infotip__frame"></span>
+    </button>
+  </div>
+
+</section>
+
+<section class="pageContainer">
+  <!-- 会社設定 -->
+  <section class="contents">
+    <app-parts-company #partsCompany></app-parts-company>
+  </section>
+</section>

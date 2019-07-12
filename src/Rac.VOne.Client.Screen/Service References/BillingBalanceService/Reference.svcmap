@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d330e769-a84b-448d-9640-d48cc9aa0ca8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/BillingBalanceService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BillingBalanceService.wsdl" MetadataType="Wsdl" ID="a3eeb05a-d720-4840-8a5e-91fc3f5c159a" SourceId="1" SourceUrl="http://localhost:3061/BillingBalanceService.svc?wsdl" />
+    <MetadataFile FileName="BillingBalanceService.disco" MetadataType="Disco" ID="a7063305-00aa-465e-b1a8-8a6846851bf3" SourceId="1" SourceUrl="http://localhost:3061/BillingBalanceService.svc?disco" />
+    <MetadataFile FileName="BillingBalanceService.xsd" MetadataType="Schema" ID="0534de5f-b4a5-4f65-bb95-28e886bd775b" SourceId="1" SourceUrl="http://localhost:3061/BillingBalanceService.svc?xsd=xsd0" />
+    <MetadataFile FileName="BillingBalanceService1.xsd" MetadataType="Schema" ID="01b3daa6-bd7a-4ba8-9cbf-37cdf7dcb7d4" SourceId="1" SourceUrl="http://localhost:3061/BillingBalanceService.svc?xsd=xsd1" />
+    <MetadataFile FileName="BillingBalanceService2.xsd" MetadataType="Schema" ID="6321d3e2-a6c0-4a83-b4b3-121cf582bb19" SourceId="1" SourceUrl="http://localhost:3061/BillingBalanceService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

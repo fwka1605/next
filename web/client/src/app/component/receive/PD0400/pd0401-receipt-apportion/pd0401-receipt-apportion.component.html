@@ -1,0 +1,240 @@
+<div [formGroup]="myFormGroup">
+
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+        [ngClass]="{'button-disable':  myFormGroup.invalid || selectedHeaderFlag==false || apportionedFlag}" 
+        class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.DELETE)" 
+        class="buttonSecondary infotip" 
+        [ngClass]="{'button-disable': selectedHeaderFlag==false || apportionedFlag}">
+        {{ItemNameConst.BTN_BULK_DELETE}}
+        <span [innerHtml]="ButtonTipsConst.BULK_DELETE | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+      
+      <button 
+        (click)="apportionAll()" 
+        class="buttonSecondary infotip" 
+        [ngClass]="{'button-disable': selectedHeaderFlag==true}">
+        {{ItemNameConst.BTN_BULK_APPORTION}}
+        <span [innerHtml]="ButtonTipsConst.BULK_APPORTION | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+
+    </div>
+  </section>
+
+  <section class="pageContainer">
+    <!-- 取込履歴 -->
+    <section class="contents--fixWidth">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_RESULT_IMPORT_HISTORY}}
+        <ul class="cellLegend">
+          <li class="cellLegend__item">
+            <span class="cellLegend__cell--beforeUpdate"></span>更新前
+          </li>
+          <li class="cellLegend__item">
+            <span class="cellLegend__cell--afterUpdate"></span>更新後
+          </li>
+        </ul>
+      </h2>
+      <div class="accordionContent__body contents__container--flex">
+        <div class="common-inner-table--noHighlights">
+          <table class="">
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}"></th>
+                <th class="{{TableColumn.COL_100_CODE}}"> 選択 </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 銀行 </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 支店 </th>
+                <th class="{{TableColumn.COL_100_CODE}}"> 預金種目 </th>
+                <th class="{{TableColumn.COL_150_CODE}}"> 口座番号 </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 取込日時 </th>
+                <th class="{{TableColumn.COL_200_CODE}}"> 対象外区分 </th>
+              </tr>
+            </thead>
+            <tbody class="apportion searchResult__tableHeight--9999">
+              <tr
+                *ngFor="let receiptHeader of receiptHeadersResult?.receiptHeaders  index as i"
+                [ngClass]="{ 'apportion__tableRow--color-done':receiptHeader.existApportioned==1}">
+                <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{i+1}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                  <button (click)="selectHeader(i)" class="buttonMinimum">選択</button>
+                </td>
+                <td class="{{TableColumn.COL_200_NAME}}">{{receiptHeader.bankName}}</td>
+                <td class="{{TableColumn.COL_200_NAME}}">{{receiptHeader.branchName}}</td>
+                <td class="{{TableColumn.COL_100_CENTER_NAME}}">{{ACCOUNT_TYPE_DICTIONARY[receiptHeader.accountTypeId].val}}</td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{receiptHeader.accountNumber}}</td>
+                <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{receiptHeader.createAt|date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                <td class="{{TableColumn.COL_200_CENTER_NAME}}">
+                  <select
+                    formControlName="headerExcludeCategoryIdCtrl{{i}}"
+                    name="headerExcludeCategoryIdCtrl{{i}}"
+                    class="select-size--140">
+                    <option value="0"></option>
+                    <option *ngFor="let category of excludeCategoriesResult?.categories" 
+                      value="{{category.id}}">
+                      {{category.name}}
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">入金明細</h2>
+      <div class="contents__container">
+        <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+          <div class="inputStyled">
+            <input class="inputStyled__input"
+              id="cbxSectionAssignCtrl" 
+              formControlName="cbxSectionAssignCtrl" 
+              name="cbxSectionAssignCtrl" 
+              (change)="setSectionAssignCheck()"
+              type="checkbox">
+            <label class="inputStyled__checkbox" for="cbxSectionAssignCtrl">入金部門未指定のデータのみ表示</label>
+          </div>
+        </ng-container>
+        <div class="inputStyled">
+          <input class="inputStyled__input"
+            id="cbxLearnIgnoreKanaCtrl" 
+            formControlName="cbxLearnIgnoreKanaCtrl" 
+            name="cbxLearnIgnoreKanaCtrl" 
+            type="checkbox">
+          <label class="inputStyled__checkbox" for="cbxLearnIgnoreKanaCtrl">除外カナを学習</label>
+        </div>
+        <div class="common-inner-table mt--15">
+          <table>
+            <thead>
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}"></th>
+                <th class="{{TableColumn.COL_100_CODE}}">対象外</th>
+                <th class="{{TableColumn.COL_180_CODE}}">対象区分</th>
+                <th class="{{TableColumn.COL_180_CODE}}">対象外金額</th>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+                  <th class="{{TableColumn.COL_180_CODE}}">入金部門コード</th>
+                  <th class="{{TableColumn.COL_280_CODE}}">入金部門名</th>
+                </ng-container>
+                <th class="{{TableColumn.COL_180_CODE}}">得意先コード</th>
+                <th class="{{TableColumn.COL_280_CODE}}">得意先名</th>
+                <th class="{{TableColumn.COL_200_CODE}}">振込依頼人名</th>
+                <th class="{{TableColumn.COL_200_CODE}}">入金額</th>
+                <th class="{{TableColumn.COL_200_CODE}}">入金日</th>
+                <th class="{{TableColumn.COL_200_CODE}}">作成日</th>
+                <th class="{{TableColumn.COL_200_CODE}}">仕向銀行</th>
+                <th class="{{TableColumn.COL_200_CODE}}">仕向支店</th>
+                <th class="{{TableColumn.COL_200_CODE}}">仮想支店コード</th>
+                <th class="{{TableColumn.COL_200_CODE}}">仮想口座番号</th>
+              </tr>
+            </thead>
+            <tbody class="searchResult__tableHeight--9999">
+              <tr
+                *ngFor="let receiptApportion of receiptApportionsResult?.receiptApportion index as i"
+                [ngClass]="{ 'apportion__tableRow--color-done':selectedReceiptHeader.existApportioned==1}"
+                [hidden]="hideSectionAssign(i)"
+                class="sticky-head-table__body__inner">              
+                  <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{i+1}}</td>
+                  <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                    <div class="inputStyled--inTable">
+                      <input class="inputStyled__input"
+                        id="detailExclideCheckCtrl{{i}}" 
+                        formControlName="detailExclideCheckCtrl{{i}}" 
+                        name="detailExclideCheckCtrl{{i}}" 
+                        (change)="setDetailExcludeCheck(i)"
+                        type="checkbox">
+                      <label 
+                        class="inputStyled__checkbox" 
+                        [ngClass]="{'checkbox-disabled-hidden': allReceiptApportionsResult.receiptApportion[i].apportioned == 1}"
+                        for="detailExclideCheckCtrl{{i}}"></label>
+                    </div>
+                  </td>
+                  <td class="{{TableColumn.COL_180_CENTER_NAME}}">
+                  <select 
+                    formControlName="detailExcludeCategoryIdCtrl{{i}}" 
+                    name="detailExcludeCategoryIdCtrl{{i}}"
+                    class="select-size--140">
+                    <option 
+                      *ngFor="let category of excludeCategoriesResult?.categories" 
+                      value="{{category.id}}">
+                      {{category.name}}
+                    </option>
+                  </select>
+                  </td>
+                  <td class="{{TableColumn.COL_180_CENTER_NAME}}">
+                    <input
+                      formControlName="detailExcludeAmountCtrl{{i}}"
+                      name="detailExcludeAmountCtrl{{i}}"
+                      (keyup.enter)="setDetailExcludeAmount($event.type,i)"
+                      (input)="inputDetailExcludeAmount()"
+                      (blur)="setCurrencyForDetailExcludeAmount(i)"
+                      (focus)="initCurrencyForDetailExcludeAmount(i)"
+                      type="tel"
+                      maxlength="16"
+                      class="input-size--150 col-align-right">
+                  </td>
+                  <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+                    <td class="{{TableColumn.COL_180_CENTER_NAME}}">
+                    <input
+                      formControlName="detailSectionCodeCtrl{{i}}"
+                      name="detailSectionCodeCtrl{{i}}"
+                      (blur)="setDetailSectionCode($event.type,i)"
+                      (keyup.enter)="setDetailSectionCode($event.type,i)"
+                      type="tel"
+                      maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      class="input-size--110 col-align-right">
+                      <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION,i)"></a>
+                    </td>
+                    <td class="{{TableColumn.COL_280_CENTER_NAME}}">
+                    <input
+                      formControlName="detailSectionNameCtrl{{i}}"
+                      name="detailSectionNameCtrl{{i}}"
+                      class="input-size--250"
+                      readonly>
+                    </td>
+                  </ng-container>
+                  <td class="{{TableColumn.COL_180_CENTER_NAME}}">
+                    <input
+                      formControlName="detailCustomerCodeCtrl{{i}}"
+                      name="detailCustomerCodeCtrl{{i}}"
+                      (blur)="setDetailCustomerCode($event.type,i)"
+                      (keyup.enter)="setDetailCustomerCode($event.type,i)"
+                      type="tel"
+                      maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      class="input-size--110 col-align-right">                
+                      <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,i)"></a>
+                  </td>
+                  <td class="{{TableColumn.COL_280_CENTER_NAME}}">
+                    <input
+                      formControlName="detailCustomerNameCtrl{{i}}"
+                      name="detailCustomerNameCtrl{{i}}"
+                      class="input-size--250"
+                      readonly>                
+                  </td>
+                  <td class="{{TableColumn.COL_200_NAME}}">{{receiptApportion.payerName}}</td>
+                  <td class="{{TableColumn.COL_200_RIGHT_NAME}}">{{receiptApportion.receiptAmount|currency_pipe}}</td>
+                  <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{receiptApportion.recordedAt|date}}</td>
+                  <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{receiptApportion.workDay|date}}</td>
+                  <td class="{{TableColumn.COL_200_NAME}}">{{receiptApportion.sourceBankName}}</td>
+                  <td class="{{TableColumn.COL_200_NAME}}">{{receiptApportion.sourceBranchName}}</td>
+                  <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{receiptApportion.excludeVirtualBranchCode}}</td>
+                  <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{receiptApportion.excludeAccountNumber}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </section>
+
+</div>

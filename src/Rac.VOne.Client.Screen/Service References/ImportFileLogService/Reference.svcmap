@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="07bfe68c-55d3-4d56-8f61-da3d4095bac2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/ImportFileLogService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ImportFileLogService.xsd" MetadataType="Schema" ID="59e58509-cadc-4a4a-916d-f2cc7daa1568" SourceId="1" SourceUrl="http://localhost:3061/ImportFileLogService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ImportFileLogService1.xsd" MetadataType="Schema" ID="4c213133-894c-4791-a11b-00a463572d20" SourceId="1" SourceUrl="http://localhost:3061/ImportFileLogService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ImportFileLogService.wsdl" MetadataType="Wsdl" ID="2ba1e446-564c-4e10-ab58-83339ed8efee" SourceId="1" SourceUrl="http://localhost:3061/ImportFileLogService.svc?wsdl" />
+    <MetadataFile FileName="ImportFileLogService2.xsd" MetadataType="Schema" ID="ae3f72c6-eb30-4986-afb0-9304a0435ccf" SourceId="1" SourceUrl="http://localhost:3061/ImportFileLogService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ImportFileLogService3.xsd" MetadataType="Schema" ID="0447f8e0-93cf-499d-8aa2-bc12207ebba8" SourceId="1" SourceUrl="http://localhost:3061/ImportFileLogService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ImportFileLogService.disco" MetadataType="Disco" ID="9be386b9-8ac5-4105-8dec-f0d769ef303c" SourceId="1" SourceUrl="http://localhost:3061/ImportFileLogService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

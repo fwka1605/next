@@ -1,0 +1,163 @@
+<div [formGroup]="myFormGroup" class="department-master">
+  <section class="contentsButton">
+    <div class="contentsButton__inner">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+        class="buttonPrimary">
+      {{panelOpenState?ItemNameConst.BTN_INPUT_ITEM_HIDDEN:ItemNameConst.BTN_INPUT_ITEM_DISPLAY}}</button>   
+      
+      <div class="contentsButton__subSection">
+        <ng-container *ngIf="securityHideShow">
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterImport)">
+            <button class="buttonImport infotip"
+              (click)="buttonAction(BUTTON_ACTION.IMPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterExport)">
+            <button class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+      
+    </div>
+  </section>
+
+<section class="pageContainer">
+  <!-- 入力フォーム -->
+  <mat-expansion-panel
+    #panel
+    [hideToggle]="true">
+    <ng-template matExpansionPanelContent>
+      <section
+        [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'"
+        [formGroup]="myFormGroup">
+        <div class="contents__container--flex">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title w--12">請求部門コード<span
+                class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span>
+            </dt>
+            <dd class="definitionForm__data w--88">
+              <input
+                formControlName="departmentCodeCtrl"
+                name="departmentCodeCtrl"
+                (keyup.enter)="setDepartmentCode($event.type)"
+                (blur)="setDepartmentCode($event.type)"
+                maxlength="{{userInfoService.ApplicationControl.departmentCodeLength}}"
+                class="input-size--200 input-uppercase">
+            </dd>
+            <dt class="definitionForm__title w--12">請求部門名<span
+                class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span>
+            </dt>
+            <dd class="definitionForm__data w--88">
+              <input
+                formControlName="departmentNameCtrl"
+                name="departmentNameCtrl"
+                (keyup.enter)="setDepartmentName($event.type)"
+                (blur)="setDepartmentName($event.type)"
+                maxlength="40"
+                class="input-size--400">
+            </dd>
+            <dt class="definitionForm__title w--12">回収責任者</dt>
+            <dd class="definitionForm__data w--88">
+              <input
+                formControlName="staffCodeCtrl"
+                name="staffCodeCtrl"
+                (keyup.enter)="setStaffCode($event.type)"
+                (blur)="setStaffCode($event.type)"
+                #staffCodeInput
+                [formControl]="staffCodeCtrl"
+                [matAutocomplete]="autoStaffCode"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                maxlength="{{userInfoService.ApplicationControl?.staffCodeLength}}"
+                type="tel"
+                class="definitionForm__input input-size--100">
+              <mat-autocomplete
+                #autoStaffCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option
+                  *ngFor="let staff of staffFilterds[0] | async"
+                  [value]="staff.code">
+                  {{staff.code}}:{{staff.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a
+                class="buttonMasterSearch"
+                (click)="openMasterModal(TABLE_INDEX.MASTER_STAFF)"></a>
+              <input
+                formControlName="staffNameCtrl"
+                name="staffNameCtrl"
+                class="input-size--400"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--12">備考</dt>
+            <dd class="definitionForm__data w--88">
+              <input
+                formControlName="noteCtrl"
+                name="noteCtrl"
+                (keyup.enter)="setNote($event.type)"
+                maxlength="100"
+                class="input-size--400">
+            </dd>
+          </dl>
+          <div class="contents__buttonGroup">
+            <button
+              (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+              [ngClass]="{'button-disable': myFormGroup.invalid }"
+              class="buttonSecondary">
+              {{ComponentStatus==COMPONENT_STATUS_TYPE.CREATE?ItemNameConst.BTN_REGISTRY:ItemNameConst.BTN_UPDATE}}</button>
+            <button
+              (click)="buttonAction(BUTTON_ACTION.DELETE)"
+              [ngClass]="{'button-disable': UpdateButtonDisableFlag}"
+              class="buttonMinimum">{{ItemNameConst.BTN_DELETE}}</button>
+            <button
+              (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+              class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+          </div>
+        </div>
+      </section>
+    </ng-template>
+  </mat-expansion-panel>
+    
+
+    <!-- 登録済みの請求部門 -->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">登録済みの請求部門</h2>
+      <div class="contents__container">
+      <div class="common-inner-table">
+        <table>
+          <thead>
+            <tr>
+              <th class="{{TableColumn.COL_50_CODE}}">編集</th>
+              <th class="{{TableColumn.COL_300_CODE}}">請求部門コード</th>
+              <th class="{{TableColumn.COL_400_CODE}}">請求部門名</th>
+              <th class="{{TableColumn.COL_400_CODE}}">回収責任者</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              *ngFor="let department of departmentsResult?.departments; let i = index" 
+              class="line-selector">
+              <td class="{{TableColumn.COL_50_CENTER_NAME}}">
+                  <a class="buttonEdit" (click)="selectLine(i)"></a>
+              </td>
+              <td class="{{TableColumn.COL_300_CENTER_NAME}}">{{department.code}}</td>
+              <td class="{{TableColumn.COL_400_NAME}}">{{department.name}}</td>
+              <td class="{{TableColumn.COL_400_NAME}}">{{department.staffName}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </section>
+
+
+  </section>
+
+</div>

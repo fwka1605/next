@@ -1,0 +1,189 @@
+/* commoninnertabel */
+$tableHeader-background-color: #F1F3F5;
+
+// 設定
+  @mixin baseTable {
+    table {
+      table-layout: fixed;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    .contents > & > table { // .contents直下
+      border-top: none;
+    }
+    .contents__container & thead,
+    .contents__container--flex & thead { // .container以下のtable
+      border-top: 1px solid $border-color;
+      border-left: 1px solid $border-color;
+      border-radius: 3px 3px 0 0;
+    }
+    .contents__container & tbody,
+    .contents__container--flex & tbody { // .container以下のtable
+      border-left: 1px solid $border-color;
+      border-radius: 0 0 3px 3px;
+    }
+    thead,tbody {
+      display: block;
+    }
+    thead {
+      text-align: center;
+      overflow-x: auto;
+      overflow: visible;
+      &.table_row {
+        tr {
+          display: table-row;
+        }
+        th {
+          display: table-cell;
+        }
+      }
+    }
+    tbody {
+      overflow-y: auto;
+
+      tr {
+        &:nth-child(even) td {
+          background-color: #F8F9F9;
+        } 
+        &:hover {
+          box-shadow: inset 0 0 0 100px rgba(197, 241, 255, 0.6);
+          td {
+            background-color: inherit;
+          }
+        }
+        &.no-even:nth-child(even) td {
+          background-color: #fff;
+        } 
+        &.no-hover:hover
+        {        
+          background-color: #fff;
+        }        
+      }
+    }
+
+
+    th,td {
+      border-bottom: 1px solid $border-color;
+      color: $text-color;
+      word-break: break-all;
+    }
+    th {
+      padding: 15px 12px;
+      border-right: 1px solid $border-color;
+      background-color: $tableHeader-background-color;
+      border-top:1px solid $border-color;
+      font-weight: bold;
+    }
+    td {
+      padding: 7px 5px;
+      border-right: 1px solid $border-color;
+      background-color: inherit;
+      font-weight: normal;
+    }
+  }
+
+ 
+// 共通テーブル
+  .common-inner-table {
+    @include baseTable();
+    &__th--active {
+      background-color: #0051C2 !important;
+      color: #fff !important;
+    }
+    &__cell--noBorder {
+      border: none !important;
+    }
+  }
+
+
+// ヘッダが複数行のテーブル（請求データ入力、入金データ入力など）
+  .common-inner-table--multipleHeader {
+    @include baseTable();
+    th {
+      padding: 7px 12px;
+    }
+    td {
+      &:first-child::before { // min-heightの指定
+        display: block;
+        float: left;
+        height: 19px;
+        content: '';
+      }
+    }
+  }
+
+// 罫線なしのテーブル
+  .common-inner-table--noBorder {
+    @include xy-scroller-table(auto); 
+    @include baseTable();
+    tbody {
+      height: auto;
+      tr {
+        cursor: inherit;
+      }
+      tr:hover {
+        box-shadow: inherit;
+      }
+    }
+    tr {
+      border-left: none;
+    }
+  }
+
+
+// 行のハイライト（白/グレー）の指定を無効
+  .common-inner-table--noHighlights {
+    @include xy-scroller-table(auto); 
+    @include baseTable();
+    thead {
+      display: block;
+    }
+    tr {
+      display: table-row-group;
+      &:nth-child(2n) td {
+        background: inherit;
+      }
+    }
+  }
+
+
+// thead固定テーブル
+  .common-inner-table--scrollable {
+    @include xy-scroller-table(auto);
+    @include baseTable();
+    // overflow: auto;
+    height: 250px;
+    thead {
+      display: table-header-group;
+      position: fixed;
+      z-index: 1;
+    }
+    tbody {
+      display: table-row-group;
+      position: absolute;
+      width: max-content;
+      height: 200px;
+      border-bottom: 1px solid #ccc;
+      > tr:last-child td,
+      > tr:nth-last-child(2) td:first-child {
+        border-bottom: none;
+      }
+    }
+    tr {
+      display: table-row;
+      &:nth-child(2n) td {
+        background-color: #fff;
+      }
+    }
+    td {
+      background: #fff;
+    }
+    .common-inner-table__thead {
+      &--line-2 + tbody {
+        top: 76px;
+      }
+      &--line-3 + tbody {
+        top: 137px;
+      }
+    }
+  }

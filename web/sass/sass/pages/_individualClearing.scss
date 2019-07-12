@@ -1,0 +1,31 @@
+/*
+個別消込
+*/
+  .individualClearing {
+    &__fixed { // 入金・請求合計：固定
+      display: flex;
+      position: sticky;
+      z-index: 2;
+      top: 96px;
+      width: 100%;
+      padding: 0 0 25px;
+      background-color: $main-background-color;
+    }
+    &__scrollable { // 入金・請求情報：スクロール可
+      $__scrollable-prop: #{&};
+      display: flex;
+      @include mq-large {
+        width: $contentsWidth;
+      }
+      &.clearingInfoVertical {
+        flex-direction: column;
+      }
+      &.clearingInfoHorizon {
+        flex-direction: row;
+      }
+      &--errorDisplayed {
+        @extend #{$__scrollable-prop};
+        top: 267px;
+      }
+    }
+  }

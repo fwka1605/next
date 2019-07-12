@@ -1,0 +1,258 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.CANCEL)" 
+        [ngClass]="{'button-disable': !selectJournal  }"  
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_CANCEL}}
+        <span [innerHtml]="ButtonTipsConst.JOURNALIZING_CANCEL | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+      <button class="buttonPrimary" (click)="panelOpenState=!panelOpenState;">
+        {{panelOpenState?ItemNameConst.BTN_SEARCH_HIDE:ItemNameConst.BTN_SEARCH_ADD}}</button>
+      </div>
+  </section>
+
+  <section class="pageContainer">
+
+    <!---検索条件-->
+    <mat-expansion-panel
+      #panel
+      [hideToggle]="true">
+      <ng-template matExpansionPanelContent>
+        <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+
+          <h2 class="contents__title--underline">
+            {{ItemNameConst.LBL_SEARCH_CONDITION}}
+          </h2>
+
+          <div class="accordionContent__body contents__container--flex">
+
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--15">更新日<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                <dd class="definitionForm__data w--85">
+                  <input 
+                    formControlName="updatedAtFromCtrl" 
+                    name="updatedAtFromCtrl" 
+                    (keyup.enter)="setUpdatedAtFrom($event.type)"
+                    (dateSelect)="setUpdatedAtFrom($event.type)" 
+                    ngbDatepicker #updatedAtFromDp="ngbDatepicker" 
+                    [ngClass]="{'input--error': updatedAtFromCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                    <button class="btn btn-outline-secondary" (click)="updatedAtFromDp.toggle()" type="button"></button>
+                  <span class="wavy-line"></span>
+                  <input 
+                    formControlName="updatedAtToCtrl" 
+                    name="updatedAtToCtrl" 
+                    (keyup.enter)="setUpdatedAtTo($event.type)"
+                    (dateSelect)="setUpdatedAtTo($event.type)" 
+                    ngbDatepicker #updatedAtToDp="ngbDatepicker" 
+                    [ngClass]="{'input--error': updatedAtToCtrl.errors?.ngbDate}"
+                    placeholder="{{PlaceHolderConst.INPUT_DAY}}" 
+                    maxlength="10" 
+                    type="tel" 
+                    class="input-size--100">
+                  <button class="btn btn-outline-secondary" (click)="updatedAtToDp.toggle()" type="button"></button>
+                  <br>
+                  <div
+                    class="message-result font__warning"
+                    *ngIf="updatedAtFromCtrl.errors?.ngbDate 
+                          || updatedAtToCtrl.errors?.ngbDate">
+                    {{ MSG_VAL.DATE_DAY }}
+                  </div>                
+                </dd>
+                <dt class="definitionForm__title w--15">得意先コード</dt>
+                <dd class="definitionForm__data w--85">
+                  <input 
+                    formControlName="customerCodeCtrl" 
+                    name="customerCodeCtrl" 
+                    (blur)="setCustomerCode($event.type)"
+                    (keyup.enter)="setCustomerCode($event.type)" 
+                    #customerCodeInput
+                    [formControl]="customerCodeCtrl" 
+                    [matAutocomplete]="autoCustomerCode"
+                    type="tel" 
+                    maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}" 
+                    placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                    class="input-size--110 definitionForm__input">
+                  <mat-autocomplete 
+                    #autoCustomerCode="matAutocomplete"
+                    [panelWidth]="PanelConst.autocompleteWidth300">
+                    <mat-option 
+                      *ngFor="let customer of customerFilterds[0] | async" 
+                      [value]="customer.code">
+                      {{customer.code}}:{{customer.name}}
+                    </mat-option>
+                  </mat-autocomplete>
+                  <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER)"></a>
+                  <input 
+                    formControlName="customerNameCtrl" 
+                    class="input-size--250" 
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item--w-50">
+              <dl class="definitionForm">
+                <dt class="definitionForm__title w--15">仕訳区分</dt>
+                <dd class="definitionForm__data w--85">
+
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="cbxMatchingCtrl" 
+                      formControlName="cbxMatchingCtrl" 
+                      name="cbxMatchingCtrl" 
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxMatchingCtrl">消込仕訳</label>
+                  </div>
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="cbxReceiptExcludeCtrl" 
+                      formControlName="cbxReceiptExcludeCtrl" 
+                      name="cbxReceiptExcludeCtrl" 
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxReceiptExcludeCtrl">対象外仕訳</label>
+                  </div>
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="cbxAdvanceReceivedOccuredCtrl" 
+                      formControlName="cbxAdvanceReceivedOccuredCtrl" 
+                      name="cbxAdvanceReceivedOccuredCtrl" 
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxAdvanceReceivedOccuredCtrl">前受計上仕訳</label>
+                  </div>
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="cbxAdvanceReceivedTransferCtrl" 
+                      formControlName="cbxAdvanceReceivedTransferCtrl" 
+                      name="cbxAdvanceReceivedTransferCtrl" 
+                      (change)="setCbxShowMatched()"
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxShowMatchedCtrl">前受振替仕訳</label>
+                  </div>
+                </dd>
+                <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1">
+                  <dt class="definitionForm__title">通貨コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                  <dd class="definitionForm__data">
+                    <input 
+                      formControlName="currencyCodeCtrl" 
+                      name="currencyCodeCtrl" 
+                      (blur)="setCurrencyCode($event.type)"
+                      (keyup.enter)="setCurrencyCode($event.type)" 
+                      (keyup)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY,$event.keyCode)"
+                      type="tel" 
+                      maxlength="60" 
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                      class="input-size--60">
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY)"></a>
+                  </dd>
+                </ng-container>
+              </dl>
+            </div>
+            <div class="contents__buttonGroup">
+              <button 
+                (click)="buttonAction(BUTTON_ACTION.SEARCH)" 
+                [ngClass]="{'button-disable':  myFormGroup.invalid }" 
+                class="buttonSecondary">{{ItemNameConst.BTN_SEARCH}}</button>
+              <button 
+                (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)" 
+                class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+            </div>
+            
+          </div>
+        </section>
+      </ng-template>
+    </mat-expansion-panel>
+
+
+    <!---検索結果-->
+    <section class="contents">
+      <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_SEARCH}}</h2>
+      <div class="contents__container">
+        <div class="common-inner-table">
+          <table>
+            <thead class="table_row">
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}"></th>
+                <th class="{{TableColumn.COL_80_CODE}}">
+                  <div class="inputStyled">
+                    <input class="inputStyled__input"
+                      id="cbxCheckAllCtrl" 
+                      formControlName="cbxCheckAllCtrl" 
+                      name="cbxCheckAllCtrl" 
+                      (change)="checkAll()"
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxCheckAllCtrl"></label>
+                  </div>
+                </th>
+                <th class="{{TableColumn.COL_150_CODE}}"></th>
+                <th class="{{TableColumn.COL_150_CODE}}"></th>
+                <th class="{{TableColumn.COL_150_CODE}}"></th>
+                <th class="{{TableColumn.COL_150_CODE}}"></th>
+                <th *ngIf="userInfoService.ApplicationControl?.useForeignCurrency === 1" class="{{TableColumn.COL_150_CODE}}"></th>
+                <th class="{{TableColumn.COL_500_CODE}}" colspan="3">入金情報</th>
+                <th class="{{TableColumn.COL_900_CODE}}" colspan="5">請求情報</th>
+              </tr>
+              <tr>
+                <th class="{{TableColumn.COL_50_CODE}}"></th>
+                <th class="{{TableColumn.COL_80_CODE}}">解除</th>
+                <th class="{{TableColumn.COL_150_CODE}}">仕訳日</th>
+                <th class="{{TableColumn.COL_150_CODE}}">更新日</th>
+                <th class="{{TableColumn.COL_150_CODE}}">仕訳区分</th>
+                <th *ngIf="userInfoService.ApplicationControl?.useForeignCurrency === 1" class="{{TableColumn.COL_150_CODE}}">通貨コード</th>
+                <th class="{{TableColumn.COL_200_CODE}}">金額</th>
+                <th class="{{TableColumn.COL_150_CODE}}">振込依頼人名</th>
+                <th class="{{TableColumn.COL_150_CODE}}">入金日</th>
+                <th class="{{TableColumn.COL_200_CODE}}">入金額</th>
+                <th class="{{TableColumn.COL_150_CODE}}">請求日</th>
+                <th class="{{TableColumn.COL_150_CODE}}">請求書番号</th>
+                <th class="{{TableColumn.COL_200_CODE}}">請求額</th>
+                <th class="{{TableColumn.COL_200_CODE}}">得意先コード</th>
+                <th class="{{TableColumn.COL_200_CODE}}">得意先名</th>
+              </tr>
+            </thead>
+            <tbody class="searchResult__tableHeight--9999 table_row">
+              <tr *ngFor="let journal of matchingJournalizingDetailsResult?.matchingJournalizingDetails index as i">
+                <td class="{{TableColumn.COL_50_CENTER_NAME}}">{{i+1}}</td>
+                <td class="{{TableColumn.COL_80_CENTER_NAME}}">
+                  <div class="inputStyled--inTable">
+                    <input class="inputStyled__input"
+                      id="cbxDeleteFlgCtrl{{i}}" 
+                      formControlName="cbxDeleteFlgCtrl{{i}}" 
+                      name="cbxDeleteFlgCtrl{{i}}" 
+                      (change)="setCbxDeleteFlg(i)"
+                      type="checkbox">
+                    <label class="inputStyled__checkbox" for="cbxDeleteFlgCtrl{{i}}"></label>
+                  </div>
+                </td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{journal.outputAt|date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{journal.createAt|date:'yyyy/MM/dd HH:mm:ss'}}</td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{JournalizingName[journal.journalizingType]}}</td>
+                <td *ngIf="userInfoService.ApplicationControl?.useForeignCurrency === 1" class="{{TableColumn.COL_150_CENTER_NAME}}">{{journal.currencyCode}}</td>
+                <td [ngClass]="{ 'flag_amount': journal.amount<0 }" class="{{TableColumn.COL_KINGAKU}}">{{journal.amount|currency_pipe}}</td>
+                <td class="{{TableColumn.COL_150_NAME}}">{{journal.payerName}}</td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{journal.recordedAt|date}}</td>
+                <td [ngClass]="{ 'flag_amount': journal.receiptAmount<0 }" class="{{TableColumn.COL_KINGAKU}}">{{journal.receiptAmount|currency_pipe}}</td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{journal.billedAt|date}}</td>
+                <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{journal.invoiceCode}}</td>
+                <td [ngClass]="{ 'flag_amount': journal.billingAmount<0 }" class="{{TableColumn.COL_KINGAKU}}">{{journal.billingAmount|currency_pipe}}</td>
+                <td class="{{TableColumn.COL_200_CENTER_NAME}}">{{journal.customerCode}}</td>
+                <td class="{{TableColumn.COL_200_NAME}}">{{journal.customerName}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </section>
+
+
+</div>

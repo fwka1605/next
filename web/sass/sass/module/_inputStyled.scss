@@ -1,0 +1,165 @@
+// ラジオボタン、チェックボックス
+// 
+// Markup:
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="radio_01"
+//      name="radio" 
+//      type="radio">
+//    <label class="inputStyled__radio" for="radio_01">ラジオボタン</label>
+//  </div>
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="radio_02"
+//      name="radio" 
+//      type="radio">
+//    <label class="inputStyled__radio" for="radio_02">ラジオボタン</label>
+//  </div>
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="radio_03"
+//      name="radio" 
+//      type="radio" disabled>
+//    <label class="inputStyled__radio" for="radio_03">disabled</label>
+//  </div>
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="checkbox_01" 
+//      type="checkbox">
+//    <label class="inputStyled__checkbox" for="checkbox_01">チェックボックス</label>
+//  </div>
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="checkbox_02" 
+//      type="checkbox" disabled>
+//    <label class="inputStyled__checkbox" for="checkbox_02">disabled</label>
+//  </div>
+//  <br><br>
+//  <p>ラジオボタン、チェックボックスパーツのみ</p>
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="radio_04"
+//      name="radioParts" 
+//      type="radio">
+//    <label class="inputStyled__radio" for="radio_04"></label>
+//  </div>
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="radio_05"
+//      name="radioParts" 
+//      type="radio" disabled>
+//    <label class="inputStyled__radio" for="radio_05"></label>
+//  </div>
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="checkbox_03" 
+//      type="checkbox">
+//    <label class="inputStyled__checkbox" for="checkbox_03"></label>
+//  </div>
+//  <div class="inputStyled">                
+//    <input class="inputStyled__input"
+//      id="checkbox_04" 
+//      type="checkbox" disabled>
+//    <label class="inputStyled__checkbox" for="checkbox_04"></label>
+//  </div>
+//
+// Styleguide 3.2.6
+
+  .inputStyled {
+    $inputStyled-prop: #{&};
+    display: inline-block;
+    margin: 0 20px 0 0;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    &--inTable {
+      @extend #{$inputStyled-prop};
+      td & {
+        display: block;
+        height: 100%;
+      }
+    }
+    &__input {
+      display: none;
+    }
+    &__radio,&__checkbox {
+      display: flex;
+      align-items: center;
+      position: relative;
+      height: 100%;
+      padding-left: 24px;
+      user-select: none;
+      cursor: pointer;
+      .inputStyled__input:checked + & {
+        font-weight: bold;
+      }
+      .inputStyled__input:disabled + & {
+        opacity: .5;
+        cursor: inherit;
+      }
+      &::before,&::after {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 16px;
+        height: 16px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        background: linear-gradient(0deg, #F2F4F7 0%, #FFFFFF 100%);
+        content:'';
+        .inputStyled__input:disabled + & {
+          opacity: .5;
+          background: #aaa;
+          cursor: inherit;
+        }
+      }
+      &::before {
+        .inputStyled__input:checked + & {
+          border-color: rgba(0,0,0,0.1);
+          background: #192E79;
+        }
+      }
+      &::after {
+        opacity: 0;
+        .inputStyled__input:checked + & {
+          opacity: 1;
+        }
+      }
+    }
+    &__radio{
+      &::before,&::after {
+        border-radius: 50%;
+      }
+      &::after {
+        left: 5px;
+        width: 6px;
+        height: 6px;
+        background-color: #fff;
+      }
+    }
+    &__checkbox{
+      &::before {
+        border-radius: 3px;
+        .inputStyled--inTable > & {
+          right: 0;
+        }
+      }
+      &::after {
+        top: -2px;
+        left: 4px;
+        width: 9px;
+        height: 5px;
+        border-top: none;
+        border-right: none;
+        border-left: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        background: none;
+        transform: rotate(-45deg);
+        .inputStyled--inTable > & {
+          right: 4px;
+        }
+      }
+    }
+  }

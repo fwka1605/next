@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="840abe33-ccef-48e8-9d3e-ecbade520671" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/InvoiceSettingService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="InvoiceSettingService.xsd" MetadataType="Schema" ID="6671ee41-7e1b-44cd-9e57-c2e15aa7773b" SourceId="1" SourceUrl="http://localhost:3061/InvoiceSettingService.svc?xsd=xsd1" />
+    <MetadataFile FileName="InvoiceSettingService.disco" MetadataType="Disco" ID="9068e861-801a-42f5-8369-c629eb619345" SourceId="1" SourceUrl="http://localhost:3061/InvoiceSettingService.svc?disco" />
+    <MetadataFile FileName="InvoiceSettingService1.xsd" MetadataType="Schema" ID="26ee4a4a-ad68-42da-a776-b92f904ee1b1" SourceId="1" SourceUrl="http://localhost:3061/InvoiceSettingService.svc?xsd=xsd0" />
+    <MetadataFile FileName="InvoiceSettingService2.xsd" MetadataType="Schema" ID="7866a462-d23f-4120-a8c4-e7dc261d26c6" SourceId="1" SourceUrl="http://localhost:3061/InvoiceSettingService.svc?xsd=xsd2" />
+    <MetadataFile FileName="InvoiceSettingService.wsdl" MetadataType="Wsdl" ID="41b511c8-32d8-4746-8cad-b07a23957cef" SourceId="1" SourceUrl="http://localhost:3061/InvoiceSettingService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4f832e2e-ffc2-4aea-8c1b-0514a0a348b2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/SectionWithLoginUserMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SectionWithLoginUserMaster1.xsd" MetadataType="Schema" ID="355d8974-f8d0-4f5a-93cc-ee6ee3133db2" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionWithLoginUserMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="SectionWithLoginUserMaster.wsdl" MetadataType="Wsdl" ID="1d9efc6a-b8db-49b0-b457-09fe9d6779af" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionWithLoginUserMaster.svc?wsdl" />
+    <MetadataFile FileName="SectionWithLoginUserMaster.disco" MetadataType="Disco" ID="f2aa6eca-1edc-4814-b629-36b2b5a7ad6a" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionWithLoginUserMaster.svc?disco" />
+    <MetadataFile FileName="SectionWithLoginUserMaster.xsd" MetadataType="Schema" ID="3555dc08-80d9-4021-b5d9-8e3a79851253" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionWithLoginUserMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="SectionWithLoginUserMaster3.xsd" MetadataType="Schema" ID="4efe4576-c86c-4be4-af61-d270fc449871" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionWithLoginUserMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="SectionWithLoginUserMaster2.xsd" MetadataType="Schema" ID="3e0eefee-1e35-4125-8fa8-052a2cadb153" SourceId="1" SourceUrl="http://localhost:3061/Master/SectionWithLoginUserMaster.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

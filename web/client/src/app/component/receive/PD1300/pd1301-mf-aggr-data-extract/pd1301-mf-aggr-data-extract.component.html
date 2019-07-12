@@ -1,0 +1,259 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button 
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)" 
+        [ngClass]="{'button-disable': myFormGroup.invalid || registryBtnDisable}"
+        class="buttonSecondary">
+        {{ItemNameConst.BTN_REGISTRY}}
+      </button>
+
+      <button 
+        (click)="synchronize()"
+        [ngClass]="{'button-disable': false}" 
+        class="buttonSecondary infotip">
+        {{ItemNameConst.BTN_SYNC}}
+        <span [innerHtml]="ButtonTipsConst.MF_STATEMENT_ACCOUNT_LIST_DISPLAY | safeHtml_pipe" class="infotip__frame"></span>
+      </button>
+
+      <button 
+        (click)="displayAccessTokenStatus()"
+        class="buttonMinimum">
+        {{ItemNameConst.BTN_CLEAR}}
+      </button>
+
+
+      <div class="contentsButton__subSection">
+        <ul class="separator">
+          <li class="separator__item">
+            <button 
+              (click)="navigateSetting()"
+              [ngClass]="{'button-disable': false}" 
+              class="buttonPrimary infotip">
+              {{ItemNameConst.BTN_SETTING_CONNECTION}}
+              <span [innerHtml]="ButtonTipsConst.MF_STATEMENT_COOPERATION_SETTING | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </li>
+          <li class="separator__item">
+            <button 
+              (click)="navigateDataSearch()"
+              [ngClass]="{'button-disable': false}" 
+              class="buttonPrimary">
+              {{ItemNameConst.BTN_REGISTRATION_HISTORY}}
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  <section class="pageContainer">
+    <!-- 基本設定 -->
+    <section class="contents">
+      <h2 class="contents__title--underline">{{ItemNameConst.LBL_SETTING_BASE}}</h2>
+      <div class="contents__container">
+        <dl class="definitionForm--lh-narrow">
+          <dt class="definitionForm__title w--10">連携状態</dt>
+          <dd class="definitionForm__data w--90">
+            <input
+              formControlName="connectionStatusCtrl"
+              name="connectionStatusCtrl"
+              class="input-size--100"
+              readonly>
+          </dd>
+
+          <dt class="definitionForm__title w--10">入金区分</dt>
+          <dd class="definitionForm__data w--90">
+            <input 
+              formControlName="receiptCategoryCodeCtrl" 
+              name="receiptCategoryCodeCtrl"
+              (blur)="setReceiptCategoryCode($event.type)" 
+              (keyup.enter)="setReceiptCategoryCode($event.type)"
+              #receiptCategoryCodeInput
+              [formControl]="receiptCategoryCodeCtrl" 
+              [matAutocomplete]="autoReceiptCategoryCode"
+              type="tel"
+              maxlength="2" 
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+              class="input-size--60">
+            <mat-autocomplete 
+              #autoReceiptCategoryCode="matAutocomplete"
+              [panelWidth]="PanelConst.autocompleteWidth150">
+              <mat-option 
+                *ngFor="let category of categoryFilterds[0] | async" 
+                [value]="category.code">{{category.code}}:{{category.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_RECEIPT_CATEGORY_EXCLUDE_USE_LIMIT_DATE)"></a>
+            <input formControlName="receiptCategoryNameCtrl" name="receiptCategoryNameCtrl"
+              class="input-size--180" readonly>
+          </dd>
+          <ng-container *ngIf="userInfoService.ApplicationControl?.useReceiptSection==1">
+            <dt class="definitionForm__title w--10">入金部門コード</dt>
+            <dd class="definitionForm__data w--90">
+              <input formControlName="sectionCodeCtrl" 
+                name="sectionCodeCtrl"
+                (blur)="setSectionCode($event.type)" 
+                (keyup.enter)="setSectionCode($event.type)"
+                #sectionCodeInput
+                [formControl]="sectionCodeCtrl" 
+                [matAutocomplete]="autoSectionCode"
+                type="tel" 
+                maxlength="{{userInfoService.ApplicationControl?.sectionCodeLength}}"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                class="input-size--110">
+              <mat-autocomplete 
+                #autoSectionCode="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option 
+                  *ngFor="let section of sectionFilterds[0] | async" 
+                  [value]="section.code">{{section.code}}:{{section.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION)"></a>
+              <input formControlName="sectionNameCtrl" class="input-size--250" readonly>
+            </dd>
+          </ng-container>
+
+          <dt class="definitionForm__title w--10">入金データ自動連携 最終連携日時</dt>
+          <dd class="definitionForm__data w--90">
+              <input
+                formControlName="mfLastAggregateAtCtrl"
+                name="mfLastAggregateAtCtrl"
+                class="input-size--200"
+                readonly>
+          </dd>
+          <dt class="definitionForm__title w--10">VONE登録データ 最終登録日時</dt>
+          <dd class="definitionForm__data w--90">
+              <input
+                formControlName="lastCreatedAtCtrl"
+                name="lastCreatedAtCtrl"
+                class="input-size--200"
+                readonly>   
+          </dd>
+          <dt class="definitionForm__title w--10">伝票日付</dt>
+          <dd class="definitionForm__data w--90">
+            <input
+              formControlName="extractDateFromCtrl"
+              name="extractDateFromCtrl"
+              (keyup.enter)="setExtractDateFrom($event.type)"
+              (dateSelect)="setExtractDateFrom($event.type)"
+              ngbDatepicker #extractDateFromDp="ngbDatepicker"
+              placeholder="YYYY/MM/DD"
+              maxlength="10"
+              type="tel"
+              class="input-size--100">
+              <button class="btn btn-outline-secondary" (click)="extractDateFromDp.toggle()" type="button"></button>
+            <span class="wavy-line"></span>
+            <input
+              formControlName="extractDateToCtrl"
+              name="extractDateToCtrl"
+              (keyup.enter)="setExtractDateTo($event.type)"
+              (dateSelect)="setExtractDateTo($event.type)"
+              ngbDatepicker #extractDateToDp="ngbDatepicker"
+              placeholder="YYYY/MM/DD"
+              maxlength="10"
+              type="tel"
+              class="input-size--100">
+            <button class="btn btn-outline-secondary" (click)="extractDateToDp.toggle()" type="button"></button>
+            <br>
+            <div
+              class="message-result font__warning"
+              *ngIf="myFormGroup.controls.extractDateFromCtrl.errors?.ngbDate 
+                  || myFormGroup.controls.extractDateToCtrl.errors?.ngbDate">
+              {{ MSG_VAL.DATE_DAY }}
+            </div>
+          </dd>
+        </dl>
+        <div class="searchConfig">
+          <div class="searchConfig__result contents__container--flex">
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出入金件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractInCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出入金額合計</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractInAmount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出出金件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractOutCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">抽出出金額合計</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{extractOutAmount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>     
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">登録件数</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{registryCount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>
+            <div class="contents__item">
+              <dl class="definitionForm--vertical">
+                <dt class="definitionForm__title">登録金額合計</dt>
+                <dd class="definitionForm__data">
+                  <input 
+                    class="{{TableColumn.COL_SMALL_KINGAKU}}"
+                    value="{{registryAmount|currency_pipe}}"
+                    readonly>
+                </dd>
+              </dl>
+            </div>                      
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+</div>

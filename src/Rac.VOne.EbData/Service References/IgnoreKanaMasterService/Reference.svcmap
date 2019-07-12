@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="89800faa-583d-4984-9565-cfa9e206dc25" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/IgnoreKanaMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="IgnoreKanaMaster.xsd" MetadataType="Schema" ID="1231f18a-60fd-4296-ad12-ac307e993e6a" SourceId="1" SourceUrl="http://localhost:3061/Master/IgnoreKanaMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="IgnoreKanaMaster.wsdl" MetadataType="Wsdl" ID="e8b9fb59-aa75-48bd-bbac-0d818df0cac0" SourceId="1" SourceUrl="http://localhost:3061/Master/IgnoreKanaMaster.svc?wsdl" />
+    <MetadataFile FileName="IgnoreKanaMaster.disco" MetadataType="Disco" ID="7c1c0b82-fc2a-4254-88d1-e707c6fa421a" SourceId="1" SourceUrl="http://localhost:3061/Master/IgnoreKanaMaster.svc?disco" />
+    <MetadataFile FileName="IgnoreKanaMaster1.xsd" MetadataType="Schema" ID="c83d6fa7-f878-4a28-8a4f-eae13ab26c53" SourceId="1" SourceUrl="http://localhost:3061/Master/IgnoreKanaMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="IgnoreKanaMaster2.xsd" MetadataType="Schema" ID="d921184c-4b17-4fb6-bdd6-96e9be91be6d" SourceId="1" SourceUrl="http://localhost:3061/Master/IgnoreKanaMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

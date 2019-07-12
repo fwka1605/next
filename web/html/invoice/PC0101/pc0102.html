@@ -1,0 +1,314 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="invoice">
+        <div id="breadcrumb-outer">
+          <h1>02 請求 - 01 01 請求フリーインポーター 取込設定(PC0101)</h1>
+        </div>
+        <section class="contents">
+          <div >
+            <div class="invoice-controller">
+              <button class="invoice-controller__btn">読込</button>
+              <button class="invoice-controller__btn">クリア</button>
+            </div>
+          </div>
+        </section>
+        </section>
+        <section class="contents" id="invoice-search-config">
+          <div class="invoice-container">
+            <div class="invoice-container__search-config">
+              <div class="invoice-container__search-config__header">
+                <h2 class="invoice-container__search-config__header__title">取込設定</h2>
+              </div>
+              <div class="invoice-container__search-config__body">
+                <dl class="invoice-container__search-config__body__items">
+                  <dt class="invoice-container__search-config__body__items__title">パターンNo.</dt>
+                  <dd class="invoice-container__search-config__body__items__detail">
+                    <input type="text" class="invoice-container__search-config__body__items__detail__main-input">
+                    <button data-modal class="invoice-container__search-config__body__items__detail__search-btn">検索</button>
+                    <input type="text" class="invoice-container__search-config__body__items__detail__option">
+                  </dd>
+                </dl>
+              </div>
+              <div class="invoice-container__search-config__body">
+                <h3 class="invoice-container__search-config__body__title">取込ファイル指定</h2>
+                  <div class="invoice-container__search-config__body invoice-container__search-config__body--inner">
+                    <dl class="invoice-container__search-config__body__items">
+                      <dt class="invoice-container__search-config__body__items__title">取込フォルダ</dt>
+                      <dd class="invoice-container__search-config__body__items__detail">
+                        <input type="text" class="invoice-container__search-config__body__items__detail__option invoice-container__search-config__body__items__detail__option--wide">
+                        <button class="invoice-container__search-config__body__items__detail__search-btn">検索</button>
+                      </dd>
+                    </dl>
+                    <div class="invoice-container__search-config__body__opstions">
+                      <h3 class="invoice-container__search-config__body__opstions__title">
+                        取込後のファイル操作
+                      </h3>
+                      <div class="invoice-container__search-config__body__opstions__items">
+                        <label for="01a" class="invoice-container__search-config__body__opstions__item">
+                          <input type="radio" id="01a" name="example2">
+                          なにもしない
+                        </label>
+                        <label for="02a" class="invoice-container__search-config__body__opstions__item">
+                          <input type="radio" id="02a" name="example2">
+                          削除する
+                        </label>
+                        <label for="03a" class="invoice-container__search-config__body__opstions__item">
+                          <input type="radio" id="03a" name="example2">
+                          取込日付を付加
+                        </label>
+                      </div>
+                    </div>
+
+                    <dl class="invoice-container__search-config__body__items">
+                      <dt class="invoice-container__search-config__body__items__title">取込開始行</dt>
+                      <dd class="invoice-container__search-config__body__items__detail">
+                        <input type="text" class="invoice-container__search-config__body__items__detail__main-input">
+                        <div class="invoice-container__search-config__body__items__detail__check">
+                          <label class="invoice-container__search-config__body__opstions__item">
+                            <input type="checkbox" name="example3">
+                            最終行を取込処理しない
+                          </label>
+                          <label class="invoice-container__search-config__body__opstions__item">
+                            <input type="checkbox" name="example3">
+                            得意先マスターを自動生成する
+                          </label>
+                        </div>
+                      </dd>
+                    </dl>
+
+                    <div class="invoice-congif-result">
+                      <div class="invoice-congif-result__header">
+                        <h3 class="invoice-congif-result__header__title">取込列指定</h3>
+                      </div>
+                      <div class="invoice-congif-result-table sticky-head-table">
+                        <div class="sticky-head-table__header">
+                          <table class="sticky-head-table__header__inner">
+                            <tr>
+                              <th>No.</th>
+                              <th>重複</th>
+                              <th>上書</th>
+                              <th>VONE項目名</th>
+                              <th>取込有無</th>
+                              <th>固定値</th>
+                              <th>項目番号</th>
+                              <th>属性情報</th>
+                            </tr>
+                          </table>
+                        </div>
+                        <div class="sticky-head-table__body">
+                          <table class="sticky-head-table__body__inner">
+                            <tr>
+                              <td>1</td>
+                              <td><input type="checkbox"></td>
+                              <td><input type="checkbox"></td>
+                              <td>仮想支店コード</td>
+                              <td>
+                                <select name="" id="">
+                                  <option value="1:(請求金額０円データはエラーにする)" selected>1:(請求金額０円データはエラーにする)</option>
+                                </select></td>
+                              <td>???????</td>
+                              <td>1234567890</td>
+                              <td>何かしらの値</td>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>5</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>6</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>7</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>8</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>9</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>10</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>11</td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          </table>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </section>
+        <div id="footer-outer">
+        </div>
+      </div>
+    </div>
+    <div id="modal-body" class="full-modal-box invoice">
+      <span class="full-modal-box__close" data-modal-close></span>
+      <div class="full-modal-box__contents">
+        <div class="full-modal-box__contents__inner">
+          <h2 class="full-modal-box__contents__title">請求取込パターン検索</h2>
+          <div class="full-modal-box__contents__item-container">
+            <div class="invoice-pattern-search">
+              <section class="contents">
+                <div class="invoice-pattern-search__controller">
+                  <button class="invoice-controller__btn">検索</button>
+                  <button class="invoice-controller__btn">選択</button>
+                </div>
+              </section>
+              <section class="contents">
+                <div class="invoice-pattern-search__table sticky-head-table">
+                  <div class="sticky-head-table__header">
+                    <table class="sticky-head-table__header__inner">
+                      <tr>
+                        <th>&nbsp;</th>
+                        <th>
+                          <div class="invoice-pattern-search__table__head-cell">
+                            取込パターンコード
+                            <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                          </div>
+                        </th>
+                        <th>
+                          <div class="invoice-pattern-search__table__head-cell">
+                            取込パターン名
+                            <button class="table-sort"><img src="/assets/image/icon_spread.png" alt=""></button>
+                          </div>
+                        </th>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="sticky-head-table__body">
+                    <table class="sticky-head-table__body__inner">
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>

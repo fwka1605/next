@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="51a92607-ffbf-408f-9bc2-0ea3c1df684e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/HolidayCalendarMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HolidayCalendarMaster.disco" MetadataType="Disco" ID="d939e050-3782-4ea6-94e2-b75a2d0a1719" SourceId="1" SourceUrl="http://localhost:3061/Master/HolidayCalendarMaster.svc?disco" />
+    <MetadataFile FileName="HolidayCalendarMaster.xsd" MetadataType="Schema" ID="3f8d5d7d-bbf4-414b-814d-61c1990a8bbc" SourceId="1" SourceUrl="http://localhost:3061/Master/HolidayCalendarMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="HolidayCalendarMaster1.xsd" MetadataType="Schema" ID="ac58c032-3e09-4cdf-b4ad-28420dcfba1d" SourceId="1" SourceUrl="http://localhost:3061/Master/HolidayCalendarMaster.svc?xsd=xsd3" />
+    <MetadataFile FileName="HolidayCalendarMaster.wsdl" MetadataType="Wsdl" ID="ed8e9014-5b2a-47fb-a72a-e5807e20f491" SourceId="1" SourceUrl="http://localhost:3061/Master/HolidayCalendarMaster.svc?wsdl" />
+    <MetadataFile FileName="HolidayCalendarMaster2.xsd" MetadataType="Schema" ID="6e64c824-6372-4916-8bcc-5cc03e5ec0e2" SourceId="1" SourceUrl="http://localhost:3061/Master/HolidayCalendarMaster.svc?xsd=xsd1" />
+    <MetadataFile FileName="HolidayCalendarMaster3.xsd" MetadataType="Schema" ID="7c962447-ed26-4866-971e-14fbd65472d1" SourceId="1" SourceUrl="http://localhost:3061/Master/HolidayCalendarMaster.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

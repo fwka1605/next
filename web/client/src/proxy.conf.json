@@ -1,0 +1,38 @@
+{
+  "/api/vone/*": {
+    "target": "http://s0017:8626",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/vone/": "/api/"
+    },    
+    "changeOrigin": true
+  },
+
+  "/api/mfc/invoice/*": {
+    "target": "https://invoice.moneyforward.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/mfc/invoice/": "/"
+    },    
+    "changeOrigin": true
+  },
+
+  "/api/mfc/statement/*": {
+    "target": "https://statement.moneyforward.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/mfc/statement/": "/"
+    },    
+    "changeOrigin": true
+  },
+  
+  "/api/mfc/statement/transactions/*": {
+    "target": "https://statement-api.moneyforward.com",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/mfc/statement/transactions/": "/"
+    },    
+    "changeOrigin": true
+  }  
+
+}

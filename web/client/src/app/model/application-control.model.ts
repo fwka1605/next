@@ -1,0 +1,46 @@
+export class ApplicationControl {
+    public companyId: number;
+    public departmentCodeLength: number;
+    public departmentCodeType: number;
+    public sectionCodeLength: number;
+    public sectionCodeType: number;
+    public accountTitleCodeLength: number;
+    public accountTitleCodeType: number;
+    public customerCodeLength: number;
+    public customerCodeType: number;
+    public loginUserCodeLength: number;
+    public loginUserCodeType: number;
+    public staffCodeLength: number;
+    public staffCodeType: number;
+    public useDepartment: number;
+    public useScheduledPayment: number;
+    public useReceiptSection: number;
+    public useAuthorization: number;
+    public useLongTermAdvanceReceived: number;
+    public registerContractInAdvance: number;
+    public useCashOnDueDates: number;
+    public useFactoring: number;
+    public useDeclaredAmount: number;
+    public useDiscount: number;
+    public useForeignCurrency: number;
+    public useBillingFilter: number;
+    public useDistribution: number;
+    public useOperationLogging: number;
+    public applicationEdition: number;
+    public updateBy: number;
+    public updateAt: string;
+    public createBy: number;
+    public createAt: string;
+    public generalSettingValue: string | null;
+    public limitAccessFolder: number;
+    public rootPath: string | null;
+    public usePublishInvoice: number;
+    public useHatarakuDBWebApi: number;
+    public usePCADXWebApi: number;
+    public useReminder: number;
+    public useAccountTransfer: number;
+    public useMFWebApi: number;
+    public useClosing: number;
+    public useMfAggregation: number;
+}
+

@@ -1,0 +1,56 @@
+﻿namespace Rac.VOne.Common.Importer.PaymentSchedule
+{
+    public enum Fields
+    {
+        ///<summary>入金予定額</summary>
+        ReceiptAmount = 1,
+        ///<summary>会社コード</summary>
+        CompanyCode,
+        ///<summary>債権代表者コード</summary>
+        ParentCustomerCode,
+        ///<summary>得意先コード</summary>
+        CustomerCode,
+        ///<summary>請求日</summary>
+        BilledAt,
+        ///<summary>請求金額</summary>
+        BillingAmount,
+        ///<summary>消費税</summary>
+        TaxAmount,
+        ///<summary>入金予定日</summary>
+        DueAt,
+        ///<summary>請求部門</summary>
+        DepartmentCode,
+        ///<summary>債権科目</summary>
+        DebitAccountTitleCode,
+        ///<summary>売上日</summary>
+        SalesAt,
+        ///<summary>請求書番号</summary>
+        InvoiceCode,
+        ///<summary>請求締日</summary>
+        ClosingAt,
+        ///<summary>担当者</summary>
+        StaffCode,
+        ///<summary>備考</summary>
+        Note1,
+        ///<summary>請求区分</summary>
+        BillingCategoryCode,
+        ///<summary>備考2</summary>
+        Note2,
+        ///<summary>備考3</summary>
+        Note3,
+        ///<summary>備考4</summary>
+        Note4,
+        ///<summary>備考5</summary>
+        Note5,
+        ///<summary>備考6</summary>
+        Note6,
+        ///<summary>備考7</summary>
+        Note7,
+        ///<summary>備考8</summary>
+        Note8,
+        ///<summary>通貨コード</summary>
+        CurrencyCode,
+        ///<summary>入金予定キー</summary>
+        ScheduledPaymentKey,
+    }
+}

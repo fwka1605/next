@@ -1,0 +1,240 @@
+.multi-modal {
+    display: none;
+    &.is-show {
+        display: block;
+    }
+}
+
+[data-modal] {
+    cursor: pointer;
+    transition: .3s;
+    opacity: 1;
+}
+
+
+// モダルボックスのタイトルの文字の大きさと色などを指定する
+%modalContentTitle {
+    line-height: 1;
+    font-size: 1.3rem; // 一括でモダルボックスのタイトルの文字の大きさを変更する
+    border-bottom: 2px solid $border-color;
+    color: $key-color; // 一括でモダルボックスのタイトルの色を変更する
+}
+
+
+%mboxAutoSize {
+    min-width: unset;
+    height: auto;
+    width: auto;
+}
+
+%centerPosition {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/*
+small popup modal
+*/
+
+.modal-box {
+    opacity: 0;
+    transition: .3s;
+  display: block;
+  position: fixed;
+    z-index: -1;
+    height: 70%;
+    background-color: #fff;
+    width: 60%; // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%) scale(0.5);
+    @extend %centerPosition;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    &.is-show {
+        display: block;
+        min-width: 1100 * 0.6px; // transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        z-index: 300;
+        &.is_receipt_memo {
+            height: auto;
+            width: 660px;
+            .common-btn {
+                padding: 0 16px 16px;
+                button {
+                    &:last-child {
+                        margin-right: 0;
+                        -webkit-margin-start: auto;
+                        margin-inline-start: auto;
+                    }
+                }
+            } // height: auto;
+        }
+    }
+    &__close {
+        $closeBtnSize: 40px;
+        position: absolute;
+      right: 0;
+      height: 35px;
+        width: $closeBtnSize;
+        cursor: pointer;
+        &:after,
+        &:before {
+            content: '';
+            width: 2px;
+          height: 13px;
+          background-color: #fff;
+            display: block;
+            position: absolute;
+            top: 10px;
+            left: 19px;
+            border-radius: 2px;
+        }
+        &:before {
+            transform: rotate(-45deg);
+        }
+        &:after {
+            transform: rotate(45deg);
+        }
+    }
+    &__contents {
+        height: 100%;
+        border-radius: 3px;
+        overflow: hidden;
+        $titleMaxHeight: 53px;
+        &__inner {
+            height: 100%;
+        }
+        &__item-container {
+            height: calc(100% - #{$titleMaxHeight}); // titleの高さ
+            overflow-y: scroll;
+            background-color: #efefef;
+        }
+        &__title {
+            padding: 16px;
+            height: $titleMaxHeight;
+            @extend %modalContentTitle;
+        }
+    }
+}
+
+/*
+full window modal
+*/
+
+.full-modal-box {
+    &.is-show {
+        display: block; // width: 99%;
+        min-width: calc(1000px * 0.99); // transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        z-index: 300;
+        transition: .3s;
+        &.mbox-auto-size {
+            @extend %mboxAutoSize;
+        }
+    }
+    z-index: -1;
+    opacity: 0;
+    transition: .3s;
+    display: block; // position: fixed;
+    position: fixed;
+    height: 98vh;
+    background-color: #fff;
+    width: 60%; // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%, -50%) scale(0.5);
+    @extend %centerPosition;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 3px;
+    &__close {
+        $closeBtnSize: 40px;
+        position: absolute;
+        right: 6px;
+        top: 6px;
+        height: $closeBtnSize;
+        width: $closeBtnSize;
+        background-color: #fff;
+        cursor: pointer;
+        &:after,
+        &:before {
+            content: '';
+            width: 2px;
+            height: 26px;
+            background-color: $text-color;
+            display: block;
+            position: absolute;
+            top: 6px;
+            left: 19px;
+            border-radius: 2px;
+        }
+        &:before {
+            transform: rotate(-45deg);
+        }
+        &:after {
+            transform: rotate(45deg);
+        }
+    }
+    &__contents {
+        height: 98vh;
+        border-radius: 3px;
+        overflow: hidden;
+        $titleMaxHeight: 53px;
+        &__inner {
+            width: 100%;
+            overflow-x: scroll;
+        }
+        &__item-container {
+            height: calc(98vh - #{$titleMaxHeight}); // titleの高さ
+            overflow: scroll;
+            background-color: #efefef;
+            .contents {
+                // min-width: 1100px;
+                min-width: unset;
+            }
+        }
+        &__title {
+            padding: 16px;
+            height: $titleMaxHeight;
+            @extend %modalContentTitle;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            &__text {
+                display: inline-block;
+                font-size: 1.8rem;
+                font-weight: bold;
+                width: 20%;
+            }
+        }
+    }
+}
+
+
+/*
+モーダル 内 一行検索
+*/
+
+.liner-search {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px;
+    &__key {
+        margin: 0 20px;
+    }
+}
+
+
+/*
+インポート方法の選択
+*/
+
+.import-method-selector {
+    &__txt {
+        height: 36px;
+        display: flex;
+        align-items: center;
+    }
+}

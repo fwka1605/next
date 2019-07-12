@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>D91F9A31-5900-494B-B968-B7A30936EB18</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M12,11 L8.88888889,8 L8.88888889,5.17333333 C9.92,4.8 10.6666667,3.82222222 10.6666667,2.66666667 C10.6666667,1.19111111 9.47555556,0 8,0 C6.52444444,0 5.33333333,1.19111111 5.33333333,2.66666667 C5.33333333,3.82222222 6.08,4.8 7.11111111,5.17333333 L7.11111111,8 L4,11 L0,11 L0,16 L5,16 L5,13 L8,9.55555556 L11,13 L11,16 L16,16 L16,11 L12,11 Z" id="path-1"></path>
+    </defs>
+    <g id="page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="メニュー-&gt;-サブメニュー" transform="translate(-24.000000, -462.000000)">
+            <g id="Common/sidebar_Close">
+                <g id="Group-3" transform="translate(0.000000, 48.000000)">
+                    <g id="メンテナンス" transform="translate(0.000000, 405.000000)">
+                        <g id="Icon/SideMenu" transform="translate(24.000000, 9.600000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Path" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

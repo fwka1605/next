@@ -1,0 +1,475 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="form">
+        <div id="breadcrumb-outer">
+          <h1>05 管理帳票 - 01 請求残高年齢表(PF0101)</h1>
+        </div>
+        <section class="contents">
+          <div class="form__controller">
+            <button class="form__controller__btn">照会</button>
+            <button class="form__controller__btn">クリア</button>
+            <button class="form__controller__btn">印刷</button>
+            <button class="form__controller__btn">ダウンロード</button>
+            <button class="form__controller__btn" data-modal>設定</button>
+          </div>
+        </section>
+        <section class="contents form__data-search">
+          <h2 class="form__data-search__title">
+            <span class="form__data-search__title__text" data-accordion-trigger="1">
+              照会条件
+              <i class="form__data-search__title__icon">
+                <img src="/assets/image/icon_spread.png" alt="">
+              </i>
+            </span>
+          </h2>
+          <div class="form__data-search__accordion">
+            <div class="form__data-search__container">
+              <dl class="form__data-search__container__search-items">
+                <dt class="form__data-search__container__search-items__title">処理月</dt>
+                <dd class="form__data-search__container__search-items__detail">
+                  <input type="date" required="required" class="form__data-search__container__search-items__detail__date">
+                </dd>
+                <dt class="form__data-search__container__search-items__title">残高タイプ</dt>
+                <dd class="form__data-search__container__search-items__detail">
+                  <label><input name="zandaka" type="radio" class="form__data-search__container__search-items__detail__radio">会計帳簿の締日残高</label>
+                  <label><input name="zandaka" type="radio" class="form__data-search__container__search-items__detail__radio">得意先ごとの締日残高</label>
+                  <p class="form__data-search__container__search-items__detail__group">
+                    <span class="form__data-search__container__search-items__detail__group__text">締日</span>
+                    <input type="text" class="form__data-search__container__search-items__detail__box">
+                  </p>
+                </dd>
+                <dt class="form__data-search__container__search-items__title">請求部門コード</dt>
+                <dd class="form__data-search__container__search-items__detail">
+                  <input type="text" class="form__data-search__container__search-items__detail__before">
+                  <button class="form__data-search__container__search-items__detail__search-btn">検索</button>
+                  <input type="text" class="form__data-search__container__search-items__detail__after">
+                </dd>
+                <dt class="form__data-search__container__search-items__title form__data-search__container__search-items__title--checks">
+                  <span class="form__data-search__container__search-items__wavy-line">～</span>
+                  <input type="checkbox">
+                </dt>
+                <dd class="form__data-search__container__search-items__detail">
+                  <input type="text" class="form__data-search__container__search-items__detail__before">
+                  <button class="form__data-search__container__search-items__detail__search-btn">検索</button>
+                  <input type="text" class="form__data-search__container__search-items__detail__after">
+                </dd>
+                <dt class="form__data-search__container__search-items__title">担当者コード</dt>
+                <dd class="form__data-search__container__search-items__detail">
+                  <input type="text" class="form__data-search__container__search-items__detail__before">
+                  <button class="form__data-search__container__search-items__detail__search-btn">検索</button>
+                  <input type="text" class="form__data-search__container__search-items__detail__after">
+                </dd>
+                <dt class="form__data-search__container__search-items__title form__data-search__container__search-items__title--checks">
+                  <span class="form__data-search__container__search-items__wavy-line">～</span>
+                  <input type="checkbox">
+                </dt>
+                <dd class="form__data-search__container__search-items__detail">
+                  <input type="text" class="form__data-search__container__search-items__detail__before">
+                  <button class="form__data-search__container__search-items__detail__search-btn">検索</button>
+                  <input type="text" class="form__data-search__container__search-items__detail__after">
+                </dd>
+                <dt class="form__data-search__container__search-items__title">得意先コード</dt>
+                <dd class="form__data-search__container__search-items__detail">
+                  <input type="text" class="form__data-search__container__search-items__detail__before">
+                  <button class="form__data-search__container__search-items__detail__search-btn">検索</button>
+                  <input type="text" class="form__data-search__container__search-items__detail__after">
+                </dd>
+                <dt class="form__data-search__container__search-items__title form__data-search__container__search-items__title--checks">
+                  <span class="form__data-search__container__search-items__wavy-line">～</span>
+                  <input type="checkbox">
+                </dt>
+                <dd class="form__data-search__container__search-items__detail">
+                  <input type="text" class="form__data-search__container__search-items__detail__before">
+                  <button class="form__data-search__container__search-items__detail__search-btn">検索</button>
+                  <input type="text" class="form__data-search__container__search-items__detail__after">
+                </dd>
+              </dl>
+            </div>
+          </div>
+        </section>
+        <section class="contents form__data-search">
+          <div class="form__data-search__result">
+            <h2 class="form__data-search__result__title">照会結果</h2>
+            <div class="form__data-search__result__header">
+              <dl class="form__data-search__result__header__items">
+                <dt class="form__data-search__result__header__items__title">基準値</dt>
+                <dd class="form__data-search__result__header__items__detail">請求日</dd>
+                <dt class="form__data-search__result__header__items__title">担当者設計</dt>
+                <dd class="form__data-search__result__header__items__detail">しない</dd>
+              </dl>
+              <dl class="form__data-search__result__header__items">
+                <dt class="form__data-search__result__header__items__title">部門計</dt>
+                <dd class="form__data-search__result__header__items__detail">しない</dd>
+              </dl>
+              <dl class="form__data-search__result__header__items">
+                <dt class="form__data-search__result__header__items__title">担当者集計</dt>
+                <dd class="form__data-search__result__header__items__detail">得意先マスター</dd>
+                <dt class="form__data-search__result__header__items__title">得意先集計</dt>
+                <dd class="form__data-search__result__header__items__detail">債権代表者/得意先</dd>
+              </dl>
+              <dl class="form__data-search__result__header__items">
+                <dt class="form__data-search__result__header__items__title">請求残計算</dt>
+                <dd class="form__data-search__result__header__items__detail">入金額を使用する</dd>
+                <dt class="form__data-search__result__header__items__title">金額単位</dt>
+                <dd class="form__data-search__result__header__items__detail">円</dd>
+              </dl>
+
+            </div>
+            <div class="form__data-search__result-table xy-scroller-table">
+              <div class="xy-scroller-table__header">
+                <table class="">
+                  <tr>
+                    <th></th>
+                    <th>得意先コード</th>
+                    <th>得意先名</th>
+                    <th>前月請求額</th>
+                    <th>当月売上高</th>
+                    <th>当月入金</th>
+                    <th>当月消込</th>
+                    <th>当月請求残</th>
+                    <th>02月発生額</th>
+                    <th>01月発生額</th>
+                    <th>12月発生額</th>
+                    <th>11月発生額</th>
+                  </tr>
+                </table>
+              </div>
+              <div class="xy-scroller-table__body">
+                <table class="xy-scroller-table__body__inner">
+                  <tr>
+                    <td class="line-number">1</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">2</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">3</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">4</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">5</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">6</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">7</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">8</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">9</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">10</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">11</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">12</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">13</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">14</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+                  <tr>
+                    <td class="line-number">15</td>
+                    <td>12345678901234567890</td>
+                    <td>とくいさきのなまえ</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                    <td>1,234,567,890</td>
+                  </tr>
+
+
+                </table>
+
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+      <div id="footer-outer">
+      </div>
+    </div>
+  </div>
+  <div id="modal-body" class="modal-box">
+    <span class="modal-box__close" data-modal-close></span>
+
+    <div class="modal-box__contents" data-modal-contents>
+      <div class="modal-box__contents__inner">
+        <h2 class="modal-box__contents__title">帳票設定</h2>
+        <div class="modal-box__contents__item-container">
+          <div class="form-setting">
+            <section class="contents">
+              <div class="form-setting__controller">
+                <button class="invoice-controller__btn">登録</button>
+                <button class="invoice-controller__btn">再表示</button>
+              </div>
+            </section>
+            <section class="contents">
+              <div class="form-setting__container-exclude sticky-head-table">
+                <div class="sticky-head-table__header">
+                  <table class="sticky-head-table__header__inner">
+                    <tr>
+                      <th> 銀行コード </th>
+                      <th> 支店コード </th>
+                    </tr>
+                  </table>
+                </div>
+                <div class="sticky-head-table__body">
+                  <table class="sticky-head-table__body__inner">
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                    <tr>
+                      <td>C:\Users\kon\Desktop\ローカルテストデータ\G4\4.0.6\EBデータ\00.正常.csv</td>
+                      <td>808 B</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>

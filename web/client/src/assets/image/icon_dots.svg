@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="4px" viewBox="0 0 10 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>9400FD3C-A69D-460C-B7FF-3BDCC8F0EDCE</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M1.25,6.25 C0.559644063,6.25 0,5.69035594 0,5 C0,4.30964406 0.559644063,3.75 1.25,3.75 C1.94035594,3.75 2.5,4.30964406 2.5,5 C2.5,5.69035594 1.94035594,6.25 1.25,6.25 Z M5,6.25 C4.30964406,6.25 3.75,5.69035594 3.75,5 C3.75,4.30964406 4.30964406,3.75 5,3.75 C5.69035594,3.75 6.25,4.30964406 6.25,5 C6.25,5.69035594 5.69035594,6.25 5,6.25 Z M8.75,6.25 C8.05964406,6.25 7.5,5.69035594 7.5,5 C7.5,4.30964406 8.05964406,3.75 8.75,3.75 C9.44035594,3.75 10,4.30964406 10,5 C10,5.69035594 9.44035594,6.25 8.75,6.25 Z" id="path-1"></path>
+    </defs>
+    <g id="page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="一括消込-&gt;-照合結果" transform="translate(-159.000000, -302.000000)">
+            <g id="list_set" transform="translate(79.000000, 176.000000)">
+                <g id="list" transform="translate(0.998993, 47.000000)">
+                    <g id="list01" transform="translate(1.000000, 65.000000)">
+                        <g id="Group-4" transform="translate(16.000000, 0.000000)">
+                            <g id="Lv1/Button/Small/Icon-Only" transform="translate(55.000000, 4.000000)">
+                                <g id="Icon/Message" transform="translate(7.000000, 7.000000)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <g id="Menu_3Circle"></g>
+                                    <g id="Color" mask="url(#mask-2)" fill="#FFFFFF">
+                                        <rect id="Base" x="0" y="0" width="10" height="10"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

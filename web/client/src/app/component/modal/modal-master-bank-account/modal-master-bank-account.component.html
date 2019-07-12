@@ -1,0 +1,58 @@
+<section 
+  [formGroup]="myFormGroup"
+  [style.z-index]="zIndex"
+  class="vModal--large height--600">
+
+  <h2 class="vModal__heading">銀行口座の選択
+    <span class="vModal__close"
+      (click)="close()"></span>
+  </h2>
+  <div class="vModal__contents">
+    <section class="contentsButton">
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processModalCustomResult"></app-parts-result-message>
+
+      <button (click)="search()" class="buttonSecondary">{{ItemNameConst.BTN_SEARCH}}</button>
+      <button (click)="cancel()" class="buttonMinimum" >{{ItemNameConst.BTN_CANCEL}}</button>
+    </section>
+
+    <section class="contents--x-scrollable">
+      <div class="contents__container">
+        <dl class="definitionForm mb--0">
+          <dt class="definitionForm__title">検索キー</dt>
+          <dd class="definitionForm__data">
+          <input formControlName="searchKeyCtrl" name="searchKeyCtrl" class="input-size--400">
+          </dd>
+        </dl>
+        <div class="modalTable">
+          <table>
+            <thead>
+              <tr>
+                <th class="col-size--50"></th>
+                <th class="col-size--100">銀行コード</th>
+                <th class="col-size--220">銀行名</th>
+                <th class="col-size--100">支店コード</th>
+                <th class="col-size--220">支店名</th>
+                <th class="col-size--100">預金種別</th>
+                <th class="col-size--100">口座番号</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bankAccount of bankAccountsResult?.bankAccounts; let i = index" (click)="select(i)"
+                class="line-selector">
+                <th class="col-size--50 align--right">{{ i + 1 }}</th>
+                <td class="col-size--100 col-align-center">{{bankAccount.bankCode}}</td>
+                <td class="col-size--220">{{bankAccount.bankName}}</td>
+                <td class="col-size--100 col-align-center">{{bankAccount.branchCode}}</td>
+                <td class="col-size--220">{{bankAccount.branchName}}</td>
+                <td class="col-size--100">{{bankAccount.accountTypeName}}</td>
+                <td class="col-size--100">{{bankAccount.accountNumber}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

@@ -1,0 +1,50 @@
+<div 
+  (dragover)="onDragOver($event)" 
+  (drop)="onDrop($event)">
+  <ul class="menu1st js-menu1st">
+    <li class="menu1st__item--top">
+      <img class="" src="/assets/image/logo.png" alt="V-ONE クラウド">
+    </li>
+    <!-- ホーム -->
+    <li class="menu1st__item">
+      <a (click)="closeMenu();home()">
+        <span class="menu1st__icon">
+          <img class="menu1st__img" src="/assets/image/icon_home.svg" alt="">
+          <span class="menu1st__subText">ホーム</span>
+        </span>
+      </a>
+    </li>
+  
+    <ng-container *ngFor="let firstMenu of menu.FirstMenus ; let i = index">
+      <li *ngIf="firstMenu.Visible" class="menu1st__item">
+        <span #menuTrigger class="menu1st__icon"
+          routerLinkActive="is-current"
+          (click)="sideMenuControl(i)">
+          <img class="menu1st__img" src="/assets/image/{{firstMenu.Icon}}" alt="">
+          <span class="menu1st__subText">{{firstMenu.Title}}</span>
+        </span>
+        <ul class="menu2nd" (mouseleave)="closeMenu()">
+          <!-- <li class="menu2nd__item">
+            <h2 class="menu2nd__title">{{firstMenu.Title}}</h2>
+          </li> -->
+          <ng-container *ngFor="let secondItem of firstMenu.secondItems">
+            <li *ngIf="secondItem.Visible" class="menu2nd__item">
+              <a class="menu2nd__anchor"
+                routerLink="{{secondItem.Path}}" routerLinkActive="is-current" (click)="closeMenu()">{{secondItem.Title}}</a>
+            </li>
+          </ng-container >
+        </ul>
+      </li>
+    </ng-container>
+    <li class="menu1st__item"
+      [style.visibility]="'hidden'" >
+      <a id="btnLogout" (click)="logout()">
+        <span class="menu1st__icon">
+          <img class="menu1st__img" src="/assets/image/icon_logout_white.png" alt="">
+          <span class="menu1st__tooltip js-tooltip">ログアウト</span>
+          <span class="menu1st__subText">ログアウト</span>
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>

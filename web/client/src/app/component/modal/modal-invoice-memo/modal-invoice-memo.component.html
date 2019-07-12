@@ -1,0 +1,90 @@
+<section 
+  class="vModal height--400"
+  [style.z-index]="zIndex"
+  [formGroup]="myFormGroup">
+  <h2 class="vModal__heading">請求データ入力【備考入力】
+    <span class="vModal__close"
+      (click)="close()"
+      data-modal-close></span>
+  </h2>
+  <div class="vModal__contents--dialog">
+    <div class="contents__container">
+      <dl class="definitionForm">
+        <dt class="definitionForm__title w--13">請求メモ</dt>
+        <dd class="definitionForm__data w--87">
+          <input
+            formControlName="MemoCtrl"
+            name="MemoCtrl"
+            (keyup.enter)="setMemoCtrl($event.type)"
+            class="input-size--590">
+        </dd>
+        <dt class="definitionForm__title w--13">{{getColumnName("Note2")}}</dt>
+        <dd class="definitionForm__data w--87">
+          <input 
+            formControlName="Note2Ctrl" 
+            name="Note2Ctrl"
+            (keyup.enter)="setNote2Ctrl($event.type)"
+            class="input-size--590">
+        </dd>
+        <dt class="definitionForm__title w--13">{{getColumnName("Note3")}}</dt>
+        <dd class="definitionForm__data w--87">
+          <input
+            formControlName="Note3Ctrl"
+            name="Note3Ctrl"
+            (keyup.enter)="setNote3Ctrl($event.type)"
+            class="input-size--590">
+        </dd>
+        <dt class="definitionForm__title w--13">{{getColumnName("Note4")}}</dt>
+        <dd class="definitionForm__data w--87">
+          <input
+            formControlName="Note4Ctrl"
+            name="Note4Ctrl"
+            (keyup.enter)="setNote4Ctrl($event.type)"
+            class="input-size--590">
+        </dd>
+        <dt class="definitionForm__title w--13">{{getColumnName("Note5")}}</dt>
+        <dd class="definitionForm__data w--87">
+          <input
+            formControlName="Note5Ctrl"
+            name="Note5Ctrl"
+            (keyup.enter)="setNote5Ctrl($event.type)"
+            class="input-size--590">
+        </dd>
+        <dt class="definitionForm__title w--13">{{getColumnName("Note6")}}</dt>
+        <dd class="definitionForm__data w--87">
+          <input
+            formControlName="Note6Ctrl"
+            name="Note6Ctrl"
+            (keyup.enter)="setNote6Ctrl($event.type)"
+            class="input-size--590">
+        </dd>
+        <dt class="definitionForm__title w--13">{{getColumnName("Note7")}}</dt>
+        <dd class="definitionForm__data w--87">
+          <input
+            formControlName="Note7Ctrl"
+            name="Note7Ctrl"
+            (keyup.enter)="setNote7Ctrl($event.type)"
+            class="input-size--590">
+        </dd>
+        <dt class="definitionForm__title w--13">{{getColumnName("Note8")}}</dt>
+        <dd class="definitionForm__data w--87">
+          <input
+            formControlName="Note8Ctrl"
+            name="Note8Ctrl"
+            (keyup.enter)="setNote8Ctrl($event.type)"
+            class="input-size--590">
+        </dd>
+      </dl>
+      <hr class="separator">
+      <div class="common-btn mb--20">
+        <button class="buttonSecondary"
+          (click)="registry()"
+          [ngClass]="{'button-disable':  myFormGroup.invalid}">{{ItemNameConst.BTN_REGISTRY}}</button>
+        <button 
+          (click)="cancel()" class="buttonMinimum">{{ItemNameConst.BTN_CANCEL}}</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modalBackdrop" [style.z-index]="zIndex-1"></div>

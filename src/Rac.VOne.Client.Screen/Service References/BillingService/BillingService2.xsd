@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:3061/BillingService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfBilling">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Billing" nillable="true" type="tns:Billing" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBilling" nillable="true" type="tns:ArrayOfBilling" />
+  <xs:complexType name="Billing">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountTitleCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountTransferLogId" type="xs:long" />
+      <xs:element minOccurs="0" name="Approved" type="xs:int" />
+      <xs:element minOccurs="0" name="AssignmentAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AssignmentFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="BankTransferFee" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BilledAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BillingCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingCategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingDiscountId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="BillingDivisionContract" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingDueAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingId" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingInputId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="BillingInputPublishAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingInputTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="CategoryCodeAndName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClosingAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CollectCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollectCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CollectCategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="Confirm" type="xs:int" />
+      <xs:element minOccurs="0" name="ContractNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="CreditAccountTitleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyPrecision" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerKana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitAccountTitleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DeleteAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DestinationId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DiscountAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount2" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount3" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount4" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount5" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DisplayOrder" type="xs:int" />
+      <xs:element minOccurs="0" name="DueAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="FirstRecordedAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="InputType" type="xs:int" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsParent" type="xs:int" />
+      <xs:element minOccurs="0" name="LastRecordedAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LoginUserCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginUserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedDueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Note1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OffsetAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OrgCategoryCodeAndName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginalCollectCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OriginalDueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutputAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ParentCustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentCustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PeriodicBillingSettingId" type="xs:long" />
+      <xs:element minOccurs="0" name="Price" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PublishAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Quantity" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RemainAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RequestDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ResultCode" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="SalesAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ScheduledPaymentKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffId" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxClassId" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxDifference" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TransferOriginalDueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UnitPrice" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UnitSymbol" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDiscount" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseLongTermAdvancedReceived" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Billing" nillable="true" type="tns:Billing" />
+  <xs:complexType name="BillingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Billings" nillable="true" type="tns:ArrayOfBilling" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingsResult" nillable="true" type="tns:BillingsResult" />
+  <xs:complexType name="ProcessResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ErrorCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+  <xs:complexType name="CountResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CountResult" nillable="true" type="tns:CountResult" />
+  <xs:complexType name="BillingResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Billing" nillable="true" type="tns:ArrayOfBilling" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingResult" nillable="true" type="tns:BillingResult" />
+  <xs:complexType name="BillingSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignmentFlg" type="xs:int" />
+      <xs:element minOccurs="0" name="BilledAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BillingId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="BillingInputId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="BsBilledAtFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsBilledAtTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsBillingAmountFrom" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BsBillingAmountTo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BsBillingCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="BsClosingAtFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsClosingAtTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsCurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsCustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsCustomerCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsCustomerCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsCustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsCustomerNameKana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsDeleteAtFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsDeleteAtTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsDepartmentCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsDepartmentCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsDueAtFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsDueAtTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsInputType" type="xs:int" />
+      <xs:element minOccurs="0" name="BsInvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsInvoiceCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsInvoiceCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsMemo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsNote1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsNote2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsNote3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsNote4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsNote5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsNote6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsNote7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsNote8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsPayerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsRemaingAmountFrom" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BsRemaingAmountTo" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BsSalesAtFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsSalesAtTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsScheduledPaymentKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsStaffCodeFrom" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsStaffCodeTo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BsUpdateAtFrom" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsUpdateAtTo" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BsUpdateBy" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ClientKey" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="CollectCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="ExistsMemo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsParentFlg" type="xs:int" />
+      <xs:element minOccurs="0" name="KobetsuType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginUserCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LoginUserId" type="xs:int" />
+      <xs:element minOccurs="0" name="Note1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RequestDate" type="xs:int" />
+      <xs:element minOccurs="0" name="RequireRecordedAt" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TaxAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxClassId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDepartmentWork" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UseSectionMaster" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingSearch" nillable="true" type="tns:BillingSearch" />
+  <xs:complexType name="BillMemoResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillingMemo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillMemoResult" nillable="true" type="tns:BillMemoResult" />
+  <xs:complexType name="BillingDiscount">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignmentFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingId" type="xs:long" />
+      <xs:element minOccurs="0" name="DiscountAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount2" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount3" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount4" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountAmount5" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingDiscount" nillable="true" type="tns:BillingDiscount" />
+  <xs:complexType name="BillingDiscountsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillingDiscounts" nillable="true" type="tns:ArrayOfBillingDiscount" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingDiscountsResult" nillable="true" type="tns:BillingDiscountsResult" />
+  <xs:complexType name="ArrayOfBillingDiscount">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BillingDiscount" nillable="true" type="tns:BillingDiscount" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBillingDiscount" nillable="true" type="tns:ArrayOfBillingDiscount" />
+  <xs:complexType name="ExistResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Exist" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ExistResult" nillable="true" type="tns:ExistResult" />
+  <xs:complexType name="ArrayOfScheduledPaymentImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ScheduledPaymentImport" nillable="true" type="tns:ScheduledPaymentImport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfScheduledPaymentImport" nillable="true" type="tns:ArrayOfScheduledPaymentImport" />
+  <xs:complexType name="ScheduledPaymentImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountTitleCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Approved" type="xs:int" />
+      <xs:element minOccurs="0" name="AssignmentAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="AssignmentFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="BilledAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BillingCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingCategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingId" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingInputTypeId" type="xs:int" />
+      <xs:element minOccurs="0" name="ClosingAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CollectCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollectCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreditAccountTitleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerFlg" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerKana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitAccountTitleId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="InputType" type="xs:int" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsParent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LineNo" type="xs:int" />
+      <xs:element minOccurs="0" name="LoginUserCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OffsetAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="OriginalCollectCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OriginalDueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OutputAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ParentCustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="PublishAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RemainAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SalesAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ScheduledPaymentKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffId" type="xs:int" />
+      <xs:element minOccurs="0" name="StaffName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxClassId" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateFlg" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScheduledPaymentImport" nillable="true" type="tns:ScheduledPaymentImport" />
+  <xs:complexType name="ScheduledPaymentImportResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element minOccurs="0" name="ScheduledPaymentImport" nillable="true" type="tns:ArrayOfScheduledPaymentImport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ScheduledPaymentImportResult" nillable="true" type="tns:ScheduledPaymentImportResult" />
+  <xs:complexType name="ArrayOfTransaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Transaction" nillable="true" type="tns:Transaction" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTransaction" nillable="true" type="tns:ArrayOfTransaction" />
+  <xs:complexType name="Transaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Transaction" nillable="true" type="tns:Transaction" />
+  <xs:complexType name="ArrayOfImporterSettingDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ImporterSettingDetail" nillable="true" type="tns:ImporterSettingDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfImporterSettingDetail" nillable="true" type="tns:ArrayOfImporterSettingDetail" />
+  <xs:complexType name="ImporterSettingDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AttributeDivision" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BaseAttributeDivision" type="xs:int" />
+      <xs:element minOccurs="0" name="BaseImportDivision" type="xs:int" />
+      <xs:element minOccurs="0" name="Caption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="DoOverwrite" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldIndex" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="FieldName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FixedValue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ImportDivision" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporterSettingId" type="xs:int" />
+      <xs:element minOccurs="0" name="ImporterSettingUpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsUnique" type="xs:int" />
+      <xs:element minOccurs="0" name="ItemPriority" type="xs:int" />
+      <xs:element minOccurs="0" name="Sequence" type="xs:int" />
+      <xs:element minOccurs="0" name="TargetColumn" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+      <xs:element minOccurs="0" name="UpdateKey" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ImporterSettingDetail" nillable="true" type="tns:ImporterSettingDetail" />
+  <xs:complexType name="ArrayOfBillingImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BillingImport" nillable="true" type="tns:BillingImport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBillingImport" nillable="true" type="tns:ArrayOfBillingImport" />
+  <xs:complexType name="BillingImport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssignmentFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="AutoCreationCustomerFlag" type="xs:int" />
+      <xs:element minOccurs="0" name="BilledAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BilledAtForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BillingAmountForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BillingCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="BillingId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ClosingAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ClosingAtForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollationKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollectCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollectCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="ContractNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerKana" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitAccountTitleCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitAccountTitleId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="DiscountAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountType" type="xs:int" />
+      <xs:element minOccurs="0" name="DueAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DueAtForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExclusiveAccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExclusiveBankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExclusiveBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExclusiveVirtualBranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InputType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PriceForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegisterContractInAdvance" type="xs:int" />
+      <xs:element minOccurs="0" name="SaleAtForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SalesAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffId" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxAmountForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxClassId" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxClassIdForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TaxRate" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UseDiscounForPrint" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UseDiscount" type="xs:int" />
+      <xs:element minOccurs="0" name="UseLongTermAdvanceReceived" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingImport" nillable="true" type="tns:BillingImport" />
+  <xs:complexType name="BillingImportResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingImportResult" nillable="true" type="tns:BillingImportResult" />
+  <xs:complexType name="ArrayOfBillingImportDuplicationWithCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BillingImportDuplicationWithCode" nillable="true" type="tns:BillingImportDuplicationWithCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBillingImportDuplicationWithCode" nillable="true" type="tns:ArrayOfBillingImportDuplicationWithCode" />
+  <xs:complexType name="BillingImportDuplicationWithCode">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:BillingImportDuplication">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BillingCategoryCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CollectCategoryCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DebitAccountTitleCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DepartmentCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BillingImportDuplicationWithCode" nillable="true" type="tns:BillingImportDuplicationWithCode" />
+  <xs:complexType name="BillingImportDuplication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BilledAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BillingCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="ClosingAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CollectCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="DebitAccountTitleId" type="xs:int" />
+      <xs:element minOccurs="0" name="DepartmentId" type="xs:int" />
+      <xs:element minOccurs="0" name="DueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Price" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="RowNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="SalesAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StaffId" type="xs:int" />
+      <xs:element minOccurs="0" name="TaxAmount" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="TaxClassId" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingImportDuplication" nillable="true" type="tns:BillingImportDuplication" />
+  <xs:complexType name="BillingImportDuplicationResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="RowNumbers" nillable="true" type="q1:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingImportDuplicationResult" nillable="true" type="tns:BillingImportDuplicationResult" />
+  <xs:complexType name="JournalizingSummariesResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="JournalizingsSummaries" nillable="true" type="tns:ArrayOfJournalizingSummary" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JournalizingSummariesResult" nillable="true" type="tns:JournalizingSummariesResult" />
+  <xs:complexType name="ArrayOfJournalizingSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="JournalizingSummary" nillable="true" type="tns:JournalizingSummary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfJournalizingSummary" nillable="true" type="tns:ArrayOfJournalizingSummary" />
+  <xs:complexType name="JournalizingSummary">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Amount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Count" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OutputAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JournalizingSummary" nillable="true" type="tns:JournalizingSummary" />
+  <xs:complexType name="BillingJournalizingsResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BillingJournalizings" nillable="true" type="tns:ArrayOfBillingJournalizing" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingJournalizingsResult" nillable="true" type="tns:BillingJournalizingsResult" />
+  <xs:complexType name="ArrayOfBillingJournalizing">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BillingJournalizing" nillable="true" type="tns:BillingJournalizing" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBillingJournalizing" nillable="true" type="tns:ArrayOfBillingJournalizing" />
+  <xs:complexType name="BillingJournalizing">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AccountType" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="BankCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BilledAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="BranchCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BranchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreditAccountTitleCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditAccountTitleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditDepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditDepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditSubCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditSubName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitAccountTitleCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitAccountTitleName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitDepartmentCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitDepartmentName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitSubCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DebitSubName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Note" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SlipNumber" type="xs:long" />
+      <xs:element minOccurs="0" name="SourceBankName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceBranchName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StaffCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingJournalizing" nillable="true" type="tns:BillingJournalizing" />
+  <xs:complexType name="ArrayOfAccountTransferImportData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AccountTransferImportData" nillable="true" type="tns:AccountTransferImportData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAccountTransferImportData" nillable="true" type="tns:ArrayOfAccountTransferImportData" />
+  <xs:complexType name="AccountTransferImportData">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="BillingIdList" nillable="true" type="q2:ArrayOflong" />
+      <xs:element minOccurs="0" name="CollectCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="DoUpdateAccountTransferLogId" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DueDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DueDateOffset" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ResultCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountTransferImportData" nillable="true" type="tns:AccountTransferImportData" />
+  <xs:complexType name="AccountTransferImportResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AccountTransferImportResult" nillable="true" type="tns:AccountTransferImportResult" />
+  <xs:complexType name="BillingDueAtModifyResults">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Billings" nillable="true" type="tns:ArrayOfBillingDueAtModify" />
+      <xs:element minOccurs="0" name="ProcessResult" nillable="true" type="tns:ProcessResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingDueAtModifyResults" nillable="true" type="tns:BillingDueAtModifyResults" />
+  <xs:complexType name="ArrayOfBillingDueAtModify">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BillingDueAtModify" nillable="true" type="tns:BillingDueAtModify" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBillingDueAtModify" nillable="true" type="tns:ArrayOfBillingDueAtModify" />
+  <xs:complexType name="BillingDueAtModify">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BilledAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="BillingInputId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ClosingAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CollectCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CollectCategoryId" type="xs:int" />
+      <xs:element minOccurs="0" name="CollectCategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CompanyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrencyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrencyId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CustomerId" type="xs:int" />
+      <xs:element minOccurs="0" name="CustomerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DueAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="InvoiceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifiedDueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="NewCollectCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="NewDueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OriginalCollectCategoryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginalCollectCategoryId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="OriginalCollectCategoryName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginalDueAt" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TargetAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UpdateAt" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UpdateBy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BillingDueAtModify" nillable="true" type="tns:BillingDueAtModify" />
+</xs:schema>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f2135c91-6355-4a41-af68-d0c53fbf0bdc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3061/Master/BankAccountTypeMaster.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BankAccountTypeMaster.disco" MetadataType="Disco" ID="b9562055-1258-4a22-9241-f018d5a0c4ac" SourceId="1" SourceUrl="http://localhost:3061/Master/BankAccountTypeMaster.svc?disco" />
+    <MetadataFile FileName="BankAccountTypeMaster.xsd" MetadataType="Schema" ID="d8314958-ae45-425e-95f1-7010f14b9d25" SourceId="1" SourceUrl="http://localhost:3061/Master/BankAccountTypeMaster.svc?xsd=xsd2" />
+    <MetadataFile FileName="BankAccountTypeMaster.wsdl" MetadataType="Wsdl" ID="4830b202-18f8-4c07-adba-242a7dec806a" SourceId="1" SourceUrl="http://localhost:3061/Master/BankAccountTypeMaster.svc?wsdl" />
+    <MetadataFile FileName="BankAccountTypeMaster1.xsd" MetadataType="Schema" ID="004ed2f6-67e7-4b8a-afb9-bf5128a5758a" SourceId="1" SourceUrl="http://localhost:3061/Master/BankAccountTypeMaster.svc?xsd=xsd0" />
+    <MetadataFile FileName="BankAccountTypeMaster2.xsd" MetadataType="Schema" ID="0bd0b1a6-bddb-48f8-ae30-fd0ac2f80d9c" SourceId="1" SourceUrl="http://localhost:3061/Master/BankAccountTypeMaster.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

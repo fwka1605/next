@@ -1,0 +1,29 @@
+
+  .separator {
+    &__item {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: $pageContainer-padding;
+      padding-right: $pageContainer-padding;
+      border-right: 1px solid $border-color;
+      &:last-child {
+        margin-right: 0;
+        padding-right: 0;
+        border-right: none;
+        .infotip__frame {
+          left: auto;
+          right: 0;
+          &::before {
+            left: auto;
+            right: 7px;
+          }
+        }
+      }
+      > .buttonPrimary {
+        margin-right: $pageContainer-padding;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }

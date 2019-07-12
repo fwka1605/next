@@ -1,0 +1,43 @@
+export class Reminder {
+    public id: number;
+    public companyId: number;
+    public statusId: number;
+    public statusCode: string | null;
+    public statusName: string | null;
+    public memo: string | null;
+    public outputAt: string | null;
+    public arrearsDays: number | null;
+    public calculateBaseDate: string;
+    public customerId: number;
+    public customerCode: string | null;
+    public customerName: string | null;
+    public currencyId: number;
+    public currencyCode: string | null;
+    public closingAt: string;
+    public invoiceCode: string | null;
+    public collectCategoryId: number;
+    public collectCategoryCode: string | null;
+    public collectCategoryName: string | null;
+    public destinationId: number | null;
+    public destinationCode: string | null;
+    public departmentId: number;
+    public departmentCode: string | null;
+    public departmentName: string | null;
+    public staffId: number;
+    public staffCode: string | null;
+    public staffName: string | null;
+    public customerStaffName: string | null;
+    public customerNote: string | null;
+    public customerTel: string | null;
+    public detailCount: number;
+    public remainAmount: number;
+    public reminderAmount: number | null;
+    public arrearsInterest: number | null;
+    public excludeReminderPublish: number;
+    public ids: number[];
+    public destinationIds: number[];
+    public destinationIdInput: number | null;
+    public noDestination: Boolean;
+    public destinationDisplay: string | null;
+}
+

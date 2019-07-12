@@ -1,0 +1,10 @@
+.drag-drop-setting-detail {
+  cursor: default;
+}
+
+.drag-drop-handle {
+  cursor: move;
+}
+
+.material-icons.md-dark { color: rgba(0, 0, 0, 1); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }

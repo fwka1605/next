@@ -1,0 +1,502 @@
+<div [formGroup]="myFormGroup" class="form-data-search">
+    <section class="contentsButton">
+  
+      <div class="contentsButton__inner">
+  
+        <!--- 処理結果の表示 -->
+        <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+  
+        <button 
+          (click)="panelOpenState=!panelOpenState;panelOpenState?panel.open():panel.close();"
+          class="buttonPrimary">
+          {{panelOpenState?ItemNameConst.BTN_ADD_HIDDEN:ItemNameConst.BTN_ADD_SEARCH}}</button>
+  
+        <div class="contentsButton__subSection">
+          <ul class="separator">
+            <li class="separator__item">
+              <button class="buttonPrev infotip" 
+                (click)="prev()" 
+                [ngClass]="{'button-disable': currentCustomerLedgers==null || currentCustomerLedgers.length==0 || parentCodeList.length==1 || currentParentCodeIndex==0 }">
+                {{ItemNameConst.BTN_PREV}}
+                <span [innerHtml]="ButtonTipsConst.PREV_CUSTOMER | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+              <button class="buttonNext infotip"
+                (click)="next()" 
+                [ngClass]="{'button-disable': currentCustomerLedgers==null || currentCustomerLedgers.length==0 || parentCodeList.length==1 || currentParentCodeIndex==(parentCodeList.length-1)}">
+                {{ItemNameConst.BTN_NEXT}}
+                <span [innerHtml]="ButtonTipsConst.NEXT_CUSTOMER | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+            </li>
+  
+            <li class="separator__item">        
+  
+              <button
+                (click)="openFromSettingModal()"
+                [ngClass]="{'button-disable': !(currentCustomerLedgers==null || currentCustomerLedgers.length==0)}"
+                class="buttonPrimary infotip">
+                {{ItemNameConst.BTN_SETTING_OUTPUT}}
+                <span [innerHtml]="ButtonTipsConst.OUTPUT_CONTENT_SETTING | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+            </li>
+  
+            <li class="separator__item">
+  
+              <button 
+                [ngClass]="{'button-disable': customerLedgersResult==null || customerLedgersResult.customerLedgers.length==0}"
+                class="buttonExport infotip"
+                (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+                <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+              </button>
+            </li>
+  
+          </ul>
+        </div>
+      </div>
+    </section> 
+  
+    <section class="pageContainer">
+  
+      <!---照会条件-->
+      <mat-expansion-panel
+        #panel
+        [hideToggle]="true">
+        <ng-template matExpansionPanelContent>
+          <section [ngClass]="!panelOpenState ? 'contents--hidden' : 'contents--visible'">
+  
+            <h2 class="contents__title--underline">
+              {{ItemNameConst.LBL_SETTING_INQUIRY}}
+            </h2>
+  
+            <div class="accordionContent__body contents__container--flex">
+              <div class="contents__item--w-50">
+                <dl class="definitionForm">
+                  <dt class="definitionForm__title w--21">得意先コード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                  <dd class="definitionForm__data w--75">
+                    <input 
+                      formControlName="customerCodeFromCtrl" 
+                      name="customerCodeFromCtrl"
+                      (keyup.enter)="setCustomerCodeFrom($event.type)" 
+                      (blur)="setCustomerCodeFrom($event.type)"
+                      #customerCodeFromInput
+                      [formControl]="customerCodeFromCtrl" 
+                      [matAutocomplete]="autoCustomerCodeFrom"
+                      maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                      class="input-size--110">
+                    <mat-autocomplete 
+                      #autoCustomerCodeFrom="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth300">
+                      <mat-option 
+                        *ngFor="let customer of customerFilterds[0] | async" 
+                        [value]="customer.code">
+                        {{customer.code}}:{{customer.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'from')"></a>
+                    <input
+                      formControlName="customerNameFromCtrl"
+                      name="customerNameFromCtrl"
+                      class="input-size--250"
+                      readonly>
+                  </dd>
+                  <dt class="definitionForm__title w--21">
+                    <span class="end-checkbox">
+                      <div class="inputStyled">
+                        <input class="inputStyled__input"
+                          id="cbxCustomerCtrl" 
+                          formControlName="cbxCustomerCtrl" 
+                          name="cbxCustomerCtrl" 
+                          (change)="setCbxCustomer()"
+                          type="checkbox">
+                        <label class="inputStyled__checkbox" for="cbxCustomerCtrl"></label>
+                      </div>
+                    </span>
+  
+                  </dt>
+                  <dd class="definitionForm__data w--75">
+                    <input 
+                      formControlName="customerCodeToCtrl" 
+                      name="customerCodeToCtrl"
+                      (keyup.enter)="setCustomerCodeTo($event.type)" 
+                      (blur)="setCustomerCodeTo($event.type)"
+                      #customerCodeToInput
+                      [formControl]="customerCodeToCtrl" 
+                      [matAutocomplete]="autoCustomerCodeTo"
+                      maxlength="{{userInfoService.ApplicationControl?.customerCodeLength}}"
+                      placeholder="{{PlaceHolderConst.F9_SEARCH}}" 
+                      class="input-size--110">
+                    <mat-autocomplete 
+                      #autoCustomerCodeTo="matAutocomplete"
+                      [panelWidth]="PanelConst.autocompleteWidth300">
+                      <mat-option 
+                        *ngFor="let customer of customerFilterds[1] | async" 
+                        [value]="customer.code">
+                        {{customer.code}}:{{customer.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_CUSTOMER,'to')"></a>
+                    <input
+                      formControlName="customerNameToCtrl"
+                      name="customerNameToCtrl"
+                      class="input-size--250"
+                      readonly>
+                  </dd>
+                  <dt class="definitionForm__title w--21">処理月<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                  <dd class="definitionForm__data w--75">
+                    <input
+                      formControlName="baseDateFromCtrl"
+                      name="baseDateFromCtrl"
+                      #baseDateFromCtrl
+                      [matDatepicker]="pickerBaseDateFromCtrl"
+                      (keyup.enter)="setBaseDateFrom($event.type)"
+                      placeholder="{{PlaceHolderConst.INPUT_DAY_MONTH}}"
+                      [ngClass]="{'input--error': myFormGroup.controls.baseDateFromCtrl.errors?.matDatepickerParse}"
+                      maxlength="7"
+                      type="tel"
+                      class="input-size--100">
+                    <mat-datepicker-toggle matSuffix [for]="pickerBaseDateFromCtrl">
+                      <mat-icon class="iconCalendar"
+                        matDatepickerToggleIcon></mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker
+                      #pickerBaseDateFromCtrl
+                      startView="year"
+                      (yearSelected)="chosenYearHandler($event,'baseDateFrom')"
+                      (monthSelected)="chosenMonthHandler($event, pickerBaseDateFromCtrl, 'baseDateFrom')">
+                    </mat-datepicker>
+                    <span class="wavy-line"></span>
+                    <input  
+                      formControlName="baseDateToCtrl" 
+                      name="baseDateToCtrl" 
+                      #baseDateToCtrl
+                      [matDatepicker]="pickerBaseDateToCtrl" 
+                      (keyup.enter)="setBaseDateTo($event.type)" 
+                      placeholder="{{PlaceHolderConst.INPUT_DAY_MONTH}}"
+                      [ngClass]="{'input--error': myFormGroup.controls.baseDateToCtrl.errors?.matDatepickerParse}"
+                      maxlength="7"
+                      type="tel"
+                      class="input-size--100">
+                    <mat-datepicker-toggle matSuffix [for]="pickerBaseDateToCtrl">
+                      <mat-icon class="iconCalendar"
+                        matDatepickerToggleIcon></mat-icon>
+                    </mat-datepicker-toggle>
+                    <mat-datepicker
+                      #pickerBaseDateToCtrl
+                      startView="year"
+                      (yearSelected)="chosenYearHandler($event,'baseDateTo')"
+                      (monthSelected)="chosenMonthHandler($event, pickerBaseDateToCtrl, 'baseDateTo')">
+                    </mat-datepicker>
+                    <br>
+                    <div
+                      class="message-result font__warning"
+                      *ngIf="myFormGroup.controls.baseDateFromCtrl.errors?.matDatepickerParse 
+                            || myFormGroup.controls.baseDateToCtrl.errors?.matDatepickerParse">
+                      {{ MSG_VAL.DATE_MONTH }}
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+              <div class="contents__item--w-50">
+                <dl class="definitionForm">
+                  <dt class="definitionForm__title w--15">残高タイプ</dt>
+                  <dd class="definitionForm__data w--55">
+                    <div class="inputStyled">
+                      <input 
+                        id="rdoRemainTypeCtrl_01" 
+                        formControlName="rdoRemainTypeCtrl" 
+                        name="rdoRemainTypeCtrl" 
+                        class="inputStyled__input"
+                        type="radio"
+                        value="0">
+                      <label class="inputStyled__radio" for="rdoRemainTypeCtrl_01">会計帳簿の締日残高</label>
+                    </div>
+                    <div class="inputStyled">
+                      <input 
+                        id="rdoRemainTypeCtrl_02" 
+                        formControlName="rdoRemainTypeCtrl" 
+                        name="rdoRemainTypeCtrl" 
+                        class="inputStyled__input"
+                        type="radio"
+                        value="1">
+                      <label class="inputStyled__radio" for="rdoRemainTypeCtrl_02">得意先ごとの締日残高</label>
+                    </div>  
+                  </dd>
+                  <dt class="definitionForm__title">締日<span *ngIf="closingDateCtrl.enabled" class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+                  <dd class="definitionForm__data w--15">
+                      <input
+                        type="text"
+                        formControlName="closingDateCtrl"
+                        name="closingDateCtrl"
+                        (keyup.enter)="setClosingDate($event.type)"
+                        type="tel"
+                        maxlength="2"
+                        class="input-size--50">
+                  </dd>
+                  <ng-container *ngIf="userInfoService.ApplicationControl?.useForeignCurrency==1">
+                    <dt class="definitionForm__title w--15">通貨コード</dt>
+                    <dd class="definitionForm__data w--85">
+                      <input
+                        formControlName="currencyCodeCtrl"
+                        name="currencyCodeCtrl"
+                        (blur)="setCurrencyCode($event.type)"
+                        (keyup.enter)="setCurrencyCode($event.type)"
+                        (keyup)="openMasterModal(TABLE_INDEX.MASTER_CURRENCY,$event.keyCode)"
+                        type="tel"
+                        maxlength="3"
+                        class="input-size--60">
+                    </dd>
+                  </ng-container>
+                </dl>
+              </div>
+              <div class="contents__buttonGroup">
+                <button 
+                  (click)="buttonAction(BUTTON_ACTION.SEARCH)" 
+                  [ngClass]="{'button-disable': myFormGroup.invalid}" 
+                  class="buttonSecondary infotip">
+                  {{ItemNameConst.BTN_INQUIRY}}
+                  <span [innerHtml]="ButtonTipsConst.INQUIRY | safeHtml_pipe" class="infotip__frame"></span>
+                </button>
+                <button
+                  (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+                  class="buttonMinimum">
+                  {{ItemNameConst.BTN_CLEAR}}</button>
+              </div>
+            </div>
+          </section>
+        </ng-template>
+      </mat-expansion-panel>
+  
+  
+  
+      <!-- 照会結果 -->
+      <section class="contents searchResult">
+        <h2 class="contents__title--underline-slim">{{ItemNameConst.LBL_RESULT_INQUIRY_RESULT}}</h2>
+        <div class="contents__container--flex mb--10">
+          <div class="contents__item--w-35">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title w--21">得意先コード</dt>
+              <dd class="definitionForm__data w--75">
+                <input
+                  formControlName="dispCustomerCodeCtrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <input
+                  formControlName="dispCustomerNameCtrl"
+                  class="input-size--190"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title w--21">集計基準日</dt>
+              <dd class="definitionForm__data w--75">
+                <input
+                  formControlName="dispReportTargetDateCtrl"
+                  class="input-size--100"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title w--21">伝票集計方法</dt>
+              <dd class="definitionForm__data w--75">
+                <input
+                  formControlName="dispDispReportTotalCtrl"
+                  class="input-size--100"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title w--21">金額単位</dt>
+              <dd class="definitionForm__data w--75">
+                <input
+                  formControlName="dispReportUnitPriceCtrl"
+                  class="input-size--100"
+                  readonly>
+              </dd>
+            </dl>
+          </div>
+          <div class="contents__item--w-65">
+            <dl class="definitionForm">
+              <dt class="definitionForm__title w--13">回収区分</dt>
+              <dd class="definitionForm__data w--85">
+                <input
+                  formControlName="dispCategoryNameCtrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <input
+                  formControlName="dispThresholdCtrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <span class="mr--20">円未満</span>
+                <input
+                  formControlName="dispLessCollectCategoryNameCtrl" 
+                  class="input-size--150"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title w--13">請求データ集計</dt>
+              <dd class="definitionForm__data w--85">
+                <input
+                  formControlName="dispReportTotalByDayCtrl"
+                  class="input-size--200 definitionForm__input"
+                  readonly>
+                <span class="mr--5">以上</span>
+                <input
+                  formControlName="dispGreaterCollectCategoryName1Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <input
+                  formControlName="dispGreaterRate1Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <span class="mr--20">％</span>
+                <input
+                  formControlName="dispGreaterRoundingMode1Ctrl"
+                  class="input-size--100"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title w--13">入金データ集計</dt>
+              <dd class="definitionForm__data w--85">
+                <input
+                  formControlName="dispReportDoOrNotCtrl"
+                  class="input-size--200 definitionForm__input"
+                  readonly>
+                <span class="mr--5">以上</span>
+                <input
+                  formControlName="dispGreaterCollectCategoryName2Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <input
+                  formControlName="dispGreaterRate2Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <span class="mr--20">％</span>
+                <input
+                  formControlName="dispGreaterRoundingMode2Ctrl" 
+                  class="input-size--100"
+                  readonly>
+              </dd>
+              <dt class="definitionForm__title w--13">請求残計算</dt>
+              <dd class="definitionForm__data w--85">
+                <input
+                  formControlName="dispReportAdvancedReceivedTypeCtrl"
+                  class="input-size--200 definitionForm__input"
+                  readonly>
+                <span class="mr--5">以上</span>
+                <input
+                  formControlName="dispGreaterCollectCategoryName3Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <input
+                  formControlName="dispGreaterRate3Ctrl"
+                  class="input-size--100 definitionForm__input"
+                  readonly>
+                <span class="mr--20">％</span>
+                <input
+                  formControlName="dispGreaterRoundingMode3Ctrl" 
+                  class="input-size--100"
+                  readonly>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="contents__container">
+          <div class="common-inner-table--noHighlights">
+            <table>
+              <thead class="table_row">
+                <tr>
+                  <th class="{{TableColumn.COL_100_CODE}}"></th>
+                  <th class="{{TableColumn.COL_100_CODE}}">日付</th>
+                  <th class="{{TableColumn.COL_100_CODE}}" *ngIf="userInfoService.ApplicationControl.useReceiptSection==1">入金部門</th>             
+                  <th class="{{TableColumn.COL_100_CODE}}">請求部門</th>
+                  <th class="{{TableColumn.COL_100_CODE}}">請求書番号</th>
+                  <th class="{{TableColumn.COL_100_CODE}}">区分</th>
+                  <th class="{{TableColumn.COL_100_CODE}}">債権科目</th>
+                  <!---
+                  <th>通貨</th>
+                  -->
+                  <th class="{{TableColumn.COL_280_CODE}}" colspan="2">請求金額</th>
+                  <th class="{{TableColumn.COL_200_CODE}}">伝票合計</th>
+                  <th class="{{TableColumn.COL_200_CODE}}">入金額</th>
+                  <th class="{{TableColumn.COL_280_CODE}}" colspan="2">消込額</th>
+                  <th class="{{TableColumn.COL_200_CODE}}">残高</th>
+                  <th class="{{TableColumn.COL_150_CODE}}">得意先コード</th>
+                  <th class="{{TableColumn.COL_150_CODE}}">得意先名</th>
+                </tr>
+              </thead>
+              <tbody class="searchResult__tableHeight--9999">
+                <tr *ngFor="let customerLedger of currentCustomerLedgers index as i">
+                  <ng-container *ngIf="customerLedger.recordType==0;">
+                    <td class="line-number {{TableColumn.COL_100_CENTER_NAME}}">{{i+1}}</td>
+                    <td class="{{TableColumn.COL_100_NAME}}">{{customerLedger.recordedAt|date}}</td>
+                    <td class="{{TableColumn.COL_100_NAME}}" *ngIf="userInfoService.ApplicationControl.useReceiptSection==1">{{customerLedger.sectionName}}</td>               
+                    <td class="{{TableColumn.COL_100_NAME}}">{{customerLedger.departmentName}}</td>
+                    <td class="{{TableColumn.COL_100_NAME}}">{{customerLedger.invoiceCode}}</td>
+                    <td class="{{TableColumn.COL_100_NAME}}">{{customerLedger.categoryName}}</td>
+                    <td class="{{TableColumn.COL_100_NAME}}">{{customerLedger.accountTitleName}}</td>
+                    <!---
+                    <td>{{customerLedger.currencyCode}}</td>
+                    -->
+                    <td class="{{TableColumn.COL_80_NAME}}">{{customerLedger.matchingSymbolBilling}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}}">{{customerLedger.billingAmount|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}}">{{customerLedger.slipTotal|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}}">{{customerLedger.receiptAmount|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_80_NAME}}">{{customerLedger.matchingSymbolReceipt}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}}">{{customerLedger.matchingAmount|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}}">{{customerLedger.remainAmount|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{customerLedger.customerCode}}</td>
+                    <td class="{{TableColumn.COL_150_NAME}}">{{customerLedger.customerName}}</td>
+                  </ng-container>
+                  <ng-container *ngIf="customerLedger.recordType==1;">
+                    <td class="line-number {{TableColumn.COL_100_CENTER_NAME}} searchResult__tableCell--carryover">{{i+1}}</td>
+                    <td class="{{TableColumn.COL_100_NAME}} searchResult__tableCell--carryover" *ngIf="userInfoService.ApplicationControl.useReceiptSection==1">{{customerLedger.sectionName}}</td>
+                    <td class="col-align-right searchResult__tableCell--carryover" colspan="5">繰越</td>
+                    <!---
+                    <td>{{customerLedger.currencyCode}}</td>
+                    -->
+                    <td class="{{TableColumn.COL_80_NAME}} searchResult__tableCell--carryover">{{customerLedger.matchingSymbolBilling}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--carryover">{{customerLedger.billingAmount|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--carryover">{{customerLedger.slipTotal|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--carryover">{{customerLedger.receiptAmount|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_80_NAME}} searchResult__tableCell--carryover">{{customerLedger.matchingSymbolReceipt}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--carryover">{{customerLedger.matchingAmount|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--carryover">{{customerLedger.remainAmount|currency_pipe:false}}</td>
+                    <td class="{{TableColumn.COL_150_CENTER_NAME}} searchResult__tableCell--carryover">{{customerLedger.customerCode}}</td>
+                    <td class="{{TableColumn.COL_150_NAME}} searchResult__tableCell--carryover">{{customerLedger.customerName}}</td>
+                  </ng-container>
+                  <ng-container *ngIf="customerLedger.recordType==2">
+                    <td class="line-number {{TableColumn.COL_100_CENTER_NAME}} searchResult__tableCell--subTotal">{{i+1}}</td>
+                    <td class="{{TableColumn.COL_100_NAME}} searchResult__tableCell--subTotal" *ngIf="userInfoService.ApplicationControl.useReceiptSection==1">{{customerLedger.sectionName}}</td>
+                    <td class="col-align-right searchResult__tableCell--subTotal" colspan="5">{{customerLedger.yearMonth.substring(0,4)}}/{{customerLedger.yearMonth.substring(5,7)}}合計</td>
+                    <!---
+                    <td>{{customerLedger.currencyCode}}</td>
+                    -->
+                    <td class="{{TableColumn.COL_80_NAME}} searchResult__tableCell--subTotal">{{customerLedger.matchingSymbolBilling}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--subTotal">{{customerLedger.billingAmount|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--subTotal">{{customerLedger.slipTotal|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--subTotal">{{customerLedger.receiptAmount|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_80_NAME}} searchResult__tableCell--subTotal">{{customerLedger.matchingSymbolReceipt}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--subTotal">{{customerLedger.matchingAmount|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--subTotal">{{customerLedger.remainAmount|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_150_CENTER_NAME}} searchResult__tableCell--subTotal">{{customerLedger.customerCode}}</td>
+                    <td class="{{TableColumn.COL_150_NAME}} searchResult__tableCell--subTotal">{{customerLedger.customerName}}</td>
+                  </ng-container>
+                  <ng-container *ngIf="customerLedger.recordType==3">
+                    <td class="line-number {{TableColumn.COL_100_CENTER_NAME}} searchResult__tableCell--grandTotal">{{i+1}}</td>
+                    <td class="{{TableColumn.COL_100_NAME}} searchResult__tableCell--grandTotal" *ngIf="userInfoService.ApplicationControl.useReceiptSection==1">{{customerLedger.sectionName}}</td>
+                    <td class="col-align-right searchResult__tableCell--grandTotal" colspan="5">総合計</td>
+                    <!---
+                    <td>{{customerLedger.currencyCode}}</td>
+                    -->
+                    <td class="{{TableColumn.COL_80_NAME}} searchResult__tableCell--grandTotal">{{customerLedger.matchingSymbolBilling}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--grandTotal">{{customerLedger.billingAmount|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--grandTotal">{{customerLedger.slipTotal|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--grandTotal">{{customerLedger.receiptAmount|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_80_NAME}} searchResult__tableCell--grandTotal">{{customerLedger.matchingSymbolReceipt}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--grandTotal">{{customerLedger.matchingAmount|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_KINGAKU}} searchResult__tableCell--grandTotal">{{customerLedger.remainAmount|currency_pipe}}</td>
+                    <td class="{{TableColumn.COL_150_CENTER_NAME}} searchResult__tableCell--grandTotal">{{customerLedger.customerCode}}</td>
+                    <td class="{{TableColumn.COL_150_NAME}} searchResult__tableCell--grandTotal">{{customerLedger.customerName}}</td>
+                  </ng-container>    
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+  
+    </section>
+  
+  </div>

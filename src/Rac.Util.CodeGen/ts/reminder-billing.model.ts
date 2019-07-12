@@ -1,0 +1,43 @@
+export class ReminderBilling {
+    public rowNumber: number;
+    public id: number;
+    public reminderId: number;
+    public currencyId: number;
+    public customerId: number;
+    public customerCode: string | null;
+    public customerPostalCode: string | null;
+    public customerAddress1: string | null;
+    public customerAddress2: string | null;
+    public customerName: string | null;
+    public customerStaffName: string | null;
+    public customerReceiveAccount1: number;
+    public customerReceiveAccount2: number;
+    public customerReceiveAccount3: number;
+    public salesAt: string;
+    public note1: string | null;
+    public note2: string | null;
+    public note3: string | null;
+    public note4: string | null;
+    public note5: string | null;
+    public note6: string | null;
+    public note7: string | null;
+    public note8: string | null;
+    public staffName: string | null;
+    public staffTel: string | null;
+    public staffFax: string | null;
+    public billingAmount: number;
+    public remainAmount: number;
+    public dueAt: string;
+    public originalDueAt: string;
+    public billedAt: string;
+    public outputNo: number;
+    public destinationId: number | null;
+    public destinationName: string | null;
+    public destinationPostalCode: string | null;
+    public destinationAddress1: string | null;
+    public destinationAddress2: string | null;
+    public destinationDepartmentName: string | null;
+    public destinationAddressee: string | null;
+    public destinationHonorific: string | null;
+}
+

@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ReceiptService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:3061/ReceiptService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3061/ReceiptService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3061/ReceiptService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Rac.VOne.Web.Models" />
+      <xsd:import schemaLocation="http://localhost:3061/ReceiptService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IReceiptService_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetAdvanceReceipts_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdvanceReceipts" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetAdvanceReceipts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdvanceReceiptsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_SaveExcludeAmount_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveExcludeAmount" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_SaveExcludeAmount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveExcludeAmountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_SaveMemo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveMemo" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_SaveMemo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveMemoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_DeleteMemo_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemo" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_DeleteMemo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetMemo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemo" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetMemo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_SaveAdvanceReceived_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdvanceReceived" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_SaveAdvanceReceived_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdvanceReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_CancelAdvanceReceived_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelAdvanceReceived" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_CancelAdvanceReceived_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelAdvanceReceivedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetHeaderItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeaderItems" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetHeaderItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHeaderItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetApportionItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetApportionItems" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetApportionItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetApportionItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Apportion_InputMessage">
+    <wsdl:part name="parameters" element="tns:Apportion" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Apportion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApportionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistCurrency_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCurrency" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistCurrency_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistReceiptCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistReceiptCategory" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistReceiptCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistReceiptCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistCustomer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCustomer" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistCustomer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistSection_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistSection" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistSection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistSectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistCompany_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCompany" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistCompany_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistExcludeCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistExcludeCategory" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistExcludeCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistExcludeCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistOriginalReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistOriginalReceipt" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistOriginalReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistOriginalReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistNonApportionedReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistNonApportionedReceipt" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistNonApportionedReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistNonApportionedReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistNonOutputedReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistNonOutputedReceipt" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistNonOutputedReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistNonOutputedReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistNonAssignmentReceipt_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExistNonAssignmentReceipt" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExistNonAssignmentReceipt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExistNonAssignmentReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Omit_InputMessage">
+    <wsdl:part name="parameters" element="tns:Omit" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_Omit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OmitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_SaveReceiptSectionTransfer_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReceiptSectionTransfer" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_SaveReceiptSectionTransfer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveReceiptSectionTransferResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetReceiptSectionTransferForPrint_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiptSectionTransferForPrint" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetReceiptSectionTransferForPrint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiptSectionTransferForPrintResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_UpdateReceiptSectionTransferPrintFlag_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReceiptSectionTransferPrintFlag" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_UpdateReceiptSectionTransferPrintFlag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateReceiptSectionTransferPrintFlagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ReceiptImportDuplicationCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiptImportDuplicationCheck" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ReceiptImportDuplicationCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReceiptImportDuplicationCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_AdvanceReceivedDataSplit_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdvanceReceivedDataSplit" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_AdvanceReceivedDataSplit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdvanceReceivedDataSplitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_CancelAdvanceReceivedDataSplit_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelAdvanceReceivedDataSplit" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_CancelAdvanceReceivedDataSplit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelAdvanceReceivedDataSplitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetReceiptJournalizingSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiptJournalizingSummary" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_GetReceiptJournalizingSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiptJournalizingSummaryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExtractReceiptJournalizing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractReceiptJournalizing" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExtractReceiptJournalizing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractReceiptJournalizingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExtractReceiptGeneralJournalizing_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractReceiptGeneralJournalizing" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_ExtractReceiptGeneralJournalizing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtractReceiptGeneralJournalizingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_UpdateOutputAt_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOutputAt" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_UpdateOutputAt_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOutputAtResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_CancelReceiptJournalizing_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelReceiptJournalizing" />
+  </wsdl:message>
+  <wsdl:message name="IReceiptService_CancelReceiptJournalizing_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelReceiptJournalizingResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IReceiptService">
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/Save" message="tns:IReceiptService_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/SaveResponse" message="tns:IReceiptService_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/Delete" message="tns:IReceiptService_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/DeleteResponse" message="tns:IReceiptService_Delete_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/Get" message="tns:IReceiptService_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/GetResponse" message="tns:IReceiptService_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/GetItems" message="tns:IReceiptService_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/GetItemsResponse" message="tns:IReceiptService_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdvanceReceipts">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/GetAdvanceReceipts" message="tns:IReceiptService_GetAdvanceReceipts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/GetAdvanceReceiptsResponse" message="tns:IReceiptService_GetAdvanceReceipts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveExcludeAmount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/SaveExcludeAmount" message="tns:IReceiptService_SaveExcludeAmount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/SaveExcludeAmountResponse" message="tns:IReceiptService_SaveExcludeAmount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveMemo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/SaveMemo" message="tns:IReceiptService_SaveMemo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/SaveMemoResponse" message="tns:IReceiptService_SaveMemo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/DeleteMemo" message="tns:IReceiptService_DeleteMemo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/DeleteMemoResponse" message="tns:IReceiptService_DeleteMemo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/GetMemo" message="tns:IReceiptService_GetMemo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/GetMemoResponse" message="tns:IReceiptService_GetMemo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdvanceReceived">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/SaveAdvanceReceived" message="tns:IReceiptService_SaveAdvanceReceived_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/SaveAdvanceReceivedResponse" message="tns:IReceiptService_SaveAdvanceReceived_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelAdvanceReceived">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/CancelAdvanceReceived" message="tns:IReceiptService_CancelAdvanceReceived_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/CancelAdvanceReceivedResponse" message="tns:IReceiptService_CancelAdvanceReceived_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/GetHeaderItems" message="tns:IReceiptService_GetHeaderItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/GetHeaderItemsResponse" message="tns:IReceiptService_GetHeaderItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetApportionItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/GetApportionItems" message="tns:IReceiptService_GetApportionItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/GetApportionItemsResponse" message="tns:IReceiptService_GetApportionItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Apportion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/Apportion" message="tns:IReceiptService_Apportion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ApportionResponse" message="tns:IReceiptService_Apportion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistCurrency">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistCurrency" message="tns:IReceiptService_ExistCurrency_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistCurrencyResponse" message="tns:IReceiptService_ExistCurrency_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistReceiptCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistReceiptCategory" message="tns:IReceiptService_ExistReceiptCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistReceiptCategoryResponse" message="tns:IReceiptService_ExistReceiptCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistCustomer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistCustomer" message="tns:IReceiptService_ExistCustomer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistCustomerResponse" message="tns:IReceiptService_ExistCustomer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistSection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistSection" message="tns:IReceiptService_ExistSection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistSectionResponse" message="tns:IReceiptService_ExistSection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistCompany">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistCompany" message="tns:IReceiptService_ExistCompany_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistCompanyResponse" message="tns:IReceiptService_ExistCompany_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistExcludeCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistExcludeCategory" message="tns:IReceiptService_ExistExcludeCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistExcludeCategoryResponse" message="tns:IReceiptService_ExistExcludeCategory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistOriginalReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistOriginalReceipt" message="tns:IReceiptService_ExistOriginalReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistOriginalReceiptResponse" message="tns:IReceiptService_ExistOriginalReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistNonApportionedReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistNonApportionedReceipt" message="tns:IReceiptService_ExistNonApportionedReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistNonApportionedReceiptResponse" message="tns:IReceiptService_ExistNonApportionedReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistNonOutputedReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistNonOutputedReceipt" message="tns:IReceiptService_ExistNonOutputedReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistNonOutputedReceiptResponse" message="tns:IReceiptService_ExistNonOutputedReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExistNonAssignmentReceipt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExistNonAssignmentReceipt" message="tns:IReceiptService_ExistNonAssignmentReceipt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExistNonAssignmentReceiptResponse" message="tns:IReceiptService_ExistNonAssignmentReceipt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Omit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/Omit" message="tns:IReceiptService_Omit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/OmitResponse" message="tns:IReceiptService_Omit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveReceiptSectionTransfer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/SaveReceiptSectionTransfer" message="tns:IReceiptService_SaveReceiptSectionTransfer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/SaveReceiptSectionTransferResponse" message="tns:IReceiptService_SaveReceiptSectionTransfer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiptSectionTransferForPrint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/GetReceiptSectionTransferForPrint" message="tns:IReceiptService_GetReceiptSectionTransferForPrint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/GetReceiptSectionTransferForPrintResponse" message="tns:IReceiptService_GetReceiptSectionTransferForPrint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReceiptSectionTransferPrintFlag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/UpdateReceiptSectionTransferPrintFlag" message="tns:IReceiptService_UpdateReceiptSectionTransferPrintFlag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/UpdateReceiptSectionTransferPrintFlagResponse" message="tns:IReceiptService_UpdateReceiptSectionTransferPrintFlag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReceiptImportDuplicationCheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ReceiptImportDuplicationCheck" message="tns:IReceiptService_ReceiptImportDuplicationCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ReceiptImportDuplicationCheckResponse" message="tns:IReceiptService_ReceiptImportDuplicationCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdvanceReceivedDataSplit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/AdvanceReceivedDataSplit" message="tns:IReceiptService_AdvanceReceivedDataSplit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/AdvanceReceivedDataSplitResponse" message="tns:IReceiptService_AdvanceReceivedDataSplit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelAdvanceReceivedDataSplit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/CancelAdvanceReceivedDataSplit" message="tns:IReceiptService_CancelAdvanceReceivedDataSplit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/CancelAdvanceReceivedDataSplitResponse" message="tns:IReceiptService_CancelAdvanceReceivedDataSplit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiptJournalizingSummary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/GetReceiptJournalizingSummary" message="tns:IReceiptService_GetReceiptJournalizingSummary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/GetReceiptJournalizingSummaryResponse" message="tns:IReceiptService_GetReceiptJournalizingSummary_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtractReceiptJournalizing">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExtractReceiptJournalizing" message="tns:IReceiptService_ExtractReceiptJournalizing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExtractReceiptJournalizingResponse" message="tns:IReceiptService_ExtractReceiptJournalizing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtractReceiptGeneralJournalizing">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/ExtractReceiptGeneralJournalizing" message="tns:IReceiptService_ExtractReceiptGeneralJournalizing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/ExtractReceiptGeneralJournalizingResponse" message="tns:IReceiptService_ExtractReceiptGeneralJournalizing_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOutputAt">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/UpdateOutputAt" message="tns:IReceiptService_UpdateOutputAt_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/UpdateOutputAtResponse" message="tns:IReceiptService_UpdateOutputAt_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelReceiptJournalizing">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReceiptService/CancelReceiptJournalizing" message="tns:IReceiptService_CancelReceiptJournalizing_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReceiptService/CancelReceiptJournalizingResponse" message="tns:IReceiptService_CancelReceiptJournalizing_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IReceiptService" type="tns:IReceiptService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdvanceReceipts">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/GetAdvanceReceipts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveExcludeAmount">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/SaveExcludeAmount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveMemo">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/SaveMemo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemo">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/DeleteMemo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemo">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/GetMemo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdvanceReceived">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/SaveAdvanceReceived" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelAdvanceReceived">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/CancelAdvanceReceived" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHeaderItems">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/GetHeaderItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApportionItems">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/GetApportionItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Apportion">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/Apportion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistCurrency">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistReceiptCategory">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistReceiptCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistCustomer">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistSection">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistSection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistCompany">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistExcludeCategory">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistExcludeCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistOriginalReceipt">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistOriginalReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistNonApportionedReceipt">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistNonApportionedReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistNonOutputedReceipt">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistNonOutputedReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExistNonAssignmentReceipt">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExistNonAssignmentReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Omit">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/Omit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveReceiptSectionTransfer">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/SaveReceiptSectionTransfer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiptSectionTransferForPrint">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/GetReceiptSectionTransferForPrint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateReceiptSectionTransferPrintFlag">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/UpdateReceiptSectionTransferPrintFlag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReceiptImportDuplicationCheck">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ReceiptImportDuplicationCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdvanceReceivedDataSplit">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/AdvanceReceivedDataSplit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelAdvanceReceivedDataSplit">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/CancelAdvanceReceivedDataSplit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiptJournalizingSummary">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/GetReceiptJournalizingSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtractReceiptJournalizing">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExtractReceiptJournalizing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtractReceiptGeneralJournalizing">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/ExtractReceiptGeneralJournalizing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOutputAt">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/UpdateOutputAt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelReceiptJournalizing">
+      <soap:operation soapAction="http://tempuri.org/IReceiptService/CancelReceiptJournalizing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReceiptService">
+    <wsdl:port name="BasicHttpBinding_IReceiptService" binding="tns:BasicHttpBinding_IReceiptService">
+      <soap:address location="http://localhost:3061/ReceiptService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

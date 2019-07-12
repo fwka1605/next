@@ -1,0 +1,234 @@
+<div [formGroup]="myFormGroup">
+  <section class="contentsButton">
+
+    <div class="contentsButton__inner">
+
+      <!--- 処理結果の表示 -->
+      <app-parts-result-message [processCustomResult]="processCustomResult"></app-parts-result-message>
+
+      <button
+        (click)="buttonAction(BUTTON_ACTION.REGISTRY)"
+        [ngClass]="{'button-disable': myFormGroup.invalid}"
+        class="buttonSecondary">{{ItemNameConst.BTN_REGISTRY}}</button>
+      <button
+        (click)="clear();processResultService.clearProcessCustomMsg(processCustomResult)"
+        class="buttonMinimum">{{ItemNameConst.BTN_CLEAR}}</button>
+
+      <div class="contentsButton__subSection">
+        <ng-container *ngIf="securityHideShow">
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterImport)">
+            <button class="buttonImport infotip"
+              (click)="buttonAction(BUTTON_ACTION.IMPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_IMPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+          <ng-container *ngIf="userInfoService.isFunctionAvailable(FunctionType.MasterExport)">
+            <button class="buttonExport infotip"
+              (click)="buttonAction(BUTTON_ACTION.EXPORT)">
+              <span [innerHtml]="ButtonTipsConst.CSV_EXPORT | safeHtml_pipe" class="infotip__frame"></span>
+            </button>
+          </ng-container>
+        </ng-container>
+      </div>
+
+    </div>        
+
+  </section>
+
+  <section class="pageContainer">
+    <!-- 入力フォーム -->
+    <section class="contents">
+      <div class="contents__container">
+        <dl class="definitionForm">
+          <dt class="definitionForm__title">ログインユーザーコード<span class="must_have_icon">{{ItemNameConst.LBL_REQUIRED}}</span></dt>
+          <dd class="definitionForm__data">
+            <input
+              formControlName="loginUserCodeCtrl"
+              name="loginUserCodeCtrl"
+              (keyup.enter)="setLoginUserCode($event.type)"
+              (blur)="setLoginUserCode($event.type)"
+              #loginUserCodeInput
+              [formControl]="loginUserCodeCtrl"
+              [matAutocomplete]="autoLoginUserCode"
+              maxlength="{{userInfoService.ApplicationControl?.loginUserCodeLength}}"
+              placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+              class="input-size--100"/>
+            <mat-autocomplete
+              #autoLoginUserCode="matAutocomplete"
+              [panelWidth]="PanelConst.autocompleteWidth300">
+              <mat-option
+                *ngFor="let loginUser of loginUserFilterds[0] | async"
+                [value]="loginUser.code">
+                {{loginUser.code}}:{{loginUser.name}}
+              </mat-option>
+            </mat-autocomplete>
+            <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_LOGIN_USER_SECTION)"></a>
+          </dd>
+          <dt class="definitionForm__title">ログインユーザー名</dt>
+          <dd class="definitionForm__data">
+            <input
+              formControlName="loginUserNameCtrl"
+              name="loginUserNameCtrl"
+              class="input-size--400"
+              readonly>
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 入金部門 -->
+    <section class="contents">
+      <div class="contents__container">
+        <div class="horizontal-container">
+          <div class="horizontal-container__box">
+            <h3 class="contents__title">{{ItemNameConst.LBL_CHANGE_SECTION_BEFORE}}</h3>
+            <div class="common-inner-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="{{TableColumn.COL_50_CODE}}"></th>
+                    <th class="{{TableColumn.COL_150_CODE}}">入金部門コード</th>
+                    <th class="{{TableColumn.COL_250_CODE}}">入金部門名</th>
+                  </tr>
+                </thead>
+                <tbody class="height--350">
+                  <tr
+                    *ngFor="let section of beforeSectionResult?.sectionWithLoginUsers; let i = index"
+                    class="line-selector">
+                    <th class="{{TableColumn.COL_50_CENTER_NAME}}">{{ i + 1 }}</th>
+                    <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{section.sectionCode}}</td>
+                    <td class="{{TableColumn.COL_250_NAME}}">{{section.sectionName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="horizontal-container__separater">
+            <span class="figure--right-arrow"></span>
+          </div>
+          <div class="horizontal-container__box">
+            <h3 class="contents__title">{{ItemNameConst.LBL_CHANGE_SECTION_AFTER}}</h3>
+            <div class="common-inner-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th class="{{TableColumn.COL_50_CODE}}"></th>
+                    <th class="{{TableColumn.COL_100_CODE}}"></th>
+                    <th class="{{TableColumn.COL_150_CODE}}">入金部門コード</th>
+                    <th class="{{TableColumn.COL_250_CODE}}">入金部門名</th>
+                  </tr>
+                </thead>
+                <tbody class="height--350">
+                  <tr
+                    class="line-selector"
+                    *ngFor="let section of afterSectionResult?.sectionWithLoginUsers; let i = index"
+                    name="afterLoginUserTr">
+                    <th class="{{TableColumn.COL_50_CENTER_NAME}}">{{ i + 1 }}</th>
+                    <td class="{{TableColumn.COL_100_CENTER_NAME}}">
+                      <button
+                        class="buttonMinimum"
+                        (click)="selectDeleteLine(i)">{{ItemNameConst.BTN_DELETE}}</button>
+                    </td>
+                    <td class="{{TableColumn.COL_150_CENTER_NAME}}">{{section.sectionCode}}</td>
+                    <td class="{{TableColumn.COL_250_NAME}}">{{section.sectionName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contents__container">
+        <div class="contents__item--w-50 mb--20">
+          <dl class="definitionForm">
+            <dt class="definitionForm__title w--16">入金部門コード</dt>
+            <dd class="definitionForm__data w--84">
+              <input
+                formControlName="sectionCodeFromCtrl"
+                name="sectionCodeFromCtrl"
+                (keyup.enter)="setSectionCode($event.type,'from')"
+                (blur)="setSectionCode($event.type, 'from')"
+                #sectionCodeFromInput
+                [formControl]="sectionCodeFromCtrl"
+                [matAutocomplete]="autosectionCodeFrom"
+                maxlength="{{userInfoService.ApplicationControl?.sectionCodeLength}}"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                class="input-size--100 definitionForm__input">
+              <mat-autocomplete
+                #autosectionCodeFrom="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option
+                  *ngFor="let section of sectionFilterds[0] | async"
+                  [value]="section.code">
+                  {{section.code}}:{{section.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION,'from')"></a>
+              <input
+                formControlName="sectionNameFromCtrl"
+                name="sectionNameFromCtrl"
+                class="input-size--300"
+                readonly>
+            </dd>
+            <dt class="definitionForm__title w--16">
+              <span class="end-checkbox">
+                  <div class="inputStyled">
+                    <input
+                      id="cbxSectionCtrl"
+                      class="inputStyled__input"
+                      formControlName="cbxSectionCtrl"
+                      name="cbxSectionCtrl"
+                      (change)="setCbxSection($event.type)"
+                      type="checkbox">
+                    <label
+                      class="inputStyled__checkbox"
+                      for="cbxSectionCtrl"></label>
+                  </div>
+              </span>
+            </dt>
+            <dd class="definitionForm__data w--84">
+              <input
+                formControlName="sectionCodeToCtrl"
+                name="sectionCodeToCtrl"
+                (keyup.enter)="setSectionCode($event.type, 'to')"
+                (blur)="setSectionCode($event.type, 'to')"
+                #sectionCodeToInput
+                [formControl]="sectionCodeToCtrl"
+                [matAutocomplete]="autosectionCodeTo"
+                maxlength="{{userInfoService.ApplicationControl?.sectionCodeLength}}"
+                placeholder="{{PlaceHolderConst.F9_SEARCH}}"
+                class="input-size--100 definitionForm__input">
+              <mat-autocomplete
+                #autosectionCodeTo="matAutocomplete"
+                [panelWidth]="PanelConst.autocompleteWidth300">
+                <mat-option
+                  *ngFor="let section of sectionFilterds[1] | async"
+                  [value]="section.code">
+                  {{section.code}}:{{section.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <a class="buttonMasterSearch" (click)="openMasterModal(TABLE_INDEX.MASTER_SECTION,'to')"></a>
+              <input
+                formControlName="sectionNameToCtrl"
+                name="sectionNameToCtrl"
+                class="input-size--300"
+                readonly>
+            </dd>
+          </dl>
+        </div>
+        <div class="contentsButton__inner">
+          <button
+            (click)="add()"
+            [ngClass]="{'button-disable': isAddButton}"
+            class="buttonMinimum">{{ItemNameConst.BTN_ADD}}</button>
+          <button
+            (click)="allDelete()"
+            [ngClass]="{'button-disable': UpdateButtonDisableFlag}"
+            class="buttonMinimum">{{ItemNameConst.BTN_BULK_DELETE}}</button>
+        </div>
+      </div>
+    </section>
+
+  </section>
+
+</div>

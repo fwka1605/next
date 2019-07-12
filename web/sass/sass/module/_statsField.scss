@@ -1,0 +1,79 @@
+// ステータスフィールド
+// 
+// Markup:
+// <section class="statsField">
+//   <span class="statsField__text">処理が完了いたしました</span>
+//   <span class="statsField__close">閉じる</span>
+// </section>
+//
+// Styleguide 2.1.4
+
+  $statsDone: #39B54A;
+  $statsWarning: #F7981C;
+  $statsFailure: #F85359;
+
+  .statsField {
+    $statsField-prop: #{&};
+    position: relative;
+    margin-bottom: 12px;
+    padding: 8px 40px;
+    border-radius: 3px;
+    background-color: $statsDone;
+    @include mq-large {
+      width: $contentsWidth;
+      .vModal__contents & {
+        width: auto;
+      }
+    }
+    &::before {
+      position: absolute;
+      left: 16px;
+      top: 0;
+      bottom: 0;
+      width: 16px;
+      height: 16px;
+      margin: auto;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url(#{$imagePath}icon_stats_done.svg);
+      content: '';
+    }
+    &--warning {
+      @extend #{$statsField-prop};
+      background-color: $statsWarning;
+      &::before {
+        background-image: url(#{$imagePath}icon_stats_warning.svg);
+      }
+    }  
+    &--failure {
+      @extend #{$statsField-prop};
+      background-color: $statsFailure;
+      &::before {
+        background-image: url(#{$imagePath}icon_stats_failure.svg);
+      }
+    }
+    &__text {
+      vertical-align: 1px;
+      font-size: $font-size-small;
+      color: #fff;
+    }
+    &__close {
+      $statsField__close-prop: #{&};
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 16px;
+      overflow: hidden;
+      width: 16px;
+      height: 16px;
+      margin: auto;
+      background: url(#{$imagePath}icon_stats_close.svg) no-repeat center;
+      text-indent: 100%;
+      white-space: nowrap;
+      cursor: pointer;
+      &--inModal {
+        @extend #{$statsField__close-prop};
+      }
+    }
+  }

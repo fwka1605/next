@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#footer-outer").load("/common/footer.html");
+    })
+  </script>
+</head>
+
+<body>
+  <div class="login">
+    <div class="login__form">
+      <h1 class="login__form__title">
+        <img src="/assets/image/logo_full_color.png" alt="V-ONE クラウド" class="login__form__title__img">
+      </h1>
+
+      <form action="/clearing/PE0101/index.html">
+        <div class="login__form__input-items">
+          <div class="login__form__input-item">
+            <input class="login__form__input-item--admin-code" type="text" name="admin-code" value="" placeholder="管理者コードを入力してください。" />
+          </div>
+          <div class="login__form__input-item">
+            <input class="login__form__input-item--password" type="password" name="password" value="" placeholder="パスワードを入力してください。" />
+          </div>
+          <button class="button--w100-login">ログイン</button>
+        </div>
+      </form>
+
+      <div class="login__form__forget-password">
+        <a href="pass_reissue.html">パスワードを忘れた方</a>
+      </div>
+
+    </div>
+
+    <div id="footer-outer">
+    </div>
+
+  </div>
+
+
+</body>
+
+</html>

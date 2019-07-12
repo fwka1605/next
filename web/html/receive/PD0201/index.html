@@ -1,0 +1,132 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="/assets/css/all-import.css">
+
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#menu-outer").load("/common/menu.html");
+      $("#footer-outer").load("/common/footer.html");
+      $("#header-outer").load("/common/header.html");
+      $("#breadcrumb-outer").load("/common/breadcrumb.html");
+    })
+  </script>
+
+</head>
+
+<body>
+
+
+  <div id="layout">
+    <div id="header-outer">
+      <h2>ヘッダー</h2>
+    </div>
+    <div id="menu-outer">
+    </div>
+    <div id="layout-main">
+      <div id="main" class="receive-importer">
+        <div id="breadcrumb-outer">
+          <h1>03 入金 - 02 入金フリーインポーター(PD0201)</h1>
+        </div>
+        <section class="contents">
+          <div >
+            <div class="invoice-controller">
+              <button class="invoice-controller__btn">読込</button>
+              <button class="invoice-controller__btn">クリア</button>
+              <a href="./pd0202.html" class="invoice-controller__btn">取込設定</a>
+            </div>
+          </div>
+        </section>
+        <section class="contents">
+          <div class="invoice-container">
+            <div class="invoice-container__search-config">
+              <div class="invoice-container__search-config__header">
+                <h2 class="invoice-container__search-config__header__title">取込指定</h2>
+              </div>
+              <div class="invoice-container__search-config__body">
+                <dl class="invoice-container__search-config__body__items">
+                  <dt class="invoice-container__search-config__body__items__title">パターンNo.</dt>
+                  <dd class="invoice-container__search-config__body__items__detail">
+                    <input type="text" class="invoice-container__search-config__body__items__detail__main-input">
+                    <button data-modal class="invoice-container__search-config__body__items__detail__search-btn">検索</button>
+                    <input type="text" class="invoice-container__search-config__body__items__detail__option">
+                  </dd>
+                  <dt class="invoice-container__search-config__body__items__title">取込ファイル名</dt>
+                  <dd class="invoice-container__search-config__body__items__detail">
+                    <input type="file" data-dragable="dd-file-importer" class="invoice-container__search-config__body__items__detail__option invoice-container__search-config__body__items__detail__option--wide"
+                      value="">
+                    <label class="input-file-cover" data-dragable-result>ドラッグアンドドロップできます</label>
+                  </dd>
+                </dl>
+              </div>
+              <div class="invoice-container__search-config__body__opstions">
+                <h3 class="invoice-container__search-config__body__opstions__title">
+                  印刷対象
+                </h3>
+                <div class="invoice-container__search-config__body__opstions__items">
+                  <label for="01" class="invoice-container__search-config__body__opstions__item">
+                    <input type="radio" id="01" name="example">
+                    取込可能
+                  </label>
+                  <label for="02" class="invoice-container__search-config__body__opstions__item">
+                    <input type="radio" id="02" name="example">
+                    取込不可能
+                  </label>
+                </div>
+              </div>
+              <div class="invoice-container__search-config__body__result">
+                <ul class="invoice-container__search-config__body__result__lists">
+                  <li class="invoice-container__search-config__body__result__lists__item">
+                    <h4 class="invoice-container__search-config__body__result__lists__item__title">読込件数</h4>
+                    <p class="invoice-container__search-config__body__result__lists__item__result-value">
+                      0
+                    </p>
+                  </li>
+                  <li class="invoice-container__search-config__body__result__lists__item">
+                    <h4 class="invoice-container__search-config__body__result__lists__item__title">取込可能件数</h4>
+                    <p class="invoice-container__search-config__body__result__lists__item__result-value">
+                      100,000,000
+                    </p>
+                  </li>
+                  <li class="invoice-container__search-config__body__result__lists__item">
+                    <h4 class="invoice-container__search-config__body__result__lists__item__title">取込不可能件数</h4>
+                    <p class="invoice-container__search-config__body__result__lists__item__result-value">
+                      5,000
+                    </p>
+                  </li>
+                  <li class="invoice-container__search-config__body__result__lists__item">
+                    <h4 class="invoice-container__search-config__body__result__lists__item__title">新規得意先件数</h4>
+                    <p class="invoice-container__search-config__body__result__lists__item__result-value">
+                      100,000,000
+                    </p>
+                  </li>
+                  <li class="invoice-container__search-config__body__result__lists__item">
+                    <h4 class="invoice-container__search-config__body__result__lists__item__title">取込件数</h4>
+                    <p class="invoice-container__search-config__body__result__lists__item__result-value">
+                      100,000,000
+                    </p>
+                  </li>
+                  <li class="invoice-container__search-config__body__result__lists__item">
+                    <h4 class="invoice-container__search-config__body__result__lists__item__title">取込金額</h4>
+                    <p class="invoice-container__search-config__body__result__lists__item__result-value">
+                      100,000,000
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </section>
+      </div>
+
+
+      <div id="footer-outer">
+      </div>
+    </div>
+  </div>
+  <script src="/assets/js/prototype.js"></script>
+
+</body>
+
+</html>
